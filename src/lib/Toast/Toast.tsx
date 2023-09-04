@@ -2,7 +2,7 @@
 
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import useSetTimeout from '../../hooks/useSetTimeout';
-import useToast from '../../stores/useToast';
+import useToast from './useToast';
 import { cn } from '../../utils/style';
 import { ToastStyle } from './style';
 import ToastQuestionSvg from './ToastQuestionSvg';

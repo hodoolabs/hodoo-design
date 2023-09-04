@@ -1,6 +1,6 @@
 'use client';
 
-import useModal from '../../stores/useModal';
+import useModal from './useModal';
 import { cn } from '../../utils/style';
 import Header from './Header';
 import { ModalStyle } from './style';

@@ -12,3 +12,5 @@ export { default as TextArea } from './TextArea/TextArea';
 export { default as Toast } from './Toast/Toast';
 export { default as Toggle } from './Toggle/Toggle';
 export { default as Tooltip } from './Tooltip/Tooltip';
+export { default as useToast } from './Toast/useToast';
+export { default as useModal } from './Modal/useModal';

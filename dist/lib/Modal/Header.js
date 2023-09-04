@@ -1,7 +1,7 @@
 'use client';
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { ArrowSmallLeftIcon, XMarkIcon } from '@heroicons/react/24/outline';
-import useModal from '../../stores/useModal';
+import useModal from './useModal';
 import Button from '../Button/Button';
 var Header = function () {
     var _a = useModal(), modalState = _a.modalState, modalHistory = _a.modalHistory, goBackModal = _a.goBackModal, closeModal = _a.closeModal;
