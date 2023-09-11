@@ -3,7 +3,7 @@
 import { ReactNode } from 'react';
 import { create } from 'zustand';
 
-interface ToastStateType {
+export interface ToastStateType {
 	toastingTime?: number;
 	title: string;
 	description?: ReactNode;
@@ -15,9 +15,9 @@ interface ToastStateType {
 	isOpen?: boolean;
 }
 
-interface UseToastType {
+export interface UseToastType {
 	toastState: ToastStateType;
-	openToast: ({ toastingTime, title, description, leftButton, rightButton, isClose }: ToastStateType) => void;
+	openToast?: ({ toastingTime, title, description, leftButton, rightButton, isClose }: ToastStateType) => void;
 	closeToast: () => void;
 }
 
@@ -45,6 +45,7 @@ const useToast = create<UseToastType>((set) => ({
 		position,
 		leftIcon,
 	}: ToastStateType) => {
+		console.log('라이브러리', title, description, leftButton);
 		set(() => ({
 			toastState: {
 				toastingTime,

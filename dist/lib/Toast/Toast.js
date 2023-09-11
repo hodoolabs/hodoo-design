@@ -2,14 +2,12 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import useSetTimeout from '../../hooks/useSetTimeout';
-import useToast from '../../stores/useToast';
 import { cn } from '../../utils/style';
-import { ToastStyle } from './style';
 import ToastQuestionSvg from './ToastQuestionSvg';
 import ToastSuccessSvg from './ToastSuccessSvg';
 import ToastWarningSvg from './ToastWarningSvg';
-const Toast = () => {
-    const { toastState, closeToast } = useToast();
+import { ToastStyle } from './style';
+const Toast = ({ toastState, closeToast }) => {
     const { toastingTime, title, description, leftButton, rightButton, position, leftIcon, isClose } = toastState;
     useSetTimeout(toastingTime, closeToast);
     return (_jsxs("div", { className: cn(ToastStyle({ position })), children: [_jsxs("div", { className: 'flex gap-3', children: [_jsx("div", { className: 'w-8 h-8 rounded-lg', children: leftIcon === 'question' ? (_jsx(ToastQuestionSvg, {})) : leftIcon === 'success' ? (_jsx(ToastSuccessSvg, {})) : (leftIcon === 'warning' && _jsx(ToastWarningSvg, {})) }), _jsxs("div", { className: 'flex flex-col grow', children: [_jsx("div", { className: 'flex items-center text-[15px] font-medium text-white mt-1', children: title }), description && _jsx("div", { className: 'mt-2 text-sm font-medium leading-5 text-gray-400', children: description })] }), isClose && (_jsx("button", { className: 'flex items-center justify-center flex-none w-8 h-8 rounded-lg cursor-pointer hover:bg-gray-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-300', onClick: closeToast, children: _jsx(XMarkIcon, { className: 'w-6 h-6 text-gray-400' }) }))] }), (leftButton === null || leftButton === void 0 ? void 0 : leftButton.text) ||

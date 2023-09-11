@@ -6,7 +6,7 @@ interface ModalStateType {
     size: 'lg' | 'sm';
     isOpen?: boolean;
 }
-interface UseModalType {
+export interface UseModalType {
     modalState: ModalStateType;
     modalHistory: ModalStateType[];
     openModal: ({ title, subTitle, content, size }: ModalStateType) => void;

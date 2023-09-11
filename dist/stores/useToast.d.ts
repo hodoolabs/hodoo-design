@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-interface ToastStateType {
+export interface ToastStateType {
     toastingTime?: number;
     title: string;
     description?: ReactNode;
@@ -16,9 +16,9 @@ interface ToastStateType {
     leftIcon: 'question' | 'success' | 'warning';
     isOpen?: boolean;
 }
-interface UseToastType {
+export interface UseToastType {
     toastState: ToastStateType;
-    openToast: ({ toastingTime, title, description, leftButton, rightButton, isClose }: ToastStateType) => void;
+    openToast?: ({ toastingTime, title, description, leftButton, rightButton, isClose }: ToastStateType) => void;
     closeToast: () => void;
 }
 declare const useToast: import("zustand").UseBoundStore<import("zustand").StoreApi<UseToastType>>;

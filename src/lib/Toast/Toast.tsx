@@ -2,15 +2,14 @@
 
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import useSetTimeout from '../../hooks/useSetTimeout';
-import useToast from '../../stores/useToast';
+import { UseToastType } from '../../stores/useToast';
 import { cn } from '../../utils/style';
-import { ToastStyle } from './style';
 import ToastQuestionSvg from './ToastQuestionSvg';
 import ToastSuccessSvg from './ToastSuccessSvg';
 import ToastWarningSvg from './ToastWarningSvg';
+import { ToastStyle } from './style';
 
-const Toast = () => {
-	const { toastState, closeToast } = useToast();
+const Toast = ({ toastState, closeToast }: UseToastType) => {
 	const { toastingTime, title, description, leftButton, rightButton, position, leftIcon, isClose } = toastState;
 
 	useSetTimeout(toastingTime, closeToast);
