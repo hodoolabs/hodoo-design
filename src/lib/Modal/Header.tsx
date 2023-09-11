@@ -10,7 +10,7 @@ const Header = ({ modalState, modalHistory, goBackModal, closeModal }: ModalProp
 		<div className='flex flex-col bg-white rounded-t-3xl'>
 			<div className='flex px-8 pt-8 pb-5'>
 				<div className='w-8 h-8'>
-					{modalHistory.length > 1 && (
+					{modalHistory && modalHistory.length > 1 && goBackModal && (
 						<Button
 							color='white'
 							size='base'

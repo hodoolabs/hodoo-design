@@ -7,8 +7,8 @@ import { ModalStyle } from './style';
 
 export interface ModalProps {
 	modalState: ModalStateType;
-	modalHistory: ModalStateType[];
-	goBackModal: () => void;
+	modalHistory?: ModalStateType[];
+	goBackModal?: () => void;
 	closeModal: () => void;
 }
 
