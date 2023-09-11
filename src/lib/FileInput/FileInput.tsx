@@ -43,11 +43,11 @@ const FileInput = ({
 			)}
 			<div className='relative flex w-full group'>
 				<button className={cn(ButtonStyle({ size }))}>{buttonName}</button>
-				{error && (
-					<label className={cn(InputLabelStyle({ size, error: getLabelStatus(value, error) }))}>
+				{
+					<label className={cn(InputLabelStyle({ size, error: getLabelStatus(value, error!) }))}>
 						<span className='block overflow-hidden whitespace-nowrap'>{value || placeholder}</span>
 					</label>
-				)}
+				}
 				<input
 					type='file'
 					onChange={(event) => event.target.files && onChange(event.target.files)}

@@ -3,7 +3,7 @@
 import { ReactNode } from 'react';
 import { create } from 'zustand';
 
-interface ModalStateType {
+export interface ModalStateType {
 	title: string;
 	subTitle?: ReactNode;
 	content: ReactNode;

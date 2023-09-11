@@ -3,10 +3,9 @@
 import { ArrowSmallLeftIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import useModal from '../../stores/useModal';
 import Button from '../Button/Button';
+import { ModalProps } from './Modal';
 
-const Header = () => {
-	const { modalState, modalHistory, goBackModal, closeModal } = useModal();
-
+const Header = ({ modalState, modalHistory, goBackModal, closeModal }: ModalProps) => {
 	return (
 		<div className='flex flex-col bg-white rounded-t-3xl'>
 			<div className='flex px-8 pt-8 pb-5'>
