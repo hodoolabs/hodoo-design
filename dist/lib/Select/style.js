@@ -1,5 +1,5 @@
 import { cva } from 'class-variance-authority';
-var LabelStyle = cva(['text-gray-700', 'font-medium'], {
+const LabelStyle = cva(['text-gray-700', 'font-medium'], {
     variants: {
         size: {
             lg: ['text-sm'],
@@ -8,12 +8,13 @@ var LabelStyle = cva(['text-gray-700', 'font-medium'], {
         },
     },
 });
-var SelectedStyle = cva([
+const SelectedStyle = cva([
     'inline-flex',
     'w-full',
     'items-center',
     'justify-between',
     'ring-1',
+    'h-[54px]',
     'ring-gray-100',
     'bg-gray-50',
     'text-gray-700',
@@ -27,7 +28,7 @@ var SelectedStyle = cva([
         },
     },
 });
-var ArrowStyle = cva([], {
+const ArrowStyle = cva([], {
     variants: {
         size: {
             lg: ['w-5', 'h-5'],
@@ -36,7 +37,7 @@ var ArrowStyle = cva([], {
         },
     },
 });
-var ButtonStyle = cva([
+const ButtonStyle = cva([
     'w-full',
     'px-4',
     'py-3',
@@ -52,7 +53,7 @@ var ButtonStyle = cva([
         },
     },
 });
-var ListStyle = cva([
+const ListStyle = cva([
     'absolute',
     'z-10',
     'w-full',
@@ -72,7 +73,7 @@ var ListStyle = cva([
         },
     },
 });
-var BlankStyle = cva(['absolute', 'w-full', 'h-[8px]'], {
+const BlankStyle = cva(['absolute', 'w-full', 'h-[8px]'], {
     variants: {
         isOpenDown: {
             true: ['bottom-[-8px]'],

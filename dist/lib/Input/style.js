@@ -1,5 +1,5 @@
 import { cva } from 'class-variance-authority';
-var LabelStyle = cva(['font-medium', 'mb-2'], {
+const LabelStyle = cva(['font-medium', 'mb-2'], {
     variants: {
         size: {
             lg: ['text-sm'],
@@ -11,7 +11,7 @@ var LabelStyle = cva(['font-medium', 'mb-2'], {
         },
     },
 });
-var MaxLengthStyle = cva(['float-right'], {
+const MaxLengthStyle = cva(['float-right'], {
     variants: {
         error: {
             true: ['text-red-700'],
@@ -19,7 +19,7 @@ var MaxLengthStyle = cva(['float-right'], {
         },
     },
 });
-var InputStyle = cva(['block', 'w-full', 'rounded-xl', 'border', 'font-medium', 'disabled:text-gray-500'], {
+const InputStyle = cva(['block', 'w-full', 'rounded-xl', 'border', 'font-medium', 'disabled:text-gray-500'], {
     variants: {
         size: {
             lg: ['px-4', 'py-3.5', 'text-base'],
@@ -31,7 +31,7 @@ var InputStyle = cva(['block', 'w-full', 'rounded-xl', 'border', 'font-medium', 
         },
     },
 });
-var HelperStyle = cva(['text-gray-500', 'font-medium', 'pt-2'], {
+const HelperStyle = cva(['text-gray-500', 'font-medium', 'pt-2'], {
     variants: {
         size: {
             lg: ['text-sm'],
@@ -39,7 +39,7 @@ var HelperStyle = cva(['text-gray-500', 'font-medium', 'pt-2'], {
         },
     },
 });
-var ErrorStyle = cva(['font-medium', 'overflow-hidden', 'text-red-600', 'transition-300'], {
+const ErrorStyle = cva(['font-medium', 'overflow-hidden', 'text-red-600', 'transition-300'], {
     variants: {
         size: {
             lg: ['text-sm', 'h-7'],

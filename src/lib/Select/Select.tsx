@@ -17,10 +17,11 @@ interface SelectProps {
 	center?: boolean;
 	label?: string;
 	placeholder?: string;
+	className?: string;
 	onChange: (value: string) => void;
 }
 
-const Select = ({ size, items, selected, center = false, label, placeholder, onChange }: SelectProps) => {
+const Select = ({ size, items, selected, center = false, label, placeholder, className, onChange }: SelectProps) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [isOpenDown, setIsOpenDown] = useState(true);
 
@@ -30,37 +31,41 @@ const Select = ({ size, items, selected, center = false, label, placeholder, onC
 
 	const handleSelectOpen = (event: MouseEvent<HTMLButtonElement>) => {
 		const root = document.getElementById('root');
-		const distanceFromBottom = root!.clientHeight - event.clientY;
+		if (root) {
+			const distanceFromBottom = root.clientHeight - event.clientY;
 
-		setIsOpen((state) => !state);
-		setIsOpenDown(distanceFromBottom > 320);
+			setIsOpen((state) => !state);
+			setIsOpenDown(distanceFromBottom > 340);
+		}
 	};
 
 	return (
-		<div className='relative flex flex-col gap-2' onMouseLeave={() => setIsOpen(false)}>
-			{label && <p className={cn(LabelStyle({ size }))}>{label}</p>}
-			<div className={BlankStyle({ isOpenDown })} />
-			<button type='button' onClick={handleSelectOpen} className={cn(SelectedStyle({ size }))}>
-				{selected ? getLabel(items, selected) : placeholder}
-				<ChevronDownIcon className={cn(ArrowStyle({ size }))} />
-			</button>
-			{isOpen && (
-				<div className={ListStyle({ isOpenDown })}>
-					<ul className='flex flex-col p-1 text-base text-gray-700'>
-						{items.map((item) => (
-							<li
-								key={item.value}
-								onClick={() => {
-									onChange(item.value);
-									setIsOpen(false);
-								}}
-							>
-								<button className={cn(ButtonStyle({ center }))}>{item.label}</button>
-							</li>
-						))}
-					</ul>
-				</div>
-			)}
+		<div className={className}>
+			<div className='relative flex flex-col gap-2' onMouseLeave={() => setIsOpen(false)}>
+				{label && <p className={cn(LabelStyle({ size }))}>{label}</p>}
+				<div className={BlankStyle({ isOpenDown })} />
+				<button type='button' onClick={handleSelectOpen} className={cn(SelectedStyle({ size }))}>
+					{selected ? getLabel(items, selected) : placeholder}
+					<ChevronDownIcon className={cn(ArrowStyle({ size }))} />
+				</button>
+				{isOpen && (
+					<div className={ListStyle({ isOpenDown })}>
+						<ul className='flex flex-col p-1 text-base text-gray-700'>
+							{items.map((item) => (
+								<li
+									key={item.value}
+									onClick={() => {
+										onChange(item.value);
+										setIsOpen(false);
+									}}
+								>
+									<button className={cn(ButtonStyle({ center }))}>{item.label}</button>
+								</li>
+							))}
+						</ul>
+					</div>
+				)}
+			</div>
 		</div>
 	);
 };
@@ -74,5 +79,6 @@ export default memo(
 		prev.center === next.center &&
 		prev.label === next.label &&
 		prev.placeholder === next.placeholder &&
+		prev.className === next.className &&
 		prev.onChange === next.onChange
 );

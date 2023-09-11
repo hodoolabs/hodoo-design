@@ -1,6 +1,6 @@
 import { cva } from 'class-variance-authority';
 
-const CheckBoxStyle = cva(['w-5', 'h-5', 'mt-0.5', 'rounded', 'bg-gray-100'], {
+const CheckBoxStyle = cva(['w-5', 'h-5', 'rounded', 'bg-gray-100'], {
 	variants: {
 		checked: {
 			false: ['border', 'border-gray-300'],

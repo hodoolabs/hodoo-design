@@ -2,10 +2,9 @@
 
 import { ReactNode, memo } from 'react';
 import { cn } from '../../utils/style';
-
 import { ArrowStyle, DescriptionStyle, TooltipBoxStyle, TooltipStyle } from './style';
+import VectorWhiteSVG from './VectorWhiteSvg';
 import VectorDarkSvg from './VectorDarkSvg';
-import VectorWiteSvg from './VectorWiteSvg';
 
 interface TooltipProps {
 	color: 'dark' | 'white';
@@ -26,7 +25,7 @@ const Tooltip = ({ color, title, description, isShowArrow, children, position }:
 					<div className={cn(DescriptionStyle({ color }))}>{description}</div>
 					{isShowArrow && (
 						<div className={cn(ArrowStyle({ position }))}>
-							{color === 'white' ? <VectorWiteSvg /> : <VectorDarkSvg />}
+							{color === 'white' ? <VectorWhiteSVG /> : <VectorDarkSvg />}
 						</div>
 					)}
 				</div>

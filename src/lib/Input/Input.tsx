@@ -12,9 +12,11 @@ interface InputProps {
 	error?: string;
 	maxLength?: number;
 	placeholder?: string;
-	helper?: JSX.Element;
+	helper?: string | JSX.Element;
 	disabled?: boolean;
 	required?: boolean;
+	className?: string;
+	onBlur?: (value: string) => void;
 	onChange?: (value: string) => void;
 	onError?: (error: string) => void;
 	onEnter?: () => void;
@@ -31,6 +33,8 @@ const Input = ({
 	helper,
 	disabled,
 	required,
+	className,
+	onBlur,
 	onChange,
 	onError,
 	onEnter,
@@ -42,13 +46,13 @@ const Input = ({
 	}, [value]);
 
 	return (
-		<div className='w-full'>
+		<div className={`flex flex-col ${className}`}>
 			{label && (
 				<label className={cn(LabelStyle({ size, error: !!error }))}>
 					{required && <span className='text-red-600'>*</span>} {label}
 					{maxLength && (
 						<span className={cn(MaxLengthStyle({ error: !!error }))}>
-							{value.length}/{maxLength}
+							{value?.length}/{maxLength}
 						</span>
 					)}
 				</label>
@@ -60,6 +64,7 @@ const Input = ({
 				maxLength={maxLength}
 				placeholder={placeholder}
 				disabled={disabled}
+				onBlur={(event) => onBlur && onBlur(event.target.value)}
 				onChange={(event) => onChange && onChange(event.target.value)}
 				onKeyDown={(event) => event.key === 'Enter' && onEnter && onEnter()}
 			/>
@@ -82,6 +87,8 @@ export default memo(
 		prev.helper === next.helper &&
 		prev.disabled === next.disabled &&
 		prev.required === next.required &&
+		prev.className === next.className &&
+		prev.onBlur === next.onBlur &&
 		prev.onChange === next.onChange &&
 		prev.onError === next.onError &&
 		prev.onEnter === next.onEnter

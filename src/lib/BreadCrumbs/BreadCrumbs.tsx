@@ -1,19 +1,19 @@
 'use client';
 
 import { ChevronRightIcon } from '@heroicons/react/24/outline';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { BreadCrumbsType } from '../../types/router';
+import { memo } from 'react';
 
 interface BreadCrumbsProps {
 	data: BreadCrumbsType;
+	pathname: string;
 }
 
-const BreadCrumbs = ({ data }: BreadCrumbsProps) => {
-	const location = useLocation();
-
+const BreadCrumbs = ({ data, pathname }: BreadCrumbsProps) => {
 	return (
 		<div className='flex gap-2 mb-3 text-sm font-medium text-gray-500'>
-			{data[location.pathname].bread_crumbs.map((item) => (
+			{data[pathname].bread_crumbs.map((item) => (
 				<div key={item.url} className='flex items-center gap-2 leading-5'>
 					<Link
 						to={item.url}
@@ -24,9 +24,12 @@ const BreadCrumbs = ({ data }: BreadCrumbsProps) => {
 					<ChevronRightIcon className='w-4 h-4' />
 				</div>
 			))}
-			<span>{data[location.pathname].label}</span>
+			<span className='text-gray-400'>{data[pathname].label}</span>
 		</div>
 	);
 };
 
-export default BreadCrumbs;
+export default memo(
+	BreadCrumbs,
+	(prev: BreadCrumbsProps, next: BreadCrumbsProps) => prev.data === next.data && prev.pathname === next.pathname
+);

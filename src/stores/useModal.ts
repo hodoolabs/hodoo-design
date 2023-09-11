@@ -1,9 +1,11 @@
+'use client';
+
 import { ReactNode } from 'react';
 import { create } from 'zustand';
 
 interface ModalStateType {
 	title: string;
-	subTitle?: JSX.Element;
+	subTitle?: ReactNode;
 	content: ReactNode;
 	size: 'lg' | 'sm';
 	isOpen?: boolean;
@@ -17,7 +19,7 @@ interface UseModalType {
 	closeModal: () => void;
 }
 
-const initialState: ModalStateType = { title: '', subTitle: undefined, content: null, size: 'lg', isOpen: false };
+const initialState: ModalStateType = { title: '', subTitle: null, content: null, size: 'lg', isOpen: false };
 
 const useModal = create<UseModalType>((set) => ({
 	modalState: initialState,

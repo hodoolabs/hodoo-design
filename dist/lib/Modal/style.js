@@ -1,5 +1,5 @@
 import { cva } from 'class-variance-authority';
-var ModalStyle = cva(['w-full', 'shadow', 'z-50'], {
+const ModalStyle = cva(['w-full', 'shadow', 'z-50'], {
     variants: {
         size: {
             lg: ['max-w-xl'],

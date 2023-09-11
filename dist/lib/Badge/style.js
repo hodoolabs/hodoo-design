@@ -1,5 +1,5 @@
 import { cva } from 'class-variance-authority';
-var BadgeStyle = cva(['inline-flex', 'items-center', 'justify-center', 'font-medium', 'rounded-full'], {
+const BadgeStyle = cva(['inline-flex', 'items-center', 'justify-center', 'font-medium', 'rounded-full'], {
     variants: {
         color: {
             blue: ['bg-blue-100'],
@@ -17,7 +17,7 @@ var BadgeStyle = cva(['inline-flex', 'items-center', 'justify-center', 'font-med
         },
     },
 });
-var LeftImageStyle = cva([], {
+const LeftImageStyle = cva([], {
     variants: {
         color: {
             blue: ['text-blue-800'],
@@ -31,7 +31,7 @@ var LeftImageStyle = cva([], {
         },
     },
 });
-var LabelStyle = cva([], {
+const LabelStyle = cva([], {
     variants: {
         color: {
             blue: ['text-blue-800'],
@@ -41,7 +41,7 @@ var LabelStyle = cva([], {
         },
     },
 });
-var ButtonStyle = cva(['p-0.5', 'pointer', 'rounded', 'focus-visible:ring-gray-950', 'focus-visible:ring-2', 'focus-visible:outline-none'], {
+const ButtonStyle = cva(['p-0.5', 'pointer', 'rounded', 'focus-visible:ring-gray-950', 'focus-visible:ring-2', 'focus-visible:outline-none'], {
     variants: {
         color: {
             blue: ['hover:bg-blue-200'],
@@ -51,7 +51,7 @@ var ButtonStyle = cva(['p-0.5', 'pointer', 'rounded', 'focus-visible:ring-gray-9
         },
     },
 });
-var RightImageStyle = cva(['stroke-[3px]'], {
+const RightImageStyle = cva(['stroke-[3px]'], {
     variants: {
         color: {
             blue: ['text-blue-500'],

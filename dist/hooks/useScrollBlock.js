@@ -1,21 +1,22 @@
+'use client';
 import { useRef } from 'react';
-var useScrollBlock = function () {
-    var scrollBlocked = useRef(false);
-    var safeDocument = document;
-    var html = safeDocument.documentElement;
-    var body = safeDocument.body;
-    var blockScroll = function () {
+const useScrollBlock = () => {
+    const scrollBlocked = useRef(false);
+    const safeDocument = document;
+    const html = safeDocument.documentElement;
+    const body = safeDocument.body;
+    const blockScroll = () => {
         if (!body || !body.style || scrollBlocked.current)
             return;
-        var scrollBarWidth = window.innerWidth - html.clientWidth;
-        var bodyPaddingRight = parseInt(window.getComputedStyle(body).getPropertyValue('padding-right')) || 0;
+        const scrollBarWidth = window.innerWidth - html.clientWidth;
+        const bodyPaddingRight = parseInt(window.getComputedStyle(body).getPropertyValue('padding-right')) || 0;
         html.style.position = 'relative';
         body.style.position = 'relative';
         body.style.overflow = 'hidden';
-        body.style.paddingRight = "".concat(bodyPaddingRight + scrollBarWidth, "px");
+        body.style.paddingRight = `${bodyPaddingRight + scrollBarWidth}px`;
         scrollBlocked.current = true;
     };
-    var allowScroll = function () {
+    const allowScroll = () => {
         if (!body || !body.style || !scrollBlocked.current)
             return;
         html.style.position = '';
@@ -24,6 +25,6 @@ var useScrollBlock = function () {
         body.style.paddingRight = '';
         scrollBlocked.current = false;
     };
-    return { blockScroll: blockScroll, allowScroll: allowScroll };
+    return { blockScroll, allowScroll };
 };
 export default useScrollBlock;

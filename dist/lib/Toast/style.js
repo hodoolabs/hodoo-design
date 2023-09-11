@@ -1,5 +1,5 @@
 import { cva } from 'class-variance-authority';
-var ToastStyle = cva([
+const ToastStyle = cva([
     'fixed',
     'w-[320px]',
     'min-h-[64px]',

@@ -2,9 +2,9 @@
 
 import { memo } from 'react';
 import { cn } from '../../utils/style';
-import RadioSvg from './RadioSvg';
-import RadioDisabledSvg from './RadioDisabledSvg';
 import { HelperStyle, LabelStyle, RadioStyle } from './style';
+import RadioDisabledSvg from './RadioDisabledSvg';
+import RadioSvg from './RadioSvg';
 
 interface RadioProps {
 	id: string | number;
@@ -22,7 +22,7 @@ const Radio = ({ id, selected, label, helper, disabled = false, onChange }: Radi
 				className={cn(RadioStyle({ selected: id === selected, disabled }))}
 				onClick={() => !disabled && onChange && onChange(id)}
 			>
-				{id === selected && (disabled ? <RadioSvg /> : <RadioDisabledSvg />)}
+				{id === selected && disabled ? <RadioDisabledSvg /> : <RadioSvg />}
 			</button>
 
 			{label && (

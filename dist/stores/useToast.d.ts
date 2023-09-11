@@ -1,8 +1,8 @@
-/// <reference types="react" />
+import { ReactNode } from 'react';
 interface ToastStateType {
     toastingTime?: number;
     title: string;
-    description?: string | JSX.Element;
+    description?: ReactNode;
     leftButton?: {
         text: string;
         onClick: () => void;

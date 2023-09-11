@@ -1,5 +1,5 @@
 import { cva } from 'class-variance-authority';
-var ButtonStyle = cva([
+const ButtonStyle = cva([
     'group',
     'inline-flex',
     'gap-2',
@@ -38,7 +38,7 @@ var ButtonStyle = cva([
         },
     },
 });
-var ImageStyle = cva([], {
+const ImageStyle = cva([], {
     variants: {
         color: {
             black: ['text-white'],
@@ -65,7 +65,7 @@ var ImageStyle = cva([], {
         },
     },
 });
-var LabelStyle = cva(['font-semibold'], {
+const LabelStyle = cva(['font-semibold'], {
     variants: {
         color: {
             black: ['text-white'],

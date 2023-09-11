@@ -1,5 +1,5 @@
 import { cva } from 'class-variance-authority';
-var IndicatorStyle = cva(['bg-red-500', 'rounded-full', 'flex', 'items-center', 'justify-center', 'text-sm', 'font-semibold', 'text-white'], {
+const IndicatorStyle = cva(['bg-red-500', 'rounded-full', 'flex', 'items-center', 'justify-center', 'text-sm', 'font-semibold', 'text-white'], {
     variants: {
         type: {
             default: ['w-2', 'h-2'],

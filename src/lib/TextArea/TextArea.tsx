@@ -11,7 +11,7 @@ interface TextAreaProps {
 	error?: string;
 	maxLength?: number;
 	placeholder?: string;
-	helper?: JSX.Element;
+	helper?: string | JSX.Element;
 	disabled?: boolean;
 	height?: number;
 	required?: boolean;
@@ -40,13 +40,13 @@ const TextArea = ({
 	}, [value]);
 
 	return (
-		<div className='flex flex-col resize-none'>
+		<div className='flex flex-col'>
 			{label && (
 				<label className={cn(LabelStyle({ size, error: !!error }))}>
 					{required && <span className='text-red-600'>*</span>} {label}
 					{maxLength && (
 						<span className={cn(MaxLengthStyle({ error: !!error }))}>
-							{value.length}/{maxLength}
+							{value?.length}/{maxLength}
 						</span>
 					)}
 				</label>

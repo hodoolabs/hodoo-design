@@ -1,13 +1,11 @@
 type ColumnType<RecordType> = {
-	id?: React.Key;
-	title: React.ReactNode;
+	title: string;
 	dataIndex: keyof RecordType;
-	icon?: string | JSX.Element;
-	onClickIcon?: (data: DataType[]) => void;
+	width?: number;
+	sorter?: (a: DataType, b: DataType) => number;
 };
 
 type DataType = {
-	id: React.Key;
 	[key: string]: string | number;
 };
 

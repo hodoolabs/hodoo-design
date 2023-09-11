@@ -1,5 +1,5 @@
 import { cva } from 'class-variance-authority';
-export var AvatarStyle = cva(['inline-flex', 'rounded-full'], {
+export const AvatarStyle = cva(['inline-flex', 'rounded-full'], {
     variants: {
         size: {
             xl: ['w-36', 'h-36'],

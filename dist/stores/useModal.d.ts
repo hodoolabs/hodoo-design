@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 interface ModalStateType {
     title: string;
-    subTitle?: JSX.Element;
+    subTitle?: ReactNode;
     content: ReactNode;
     size: 'lg' | 'sm';
     isOpen?: boolean;

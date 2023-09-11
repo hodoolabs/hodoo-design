@@ -1,9 +1,12 @@
+'use client';
+
+import { ReactNode } from 'react';
 import { create } from 'zustand';
 
 interface ToastStateType {
 	toastingTime?: number;
 	title: string;
-	description?: string | JSX.Element;
+	description?: ReactNode;
 	leftButton?: { text: string; onClick: () => void };
 	rightButton?: { text: string; onClick: () => void };
 	isClose?: boolean;
@@ -19,9 +22,9 @@ interface UseToastType {
 }
 
 const initialState: ToastStateType = {
-	toastingTime: 0,
+	toastingTime: 5000,
 	title: '',
-	description: '',
+	description: null,
 	leftButton: { text: '', onClick: () => {} },
 	rightButton: { text: '', onClick: () => {} },
 	isClose: true,
@@ -33,7 +36,7 @@ const initialState: ToastStateType = {
 const useToast = create<UseToastType>((set) => ({
 	toastState: initialState,
 	openToast: ({
-		toastingTime,
+		toastingTime = 5000,
 		title,
 		description,
 		leftButton,

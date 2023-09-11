@@ -1,5 +1,5 @@
 import { cva } from 'class-variance-authority';
-var TooltipBoxStyle = cva(['absolute', 'w-max', 'opacity-0', 'peer-hover:opacity-100', 'transition', 'duration-300'], {
+const TooltipBoxStyle = cva(['absolute', 'w-max', 'opacity-0', 'peer-hover:opacity-100', 'transition', 'duration-300'], {
     variants: {
         position: {
             top: ['top-[-20px]', 'left-[50%]', 'translate-x-[-50%]', 'translate-y-[-100%]'],
@@ -15,7 +15,7 @@ var TooltipBoxStyle = cva(['absolute', 'w-max', 'opacity-0', 'peer-hover:opacity
         },
     },
 });
-var TooltipStyle = cva(['relative', 'inline-block', 'px-3', 'py-2', 'text-sm', 'font-medium', 'rounded-lg', 'shadow-sm'], {
+const TooltipStyle = cva(['relative', 'inline-block', 'px-3', 'py-2', 'text-sm', 'font-medium', 'rounded-lg', 'shadow-sm'], {
     variants: {
         color: {
             dark: ['text-white', 'bg-gray-900'],
@@ -23,7 +23,7 @@ var TooltipStyle = cva(['relative', 'inline-block', 'px-3', 'py-2', 'text-sm', '
         },
     },
 });
-var DescriptionStyle = cva(['mt-0.5'], {
+const DescriptionStyle = cva(['mt-0.5'], {
     variants: {
         color: {
             dark: ['text-gray-400'],
@@ -31,7 +31,7 @@ var DescriptionStyle = cva(['mt-0.5'], {
         },
     },
 });
-var ArrowStyle = cva(['absolute'], {
+const ArrowStyle = cva(['absolute'], {
     variants: {
         position: {
             top: ['bottom-[0]', 'left-[50%]', 'translate-x-[-50%]', 'translate-y-[100%]', 'rotate-0'],

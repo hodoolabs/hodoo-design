@@ -1,7 +1,7 @@
 'use client';
 
 import { ArrowSmallLeftIcon, XMarkIcon } from '@heroicons/react/24/outline';
-import useModal from './useModal';
+import useModal from '../../stores/useModal';
 import Button from '../Button/Button';
 
 const Header = () => {

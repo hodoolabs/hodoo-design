@@ -1,5 +1,5 @@
 import { cva } from 'class-variance-authority';
-var ToogleBoxStyle = cva([
+const ToogleBoxStyle = cva([
     'rounded-full',
     'bg-gray-200',
     'cursor-pointer',
@@ -49,7 +49,7 @@ var ToogleBoxStyle = cva([
         },
     },
 });
-var LabelStyle = cva([], {
+const LabelStyle = cva([], {
     variants: {
         size: {
             sm: ['text-sm'],
@@ -62,7 +62,7 @@ var LabelStyle = cva([], {
         },
     },
 });
-var HelperStyle = cva(['text-sm'], {
+const HelperStyle = cva(['text-sm'], {
     variants: {
         disabled: {
             true: ['text-gray-400', 'cursor-default'],

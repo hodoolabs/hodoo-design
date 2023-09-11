@@ -1,5 +1,5 @@
 import { cva } from 'class-variance-authority';
-var CheckBoxStyle = cva(['w-5', 'h-5', 'mt-0.5', 'rounded', 'bg-gray-100'], {
+const CheckBoxStyle = cva(['w-5', 'h-5', 'rounded', 'bg-gray-100'], {
     variants: {
         checked: {
             false: ['border', 'border-gray-300'],
@@ -16,7 +16,7 @@ var CheckBoxStyle = cva(['w-5', 'h-5', 'mt-0.5', 'rounded', 'bg-gray-100'], {
         },
     },
 });
-var LabelStyle = cva(['text-base'], {
+const LabelStyle = cva(['text-base'], {
     variants: {
         disabled: {
             true: ['text-gray-400', 'cursor-default'],
@@ -24,7 +24,7 @@ var LabelStyle = cva(['text-base'], {
         },
     },
 });
-var HelperStyle = cva(['text-sm'], {
+const HelperStyle = cva(['text-sm'], {
     variants: {
         disabled: {
             true: ['text-gray-400'],

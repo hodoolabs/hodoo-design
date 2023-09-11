@@ -17,6 +17,7 @@ const SelectedStyle = cva(
 		'items-center',
 		'justify-between',
 		'ring-1',
+		'h-[54px]',
 		'ring-gray-100',
 		'bg-gray-50',
 		'text-gray-700',

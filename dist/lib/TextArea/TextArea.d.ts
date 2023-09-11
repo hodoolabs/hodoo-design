@@ -6,7 +6,7 @@ interface TextAreaProps {
     error?: string;
     maxLength?: number;
     placeholder?: string;
-    helper?: JSX.Element;
+    helper?: string | JSX.Element;
     disabled?: boolean;
     height?: number;
     required?: boolean;
