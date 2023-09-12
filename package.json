@@ -1,7 +1,13 @@
 {
   "name": "hodoo-design",
-  "version": "1.1.31",
+  "version": "1.1.6",
+  "title": "Hodoo Design",
   "description": "hodoolabs design system",
+  "contributors": [
+    "Taejin Kim <tj202304@gmail.com> (https://github.com/taejin-k)",
+    "Sohui Choi <chosohi@naver.com> (https://github.com/chosohi)",
+    "Seungmo Kim <tmdah900@naver.com> (https://github.com/endmoseung)"
+  ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "browser": "./browser/specific/main.js",
@@ -18,7 +24,14 @@
     "url": "https://github.com/hodoolabs/Design-System.git"
   },
   "keywords": [
-    "react"
+    "hodoo",
+    "hodoolabs",
+    "hodoo-design",
+    "desigin-system",
+    "react",
+    "next",
+    "typescript",
+    "tailwind"
   ],
   "files": [
     "dist/*"
