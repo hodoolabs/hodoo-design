@@ -1,9 +1,9 @@
 import { Key } from 'react';
-import { ColumnType, DataType } from '../../types/table';
+import { ColumnType, ColumnDataType } from '../../types/table';
 interface RowTableProps {
     size: 'lg' | 'sm';
-    columns: ColumnType<DataType>[];
-    dataSource: DataType[];
+    columns: ColumnType<ColumnDataType>[];
+    dataSource: ColumnDataType[];
     rowSelections?: {
         selectedRowKeys: Key[];
         onselect: (keys: Key[]) => void;

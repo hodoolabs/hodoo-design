@@ -14,7 +14,6 @@ const initialState = {
 const useToast = create((set) => ({
     toastState: initialState,
     openToast: ({ toastingTime = 5000, title, description, leftButton, rightButton, isClose, position, leftIcon, }) => {
-        console.log('라이브러리', title, description, leftButton);
         set(() => ({
             toastState: {
                 toastingTime,

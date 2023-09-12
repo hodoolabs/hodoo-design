@@ -2,9 +2,9 @@ type ColumnType<RecordType> = {
     title: string;
     dataIndex: keyof RecordType;
     width?: number;
-    sorter?: (a: DataType, b: DataType) => number;
+    sorter?: (a: ColumnDataType, b: ColumnDataType) => number;
 };
-type DataType = {
+type ColumnDataType = {
     [key: string]: string | number;
 };
-export type { ColumnType, DataType };
+export type { ColumnType, ColumnDataType };
