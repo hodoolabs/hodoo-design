@@ -1,3 +1,4 @@
+import './tailwind.css';
 export { default as Avatar } from './Avatar/Avatar';
 export { default as Badge } from './Badge/Badge';
 export { default as BreadCrumbs } from './BreadCrumbs/BreadCrumbs';
