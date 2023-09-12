@@ -1,43 +1,31 @@
-const path = require("path");
+import { resolve as _resolve } from "path";
 
-module.exports = {
-  entry: "./src/index.js",
-  output: {
-    filename: "main.js",
-    path: path.resolve(__dirname, "dist"),
-  },
-  module: {
-    rules: [
-      {
-        use: [
-          {
-            loader: "file-loader",
-            options: {
-              name: "[path][name].[ext]",
-              outputPath: "images/",
-              publicPath: "images/",
-            },
-          },
-        ],
-      },
-      {
-        use: "ts-loader",
-        exclude: /node_modules/,
-      },
-      {
-        test: /.jsx?$/,
-        include: [path.resolve(__dirname, "src")],
-        exclude: [path.resolve(__dirname, "node_modules")],
-        loader: "babel-loader",
-      },
-      {
-        test: /.css?$/,
-        exclude: [],
-        use: ["style-loader", "css-loader", "postcss-loader"],
-      },
-    ],
-  },
-  resolve: {
-    extensions: [".tsx", ".ts", ".js"],
-  },
+export const entry = "./src/index.js";
+
+export const output = {
+  filename: "main.js",
+  path: _resolve(__dirname, "dist"),
+};
+
+export const module = {
+  rules: [
+    {
+      use: "ts-loader",
+      exclude: /node_modules/,
+    },
+    {
+      test: /.jsx?$/,
+      include: [_resolve(__dirname, "src")],
+      exclude: [_resolve(__dirname, "node_modules")],
+      loader: "babel-loader",
+    },
+    {
+      test: /.css?$/,
+      exclude: [],
+      use: ["style-loader", "css-loader", "postcss-loader"],
+    },
+  ],
+};
+export const resolve = {
+  extensions: [".tsx", ".ts", ".js"],
 };

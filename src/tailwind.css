@@ -1,33 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer base {
-	* {
-		@apply m-0 p-0 border-0 outline-0 align-top box-border;
-	}
-
-	html {
-		@apply w-full h-full;
-	}
-
-	body {
-		@apply h-full relative font-noto;
-	}
-
-	ul {
-		@apply list-none;
-	}
-
-	a {
-		@apply decoration-0 bg-transparent;
-	}
-
-	img {
-		@apply border-0;
-	}
-}
-
 @layer components {
 	.transition-300 {
 		transition: 0.3s;
