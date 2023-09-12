@@ -2,9 +2,9 @@
 
 import { ReactNode, memo } from 'react';
 import { cn } from '../../utils/style';
+import VectorDarkSvg from './images/VectorDarkSvg';
+import VectorWhiteSVG from './images/VectorWhiteSvg';
 import { ArrowStyle, DescriptionStyle, TooltipBoxStyle, TooltipStyle } from './style';
-import VectorWhiteSVG from './VectorWhiteSvg';
-import VectorDarkSvg from './VectorDarkSvg';
 
 interface TooltipProps {
 	color: 'dark' | 'white';
