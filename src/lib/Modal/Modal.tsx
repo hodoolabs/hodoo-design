@@ -1,5 +1,7 @@
 'use client';
 
+import { useEffect } from 'react';
+import useScrollBlock from '../../hooks/useScrollBlock';
 import { ModalStateType } from '../../types/modal';
 import { cn } from '../../utils/style';
 import Header from './Header';
@@ -13,6 +15,13 @@ export interface ModalProps {
 }
 
 const Modal = ({ modalState, modalHistory, goBackModal, closeModal }: ModalProps) => {
+	const { blockScroll, allowScroll } = useScrollBlock();
+
+	useEffect(() => {
+		if (modalState.isOpen) blockScroll();
+		else allowScroll();
+	}, [modalState.isOpen]);
+
 	return (
 		<div className='fixed top-0 left-0 z-30 flex items-center justify-center w-full h-screen'>
 			<div className={cn(ModalStyle({ size: modalState.size }))}>
