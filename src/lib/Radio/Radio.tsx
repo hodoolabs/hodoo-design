@@ -22,7 +22,7 @@ const Radio = ({ id, selected, label, helper, disabled = false, onChange }: Radi
 				className={cn(RadioStyle({ selected: id === selected, disabled }))}
 				onClick={() => !disabled && onChange && onChange(id)}
 			>
-				{id === selected && disabled ? <RadioDisabledSvg /> : <RadioSvg />}
+				{id === selected && (disabled ? <RadioDisabledSvg /> : <RadioSvg />)}
 			</button>
 
 			{label && (

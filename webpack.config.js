@@ -1,10 +1,10 @@
 const path = require("path");
 
 module.exports = {
-  entry: "./src/index.tsx", // 여기서부터 빌드 시작
+  entry: "./src/index.js",
   output: {
     filename: "main.js",
-    path: path.resolve(__dirname, "dist"), // 결과물 위치
+    path: path.resolve(__dirname, "dist"),
   },
   module: {
     rules: [
