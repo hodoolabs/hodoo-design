@@ -1,4 +1,4 @@
-import { ToastStateType } from '../../stores/useToast';
+import { ToastStateType } from '../../types/toast';
 interface ToastProps {
     toastState: ToastStateType;
     closeToast: () => void;

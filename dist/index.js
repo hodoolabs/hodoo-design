@@ -16,7 +16,5 @@ export { default as TextArea } from './lib/TextArea/TextArea';
 export { default as Toast } from './lib/Toast/Toast';
 export { default as Toggle } from './lib/Toggle/Toggle';
 export { default as Tooltip } from './lib/Tooltip/Tooltip';
-export { default as useToast } from './stores/useToast';
-export { default as useModal } from './stores/useModal';
 export { default as useScrollBlock } from './hooks/useScrollBlock';
 export { default as useSetTimeout } from './hooks/useSetTimeout';

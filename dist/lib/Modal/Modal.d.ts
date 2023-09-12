@@ -1,4 +1,4 @@
-import { ModalStateType } from '../../stores/useModal';
+import { ModalStateType } from '../../types/modal';
 export interface ModalProps {
     modalState: ModalStateType;
     modalHistory?: ModalStateType[];
