@@ -2,15 +2,15 @@
 
 import { ChevronUpDownIcon } from '@heroicons/react/24/outline';
 import { Key, memo, useState } from 'react';
-import { ColumnType, DataType } from '../../types/table';
+import { ColumnType, ColumnDataType } from '../../types/table';
 import { cn } from '../../utils/style';
 import CheckBox from '../CheckBox/CheckBox';
 import { TableBodyStyle, TableHeaderStyle } from './style';
 
 interface RowTableProps {
 	size: 'lg' | 'sm';
-	columns: ColumnType<DataType>[];
-	dataSource: DataType[];
+	columns: ColumnType<ColumnDataType>[];
+	dataSource: ColumnDataType[];
 	rowSelections?: {
 		selectedRowKeys: Key[];
 		onselect: (keys: Key[]) => void;
@@ -23,9 +23,9 @@ const RowTable = ({ size, columns, dataSource, rowSelections }: RowTableProps) =
 	const onselect = rowSelections?.onselect;
 
 	const handleSortDatas = (
-		dataSource: DataType[],
-		sortDatas: DataType[],
-		sorter: (a: DataType, b: DataType) => number
+		dataSource: ColumnDataType[],
+		sortDatas: ColumnDataType[],
+		sorter: (a: ColumnDataType, b: ColumnDataType) => number
 	) => {
 		const isSorted = JSON.stringify(dataSource) !== JSON.stringify(sortDatas);
 
