@@ -1,5 +1,19 @@
 # Hodoo-Design-System
 
+## 🤚 Introduction
+<p align="center">
+  <span >
+    <img width="200" src="https://github.com/hodoolabs/Design-System/assets/129719850/ec7530f4-fa40-41db-ac9d-d95dd9b1d568">
+  </span>
+</p>
+
+<h1 align="center">Hodoo Design</h1>
+
+<div align="center">
+It is a design system library for Hodoolabs products.
+</div>
+
+
 ## 📦 Install
 ```
 npm install hodoo-design
