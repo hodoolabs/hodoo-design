@@ -1,8 +1,8 @@
 'use client';
 
 import { ChevronRightIcon } from '@heroicons/react/24/outline';
-import { BreadCrumbsType } from '../../types/router';
 import { memo } from 'react';
+import { BreadCrumbsType } from '../../types/breadCrumbs';
 
 interface BreadCrumbsProps {
 	data: BreadCrumbsType;
