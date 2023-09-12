@@ -45,7 +45,6 @@ const useToast = create<UseToastType>((set) => ({
 		position,
 		leftIcon,
 	}: ToastStateType) => {
-		console.log('라이브러리', title, description, leftButton);
 		set(() => ({
 			toastState: {
 				toastingTime,
