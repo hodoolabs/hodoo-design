@@ -76,7 +76,7 @@ const LabelStyle = cva(['font-semibold'], {
             white_line: ['text-gray-800', 'group-hover:text-gray-900'],
         },
         size: {
-            lg: ['text-base'],
+            lg: ['text-base', 'h-6', 'leading-[25px]'],
             md: ['text-sm'],
             base: ['text-xs'],
             sm: ['text-xs'],
