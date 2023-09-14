@@ -15,11 +15,11 @@ const ToggleStyle = cva(['absolute', 'h-full', 'left-0', 'pl-4', 'pr-3', 'py-3.5
         },
     },
 });
-const InputStyle = cva(['cursor-pointer', 'w-full', 'px-4', 'pl-12', 'py-3.5', 'bg-gray-50', 'border', 'border-gray-100', 'rounded-xl'], {
+const InputStyle = cva(['cursor-pointer', 'w-full', 'px-4', 'pl-12', 'py-3.5', 'bg-gray-50', 'border', 'rounded-xl'], {
     variants: {
         error: {
-            true: ['text-red-700', 'border-red-100', 'bg-red-50', 'placeholder-red-400'],
-            false: ['bg-gray-50', 'text-gray-900'],
+            true: ['text-red-700', 'border-red-200', 'bg-red-50', 'placeholder-red-400'],
+            false: ['bg-gray-50', 'text-gray-900', 'border-gray-300/70'],
         },
     },
 });

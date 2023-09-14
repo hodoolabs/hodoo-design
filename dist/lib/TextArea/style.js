@@ -26,8 +26,8 @@ const TextareaStyle = cva(['block', 'rounded-xl', 'border', 'font-medium', 'disa
             sm: ['px-4', 'py-2.5', 'text-sm'],
         },
         error: {
-            true: ['border-rose-100', 'bg-red-50', 'text-red-900', 'placeholder-rose-400'],
-            false: ['border-gray-100', 'bg-gray-50', 'text-gray-900', 'placeholder-gray-400'],
+            true: ['border-red-100', 'bg-red-50', 'text-red-900', 'placeholder-red-400'],
+            false: ['border-gray-300/70', 'bg-gray-50', 'text-gray-900', 'placeholder-gray-400'],
         },
     },
 });

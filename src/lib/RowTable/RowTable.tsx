@@ -6,6 +6,8 @@ import { ColumnType, ColumnDataType } from '../../types/table';
 import { cn } from '../../utils/style';
 import CheckBox from '../CheckBox/CheckBox';
 import { TableBodyStyle, TableHeaderStyle } from './style';
+import Tooltip from '../Tooltip/Tooltip';
+import { QuestionMarkCircleIcon } from '@heroicons/react/24/solid';
 
 interface RowTableProps {
 	size: 'lg' | 'sm';
@@ -60,9 +62,21 @@ const RowTable = ({ size, columns, dataSource, rowSelections }: RowTableProps) =
 								<span>{column.title}</span>
 								{column.sorter && (
 									<ChevronUpDownIcon
-										className='w-5 cursor-pointer'
+										className='w-5 ml-2 cursor-pointer'
 										onClick={() => handleSortDatas(dataSource, sortDatas, column.sorter!)}
 									/>
+								)}
+								{column.tooltip && (
+									<div className='flex ml-2 item-center'>
+										<Tooltip
+											color={column.tooltip.color}
+											title={column.tooltip.title}
+											isShowArrow={column.tooltip.isShowArrow}
+											position={column.tooltip.position}
+										>
+											<QuestionMarkCircleIcon className='w-5 cursor-pointer' />
+										</Tooltip>
+									</div>
 								)}
 							</th>
 						))}

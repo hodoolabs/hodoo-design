@@ -2,7 +2,8 @@
 import { BreadCrumbsType } from '../../types/breadCrumbs';
 interface BreadCrumbsProps {
     data: BreadCrumbsType;
+    onPush: (pathname: string) => void;
     pathname: string;
 }
-declare const _default: import("react").MemoExoticComponent<({ data, pathname }: BreadCrumbsProps) => import("react/jsx-runtime").JSX.Element>;
+declare const _default: import("react").MemoExoticComponent<({ data, onPush, pathname }: BreadCrumbsProps) => import("react/jsx-runtime").JSX.Element>;
 export default _default;

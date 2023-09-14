@@ -21,17 +21,14 @@ const ToggleStyle = cva(
 	}
 );
 
-const InputStyle = cva(
-	['cursor-pointer', 'w-full', 'px-4', 'pl-12', 'py-3.5', 'bg-gray-50', 'border', 'border-gray-100', 'rounded-xl'],
-	{
-		variants: {
-			error: {
-				true: ['text-red-700', 'border-red-100', 'bg-red-50', 'placeholder-red-400'],
-				false: ['bg-gray-50', 'text-gray-900'],
-			},
+const InputStyle = cva(['cursor-pointer', 'w-full', 'px-4', 'pl-12', 'py-3.5', 'bg-gray-50', 'border', 'rounded-xl'], {
+	variants: {
+		error: {
+			true: ['text-red-700', 'border-red-200', 'bg-red-50', 'placeholder-red-400'],
+			false: ['bg-gray-50', 'text-gray-900', 'border-gray-300/70'],
 		},
-	}
-);
+	},
+});
 
 const ErrorStyle = cva(['font-medium', 'overflow-hidden', 'text-red-600', 'transition-300', 'text-sm', 'h-7'], {
 	variants: {

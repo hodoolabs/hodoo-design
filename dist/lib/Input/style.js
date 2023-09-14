@@ -26,8 +26,8 @@ const InputStyle = cva(['block', 'w-full', 'rounded-xl', 'border', 'font-medium'
             sm: ['px-4', 'py-2.5', 'text-sm'],
         },
         error: {
-            true: ['border-rose-100', 'bg-red-50', 'text-red-900', 'placeholder-rose-400'],
-            false: ['border-gray-100', 'bg-gray-50', 'text-gray-900', 'placeholder-gray-400'],
+            true: ['border-rose-200', 'bg-red-50', 'text-red-900', 'placeholder-rose-400'],
+            false: ['border-gray-300/70', 'bg-gray-50', 'text-gray-900', 'placeholder-gray-400'],
         },
     },
 });

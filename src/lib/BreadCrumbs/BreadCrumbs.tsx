@@ -17,7 +17,7 @@ const BreadCrumbs = ({ data, onPush, pathname }: BreadCrumbsProps) => {
 				<div key={item.url} className='flex items-center gap-2 leading-5'>
 					<span
 						onClick={() => onPush(item.url)}
-						className='rounded hover:text-gray-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2'
+						className='rounded hover:text-gray-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2 cursor-pointer'
 					>
 						{item.label}
 					</span>
