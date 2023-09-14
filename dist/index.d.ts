@@ -1,4 +1,5 @@
 export { default as Avatar } from './lib/Avatar/Avatar';
+export { default as Accordion } from './lib/Accordion/Accordion';
 export { default as Badge } from './lib/Badge/Badge';
 export { default as BreadCrumbs } from './lib/BreadCrumbs/BreadCrumbs';
 export { default as Button } from './lib/Button/Button';
@@ -19,3 +20,4 @@ export type { ColumnType, ColumnDataType } from './types/table';
 export type { BreadCrumbsType } from './types/breadCrumbs';
 export type { ModalStateType } from './types/modal';
 export type { ToastStateType } from './types/toast';
+export type { MenuListType } from './types/accordion';
