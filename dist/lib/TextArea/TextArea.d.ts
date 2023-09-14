@@ -1,7 +1,7 @@
 /// <reference types="react" />
 interface TextAreaProps {
     size: 'lg' | 'sm';
-    label: string | JSX.Element;
+    label?: string | JSX.Element;
     value: string;
     error?: string;
     maxLength?: number;

@@ -5,6 +5,8 @@ import { memo, useState } from 'react';
 import { cn } from '../../utils/style';
 import CheckBox from '../CheckBox/CheckBox';
 import { TableBodyStyle, TableHeaderStyle } from './style';
+import Tooltip from '../Tooltip/Tooltip';
+import { QuestionMarkCircleIcon } from '@heroicons/react/24/solid';
 const RowTable = ({ size, columns, dataSource, rowSelections }) => {
     const [sortDatas, setSortDatas] = useState(dataSource);
     const selectedRowKeys = rowSelections === null || rowSelections === void 0 ? void 0 : rowSelections.selectedRowKeys;
@@ -16,7 +18,7 @@ const RowTable = ({ size, columns, dataSource, rowSelections }) => {
     return (_jsxs("table", { className: 'w-full', children: [_jsx("thead", { className: 'font-semibold text-gray-500 border-b border-gray-200 bg-gray-50', children: _jsxs("tr", { className: 'flex w-full', children: [rowSelections && (_jsx("th", { className: 'p-4 leading-none', children: onselect && (_jsx(CheckBox, { checked: (selectedRowKeys === null || selectedRowKeys === void 0 ? void 0 : selectedRowKeys.length) === dataSource.length, onChange: () => (selectedRowKeys === null || selectedRowKeys === void 0 ? void 0 : selectedRowKeys.length) === dataSource.length
                                     ? onselect([])
                                     : onselect(dataSource.map((record) => record.id)) })) })), columns &&
-                            columns.map((column) => (_jsxs("th", { className: cn(TableHeaderStyle({ size })), style: { width: `${column.width}%` }, children: [_jsx("span", { children: column.title }), column.sorter && (_jsx(ChevronUpDownIcon, { className: 'w-5 cursor-pointer', onClick: () => handleSortDatas(dataSource, sortDatas, column.sorter) }))] }, column.dataIndex)))] }) }), _jsx("tbody", { children: sortDatas.map((record) => (_jsxs("tr", { className: 'flex items-center font-medium border-b border-solid border-b-gray-200 hover:bg-blue-50 hover:text-gray-900 hover:border-blue-300', children: [rowSelections && (_jsx("td", { className: 'p-4 leading-none', children: selectedRowKeys && onselect && (_jsx(CheckBox, { checked: selectedRowKeys.includes(record.id), onChange: () => {
+                            columns.map((column) => (_jsxs("th", { className: cn(TableHeaderStyle({ size })), style: { width: `${column.width}%` }, children: [_jsx("span", { children: column.title }), column.sorter && (_jsx(ChevronUpDownIcon, { className: 'w-5 ml-2 cursor-pointer', onClick: () => handleSortDatas(dataSource, sortDatas, column.sorter) })), column.tooltip && (_jsx("div", { className: 'flex ml-2 item-center', children: _jsx(Tooltip, { color: column.tooltip.color, title: column.tooltip.title, isShowArrow: column.tooltip.isShowArrow, position: column.tooltip.position, children: _jsx(QuestionMarkCircleIcon, { className: 'w-5 cursor-pointer' }) }) }))] }, column.dataIndex)))] }) }), _jsx("tbody", { children: sortDatas.map((record) => (_jsxs("tr", { className: 'flex items-center font-medium border-b border-solid border-b-gray-200 hover:bg-blue-50 hover:text-gray-900 hover:border-blue-300', children: [rowSelections && (_jsx("td", { className: 'p-4 leading-none', children: selectedRowKeys && onselect && (_jsx(CheckBox, { checked: selectedRowKeys.includes(record.id), onChange: () => {
                                     const newSelectedKeys = selectedRowKeys.includes(record.id)
                                         ? selectedRowKeys.filter((key) => key !== record.id)
                                         : [...selectedRowKeys, record.id];

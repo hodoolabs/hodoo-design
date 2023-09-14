@@ -46,7 +46,6 @@ const InputLabelStyle = cva(
 		'overflow-hidden',
 		'bg-gray-50',
 		'border',
-		'border-gray-100',
 		'group-hover:bg-gray-100',
 	],
 	{
@@ -56,10 +55,16 @@ const InputLabelStyle = cva(
 				sm: ['py-2.5', 'text-sm'],
 			},
 			error: {
-				value: ['text-gray-900'],
-				valueError: ['text-red-900', 'bg-red-50', 'border-red-100', 'group-hover:bg-red-50'],
-				placeholder: ['text-gray-400'],
-				placeholderError: ['text-red-400', 'bg-red-50', 'border-red-100', 'group-hover:bg-red-50'],
+				value: ['text-gray-900', 'border-gray-300/70', 'border-l-transparent'],
+				valueError: ['text-red-900', 'bg-red-50', 'border-red-200', 'border-l-transparent', 'group-hover:bg-red-50'],
+				placeholder: ['text-gray-400', 'border-gray-300/70', 'border-l-transparent'],
+				placeholderError: [
+					'text-red-400',
+					'bg-red-50',
+					'border-red-200',
+					'border-l-transparent',
+					'group-hover:bg-red-50',
+				],
 			},
 		},
 	}

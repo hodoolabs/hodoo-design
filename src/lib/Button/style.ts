@@ -22,7 +22,7 @@ const ButtonStyle = cva(
 				white: ['bg-white', 'hover:bg-gray-100'],
 				gray: ['bg-gray-100', 'hover:bg-gray-200'],
 				red: ['bg-red-100', 'hover:bg-red-200'],
-				white_line: ['bg-white', 'hover:bg-gray-100', 'ring-1', 'ring-gray-200'],
+				white_line: ['bg-white', 'hover:bg-gray-100', 'ring-1', 'ring-gray-300/70'],
 			},
 			size: {
 				lg: ['py-3.5', 'px-5', 'rounded-xl'],

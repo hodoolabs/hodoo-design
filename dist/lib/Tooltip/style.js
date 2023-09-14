@@ -8,10 +8,10 @@ const TooltipBoxStyle = cva(['absolute', 'w-max', 'opacity-0', 'peer-hover:opaci
             bottom: ['bottom-[-20px]', 'left-[50%]', 'translate-x-[-50%]', 'translate-y-[100%]'],
         },
         isShowArrow: {
-            top: ['top-[-40px]'],
-            left: ['left-[-40px]'],
-            right: ['right-[-40px]'],
-            bottom: ['bottom-[-40px]'],
+            top: ['top-[-15px]'],
+            left: ['left-[-15px]'],
+            right: ['right-[-15px]'],
+            bottom: ['bottom-[-15px]'],
         },
     },
 });
