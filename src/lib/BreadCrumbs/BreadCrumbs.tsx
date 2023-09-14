@@ -10,7 +10,7 @@ interface BreadCrumbsProps {
 	pathname: string;
 }
 
-const BreadCrumbs = ({ data, onPush, pathname }: BreadCrumbsProps) => {
+const BreadCrumbs = ({ data, pathname, onPush }: BreadCrumbsProps) => {
 	return (
 		<div className='flex gap-2 mb-3 text-sm font-medium text-gray-500'>
 			{data[pathname].bread_crumbs.map((item) => (

@@ -8,8 +8,8 @@ import { cn } from '../../utils/style';
 
 interface AccordionProps {
 	list: MenuListType[];
-	onPush: (pathname: string) => void;
 	pathname: string;
+	onPush: (pathname: string) => void;
 }
 
 const Accordion = ({ list, onPush, pathname }: AccordionProps) => {
