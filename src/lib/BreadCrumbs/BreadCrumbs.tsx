@@ -6,13 +6,14 @@ import { BreadCrumbsType } from '../../types/breadCrumbs';
 
 interface BreadCrumbsProps {
 	data: BreadCrumbsType;
-	onPush: (pathname: string) => void;
 	pathname: string;
+	className?: string;
+	onPush: (pathname: string) => void;
 }
 
-const BreadCrumbs = ({ data, pathname, onPush }: BreadCrumbsProps) => {
+const BreadCrumbs = ({ data, pathname, className, onPush }: BreadCrumbsProps) => {
 	return (
-		<div className='flex gap-2 mb-3 text-sm font-medium text-gray-500'>
+		<div className={`flex gap-2 text-sm font-medium text-gray-500 ${className}`}>
 			{data[pathname].bread_crumbs.map((item) => (
 				<div key={item.url} className='flex items-center gap-2 leading-5'>
 					<span
@@ -31,5 +32,9 @@ const BreadCrumbs = ({ data, pathname, onPush }: BreadCrumbsProps) => {
 
 export default memo(
 	BreadCrumbs,
-	(prev: BreadCrumbsProps, next: BreadCrumbsProps) => prev.data === next.data && prev.pathname === next.pathname
+	(prev: BreadCrumbsProps, next: BreadCrumbsProps) =>
+		prev.data === next.data &&
+		prev.pathname === next.pathname &&
+		prev.className === next.className &&
+		prev.onPush === next.onPush
 );

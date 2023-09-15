@@ -9,10 +9,11 @@ import { cn } from '../../utils/style';
 interface AccordionProps {
 	list: MenuListType[];
 	pathname: string;
+	className?: string;
 	onPush: (pathname: string) => void;
 }
 
-const Accordion = ({ list, onPush, pathname }: AccordionProps) => {
+const Accordion = ({ list, pathname, className, onPush }: AccordionProps) => {
 	const [expandedMenuIndex, setExpanededMenuIndex] = useState(0);
 
 	const handleMenuClick = (index: number, expandedMenuIndex: number, path: string) => {
@@ -37,7 +38,7 @@ const Accordion = ({ list, onPush, pathname }: AccordionProps) => {
 	};
 
 	return (
-		<div className='text-base font-semibold'>
+		<div className={`text-base font-semibold ${className}`}>
 			{list.map((item) => (
 				<div key={item.index} className='mb-3'>
 					<div
@@ -91,5 +92,8 @@ const Accordion = ({ list, onPush, pathname }: AccordionProps) => {
 export default memo(
 	Accordion,
 	(prev: AccordionProps, next: AccordionProps) =>
-		prev.list === next.list && prev.onPush === next.onPush && prev.pathname === next.pathname
+		prev.list === next.list &&
+		prev.pathname === next.pathname &&
+		prev.className === next.className &&
+		prev.onPush === next.onPush
 );
