@@ -8,11 +8,13 @@ const BadgeStyle = cva(['inline-flex', 'items-center', 'justify-center', 'font-m
             red: ['bg-red-100'],
         },
         size: {
-            lg: ['py-1.5', 'px-4', 'text-sm', 'gap-1.5'],
+            lg: ['py-1', 'px-4', 'text-base', 'font-semibold', 'gap-1.5'],
+            md: ['py-1.5', 'px-4', 'text-sm', 'gap-1.5'],
             sm: ['py-1', 'px-3', 'text-xs', 'gap-1'],
         },
         iconOnly: {
             lg: ['p-2'],
+            md: ['p-2'],
             sm: ['p-1.5'],
         },
     },
@@ -27,7 +29,13 @@ const LeftImageStyle = cva([], {
         },
         size: {
             lg: ['w-4', 'h-4'],
+            md: ['w-4', 'h-4'],
             sm: ['w-3.5', 'h-3.5'],
+        },
+        iconOnly: {
+            lg: ['w-5', 'h-5'],
+            md: ['w-4', 'h-4'],
+            sm: ['w-3', 'h-3'],
         },
     },
 });
@@ -60,7 +68,8 @@ const RightImageStyle = cva(['stroke-[3px]'], {
             red: ['text-red-500'],
         },
         size: {
-            lg: ['w-3.5', 'h-3.5'],
+            lg: ['w-5', 'h-5'],
+            md: ['w-3.5', 'h-3.5'],
             sm: ['w-3', 'h-3'],
         },
     },

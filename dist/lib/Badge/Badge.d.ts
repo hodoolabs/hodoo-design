@@ -1,7 +1,7 @@
 /// <reference types="react" />
 interface BadgeProps {
     color: 'blue' | 'gray' | 'gray_low' | 'red';
-    size: 'lg' | 'sm';
+    size: 'lg' | 'md' | 'sm';
     leftIcon?: string | JSX.Element;
     label?: string;
     className?: string;
