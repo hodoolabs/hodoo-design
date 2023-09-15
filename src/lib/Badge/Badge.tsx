@@ -7,7 +7,7 @@ import { BadgeStyle, ButtonStyle, LabelStyle, LeftImageStyle, RightImageStyle } 
 
 interface BadgeProps {
 	color: 'blue' | 'gray' | 'gray_low' | 'red';
-	size: 'lg' | 'sm';
+	size: 'lg' | 'md' | 'sm';
 	leftIcon?: string | JSX.Element;
 	label?: string;
 	className?: string;
@@ -17,7 +17,9 @@ interface BadgeProps {
 const Badge = ({ color, size, leftIcon, label, className, onClick }: BadgeProps) => {
 	return (
 		<div className={`${cn(BadgeStyle({ color, size, iconOnly: !label ? size : null }))} ${className}`}>
-			{leftIcon && <div className={cn(LeftImageStyle({ color, size }))}>{leftIcon}</div>}
+			{leftIcon && (
+				<div className={cn(LeftImageStyle({ color, size, iconOnly: !label ? size : null }))}>{leftIcon}</div>
+			)}
 			{label && <span className={cn(LabelStyle({ color }))}>{label}</span>}
 			{onClick && (
 				<button type='button' className={cn(ButtonStyle({ color }))} onClick={onClick}>
