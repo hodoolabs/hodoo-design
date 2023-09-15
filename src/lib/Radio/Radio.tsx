@@ -12,12 +12,13 @@ interface RadioProps {
 	label?: string;
 	helper?: string;
 	disabled?: boolean;
+	className?: string;
 	onChange?: (value: string | number) => void;
 }
 
-const Radio = ({ id, selected, label, helper, disabled = false, onChange }: RadioProps) => {
+const Radio = ({ id, selected, label, helper, disabled = false, className, onChange }: RadioProps) => {
 	return (
-		<div className='inline-flex gap-3'>
+		<div className={`inline-flex gap-3 ${className}`}>
 			<button
 				className={cn(RadioStyle({ selected: id === selected, disabled }))}
 				onClick={() => !disabled && onChange && onChange(id)}
