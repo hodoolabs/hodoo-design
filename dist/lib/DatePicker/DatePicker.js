@@ -15,6 +15,7 @@ import { memo, useEffect } from 'react';
 import Datepicker from 'react-tailwindcss-datepicker';
 import { cn } from '../../utils/style';
 import { ErrorStyle, InputStyle, LabelStyle, ToggleStyle } from './style';
+import { styled } from 'styled-components';
 const DatePicker = (_a) => {
     var { label, isSingleCalendar, value, error, helper, required, className, onChange, onError } = _a, props = __rest(_a, ["label", "isSingleCalendar", "value", "error", "helper", "required", "className", "onChange", "onError"]);
     useEffect(() => {
@@ -22,7 +23,7 @@ const DatePicker = (_a) => {
             return;
         onError('');
     }, [value === null || value === void 0 ? void 0 : value.startDate, value === null || value === void 0 ? void 0 : value.endDate]);
-    return (_jsxs("div", { className: `flex flex-col ${className}`, children: [label && (_jsxs("label", { className: cn(LabelStyle({ error: !!error })), children: [required && _jsx("span", { className: 'text-red-600', children: "*" }), " ", label] })), _jsx(Datepicker, Object.assign({ value: value, useRange: !isSingleCalendar, asSingle: isSingleCalendar, readOnly: true, toggleClassName: cn(ToggleStyle({ error: !!error })), inputClassName: cn(InputStyle({ error: !!error })), onChange: onChange }, props)), helper && _jsx("div", { className: 'pt-2 text-sm font-medium text-gray-500', children: helper }), _jsx("div", { className: cn(ErrorStyle({ error: !!error })), children: error })] }));
+    return (_jsxs(DatePickerStyled, { className: `flex flex-col ${className}`, children: [label && (_jsxs("label", { className: cn(LabelStyle({ error: !!error })), children: [required && _jsx("span", { className: 'text-red-600', children: "*" }), " ", label] })), _jsx(Datepicker, Object.assign({ value: value, useRange: !isSingleCalendar, asSingle: isSingleCalendar, readOnly: true, toggleClassName: cn(ToggleStyle({ error: !!error })), inputClassName: cn(InputStyle({ error: !!error })), onChange: onChange }, props)), helper && _jsx("div", { className: 'pt-2 text-sm font-medium text-gray-500', children: helper }), _jsx("div", { className: cn(ErrorStyle({ error: !!error })), children: error })] }));
 };
 export default memo(DatePicker, (prev, next) => {
     var _a, _b, _c, _d;
@@ -36,3 +37,8 @@ export default memo(DatePicker, (prev, next) => {
         prev.onChange === next.onChange &&
         prev.onError === next.onError;
 });
+const DatePickerStyled = styled.div `
+	.transition-300 {
+		transition: 0.3s;
+	}
+`;

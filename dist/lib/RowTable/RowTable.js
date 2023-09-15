@@ -1,12 +1,12 @@
 'use client';
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { ChevronUpDownIcon } from '@heroicons/react/24/outline';
+import { QuestionMarkCircleIcon } from '@heroicons/react/24/solid';
 import { memo, useState } from 'react';
 import { cn } from '../../utils/style';
 import CheckBox from '../CheckBox/CheckBox';
-import { TableBodyStyle, TableHeaderStyle } from './style';
 import Tooltip from '../Tooltip/Tooltip';
-import { QuestionMarkCircleIcon } from '@heroicons/react/24/solid';
+import { TableBodyStyle, TableHeaderStyle } from './style';
 const RowTable = ({ size, columns, dataSource, rowSelections }) => {
     const [sortDatas, setSortDatas] = useState(dataSource);
     const selectedRowKeys = rowSelections === null || rowSelections === void 0 ? void 0 : rowSelections.selectedRowKeys;

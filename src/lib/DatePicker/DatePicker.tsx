@@ -4,6 +4,7 @@ import { memo, useEffect } from 'react';
 import Datepicker, { DateValueType, DatepickerType } from 'react-tailwindcss-datepicker';
 import { cn } from '../../utils/style';
 import { ErrorStyle, InputStyle, LabelStyle, ToggleStyle } from './style';
+import { styled } from 'styled-components';
 
 interface DatePickerProps extends DatepickerType {
 	label?: string | JSX.Element;
@@ -40,7 +41,7 @@ const DatePicker = ({
 	}, [value?.startDate, value?.endDate]);
 
 	return (
-		<div className={`flex flex-col ${className}`}>
+		<DatePickerStyled className={`flex flex-col ${className}`}>
 			{label && (
 				<label className={cn(LabelStyle({ error: !!error }))}>
 					{required && <span className='text-red-600'>*</span>} {label}
@@ -58,7 +59,7 @@ const DatePicker = ({
 			/>
 			{helper && <div className='pt-2 text-sm font-medium text-gray-500'>{helper}</div>}
 			<div className={cn(ErrorStyle({ error: !!error }))}>{error}</div>
-		</div>
+		</DatePickerStyled>
 	);
 };
 
@@ -75,3 +76,9 @@ export default memo(
 		prev.onChange === next.onChange &&
 		prev.onError === next.onError
 );
+
+const DatePickerStyled = styled.div`
+	.transition-300 {
+		transition: 0.3s;
+	}
+`;

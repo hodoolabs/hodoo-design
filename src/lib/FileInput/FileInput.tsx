@@ -3,6 +3,7 @@
 import { memo } from 'react';
 import { cn } from '../../utils/style';
 import { ButtonStyle, ErrorStyle, HelperStyle, InputLabelStyle, LabelStyle } from './style';
+import { styled } from 'styled-components';
 
 interface FileInputProps {
 	size: 'lg' | 'sm';
@@ -35,7 +36,7 @@ const FileInput = ({
 	};
 
 	return (
-		<div className='flex flex-col'>
+		<FileInputStyled className='flex flex-col'>
 			{label && (
 				<label className={cn(LabelStyle({ size, error: !!error }))}>
 					{required && <span className='text-red-600'>*</span>} {label}
@@ -56,7 +57,7 @@ const FileInput = ({
 			</div>
 			{helper && <div className={cn(HelperStyle({ size }))}>{helper}</div>}
 			<div className={cn(ErrorStyle({ size, error: !!error }))}>{error}</div>
-		</div>
+		</FileInputStyled>
 	);
 };
 
@@ -73,3 +74,9 @@ export default memo(
 		prev.required === next.required &&
 		prev.onChange === next.onChange
 );
+
+const FileInputStyled = styled.div`
+	.transition-300 {
+		transition: 0.3s;
+	}
+`;

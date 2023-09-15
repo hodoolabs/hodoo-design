@@ -2,9 +2,9 @@
 
 import { memo } from 'react';
 import { cn } from '../../utils/style';
-import { HelperStyle, LabelStyle, RadioStyle } from './style';
 import RadioDisabledSvg from './images/RadioDisabledSvg';
 import RadioSvg from './images/RadioSvg';
+import { HelperStyle, LabelStyle, RadioStyle } from './style';
 
 interface RadioProps {
 	id: string | number;

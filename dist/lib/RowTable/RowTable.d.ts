@@ -1,5 +1,5 @@
 import { Key } from 'react';
-import { ColumnType, ColumnDataType } from '../../types/table';
+import { ColumnDataType, ColumnType } from '../../types/table';
 interface RowTableProps {
     size: 'lg' | 'sm';
     columns: ColumnType<ColumnDataType>[];

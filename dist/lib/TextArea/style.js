@@ -19,7 +19,7 @@ const MaxLengthStyle = cva(['float-right'], {
         },
     },
 });
-const TextareaStyle = cva(['block', 'rounded-xl', 'border', 'font-medium', 'disabled:text-gray-500', 'resize-none', 'w-full'], {
+const TextareaStyle = cva(['block', 'rounded-xl', 'border', 'font-medium', 'disabled:text-gray-500', 'resize-none', 'w-full', 'scroll-none'], {
     variants: {
         size: {
             lg: ['px-4', 'py-3.5', 'text-base'],

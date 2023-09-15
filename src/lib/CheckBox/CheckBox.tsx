@@ -2,9 +2,9 @@
 
 import { memo } from 'react';
 import { cn } from '../../utils/style';
-import { CheckBoxStyle, HelperStyle, LabelStyle } from './style';
 import CheckedDisabledSvg from './images/CheckedDisabledSvg';
 import CheckedSvg from './images/CheckedSvg';
+import { CheckBoxStyle, HelperStyle, LabelStyle } from './style';
 
 interface CheckBoxProps {
 	checked: boolean;

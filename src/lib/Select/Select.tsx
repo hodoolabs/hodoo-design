@@ -2,6 +2,7 @@
 
 import { ChevronDownIcon } from '@heroicons/react/24/solid';
 import { MouseEvent, memo, useState } from 'react';
+import { styled } from 'styled-components';
 import { cn } from '../../utils/style';
 import { ArrowStyle, BlankStyle, ButtonStyle, LabelStyle, ListStyle, SelectedStyle } from './style';
 
@@ -40,7 +41,7 @@ const Select = ({ size, items, selected, center = false, label, placeholder, cla
 	};
 
 	return (
-		<div className={className}>
+		<SelectStyled className={className}>
 			<div className='relative flex flex-col gap-2' onMouseLeave={() => setIsOpen(false)}>
 				{label && <p className={cn(LabelStyle({ size }))}>{label}</p>}
 				<div className={BlankStyle({ isOpenDown })} />
@@ -66,7 +67,7 @@ const Select = ({ size, items, selected, center = false, label, placeholder, cla
 					</div>
 				)}
 			</div>
-		</div>
+		</SelectStyled>
 	);
 };
 
@@ -82,3 +83,13 @@ export default memo(
 		prev.className === next.className &&
 		prev.onChange === next.onChange
 );
+
+const SelectStyled = styled.div`
+	.scroll-none::-webkit-scrollbar {
+		display: none;
+	}
+
+	.scroll-none::-webkit-scrollbar-thumb {
+		display: none;
+	}
+`;

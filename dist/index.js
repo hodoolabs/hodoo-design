@@ -4,6 +4,7 @@ export { default as Accordion } from './lib/Accordion/Accordion';
 export { default as Badge } from './lib/Badge/Badge';
 export { default as BreadCrumbs } from './lib/BreadCrumbs/BreadCrumbs';
 export { default as Button } from './lib/Button/Button';
+export { default as ButtonGroup } from './lib/ButtonGroup/ButtonGroup';
 export { default as CheckBox } from './lib/CheckBox/CheckBox';
 export { default as DatePicker } from './lib/DatePicker/DatePicker';
 export { default as FileInput } from './lib/FileInput/FileInput';

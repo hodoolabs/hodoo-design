@@ -2,9 +2,10 @@
 
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import { memo, useState } from 'react';
-import { ArrowStyle, LabelStyle, MenuStyle, SubMenuStyle, SubMenusStyle } from './style';
 import { MenuListType } from '../../types/accordion';
 import { cn } from '../../utils/style';
+import { ArrowStyle, LabelStyle, MenuStyle, SubMenuStyle, SubMenusStyle } from './style';
+import { styled } from 'styled-components';
 
 interface AccordionProps {
 	list: MenuListType[];
@@ -38,7 +39,7 @@ const Accordion = ({ list, pathname, className, onPush }: AccordionProps) => {
 	};
 
 	return (
-		<div className={`text-base font-semibold ${className}`}>
+		<AccordionStyled className={`text-base font-semibold ${className}`}>
 			{list.map((item) => (
 				<div key={item.index} className='mb-3'>
 					<div
@@ -85,7 +86,7 @@ const Accordion = ({ list, pathname, className, onPush }: AccordionProps) => {
 					)}
 				</div>
 			))}
-		</div>
+		</AccordionStyled>
 	);
 };
 
@@ -97,3 +98,9 @@ export default memo(
 		prev.className === next.className &&
 		prev.onPush === next.onPush
 );
+
+const AccordionStyled = styled.div`
+	.transition-300 {
+		transition: 0.3s;
+	}
+`;

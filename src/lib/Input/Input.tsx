@@ -3,6 +3,7 @@
 import { HTMLInputTypeAttribute, memo, useEffect } from 'react';
 import { cn } from '../../utils/style';
 import { ErrorStyle, HelperStyle, InputStyle, LabelStyle, MaxLengthStyle } from './style';
+import { styled } from 'styled-components';
 
 interface InputProps {
 	type?: HTMLInputTypeAttribute;
@@ -46,7 +47,7 @@ const Input = ({
 	}, [value]);
 
 	return (
-		<div className={`flex flex-col ${className}`}>
+		<InputStyled className={`flex flex-col ${className}`}>
 			{label && (
 				<label className={cn(LabelStyle({ size, error: !!error }))}>
 					{required && <span className='text-red-600'>*</span>} {label}
@@ -70,7 +71,7 @@ const Input = ({
 			/>
 			{helper && <div className={cn(HelperStyle({ size }))}>{helper}</div>}
 			<div className={cn(ErrorStyle({ size, error: !!error }))}>{error}</div>
-		</div>
+		</InputStyled>
 	);
 };
 
@@ -93,3 +94,9 @@ export default memo(
 		prev.onError === next.onError &&
 		prev.onEnter === next.onEnter
 );
+
+const InputStyled = styled.div`
+	.transition-300 {
+		transition: 0.3s;
+	}
+`;

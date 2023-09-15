@@ -7,7 +7,7 @@ declare const ButtonStyle: (props?: ({
 } & import("class-variance-authority/dist/types").ClassProp) | undefined) => string;
 declare const InputLabelStyle: (props?: ({
     size?: "lg" | "sm" | null | undefined;
-    error?: "value" | "placeholder" | "valueError" | "placeholderError" | null | undefined;
+    error?: "placeholder" | "value" | "valueError" | "placeholderError" | null | undefined;
 } & import("class-variance-authority/dist/types").ClassProp) | undefined) => string;
 declare const HelperStyle: (props?: ({
     size?: "lg" | "sm" | null | undefined;
