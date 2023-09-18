@@ -1,24 +1,21 @@
 import { cva } from 'class-variance-authority';
 
-const TooltipBoxStyle = cva(
-	['absolute', 'w-max', 'opacity-0', 'peer-hover:opacity-100', 'transition', 'duration-300'],
-	{
-		variants: {
-			position: {
-				top: ['top-[-20px]', 'left-[50%]', 'translate-x-[-50%]', 'translate-y-[-100%]'],
-				left: ['top-[50%]', 'left-[-20px]', 'translate-x-[-100%]', 'translate-y-[-50%]'],
-				right: ['top-[50%]', 'right-[-20px]', 'translate-x-[100%]', 'translate-y-[-50%]'],
-				bottom: ['bottom-[-20px]', 'left-[50%]', 'translate-x-[-50%]', 'translate-y-[100%]'],
-			},
-			isShowArrow: {
-				top: ['top-[-15px]'],
-				left: ['left-[-15px]'],
-				right: ['right-[-15px]'],
-				bottom: ['bottom-[-15px]'],
-			},
+const TooltipBoxStyle = cva(['absolute', 'w-max'], {
+	variants: {
+		position: {
+			top: ['top-[-20px]', 'left-[50%]', 'translate-x-[-50%]', 'translate-y-[-100%]'],
+			left: ['top-[50%]', 'left-[-20px]', 'translate-x-[-100%]', 'translate-y-[-50%]'],
+			right: ['top-[50%]', 'right-[-20px]', 'translate-x-[100%]', 'translate-y-[-50%]'],
+			bottom: ['bottom-[-20px]', 'left-[50%]', 'translate-x-[-50%]', 'translate-y-[100%]'],
 		},
-	}
-);
+		isShowArrow: {
+			top: ['top-[-15px]'],
+			left: ['left-[-15px]'],
+			right: ['right-[-15px]'],
+			bottom: ['bottom-[-15px]'],
+		},
+	},
+});
 
 const TooltipStyle = cva(
 	['relative', 'inline-block', 'px-3', 'py-2', 'text-sm', 'font-medium', 'rounded-lg', 'shadow-sm'],
