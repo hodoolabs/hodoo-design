@@ -1,7 +1,6 @@
 type ButtonGroupType = {
-	id: number;
+	id: string;
 	label: string;
-	onClick: () => void;
 };
 
 export type { ButtonGroupType };

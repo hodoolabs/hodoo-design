@@ -7,16 +7,24 @@ const LabelStyle = cva(['font-medium', 'text-sm', 'mb-2'], {
         },
     },
 });
-const ToggleStyle = cva(['absolute', 'h-full', 'left-0', 'pl-4', 'pr-3', 'py-3.5', 'rounded-l-xl', 'focus:outline-none'], {
+const ToggleStyle = cva(['absolute', 'h-full', 'left-0', 'pl-4', 'pr-3', 'rounded-l-xl', 'focus:outline-none'], {
     variants: {
+        size: {
+            lg: ['py-3.5'],
+            sm: ['py-2.5'],
+        },
         error: {
             true: ['text-red-700'],
             false: ['text-gray-500'],
         },
     },
 });
-const InputStyle = cva(['cursor-pointer', 'w-full', 'px-4', 'pl-12', 'py-3.5', 'bg-gray-50', 'border', 'rounded-xl'], {
+const InputStyle = cva(['cursor-pointer', 'w-full', 'px-4', 'bg-gray-50', 'border', 'rounded-xl'], {
     variants: {
+        size: {
+            lg: ['py-3.5', 'text-base', 'pl-12'],
+            sm: ['py-2.5', 'text-sm', 'pl-11'],
+        },
         error: {
             true: ['text-red-700', 'border-red-200', 'bg-red-50', 'placeholder-red-400'],
             false: ['bg-gray-50', 'text-gray-900', 'border-gray-300/70'],

@@ -2,8 +2,9 @@
 import { ButtonGroupType } from '../../types/buttonGroup';
 interface ButtonGroupProps {
     buttons: ButtonGroupType[];
-    defaultActive?: number;
+    active?: string;
     className?: string;
+    onActive: (id: string) => void;
 }
-declare const _default: import("react").MemoExoticComponent<({ buttons, defaultActive, className }: ButtonGroupProps) => import("react/jsx-runtime").JSX.Element>;
+declare const _default: import("react").MemoExoticComponent<({ buttons, active, className, onActive }: ButtonGroupProps) => import("react/jsx-runtime").JSX.Element>;
 export default _default;
