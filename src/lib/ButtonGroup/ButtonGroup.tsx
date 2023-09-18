@@ -31,7 +31,11 @@ const ButtonGroup = ({ buttons, active, className, onActive }: ButtonGroupProps)
 
 export default memo(
 	ButtonGroup,
-	(prev: ButtonGroupProps, next: ButtonGroupProps) => prev.buttons === next.buttons && prev.className === next.className
+	(prev: ButtonGroupProps, next: ButtonGroupProps) =>
+		prev.buttons === next.buttons &&
+		prev.active === next.active &&
+		prev.className === next.className &&
+		prev.onActive === next.onActive
 );
 
 const ButtonGroupStyled = styled.div`
