@@ -1,19 +1,14 @@
 'use client';
 
-import { memo, useEffect } from 'react';
+import { memo, useEffect, useState } from 'react';
 import Datepicker, { DateValueType, DatepickerType } from 'react-tailwindcss-datepicker';
+import { styled } from 'styled-components';
 import { cn } from '../../utils/style';
 import { ErrorStyle, InputStyle, LabelStyle, ToggleStyle } from './style';
-import { styled } from 'styled-components';
 
 interface DatePickerProps extends DatepickerType {
 	size: 'lg' | 'sm';
 	label?: string | JSX.Element;
-	/**
-	 * 이 값이 true일 경우 Calendar가 하나만 노출됩니다. (default= 2개)
-	 * @see https://react-tailwindcss-datepicker.vercel.app/props
-	 */
-	isSingleCalendar?: boolean;
 	value: DateValueType;
 	error?: string;
 	helper?: string;
@@ -26,7 +21,6 @@ interface DatePickerProps extends DatepickerType {
 const DatePicker = ({
 	size,
 	label,
-	isSingleCalendar,
 	value,
 	error,
 	helper,
@@ -36,11 +30,17 @@ const DatePicker = ({
 	onError,
 	...props
 }: DatePickerProps) => {
+	const [isLoading, setIsLoading] = useState(false);
+
 	useEffect(() => {
 		if (!onError) return;
 
 		onError('');
 	}, [value?.startDate, value?.endDate]);
+
+	useEffect(() => {
+		setIsLoading(false);
+	}, [value?.startDate]);
 
 	return (
 		<DatePickerStyled className={`flex flex-col ${className}`}>
@@ -49,16 +49,20 @@ const DatePicker = ({
 					{required && <span className='text-red-600'>*</span>} {label}
 				</label>
 			)}
-			<Datepicker
-				value={value}
-				useRange={!isSingleCalendar}
-				asSingle={isSingleCalendar}
-				readOnly={true}
-				toggleClassName={cn(ToggleStyle({ size, error: !!error }))}
-				inputClassName={cn(InputStyle({ size, error: !!error }))}
-				onChange={onChange}
-				{...props}
-			/>
+			{!isLoading && (
+				<Datepicker
+					value={value}
+					readOnly={true}
+					startFrom={new Date(value?.startDate!)}
+					toggleClassName={cn(ToggleStyle({ size, error: !!error }))}
+					inputClassName={cn(InputStyle({ size, error: !!error }))}
+					onChange={(date) => {
+						setIsLoading(true);
+						onChange(date);
+					}}
+					{...props}
+				/>
+			)}
 			{helper && <div className='pt-2 text-sm font-medium text-gray-500'>{helper}</div>}
 			<div className={cn(ErrorStyle({ error: !!error }))}>{error}</div>
 		</DatePickerStyled>
@@ -68,8 +72,8 @@ const DatePicker = ({
 export default memo(
 	DatePicker,
 	(prev: DatePickerProps, next: DatePickerProps) =>
+		prev.size === next.size &&
 		prev.label === next.label &&
-		prev.isSingleCalendar === next.isSingleCalendar &&
 		prev.value?.startDate === next.value?.startDate &&
 		prev.value?.endDate === next.value?.endDate &&
 		prev.error === next.error &&
