@@ -17,7 +17,11 @@ const ButtonGroup = ({ buttons, active, className, onActive }: ButtonGroupProps)
 	return (
 		<ButtonGroupStyled className={className}>
 			{buttons.map((button) => (
-				<button className={cn(ButtonStyle({ active: active === button.id }))} onClick={() => onActive(button.id)}>
+				<button
+					key={button.id}
+					className={cn(ButtonStyle({ active: active === button.id }))}
+					onClick={() => onActive(button.id)}
+				>
 					{button.label}
 				</button>
 			))}
