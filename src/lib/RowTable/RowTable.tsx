@@ -127,5 +127,6 @@ export default memo(
 		prev.columns === next.columns &&
 		prev.dataSource === next.dataSource &&
 		prev.rowSelections?.selectedRowKeys === next.rowSelections?.selectedRowKeys &&
-		prev.rowSelections?.onselect === next.rowSelections?.onselect
+		prev.rowSelections?.onselect === next.rowSelections?.onselect &&
+		prev.width === next.width
 );
