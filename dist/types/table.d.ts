@@ -1,6 +1,6 @@
-import { ReactNode } from 'react';
+/// <reference types="react" />
 type ColumnType<RecordType> = {
-    title: ReactNode;
+    title: JSX.Element | string;
     dataIndex: keyof RecordType;
     width?: number;
     tooltip?: {
@@ -13,6 +13,6 @@ type ColumnType<RecordType> = {
 };
 type ColumnDataType = {
     id: string | number;
-    [key: string]: string | number | ReactNode;
+    [key: string]: string | number | JSX.Element;
 };
 export type { ColumnType, ColumnDataType };

@@ -8,7 +8,6 @@ import CheckBox from '../CheckBox/CheckBox';
 import Tooltip from '../Tooltip/Tooltip';
 import { TableBodyStyle, TableHeaderStyle } from './style';
 import { stringify } from 'flatted';
-// 밖에서 width 넣는 구조로 변경
 const RowTable = ({ size, columns, dataSource, rowSelections, width }) => {
     const [sortDatas, setSortDatas] = useState(dataSource);
     const selectedRowKeys = rowSelections === null || rowSelections === void 0 ? void 0 : rowSelections.selectedRowKeys;
@@ -17,7 +16,7 @@ const RowTable = ({ size, columns, dataSource, rowSelections, width }) => {
         const isSorted = stringify(dataSource) !== stringify(sortDatas);
         setSortDatas(isSorted ? dataSource : [...dataSource].sort(sorter));
     };
-    return (_jsx("div", { className: 'overflow-x-auto', children: _jsxs("table", { className: `min-w-[${width}px] w-full`, children: [_jsx("thead", { className: 'font-semibold text-gray-500 border-b border-gray-200 bg-gray-50', children: _jsxs("tr", { className: 'flex', children: [rowSelections && (_jsx("th", { className: 'p-4 leading-none', children: onselect && (_jsx(CheckBox, { checked: (selectedRowKeys === null || selectedRowKeys === void 0 ? void 0 : selectedRowKeys.length) === dataSource.length, onChange: () => (selectedRowKeys === null || selectedRowKeys === void 0 ? void 0 : selectedRowKeys.length) === dataSource.length
+    return (_jsx("div", { className: 'overflow-x-auto', children: _jsxs("table", { className: `min-w-[1100px] w-full`, children: [_jsx("thead", { className: 'font-semibold text-gray-500 border-b border-gray-200 bg-gray-50', children: _jsxs("tr", { className: 'flex', children: [rowSelections && (_jsx("th", { className: 'p-4 leading-none', children: onselect && (_jsx(CheckBox, { checked: (selectedRowKeys === null || selectedRowKeys === void 0 ? void 0 : selectedRowKeys.length) === dataSource.length, onChange: () => (selectedRowKeys === null || selectedRowKeys === void 0 ? void 0 : selectedRowKeys.length) === dataSource.length
                                         ? onselect([])
                                         : onselect(dataSource.map((record) => record.id)) })) })), columns &&
                                 columns.map((column) => (_jsxs("th", { className: cn(TableHeaderStyle({ size })), style: { width: `${column.width}%` }, children: [_jsx("span", { children: column.title }), column.sorter && (_jsx(ChevronUpDownIcon, { className: 'w-5 ml-2 cursor-pointer', onClick: () => handleSortDatas(dataSource, sortDatas, column.sorter) })), column.tooltip && (_jsx("div", { className: 'flex ml-2 item-center', children: _jsx(Tooltip, { color: column.tooltip.color, title: column.tooltip.title, isShowArrow: column.tooltip.isShowArrow, position: column.tooltip.position, children: _jsx(QuestionMarkCircleIcon, { className: 'w-5 cursor-pointer' }) }) }))] }, column.dataIndex)))] }) }), _jsx("tbody", { children: sortDatas.map((record) => (_jsxs("tr", { className: 'flex items-center font-medium border-b border-solid border-b-gray-200 hover:bg-blue-50 hover:text-gray-900 hover:border-blue-300', children: [rowSelections && (_jsx("td", { className: 'p-4 leading-none', children: selectedRowKeys && onselect && (_jsx(CheckBox, { checked: selectedRowKeys.includes(record.id), onChange: () => {
