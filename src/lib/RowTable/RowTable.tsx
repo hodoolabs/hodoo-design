@@ -38,8 +38,7 @@ const RowTable = ({ size, columns, dataSource, rowSelections, width }: RowTableP
 
 	return (
 		<div className='overflow-x-auto'>
-			{/* <table className={`min-w-[${width}px] w-full`}> */}
-			<table className={`min-w-[1100px] w-full`}>
+			<table className='w-full' style={{ minWidth: `${width}px` }}>
 				<thead className='font-semibold text-gray-500 border-b border-gray-200 bg-gray-50'>
 					<tr className='flex'>
 						{rowSelections && (
