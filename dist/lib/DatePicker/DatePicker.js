@@ -17,13 +17,13 @@ import { cn } from '../../utils/style';
 import { ErrorStyle, InputStyle, LabelStyle, ToggleStyle } from './style';
 import { styled } from 'styled-components';
 const DatePicker = (_a) => {
-    var { label, isSingleCalendar, value, error, helper, required, className, onChange, onError } = _a, props = __rest(_a, ["label", "isSingleCalendar", "value", "error", "helper", "required", "className", "onChange", "onError"]);
+    var { size, label, isSingleCalendar, value, error, helper, required, className, onChange, onError } = _a, props = __rest(_a, ["size", "label", "isSingleCalendar", "value", "error", "helper", "required", "className", "onChange", "onError"]);
     useEffect(() => {
         if (!onError)
             return;
         onError('');
     }, [value === null || value === void 0 ? void 0 : value.startDate, value === null || value === void 0 ? void 0 : value.endDate]);
-    return (_jsxs(DatePickerStyled, { className: `flex flex-col ${className}`, children: [label && (_jsxs("label", { className: cn(LabelStyle({ error: !!error })), children: [required && _jsx("span", { className: 'text-red-600', children: "*" }), " ", label] })), _jsx(Datepicker, Object.assign({ value: value, useRange: !isSingleCalendar, asSingle: isSingleCalendar, readOnly: true, toggleClassName: cn(ToggleStyle({ error: !!error })), inputClassName: cn(InputStyle({ error: !!error })), onChange: onChange }, props)), helper && _jsx("div", { className: 'pt-2 text-sm font-medium text-gray-500', children: helper }), _jsx("div", { className: cn(ErrorStyle({ error: !!error })), children: error })] }));
+    return (_jsxs(DatePickerStyled, { className: `flex flex-col ${className}`, children: [label && (_jsxs("label", { className: cn(LabelStyle({ error: !!error })), children: [required && _jsx("span", { className: 'text-red-600', children: "*" }), " ", label] })), _jsx(Datepicker, Object.assign({ value: value, useRange: !isSingleCalendar, asSingle: isSingleCalendar, readOnly: true, toggleClassName: cn(ToggleStyle({ size, error: !!error })), inputClassName: cn(InputStyle({ size, error: !!error })), onChange: onChange }, props)), helper && _jsx("div", { className: 'pt-2 text-sm font-medium text-gray-500', children: helper }), _jsx("div", { className: cn(ErrorStyle({ error: !!error })), children: error })] }));
 };
 export default memo(DatePicker, (prev, next) => {
     var _a, _b, _c, _d;
