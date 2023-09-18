@@ -8,6 +8,7 @@ import { cn } from '../../utils/style';
 import CheckBox from '../CheckBox/CheckBox';
 import Tooltip from '../Tooltip/Tooltip';
 import { TableBodyStyle, TableHeaderStyle } from './style';
+import { stringify } from 'flatted';
 
 interface RowTableProps {
 	size: 'lg' | 'sm';
@@ -31,7 +32,7 @@ const RowTable = ({ size, columns, dataSource, rowSelections, width }: RowTableP
 		sortDatas: ColumnDataType[],
 		sorter: (a: ColumnDataType, b: ColumnDataType) => number
 	) => {
-		const isSorted = JSON.stringify(dataSource) !== JSON.stringify(sortDatas);
+		const isSorted = stringify(dataSource) !== stringify(sortDatas);
 
 		setSortDatas(isSorted ? dataSource : [...dataSource].sort(sorter));
 	};
