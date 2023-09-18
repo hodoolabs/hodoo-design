@@ -1,5 +1,5 @@
 import { cva } from 'class-variance-authority';
-const TooltipBoxStyle = cva(['absolute', 'w-max', 'opacity-0', 'peer-hover:opacity-100', 'transition', 'duration-300'], {
+const TooltipBoxStyle = cva(['absolute', 'w-max'], {
     variants: {
         position: {
             top: ['top-[-20px]', 'left-[50%]', 'translate-x-[-50%]', 'translate-y-[-100%]'],

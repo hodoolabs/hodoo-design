@@ -8,6 +8,7 @@ interface RowTableProps {
         selectedRowKeys: Key[];
         onselect: (keys: Key[]) => void;
     };
+    width?: number;
 }
-declare const _default: import("react").MemoExoticComponent<({ size, columns, dataSource, rowSelections }: RowTableProps) => import("react/jsx-runtime").JSX.Element>;
+declare const _default: import("react").MemoExoticComponent<({ size, columns, dataSource, rowSelections, width }: RowTableProps) => import("react/jsx-runtime").JSX.Element>;
 export default _default;
