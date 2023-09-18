@@ -5,6 +5,7 @@ const ButtonStyle = cva(
 		'py-2.5',
 		'px-4',
 		'border',
+		'text-sm',
 		'border-gray-300/70',
 		'border-r-0',
 		'first:rounded-tl-xl',

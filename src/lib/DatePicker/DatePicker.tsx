@@ -7,6 +7,7 @@ import { ErrorStyle, InputStyle, LabelStyle, ToggleStyle } from './style';
 import { styled } from 'styled-components';
 
 interface DatePickerProps extends DatepickerType {
+	size: 'lg' | 'sm';
 	label?: string | JSX.Element;
 	/**
 	 * 이 값이 true일 경우 Calendar가 하나만 노출됩니다. (default= 2개)
@@ -23,6 +24,7 @@ interface DatePickerProps extends DatepickerType {
 }
 
 const DatePicker = ({
+	size,
 	label,
 	isSingleCalendar,
 	value,
@@ -52,8 +54,8 @@ const DatePicker = ({
 				useRange={!isSingleCalendar}
 				asSingle={isSingleCalendar}
 				readOnly={true}
-				toggleClassName={cn(ToggleStyle({ error: !!error }))}
-				inputClassName={cn(InputStyle({ error: !!error }))}
+				toggleClassName={cn(ToggleStyle({ size, error: !!error }))}
+				inputClassName={cn(InputStyle({ size, error: !!error }))}
 				onChange={onChange}
 				{...props}
 			/>

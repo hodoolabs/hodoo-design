@@ -1,6 +1,6 @@
 'use client';
 
-import { memo, useState } from 'react';
+import { memo } from 'react';
 import { styled } from 'styled-components';
 import { ButtonGroupType } from '../../types/buttonGroup';
 import { cn } from '../../utils/style';
@@ -8,22 +8,19 @@ import { ButtonStyle } from './style';
 
 interface ButtonGroupProps {
 	buttons: ButtonGroupType[];
-	defaultActive?: number;
+	active?: string;
 	className?: string;
+	onActive: (id: string) => void;
 }
 
-const ButtonGroup = ({ buttons, defaultActive = 0, className }: ButtonGroupProps) => {
-	const [active, setActive] = useState(defaultActive ? buttons[defaultActive].id : null);
-
+const ButtonGroup = ({ buttons, active, className, onActive }: ButtonGroupProps) => {
 	return (
 		<ButtonGroupStyled className={className}>
-			{buttons.map((button, index) => (
+			{buttons.map((button) => (
 				<button
-					className={cn(ButtonStyle({ active: active === index }))}
-					onClick={() => {
-						button.onClick;
-						setActive(index);
-					}}
+					key={button.id}
+					className={cn(ButtonStyle({ active: active === button.id }))}
+					onClick={() => onActive(button.id)}
 				>
 					{button.label}
 				</button>
