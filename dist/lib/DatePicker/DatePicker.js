@@ -11,26 +11,34 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { CalendarDaysIcon } from '@heroicons/react/24/outline';
+import dayjs from 'dayjs';
 import { memo, useEffect, useState } from 'react';
 import Datepicker from 'react-tailwindcss-datepicker';
 import { styled } from 'styled-components';
 import { cn } from '../../utils/style';
-import { ErrorStyle, InputStyle, LabelStyle, ToggleStyle } from './style';
+import { ErrorStyle, InputStyle, LabelStyle, SkeletonStyle, ToggleStyle } from './style';
 const DatePicker = (_a) => {
-    var { size, label, value, error, helper, required, className, onChange, onError } = _a, props = __rest(_a, ["size", "label", "value", "error", "helper", "required", "className", "onChange", "onError"]);
+    var { size, label, value, error, helper, required, isClose = true, className, onChange, onError } = _a, props = __rest(_a, ["size", "label", "value", "error", "helper", "required", "isClose", "className", "onChange", "onError"]);
     const [isLoading, setIsLoading] = useState(false);
+    const handleChangeDate = (isClose, date) => {
+        if (!isClose && (date === null || date === void 0 ? void 0 : date.startDate) === null && (date === null || date === void 0 ? void 0 : date.endDate) === null)
+            onChange({ startDate: dayjs().format('YYYY-MM-DD'), endDate: dayjs().format('YYYY-MM-DD') });
+        else
+            onChange(date);
+        setIsLoading(true);
+    };
     useEffect(() => {
         if (!onError)
             return;
         onError('');
     }, [value === null || value === void 0 ? void 0 : value.startDate, value === null || value === void 0 ? void 0 : value.endDate]);
     useEffect(() => {
+        if (!isLoading)
+            return;
         setIsLoading(false);
-    }, [value === null || value === void 0 ? void 0 : value.startDate]);
-    return (_jsxs(DatePickerStyled, { className: `flex flex-col ${className}`, children: [label && (_jsxs("label", { className: cn(LabelStyle({ error: !!error })), children: [required && _jsx("span", { className: 'text-red-600', children: "*" }), " ", label] })), !isLoading && (_jsx(Datepicker, Object.assign({ value: value, readOnly: true, startFrom: new Date(value === null || value === void 0 ? void 0 : value.startDate), toggleClassName: cn(ToggleStyle({ size, error: !!error })), inputClassName: cn(InputStyle({ size, error: !!error })), onChange: (date) => {
-                    setIsLoading(true);
-                    onChange(date);
-                } }, props))), helper && _jsx("div", { className: 'pt-2 text-sm font-medium text-gray-500', children: helper }), _jsx("div", { className: cn(ErrorStyle({ error: !!error })), children: error })] }));
+    }, [isLoading]);
+    return (_jsxs(DatePickerStyled, { className: `flex flex-col ${className}`, children: [label && (_jsxs("label", { className: cn(LabelStyle({ error: !!error })), children: [required && _jsx("span", { className: 'text-red-600', children: "*" }), " ", label] })), !isLoading ? (_jsx(Datepicker, Object.assign({ value: value, readOnly: true, startFrom: (value === null || value === void 0 ? void 0 : value.startDate) ? new Date(value === null || value === void 0 ? void 0 : value.startDate) : new Date(), toggleIcon: () => _jsx(CalendarDaysIcon, { className: 'w-5 h-5' }), toggleClassName: cn(ToggleStyle({ size, error: !!error })), inputClassName: cn(InputStyle({ size, error: !!error })), placeholder: isClose ? '' : ' ', onChange: (date) => handleChangeDate(isClose, date) }, props))) : (_jsx("div", { className: cn(SkeletonStyle({ size })) })), helper && _jsx("div", { className: 'pt-2 text-sm font-medium text-gray-500', children: helper }), _jsx("div", { className: cn(ErrorStyle({ error: !!error })), children: error })] }));
 };
 export default memo(DatePicker, (prev, next) => {
     var _a, _b, _c, _d;
@@ -41,6 +49,8 @@ export default memo(DatePicker, (prev, next) => {
         prev.error === next.error &&
         prev.helper === next.helper &&
         prev.required === next.required &&
+        prev.isClose === next.isClose &&
+        prev.className === next.className &&
         prev.onChange === next.onChange &&
         prev.onError === next.onError;
 });

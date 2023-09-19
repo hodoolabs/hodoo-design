@@ -31,6 +31,14 @@ const InputStyle = cva(['cursor-pointer', 'w-full', 'px-4', 'bg-gray-50', 'borde
         },
     },
 });
+const SkeletonStyle = cva(['cursor-pointer', 'w-full', 'px-4', 'bg-gray-50', 'border', 'rounded-xl'], {
+    variants: {
+        size: {
+            lg: ['h-[54px]', 'text-base', 'pl-12'],
+            sm: ['h-[42px]', 'text-sm', 'pl-11'],
+        },
+    },
+});
 const ErrorStyle = cva(['font-medium', 'overflow-hidden', 'text-red-600', 'transition-300', 'text-sm', 'h-7'], {
     variants: {
         error: {
@@ -39,4 +47,4 @@ const ErrorStyle = cva(['font-medium', 'overflow-hidden', 'text-red-600', 'trans
         },
     },
 });
-export { LabelStyle, ToggleStyle, InputStyle, ErrorStyle };
+export { LabelStyle, ToggleStyle, InputStyle, SkeletonStyle, ErrorStyle };

@@ -1,10 +1,12 @@
 'use client';
 
+import { CalendarDaysIcon } from '@heroicons/react/24/outline';
+import dayjs from 'dayjs';
 import { memo, useEffect, useState } from 'react';
 import Datepicker, { DateValueType, DatepickerType } from 'react-tailwindcss-datepicker';
 import { styled } from 'styled-components';
 import { cn } from '../../utils/style';
-import { ErrorStyle, InputStyle, LabelStyle, ToggleStyle } from './style';
+import { ErrorStyle, InputStyle, LabelStyle, SkeletonStyle, ToggleStyle } from './style';
 
 interface DatePickerProps extends DatepickerType {
 	size: 'lg' | 'sm';
@@ -13,6 +15,7 @@ interface DatePickerProps extends DatepickerType {
 	error?: string;
 	helper?: string;
 	required?: boolean;
+	isClose?: boolean;
 	className?: string;
 	onChange: (value: DateValueType) => void;
 	onError?: (error: string) => void;
@@ -25,12 +28,20 @@ const DatePicker = ({
 	error,
 	helper,
 	required,
+	isClose = true,
 	className,
 	onChange,
 	onError,
 	...props
 }: DatePickerProps) => {
 	const [isLoading, setIsLoading] = useState(false);
+
+	const handleChangeDate = (isClose: boolean, date: DateValueType) => {
+		if (!isClose && date?.startDate === null && date?.endDate === null)
+			onChange({ startDate: dayjs().format('YYYY-MM-DD'), endDate: dayjs().format('YYYY-MM-DD') });
+		else onChange(date);
+		setIsLoading(true);
+	};
 
 	useEffect(() => {
 		if (!onError) return;
@@ -39,8 +50,10 @@ const DatePicker = ({
 	}, [value?.startDate, value?.endDate]);
 
 	useEffect(() => {
+		if (!isLoading) return;
+
 		setIsLoading(false);
-	}, [value?.startDate]);
+	}, [isLoading]);
 
 	return (
 		<DatePickerStyled className={`flex flex-col ${className}`}>
@@ -49,19 +62,20 @@ const DatePicker = ({
 					{required && <span className='text-red-600'>*</span>} {label}
 				</label>
 			)}
-			{!isLoading && (
+			{!isLoading ? (
 				<Datepicker
 					value={value}
 					readOnly={true}
-					startFrom={new Date(value?.startDate!)}
+					startFrom={value?.startDate ? new Date(value?.startDate!) : new Date()}
+					toggleIcon={() => <CalendarDaysIcon className='w-5 h-5' />}
 					toggleClassName={cn(ToggleStyle({ size, error: !!error }))}
 					inputClassName={cn(InputStyle({ size, error: !!error }))}
-					onChange={(date) => {
-						setIsLoading(true);
-						onChange(date);
-					}}
+					placeholder={isClose ? '' : ' '}
+					onChange={(date) => handleChangeDate(isClose, date)}
 					{...props}
 				/>
+			) : (
+				<div className={cn(SkeletonStyle({ size }))} />
 			)}
 			{helper && <div className='pt-2 text-sm font-medium text-gray-500'>{helper}</div>}
 			<div className={cn(ErrorStyle({ error: !!error }))}>{error}</div>
@@ -79,6 +93,8 @@ export default memo(
 		prev.error === next.error &&
 		prev.helper === next.helper &&
 		prev.required === next.required &&
+		prev.isClose === next.isClose &&
+		prev.className === next.className &&
 		prev.onChange === next.onChange &&
 		prev.onError === next.onError
 );
