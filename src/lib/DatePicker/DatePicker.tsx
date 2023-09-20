@@ -13,6 +13,7 @@ interface DatePickerProps extends DatepickerType {
 	label?: string | JSX.Element;
 	value: DateValueType;
 	error?: string;
+	format?: string;
 	helper?: string;
 	required?: boolean;
 	className?: string;
@@ -25,6 +26,7 @@ const DatePicker = ({
 	label,
 	value,
 	error,
+	format = 'YYYY-MM-DD',
 	helper,
 	required,
 	className,
@@ -36,7 +38,7 @@ const DatePicker = ({
 
 	const handleChangeDate = (placeholder: string | undefined, date: DateValueType) => {
 		if (!placeholder && date?.startDate === null && date?.endDate === null)
-			onChange({ startDate: dayjs().format('YYYY-MM-DD'), endDate: dayjs().format('YYYY-MM-DD') });
+			onChange({ startDate: dayjs().format(format), endDate: dayjs().format(format) });
 		else onChange(date);
 		setIsLoading(true);
 	};
@@ -63,6 +65,7 @@ const DatePicker = ({
 			{!isLoading ? (
 				<Datepicker
 					value={value}
+					displayFormat={format}
 					readOnly={true}
 					startFrom={value?.startDate ? new Date(value?.startDate) : new Date()}
 					toggleIcon={() => <CalendarDaysIcon className='w-5 h-5' />}
@@ -89,6 +92,7 @@ export default memo(
 		prev.value?.startDate === next.value?.startDate &&
 		prev.value?.endDate === next.value?.endDate &&
 		prev.error === next.error &&
+		prev.format === next.format &&
 		prev.helper === next.helper &&
 		prev.required === next.required &&
 		prev.className === next.className &&
