@@ -77,7 +77,7 @@ const RowTable = ({ size, columns, dataSource, rowSelections, width }: RowTableP
 												isShowArrow={column.tooltip.isShowArrow}
 												position={column.tooltip.position}
 											>
-												<QuestionMarkCircleIcon className='w-5 text-gray-400 cursor-pointe' />
+												<QuestionMarkCircleIcon className='w-5 text-gray-400 cursor-pointer' />
 											</Tooltip>
 										</div>
 									)}
