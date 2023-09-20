@@ -28,7 +28,7 @@ const Toggle = ({ size, activated, label, helper, disabled = false, className, o
 				<div className={cn(ToogleBoxStyle({ size }))} />
 				{label && (
 					<div className='space-y-1 font-medium'>
-						<p className={cn(LabelStyle({ disabled, size }))}>{label}</p>
+						<div className={cn(LabelStyle({ disabled, size }))}>{label}</ㅇ>
 						{helper && <p className={cn(HelperStyle({ disabled }))}>{helper}</p>}
 					</div>
 				)}
