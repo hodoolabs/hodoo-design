@@ -1,36 +1,39 @@
 'use client';
 
-import { memo } from 'react';
+import { ReactNode, memo } from 'react';
 import { cn } from '../../utils/style';
 import { HelperStyle, LabelStyle, ToogleBoxStyle } from './style';
 
 interface ToggleProps {
 	size: 'sm' | 'md' | 'lg';
 	activated: boolean;
-	label?: string;
+	label?: ReactNode;
 	helper?: string;
 	disabled?: boolean;
+	className?: string;
 	onChange: (value: boolean) => void;
 }
 
-const Toggle = ({ size, activated, label, helper, disabled = false, onChange }: ToggleProps) => {
+const Toggle = ({ size, activated, label, helper, disabled = false, className, onChange }: ToggleProps) => {
 	return (
-		<label className='relative inline-flex gap-3'>
-			<input
-				type='checkbox'
-				className='sr-only peer'
-				checked={activated}
-				disabled={disabled}
-				onChange={() => !disabled && onChange(!activated)}
-			/>
-			<div className={cn(ToogleBoxStyle({ size }))} />
-			{label && (
-				<div className='space-y-1 font-medium'>
-					<p className={cn(LabelStyle({ disabled, size }))}>{label}</p>
-					{helper && <p className={cn(HelperStyle({ disabled }))}>{helper}</p>}
-				</div>
-			)}
-		</label>
+		<div className={className}>
+			<label className='relative inline-flex gap-3'>
+				<input
+					type='checkbox'
+					className='sr-only peer'
+					checked={activated}
+					disabled={disabled}
+					onChange={() => !disabled && onChange(!activated)}
+				/>
+				<div className={cn(ToogleBoxStyle({ size }))} />
+				{label && (
+					<div className='space-y-1 font-medium'>
+						<p className={cn(LabelStyle({ disabled, size }))}>{label}</p>
+						{helper && <p className={cn(HelperStyle({ disabled }))}>{helper}</p>}
+					</div>
+				)}
+			</label>
+		</div>
 	);
 };
 
@@ -42,5 +45,6 @@ export default memo(
 		prev.label === next.label &&
 		prev.helper === next.helper &&
 		prev.disabled === next.disabled &&
+		prev.className === next.className &&
 		prev.onChange === next.onChange
 );
