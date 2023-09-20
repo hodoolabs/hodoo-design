@@ -16,7 +16,7 @@ interface ToggleProps {
 
 const Toggle = ({ size, activated, label, helper, disabled = false, className, onChange }: ToggleProps) => {
 	return (
-		<div className={className}>
+		<div className={`flex items-center ${className}`}>
 			<label className='relative inline-flex gap-3'>
 				<input
 					type='checkbox'
