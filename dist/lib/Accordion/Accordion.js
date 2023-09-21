@@ -13,7 +13,7 @@ const Accordion = ({ list, pathname, className, onPush }) => {
         setExpanededMenuIndex(index !== expandedMenuIndex ? index : 0);
     };
     const handleCheckCurrentPath = (path, currentPath) => {
-        return path === currentPath;
+        return !!path && currentPath.includes(path);
     };
     const handleCheckExpandedMenu = (index, expandedMenuIndex, subMenus, currentpath) => {
         return index === expandedMenuIndex || !!subMenus.filter((subMenu) => subMenu.path === currentpath).length;

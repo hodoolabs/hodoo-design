@@ -23,7 +23,7 @@ const Accordion = ({ list, pathname, className, onPush }: AccordionProps) => {
 	};
 
 	const handleCheckCurrentPath = (path: string, currentPath: string) => {
-		return path === currentPath;
+		return !!path && currentPath.includes(path);
 	};
 
 	const handleCheckExpandedMenu = (
