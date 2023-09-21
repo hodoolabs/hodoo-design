@@ -14,9 +14,10 @@ interface TooltipProps {
 	isShowArrow: boolean;
 	children: ReactNode;
 	position: 'top' | 'right' | 'left' | 'bottom';
+	className?: string;
 }
 
-const Tooltip = ({ color, title, description, isShowArrow, children, position }: TooltipProps) => {
+const Tooltip = ({ color, title, description, isShowArrow, children, position, className }: TooltipProps) => {
 	const [isHovered, setIsHovered] = useState(false);
 	const [tooltipElement, setTooltipElement] = useState<HTMLDivElement | null>(null);
 	const [tooltipPosition, setTooltipPosition] = useState({ top: 0, left: 0 });
@@ -45,7 +46,7 @@ const Tooltip = ({ color, title, description, isShowArrow, children, position }:
 
 	return (
 		<div
-			className='relative inline-block'
+			className={`relative inline-block ${className}`}
 			onMouseEnter={() => setIsHovered(true)}
 			onMouseLeave={() => setIsHovered(false)}
 			ref={targetRef}
@@ -82,5 +83,6 @@ export default memo(
 		prev.description === next.description &&
 		prev.isShowArrow === next.isShowArrow &&
 		prev.children === next.children &&
-		prev.position === next.position
+		prev.position === next.position &&
+		prev.className === next.className
 );

@@ -6,6 +6,7 @@ interface TooltipProps {
     isShowArrow: boolean;
     children: ReactNode;
     position: 'top' | 'right' | 'left' | 'bottom';
+    className?: string;
 }
-declare const _default: import("react").MemoExoticComponent<({ color, title, description, isShowArrow, children, position }: TooltipProps) => import("react/jsx-runtime").JSX.Element>;
+declare const _default: import("react").MemoExoticComponent<({ color, title, description, isShowArrow, children, position, className }: TooltipProps) => import("react/jsx-runtime").JSX.Element>;
 export default _default;
