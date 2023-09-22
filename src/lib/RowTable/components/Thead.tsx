@@ -1,11 +1,11 @@
 import { ChevronUpDownIcon } from '@heroicons/react/24/outline';
 import { QuestionMarkCircleIcon } from '@heroicons/react/24/solid';
 import { Key, memo } from 'react';
-import { ColumnDataType, ColumnType } from '../../../types/table';
 import { cn } from '../../../utils/style';
+import { TableHeaderStyle } from '../style';
+import { ColumnDataType, ColumnType } from '../../../types/table';
 import CheckBox from '../../CheckBox/CheckBox';
 import Tooltip from '../../Tooltip/Tooltip';
-import { TableHeaderStyle } from '../style';
 
 interface TheadProps {
 	size: 'lg' | 'sm';

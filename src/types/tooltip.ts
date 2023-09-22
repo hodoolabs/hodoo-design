@@ -5,7 +5,7 @@ type TooltipType = {
 	title: string;
 	description?: ReactNode;
 	isShowArrow?: boolean;
-	children: ReactNode;
+	children?: ReactNode;
 	position?: 'top' | 'right' | 'left' | 'bottom';
 	className?: string;
 };

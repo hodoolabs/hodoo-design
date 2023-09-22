@@ -1,8 +1,8 @@
 import { Key } from 'react';
-import { ColumnType } from '../../../types/table';
 import { cn } from '../../../utils/style';
-import CheckBox from '../../CheckBox/CheckBox';
 import { TableBodyStyle } from '../style';
+import { ColumnType } from '../../../types/table';
+import CheckBox from '../../CheckBox/CheckBox';
 
 interface TbodyProps {
 	size: 'lg' | 'sm';
