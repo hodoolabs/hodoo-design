@@ -1,15 +1,11 @@
 import { ReactNode } from 'react';
+import { TooltipType } from './tooltip';
 
 type ColumnType<RecordType> = {
 	title: ReactNode;
 	dataIndex: keyof RecordType;
 	width?: number;
-	tooltip?: {
-		color: 'dark' | 'white';
-		title: string;
-		isShowArrow: boolean;
-		position: 'top' | 'left' | 'right' | 'bottom';
-	};
+	tooltip?: TooltipType;
 	sorter?: (a: RecordType, b: RecordType) => number;
 	render?: (values: RecordType) => ReactNode;
 }[];

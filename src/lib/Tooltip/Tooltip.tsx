@@ -1,21 +1,12 @@
 'use client';
 
-import { ReactNode, memo, useEffect, useRef, useState } from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
+import { TooltipType } from '../../types/tooltip';
 import { cn } from '../../utils/style';
 import VectorDarkSvg from './images/VectorDarkSvg';
 import VectorWhiteSVG from './images/VectorWhiteSvg';
 import { ArrowStyle, DescriptionStyle, TooltipBoxStyle, TooltipStyle } from './style';
-
-interface TooltipProps {
-	color: 'dark' | 'white';
-	title: string;
-	description?: ReactNode;
-	isShowArrow: boolean;
-	children: ReactNode;
-	position: 'top' | 'right' | 'left' | 'bottom';
-	className?: string;
-}
 
 const Tooltip = ({
 	color = 'dark',
@@ -25,7 +16,7 @@ const Tooltip = ({
 	children,
 	position = 'top',
 	className,
-}: TooltipProps) => {
+}: TooltipType) => {
 	const [isHovered, setIsHovered] = useState(false);
 	const [tooltipElement, setTooltipElement] = useState<HTMLDivElement | null>(null);
 	const [tooltipPosition, setTooltipPosition] = useState({ top: 0, left: 0 });
@@ -85,7 +76,7 @@ const Tooltip = ({
 
 export default memo(
 	Tooltip,
-	(prev: TooltipProps, next: TooltipProps) =>
+	(prev: TooltipType, next: TooltipType) =>
 		prev.color === next.color &&
 		prev.title === next.title &&
 		prev.description === next.description &&
