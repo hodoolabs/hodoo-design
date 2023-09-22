@@ -1,12 +1,12 @@
 import { ReactNode } from 'react';
 
 type TooltipType = {
-	color: 'dark' | 'white';
+	color?: 'dark' | 'white';
 	title: string;
 	description?: ReactNode;
-	isShowArrow: boolean;
+	isShowArrow?: boolean;
 	children: ReactNode;
-	position: 'top' | 'right' | 'left' | 'bottom';
+	position?: 'top' | 'right' | 'left' | 'bottom';
 	className?: string;
 };
 
