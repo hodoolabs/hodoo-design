@@ -1,5 +1,7 @@
+import { ReactNode } from 'react';
+
 type ColumnType<RecordType> = {
-	title: JSX.Element | string;
+	title: ReactNode;
 	dataIndex: keyof RecordType;
 	width?: number;
 	tooltip?: {
@@ -8,12 +10,13 @@ type ColumnType<RecordType> = {
 		isShowArrow: boolean;
 		position: 'top' | 'left' | 'right' | 'bottom';
 	};
-	sorter?: (a: ColumnDataType, b: ColumnDataType) => number;
-};
+	sorter?: (a: RecordType, b: RecordType) => number;
+	render?: (values: RecordType) => ReactNode;
+}[];
 
 type ColumnDataType = {
 	id: string | number;
-	[key: string]: string | number | JSX.Element;
+	[key: string]: ReactNode;
 };
 
 export type { ColumnType, ColumnDataType };

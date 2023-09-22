@@ -1,11 +1,11 @@
 'use client';
 
 import { ReactNode, memo, useEffect, useRef, useState } from 'react';
+import ReactDOM from 'react-dom';
 import { cn } from '../../utils/style';
 import VectorDarkSvg from './images/VectorDarkSvg';
 import VectorWhiteSVG from './images/VectorWhiteSvg';
 import { ArrowStyle, DescriptionStyle, TooltipBoxStyle, TooltipStyle } from './style';
-import ReactDOM from 'react-dom';
 
 interface TooltipProps {
 	color: 'dark' | 'white';
@@ -17,19 +17,27 @@ interface TooltipProps {
 	className?: string;
 }
 
-const Tooltip = ({ color, title, description, isShowArrow, children, position, className }: TooltipProps) => {
+const Tooltip = ({
+	color = 'dark',
+	title,
+	description,
+	isShowArrow = true,
+	children,
+	position = 'top',
+	className,
+}: TooltipProps) => {
 	const [isHovered, setIsHovered] = useState(false);
 	const [tooltipElement, setTooltipElement] = useState<HTMLDivElement | null>(null);
 	const [tooltipPosition, setTooltipPosition] = useState({ top: 0, left: 0 });
 	const targetRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
-		const el = document.createElement('div');
-		document.body.appendChild(el);
-		setTooltipElement(el);
+		const element = document.createElement('div');
+		document.body.appendChild(element);
+		setTooltipElement(element);
 
 		return () => {
-			document.body.removeChild(el);
+			document.body.removeChild(element);
 		};
 	}, []);
 
@@ -51,7 +59,7 @@ const Tooltip = ({ color, title, description, isShowArrow, children, position, c
 			onMouseLeave={() => setIsHovered(false)}
 			ref={targetRef}
 		>
-			<div className='peer'>{children}</div>
+			<div>{children}</div>
 			{isHovered &&
 				tooltipElement &&
 				ReactDOM.createPortal(
