@@ -1,5 +1,5 @@
 import { cva } from 'class-variance-authority';
-const TableHeaderStyle = cva(['font-semibold', 'flex', 'px-4', 'py-3.5', 'items-center', 'justify-start', 'w-full'], {
+const TableHeaderStyle = cva(['font-semibold', 'flex', 'px-4', 'py-3.5', 'items-center', 'justify-start'], {
     variants: {
         size: {
             lg: ['text-base'],
@@ -7,7 +7,7 @@ const TableHeaderStyle = cva(['font-semibold', 'flex', 'px-4', 'py-3.5', 'items-
         },
     },
 });
-const TableBodyStyle = cva(['flex', 'px-4', 'py-3.5', 'grow', 'justify-start', 'w-full'], {
+const TableBodyStyle = cva(['flex', 'px-4', 'py-3.5', 'items-center', 'justify-start'], {
     variants: {
         size: {
             lg: ['text-base'],

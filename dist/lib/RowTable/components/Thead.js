@@ -3,9 +3,9 @@ import { ChevronUpDownIcon } from '@heroicons/react/24/outline';
 import { QuestionMarkCircleIcon } from '@heroicons/react/24/solid';
 import { memo } from 'react';
 import { cn } from '../../../utils/style';
+import { TableHeaderStyle } from '../style';
 import CheckBox from '../../CheckBox/CheckBox';
 import Tooltip from '../../Tooltip/Tooltip';
-import { TableHeaderStyle } from '../style';
 const Thead = ({ size, columns, dataSource, checkedList, sortDatas, onChecked, onSort }) => {
     return (_jsx("thead", { className: 'font-semibold text-gray-500 border-b border-gray-200 bg-gray-50', children: _jsxs("tr", { className: 'flex', children: [checkedList && (_jsx("th", { className: 'p-4 leading-none', children: onChecked && (_jsx(CheckBox, { checked: (checkedList === null || checkedList === void 0 ? void 0 : checkedList.length) === dataSource.length, onChange: () => (checkedList === null || checkedList === void 0 ? void 0 : checkedList.length) === dataSource.length
                             ? onChecked([])

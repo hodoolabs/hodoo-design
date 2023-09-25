@@ -13,12 +13,9 @@ const Select = ({ size, items, selected, center = false, label, placeholder, cla
         return (_a = items.filter((item) => item.value === selected)[0]) === null || _a === void 0 ? void 0 : _a.label;
     };
     const handleSelectOpen = (event) => {
-        const root = document.getElementById('root');
-        if (root) {
-            const distanceFromBottom = root.clientHeight - event.clientY;
-            setIsOpen((state) => !state);
-            setIsOpenDown(distanceFromBottom > 340);
-        }
+        const distanceFromBottom = document.body.clientHeight - event.clientY;
+        setIsOpen((state) => !state);
+        setIsOpenDown(distanceFromBottom > 340);
     };
     return (_jsx(SelectStyled, { className: className, children: _jsxs("div", { className: 'relative flex flex-col gap-2', onMouseLeave: () => setIsOpen(false), children: [label && _jsx("p", { className: cn(LabelStyle({ size })), children: label }), _jsx("div", { className: BlankStyle({ isOpenDown }) }), _jsxs("button", { type: 'button', onClick: handleSelectOpen, className: cn(SelectedStyle({ size })), children: [selected ? getLabel(items, selected) : placeholder, _jsx(ChevronDownIcon, { className: cn(ArrowStyle({ size })) })] }), isOpen && (_jsx("div", { className: ListStyle({ isOpenDown }), children: _jsx("ul", { className: 'flex flex-col p-1 text-base text-gray-700', children: items.map((item) => (_jsx("li", { onClick: () => {
                                 onChange(item.value);

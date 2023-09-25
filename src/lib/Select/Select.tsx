@@ -31,13 +31,10 @@ const Select = ({ size, items, selected, center = false, label, placeholder, cla
 	};
 
 	const handleSelectOpen = (event: MouseEvent<HTMLButtonElement>) => {
-		const root = document.getElementById('root');
-		if (root) {
-			const distanceFromBottom = root.clientHeight - event.clientY;
+		const distanceFromBottom = document.body.clientHeight - event.clientY;
 
-			setIsOpen((state) => !state);
-			setIsOpenDown(distanceFromBottom > 340);
-		}
+		setIsOpen((state) => !state);
+		setIsOpenDown(distanceFromBottom > 340);
 	};
 
 	return (
