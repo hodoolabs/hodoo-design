@@ -15,9 +15,9 @@ interface TbodyProps {
 const Tbody = ({ size, columns, checkedList, sortDatas, onChecked }: TbodyProps) => {
 	return (
 		<tbody>
-			{sortDatas.map((record) => (
+			{sortDatas.map((record, index) => (
 				<tr
-					key={record.id}
+					key={index}
 					className='flex items-center font-medium border-b border-solid border-b-gray-200 hover:bg-blue-50 hover:border-blue-300'
 				>
 					{checkedList && (

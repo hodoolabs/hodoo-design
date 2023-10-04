@@ -2,6 +2,7 @@
 
 import { CalendarDaysIcon } from '@heroicons/react/24/outline';
 import dayjs from 'dayjs';
+import { throttle } from 'lodash';
 import { memo, useEffect, useState } from 'react';
 import Datepicker, { DateValueType, DatepickerType } from 'react-tailwindcss-datepicker';
 import { styled } from 'styled-components';
@@ -42,6 +43,17 @@ const DatePicker = ({
 		else onChange(date);
 		setIsLoading(true);
 	};
+
+	useEffect(() => {
+		const handleResize = throttle(() => {
+			setIsLoading(true);
+		}, 300);
+
+		window.addEventListener('resize', handleResize);
+		return () => {
+			window.removeEventListener('resize', handleResize);
+		};
+	}, []);
 
 	useEffect(() => {
 		if (!onError) return;
