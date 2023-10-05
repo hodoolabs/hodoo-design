@@ -1,7 +1,7 @@
 'use client';
 
 import { stringify } from 'flatted';
-import { Key, memo, useState } from 'react';
+import { Key, memo, useEffect, useState } from 'react';
 import { ColumnDataType, ColumnType } from '../../types/table';
 import Tbody from './components/Tbody';
 import Thead from './components/Thead';
@@ -27,6 +27,10 @@ const RowTable = ({ size, columns, dataSource, checkedList, minWidth, onChecked 
 
 		setSortDatas(isSorted ? dataSource : [...dataSource].sort(sorter));
 	};
+
+	useEffect(() => {
+		setSortDatas(dataSource);
+	}, [dataSource]);
 
 	return (
 		<div className='overflow-x-auto'>

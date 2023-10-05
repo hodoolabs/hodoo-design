@@ -1,8 +1,8 @@
-import { Key } from 'react';
-import { cn } from '../../../utils/style';
-import { TableBodyStyle } from '../style';
+import { Key, memo } from 'react';
 import { ColumnType } from '../../../types/table';
+import { cn } from '../../../utils/style';
 import CheckBox from '../../CheckBox/CheckBox';
+import { TableBodyStyle } from '../style';
 
 interface TbodyProps {
 	size: 'lg' | 'sm';
@@ -48,4 +48,12 @@ const Tbody = ({ size, columns, checkedList, sortDatas, onChecked }: TbodyProps)
 	);
 };
 
-export default Tbody;
+export default memo(
+	Tbody,
+	(prev: TbodyProps, next: TbodyProps) =>
+		prev.size === next.size &&
+		prev.columns === next.columns &&
+		prev.checkedList === next.checkedList &&
+		prev.sortDatas === next.sortDatas &&
+		prev.onChecked === next.onChecked
+);

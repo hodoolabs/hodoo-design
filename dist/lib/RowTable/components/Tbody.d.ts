@@ -7,5 +7,5 @@ interface TbodyProps {
     sortDatas: any[];
     onChecked?: (keys: Key[]) => void;
 }
-declare const Tbody: ({ size, columns, checkedList, sortDatas, onChecked }: TbodyProps) => import("react/jsx-runtime").JSX.Element;
-export default Tbody;
+declare const _default: import("react").MemoExoticComponent<({ size, columns, checkedList, sortDatas, onChecked }: TbodyProps) => import("react/jsx-runtime").JSX.Element>;
+export default _default;
