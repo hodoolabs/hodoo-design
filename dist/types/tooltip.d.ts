@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 type TooltipType = {
     color?: 'dark' | 'white';
-    title: string;
+    title: ReactNode;
     description?: ReactNode;
     isShowArrow?: boolean;
     children?: ReactNode;
