@@ -13,7 +13,7 @@ interface ButtonProps {
 	disabled?: boolean;
 	isFull?: boolean;
 	className?: string;
-	onClick: () => void;
+	onClick?: () => void;
 }
 
 const Button = ({
