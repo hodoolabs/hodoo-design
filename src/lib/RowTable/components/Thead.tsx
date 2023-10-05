@@ -1,44 +1,27 @@
 import { ChevronUpDownIcon } from '@heroicons/react/24/outline';
 import { QuestionMarkCircleIcon } from '@heroicons/react/24/solid';
-import { Key, memo } from 'react';
+import { memo } from 'react';
 import { cn } from '../../../utils/style';
 import { TableHeaderStyle } from '../style';
 import { ColumnDataType, ColumnType } from '../../../types/table';
-import CheckBox from '../../CheckBox/CheckBox';
 import Tooltip from '../../Tooltip/Tooltip';
 
 interface TheadProps {
 	size: 'lg' | 'sm';
 	columns: ColumnType<any>;
 	dataSource: any[];
-	checkedList?: Key[];
 	sortDatas: any[];
-	onChecked?: (keys: Key[]) => void;
 	onSort: (
 		dataSource: ColumnDataType[],
 		sortDatas: ColumnDataType[],
-		sorter: (a: ColumnDataType, b: ColumnDataType) => number
+		sorter: (a: ColumnDataType, b: ColumnDataType, lastIndex: number) => number
 	) => void;
 }
 
-const Thead = ({ size, columns, dataSource, checkedList, sortDatas, onChecked, onSort }: TheadProps) => {
+const Thead = ({ size, columns, dataSource, sortDatas, onSort }: TheadProps) => {
 	return (
 		<thead className='font-semibold text-gray-500 border-b border-gray-200 bg-gray-50'>
 			<tr className='flex'>
-				{checkedList && (
-					<th className='p-4 leading-none'>
-						{onChecked && (
-							<CheckBox
-								checked={checkedList?.length === dataSource.length}
-								onChange={() =>
-									checkedList?.length === dataSource.length
-										? onChecked([])
-										: onChecked(dataSource.map((record) => record.id))
-								}
-							/>
-						)}
-					</th>
-				)}
 				{columns?.map((column, index) => (
 					<th key={index} className={cn(TableHeaderStyle({ size }))} style={{ width: `${column.width}%` }}>
 						<span>{column.title}</span>
@@ -66,8 +49,6 @@ export default memo(
 		prev.size === next.size &&
 		prev.columns === next.columns &&
 		prev.dataSource === next.dataSource &&
-		prev.checkedList === next.checkedList &&
 		prev.sortDatas === next.sortDatas &&
-		prev.onChecked === next.onChecked &&
 		prev.onSort === next.onSort
 );

@@ -1,31 +1,36 @@
 'use client';
 
 import { stringify } from 'flatted';
-import { Key, memo, useEffect, useState } from 'react';
-import { ColumnDataType, ColumnType } from '../../types/table';
+import { memo, useEffect, useState } from 'react';
 import Tbody from './components/Tbody';
 import Thead from './components/Thead';
+import { ColumnDataType, ColumnType } from '../../types/table';
 
 interface RowTableProps {
 	size: 'lg' | 'sm';
 	columns: ColumnType<any>;
 	dataSource: any[];
-	checkedList?: Key[];
 	minWidth?: number;
-	onChecked?: (keys: Key[]) => void;
 }
 
-const RowTable = ({ size, columns, dataSource, checkedList, minWidth, onChecked }: RowTableProps) => {
+const RowTable = ({ size, columns, dataSource, minWidth }: RowTableProps) => {
 	const [sortDatas, setSortDatas] = useState(dataSource);
 
 	const handleSortDatas = (
 		dataSource: ColumnDataType[],
 		sortDatas: ColumnDataType[],
-		sorter: (a: ColumnDataType, b: ColumnDataType) => number
+		sorter: (a: ColumnDataType, b: ColumnDataType, lastIndex: number) => number
 	) => {
 		const isSorted = stringify(dataSource) !== stringify(sortDatas);
-
-		setSortDatas(isSorted ? dataSource : [...dataSource].sort(sorter));
+		console.log(dataSource.length - 1);
+		setSortDatas(
+			isSorted
+				? dataSource
+				: [...dataSource].sort((a, b) => {
+						console.log(dataSource.length - 1);
+						return sorter(a, b, dataSource.length - 1);
+				  })
+		);
 	};
 
 	useEffect(() => {
@@ -35,16 +40,8 @@ const RowTable = ({ size, columns, dataSource, checkedList, minWidth, onChecked 
 	return (
 		<div className='overflow-x-auto'>
 			<table className='w-full' style={{ minWidth: `${minWidth}px` }}>
-				<Thead
-					size={size}
-					columns={columns}
-					dataSource={dataSource}
-					checkedList={checkedList}
-					sortDatas={sortDatas}
-					onChecked={onChecked}
-					onSort={handleSortDatas}
-				/>
-				<Tbody size={size} columns={columns} checkedList={checkedList} sortDatas={sortDatas} onChecked={onChecked} />
+				<Thead size={size} columns={columns} dataSource={dataSource} sortDatas={sortDatas} onSort={handleSortDatas} />
+				<Tbody size={size} columns={columns} sortDatas={sortDatas} />
 			</table>
 		</div>
 	);
@@ -56,7 +53,5 @@ export default memo(
 		prev.size === next.size &&
 		prev.columns === next.columns &&
 		prev.dataSource === next.dataSource &&
-		prev.checkedList === next.checkedList &&
-		prev.minWidth === next.minWidth &&
-		prev.onChecked === next.onChecked
+		prev.minWidth === next.minWidth
 );

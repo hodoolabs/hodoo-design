@@ -6,7 +6,7 @@ type ColumnType<RecordType> = {
 	dataIndex: keyof RecordType;
 	width?: number;
 	tooltip?: TooltipType;
-	sorter?: (a: RecordType, b: RecordType) => number;
+	sorter?: (a: RecordType, b: RecordType, lastIndex: number) => number;
 	render?: (values: RecordType) => ReactNode;
 }[];
 

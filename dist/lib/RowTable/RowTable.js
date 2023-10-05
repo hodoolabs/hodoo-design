@@ -4,20 +4,24 @@ import { stringify } from 'flatted';
 import { memo, useEffect, useState } from 'react';
 import Tbody from './components/Tbody';
 import Thead from './components/Thead';
-const RowTable = ({ size, columns, dataSource, checkedList, minWidth, onChecked }) => {
+const RowTable = ({ size, columns, dataSource, minWidth }) => {
     const [sortDatas, setSortDatas] = useState(dataSource);
     const handleSortDatas = (dataSource, sortDatas, sorter) => {
         const isSorted = stringify(dataSource) !== stringify(sortDatas);
-        setSortDatas(isSorted ? dataSource : [...dataSource].sort(sorter));
+        console.log(dataSource.length - 1);
+        setSortDatas(isSorted
+            ? dataSource
+            : [...dataSource].sort((a, b) => {
+                console.log(dataSource.length - 1);
+                return sorter(a, b, dataSource.length - 1);
+            }));
     };
     useEffect(() => {
         setSortDatas(dataSource);
     }, [dataSource]);
-    return (_jsx("div", { className: 'overflow-x-auto', children: _jsxs("table", { className: 'w-full', style: { minWidth: `${minWidth}px` }, children: [_jsx(Thead, { size: size, columns: columns, dataSource: dataSource, checkedList: checkedList, sortDatas: sortDatas, onChecked: onChecked, onSort: handleSortDatas }), _jsx(Tbody, { size: size, columns: columns, checkedList: checkedList, sortDatas: sortDatas, onChecked: onChecked })] }) }));
+    return (_jsx("div", { className: 'overflow-x-auto', children: _jsxs("table", { className: 'w-full', style: { minWidth: `${minWidth}px` }, children: [_jsx(Thead, { size: size, columns: columns, dataSource: dataSource, sortDatas: sortDatas, onSort: handleSortDatas }), _jsx(Tbody, { size: size, columns: columns, sortDatas: sortDatas })] }) }));
 };
 export default memo(RowTable, (prev, next) => prev.size === next.size &&
     prev.columns === next.columns &&
     prev.dataSource === next.dataSource &&
-    prev.checkedList === next.checkedList &&
-    prev.minWidth === next.minWidth &&
-    prev.onChecked === next.onChecked);
+    prev.minWidth === next.minWidth);
