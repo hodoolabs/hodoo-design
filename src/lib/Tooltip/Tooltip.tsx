@@ -7,6 +7,7 @@ import { cn } from '../../utils/style';
 import VectorDarkSvg from './images/VectorDarkSvg';
 import VectorWhiteSVG from './images/VectorWhiteSvg';
 import { ArrowStyle, DescriptionStyle, TooltipBoxStyle, TooltipStyle } from './style';
+import { throttle } from 'lodash';
 
 const Tooltip = ({
 	color = 'dark',
@@ -44,14 +45,18 @@ const Tooltip = ({
 	}, [isHovered]);
 
 	useEffect(() => {
-		const hideTooltipOnScroll = () => {
+		const hideTooltipOnScroll = throttle(() => {
 			setIsHovered(false);
-		};
+		}, 200);
 
 		window.addEventListener('scroll', hideTooltipOnScroll);
+		window.addEventListener('touchmove', hideTooltipOnScroll);
 
 		return () => {
 			window.removeEventListener('scroll', hideTooltipOnScroll);
+			window.removeEventListener('touchmove', hideTooltipOnScroll);
+
+			hideTooltipOnScroll.cancel();
 		};
 	}, []);
 
