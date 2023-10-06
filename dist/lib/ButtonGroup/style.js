@@ -15,7 +15,7 @@ const ButtonStyle = cva([
 ], {
     variants: {
         active: {
-            true: ['text-blue-600', 'bg-blue-100', 'border-blue-200', 'active-button'],
+            true: ['text-blue-600', 'bg-blue-100', 'border-blue-200', 'active-button', 'hover:bg-blue-100'],
         },
     },
 });

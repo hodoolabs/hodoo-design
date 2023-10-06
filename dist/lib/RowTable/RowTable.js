@@ -11,8 +11,7 @@ const RowTable = ({ size, columns, dataSource, minWidth }) => {
         setSortDatas(isSorted
             ? dataSource
             : [...dataSource].sort((a, b) => {
-                console.log(dataSource.length - 1);
-                return sorter(a, b, dataSource.length - 1);
+                return sorter(a, b);
             }));
     };
     useEffect(() => {
