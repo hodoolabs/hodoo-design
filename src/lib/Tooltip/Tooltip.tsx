@@ -78,7 +78,7 @@ const Tooltip = ({
 						style={{ top: `${tooltipPosition.top}px`, left: `${tooltipPosition.left}px` }}
 					>
 						<div className={`${cn(TooltipStyle({ color }))}`}>
-							<p>{title}</p>
+							<div>{title}</div>
 							<div className={cn(DescriptionStyle({ color }))}>{description}</div>
 							{isShowArrow && (
 								<div className={cn(ArrowStyle({ position }))}>
