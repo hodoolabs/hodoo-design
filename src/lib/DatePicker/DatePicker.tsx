@@ -76,6 +76,7 @@ const DatePicker = ({
 			)}
 			{!isLoading ? (
 				<Datepicker
+					i18n={'ko'}
 					value={value}
 					displayFormat={format}
 					readOnly={true}
