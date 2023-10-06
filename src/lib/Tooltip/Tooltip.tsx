@@ -59,7 +59,9 @@ const Tooltip = ({
 		<div
 			className={`relative inline-block ${className}`}
 			onMouseEnter={() => setIsHovered(true)}
+			onTouchStart={() => setIsHovered(true)}
 			onMouseLeave={() => setIsHovered(false)}
+			onTouchEnd={() => setIsHovered(false)}
 			ref={targetRef}
 		>
 			<div>{children}</div>
