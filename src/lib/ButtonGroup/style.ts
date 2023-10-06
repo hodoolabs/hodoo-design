@@ -6,6 +6,8 @@ const ButtonStyle = cva(
 		'px-4',
 		'border',
 		'text-sm',
+		'text-gray-800',
+		'font-semibold',
 		'border-gray-300/70',
 		'border-r-0',
 		'first:rounded-tl-xl',
