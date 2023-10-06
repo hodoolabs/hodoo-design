@@ -43,6 +43,18 @@ const Tooltip = ({
 		}
 	}, [isHovered]);
 
+	useEffect(() => {
+		const hideTooltipOnScroll = () => {
+			setIsHovered(false);
+		};
+
+		window.addEventListener('scroll', hideTooltipOnScroll);
+
+		return () => {
+			window.removeEventListener('scroll', hideTooltipOnScroll);
+		};
+	}, []);
+
 	return (
 		<div
 			className={`relative inline-block ${className}`}
