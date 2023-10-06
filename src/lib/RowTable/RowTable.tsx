@@ -2,9 +2,9 @@
 
 import { stringify } from 'flatted';
 import { memo, useEffect, useState } from 'react';
-import { ColumnDataType, ColumnType } from '../../types/table';
 import Tbody from './components/Tbody';
 import Thead from './components/Thead';
+import { ColumnDataType, ColumnType } from '../../types/table';
 
 interface RowTableProps {
 	size: 'lg' | 'sm';
@@ -19,7 +19,7 @@ const RowTable = ({ size, columns, dataSource, minWidth }: RowTableProps) => {
 	const handleSortDatas = (
 		dataSource: ColumnDataType[],
 		sortDatas: ColumnDataType[],
-		sorter: (a: ColumnDataType, b: ColumnDataType, lastIndex: number) => number
+		sorter: (a: ColumnDataType, b: ColumnDataType) => number
 	) => {
 		const isSorted = stringify(dataSource) !== stringify(sortDatas);
 
@@ -27,8 +27,7 @@ const RowTable = ({ size, columns, dataSource, minWidth }: RowTableProps) => {
 			isSorted
 				? dataSource
 				: [...dataSource].sort((a, b) => {
-						console.log(dataSource.length - 1);
-						return sorter(a, b, dataSource.length - 1);
+						return sorter(a, b);
 				  })
 		);
 	};

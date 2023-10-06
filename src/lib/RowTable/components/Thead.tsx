@@ -14,7 +14,7 @@ interface TheadProps {
 	onSort: (
 		dataSource: ColumnDataType[],
 		sortDatas: ColumnDataType[],
-		sorter: (a: ColumnDataType, b: ColumnDataType, lastIndex: number) => number
+		sorter: (a: ColumnDataType, b: ColumnDataType) => number
 	) => void;
 }
 
