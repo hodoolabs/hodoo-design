@@ -11,6 +11,7 @@ const ButtonStyle = cva([
     'last:border-r',
     'last:rounded-tr-xl',
     'last:rounded-br-xl',
+    'hover:bg-gray-100',
 ], {
     variants: {
         active: {

@@ -8,7 +8,6 @@ const RowTable = ({ size, columns, dataSource, minWidth }) => {
     const [sortDatas, setSortDatas] = useState(dataSource);
     const handleSortDatas = (dataSource, sortDatas, sorter) => {
         const isSorted = stringify(dataSource) !== stringify(sortDatas);
-        console.log(dataSource.length - 1);
         setSortDatas(isSorted
             ? dataSource
             : [...dataSource].sort((a, b) => {

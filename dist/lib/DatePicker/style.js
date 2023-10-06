@@ -19,7 +19,7 @@ const ToggleStyle = cva(['absolute', 'h-full', 'left-0', 'pl-4', 'pr-3', 'rounde
         },
     },
 });
-const InputStyle = cva(['cursor-pointer', 'w-full', 'px-4', 'bg-gray-50', 'border', 'rounded-xl'], {
+const InputStyle = cva(['cursor-pointer', 'w-full', 'px-4', 'bg-gray-50', 'border', 'rounded-xl', 'hover:bg-gray-100'], {
     variants: {
         size: {
             lg: ['py-3.5', 'text-base', 'pl-12'],

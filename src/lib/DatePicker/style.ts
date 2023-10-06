@@ -22,18 +22,21 @@ const ToggleStyle = cva(['absolute', 'h-full', 'left-0', 'pl-4', 'pr-3', 'rounde
 	},
 });
 
-const InputStyle = cva(['cursor-pointer', 'w-full', 'px-4', 'bg-gray-50', 'border', 'rounded-xl'], {
-	variants: {
-		size: {
-			lg: ['py-3.5', 'text-base', 'pl-12'],
-			sm: ['py-2.5', 'text-sm', 'pl-11'],
+const InputStyle = cva(
+	['cursor-pointer', 'w-full', 'px-4', 'bg-gray-50', 'border', 'rounded-xl', 'hover:bg-gray-100'],
+	{
+		variants: {
+			size: {
+				lg: ['py-3.5', 'text-base', 'pl-12'],
+				sm: ['py-2.5', 'text-sm', 'pl-11'],
+			},
+			error: {
+				true: ['text-red-700', 'border-red-200', 'bg-red-50', 'placeholder-red-400'],
+				false: ['bg-gray-50', 'text-gray-900', 'border-gray-300/70'],
+			},
 		},
-		error: {
-			true: ['text-red-700', 'border-red-200', 'bg-red-50', 'placeholder-red-400'],
-			false: ['bg-gray-50', 'text-gray-900', 'border-gray-300/70'],
-		},
-	},
-});
+	}
+);
 
 const SkeletonStyle = cva(['cursor-pointer', 'w-full', 'px-4', 'bg-gray-50', 'border', 'rounded-xl'], {
 	variants: {

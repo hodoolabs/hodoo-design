@@ -22,7 +22,7 @@ const RowTable = ({ size, columns, dataSource, minWidth }: RowTableProps) => {
 		sorter: (a: ColumnDataType, b: ColumnDataType, lastIndex: number) => number
 	) => {
 		const isSorted = stringify(dataSource) !== stringify(sortDatas);
-		console.log(dataSource.length - 1);
+
 		setSortDatas(
 			isSorted
 				? dataSource
