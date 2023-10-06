@@ -2,9 +2,9 @@
 
 import { stringify } from 'flatted';
 import { memo, useEffect, useState } from 'react';
+import { ColumnDataType, ColumnType } from '../../types/table';
 import Tbody from './components/Tbody';
 import Thead from './components/Thead';
-import { ColumnDataType, ColumnType } from '../../types/table';
 
 interface RowTableProps {
 	size: 'lg' | 'sm';

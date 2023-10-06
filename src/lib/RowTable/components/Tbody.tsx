@@ -15,10 +15,7 @@ const Tbody = ({ size, columns, sortDatas }: TbodyProps) => {
 	return (
 		<tbody>
 			{sortDatas.map((record, index) => (
-				<tr
-					key={index}
-					className='flex items-center font-medium border-b border-solid border-b-gray-200 hover:bg-blue-50 hover:border-blue-300'
-				>
+				<tr key={index} className='flex items-center font-medium border-b border-solid border-b-gray-200'>
 					{columns.map((column, index) => (
 						<td key={index} className={cn(TableBodyStyle({ size }))} style={{ width: `${column.width}%` }}>
 							{column.render ? column.render(record) : record[column.dataIndex]}

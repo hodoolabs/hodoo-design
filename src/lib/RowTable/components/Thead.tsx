@@ -24,15 +24,15 @@ const Thead = ({ size, columns, dataSource, sortDatas, onSort }: TheadProps) => 
 			<tr className='flex'>
 				{columns?.map((column, index) => (
 					<th key={index} className={cn(TableHeaderStyle({ size }))} style={{ width: `${column.width}%` }}>
-						<span>{column.title}</span>
+						<span className='my-1 leading-5'>{column.title}</span>
 						{column.sorter && (
 							<ChevronUpDownIcon
-								className='w-5 ml-2 cursor-pointer'
+								className='w-5 m-1 ml-3 cursor-pointer'
 								onClick={() => onSort(dataSource, sortDatas, column.sorter!)}
 							/>
 						)}
 						{column.tooltip && (
-							<Tooltip {...column.tooltip} className='inline-flex ml-2 item-center'>
+							<Tooltip {...column.tooltip} className='inline-flex m-1 ml-3 item-center'>
 								<QuestionMarkCircleIcon className='w-5 text-gray-400 cursor-pointer' />
 							</Tooltip>
 						)}
