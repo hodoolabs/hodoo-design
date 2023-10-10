@@ -37,10 +37,15 @@ const DatePicker = ({
 }: DatePickerProps) => {
 	const [isLoading, setIsLoading] = useState(false);
 
-	const handleChangeDate = (placeholder: string | undefined, date: DateValueType) => {
-		if (!placeholder && date?.startDate === null && date?.endDate === null)
-			onChange({ startDate: dayjs().format(format), endDate: dayjs().format(format) });
-		else onChange(date);
+	const handleChangeDate = (
+		placeholder: string | undefined,
+		date: DateValueType,
+		event: HTMLInputElement | null | undefined,
+	) => {
+		if (!placeholder && date?.startDate === null && date?.endDate === null) {
+			event?.oncancel;
+		} else onChange(date);
+
 		setIsLoading(true);
 	};
 
@@ -85,7 +90,7 @@ const DatePicker = ({
 					toggleClassName={cn(ToggleStyle({ size, error: !!error }))}
 					inputClassName={cn(InputStyle({ size, error: !!error }))}
 					placeholder={props.placeholder ? props.placeholder : ' '}
-					onChange={(date) => handleChangeDate(props.placeholder, date)}
+					onChange={(date, event) => handleChangeDate(props.placeholder, date, event)}
 					{...props}
 				/>
 			) : (
@@ -110,7 +115,7 @@ export default memo(
 		prev.required === next.required &&
 		prev.className === next.className &&
 		prev.onChange === next.onChange &&
-		prev.onError === next.onError
+		prev.onError === next.onError,
 );
 
 const DatePickerStyled = styled.div`
