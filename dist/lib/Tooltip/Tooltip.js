@@ -41,7 +41,7 @@ const Tooltip = ({ color = 'dark', title, description, isShowArrow = true, child
             hideTooltipOnScroll.cancel();
         };
     }, []);
-    return (_jsxs("div", { className: `relative inline-block ${className}`, onMouseEnter: () => setIsHovered(true), onTouchStart: () => setIsHovered(true), onMouseLeave: () => setIsHovered(false), onTouchEnd: () => setIsHovered(false), ref: targetRef, children: [_jsx("div", { children: children }), isHovered &&
+    return (_jsxs("div", { className: `relative inline-block ${className}`, onMouseEnter: () => setIsHovered(true), onMouseLeave: () => setIsHovered(false), ref: targetRef, children: [_jsx("div", { children: children }), isHovered &&
                 tooltipElement &&
                 ReactDOM.createPortal(_jsx("div", { className: cn(TooltipBoxStyle({ position, isShowArrow: isShowArrow ? position : null })), style: { top: `${tooltipPosition.top}px`, left: `${tooltipPosition.left}px` }, children: _jsxs("div", { className: `${cn(TooltipStyle({ color }))}`, children: [_jsx("div", { children: title }), _jsx("div", { className: cn(DescriptionStyle({ color })), children: description }), isShowArrow && (_jsx("div", { className: cn(ArrowStyle({ position })), children: color === 'white' ? _jsx(VectorWhiteSVG, {}) : _jsx(VectorDarkSvg, {}) }))] }) }), tooltipElement)] }));
 };
