@@ -1,5 +1,4 @@
-import { cn } from '../../utils/style';
-import { SpinnerStyle } from './style';
+import SpinnerSvg from './images/SpinnerSvg';
 
 interface SpinnerProps {
 	size?: 'small' | 'medium' | 'large';
@@ -7,9 +6,9 @@ interface SpinnerProps {
 
 const Spinner = ({ size = 'medium' }: SpinnerProps) => {
 	return (
-		<div className='flex items-center justify-center h-full z-[9999] relative'>
-			<div className='absolute top-0 left-0 w-full h-full bg-white opacity-70'></div>
-			<img className={cn(SpinnerStyle({ size }))} src={'/images/spinner.svg'} alt='spinner' />
+		<div className='fixed top-0 left-0 w-full flex items-center justify-center h-full z-[99999]'>
+			<div className='absolute top-0 left-0 w-full h-full bg-white opacity-70' />
+			<SpinnerSvg size={size} />
 		</div>
 	);
 };
