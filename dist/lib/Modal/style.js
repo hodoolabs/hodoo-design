@@ -1,9 +1,9 @@
 import { cva } from 'class-variance-authority';
-const ModalContainerStyle = cva(['fixed top-0 left-0 z-30 flex items-center justify-center w-full h-screen'], {
+const ModalContainerStyle = cva(['fixed top-0 left-0 z-30 flex justify-center w-full h-screen'], {
     variants: {
         isMobile: {
-            true: ['top-0 '],
-            false: ['bottom-0'],
+            true: ['bottom-0', 'items-end'],
+            false: ['top-0', 'items-center'],
         },
     },
 });
