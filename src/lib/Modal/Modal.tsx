@@ -5,7 +5,7 @@ import useScrollBlock from '../../hooks/useScrollBlock';
 import { ModalStateType } from '../../types/modal';
 import { cn } from '../../utils/style';
 import Header from './Header';
-import { ModalContainerStyle, ModalContentStyle, ModalStyle } from './style';
+import { ModalStyle } from './style';
 
 export interface ModalProps {
 	modalState: ModalStateType;
@@ -23,10 +23,10 @@ const Modal = ({ modalState, modalHistory, goBackModal, closeModal }: ModalProps
 	}, [modalState.isOpen]);
 
 	return (
-		<div className={ModalContainerStyle({ isMobile: modalState.isMobile })}>
+		<div className='fixed top-0 left-0 z-30 flex items-center justify-center w-full h-screen'>
 			<div className={cn(ModalStyle({ size: modalState.size }))}>
 				<Header modalState={modalState} modalHistory={modalHistory} goBackModal={goBackModal} closeModal={closeModal} />
-				<div className={cn(ModalContentStyle({ isMobile: modalState.isMobile }))}>{modalState.content}</div>
+				<div className='px-6 pb-6 bg-white rounded-b-3xl'>{modalState.content}</div>
 			</div>
 			<div className='absolute top-0 left-0 z-40 w-full h-full bg-black/70' onClick={closeModal} />
 		</div>
