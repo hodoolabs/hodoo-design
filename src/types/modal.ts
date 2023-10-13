@@ -5,7 +5,7 @@ type ModalStateType = {
 	subTitle?: string | JSX.Element;
 	content: ReactNode;
 	size: 'lg' | 'sm';
-	isMobile: boolean;
+	isMobile?: boolean;
 	isOpen?: boolean;
 };
 
