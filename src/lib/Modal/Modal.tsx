@@ -11,11 +11,10 @@ export interface ModalProps {
 	modalState: ModalStateType;
 	modalHistory?: ModalStateType[];
 	goBackModal?: () => void;
-	isMobile?: boolean;
 	closeModal: () => void;
 }
 
-const Modal = ({ modalState, modalHistory, goBackModal, closeModal, isMobile = false }: ModalProps) => {
+const Modal = ({ modalState, modalHistory, goBackModal, closeModal }: ModalProps) => {
 	const { blockScroll, allowScroll } = useScrollBlock();
 
 	useEffect(() => {
@@ -24,10 +23,10 @@ const Modal = ({ modalState, modalHistory, goBackModal, closeModal, isMobile = f
 	}, [modalState.isOpen]);
 
 	return (
-		<div className={ModalContainerStyle({ isMobile })}>
+		<div className={ModalContainerStyle({ isMobile: modalState.isMobile })}>
 			<div className={cn(ModalStyle({ size: modalState.size }))}>
 				<Header modalState={modalState} modalHistory={modalHistory} goBackModal={goBackModal} closeModal={closeModal} />
-				<div className={cn(ModalContentStyle({ isMobile }))}>{modalState.content}</div>
+				<div className={cn(ModalContentStyle({ isMobile: modalState.isMobile }))}>{modalState.content}</div>
 			</div>
 			<div className='absolute top-0 left-0 z-40 w-full h-full bg-black/70' onClick={closeModal} />
 		</div>
