@@ -6,6 +6,10 @@ const ModalContainerStyle = cva(['fixed top-0 left-0 z-30 flex justify-center w-
 			true: ['bottom-0', 'items-end'],
 			false: ['top-0', 'items-center'],
 		},
+		animationBottomToTop: {
+			true: ['transition-300 tablet:translate-y-[-253px]'],
+			false: ['tablet:translate-y-[-253px]'],
+		},
 	},
 });
 
