@@ -13,6 +13,6 @@ const Modal = ({ modalState, modalHistory, goBackModal, closeModal, isMobile = f
         else
             allowScroll();
     }, [modalState.isOpen]);
-    return (_jsxs("div", { className: ModalContainerStyle({ isMobile }), children: [_jsxs("div", { className: cn(ModalStyle({ size: modalState.size, animationBottomToTop })), children: [_jsx(Header, { modalState: modalState, modalHistory: modalHistory, goBackModal: goBackModal, closeModal: closeModal }), _jsx("div", { className: cn(ModalContentStyle({ isMobile })), children: modalState.content })] }), _jsx("div", { className: 'absolute top-0 left-0 z-40 w-full h-full bg-black/70', onClick: closeModal })] }));
+    return (_jsxs("div", { className: ModalContainerStyle({ isMobile, isModalVisible: modalState.isOpen }), children: [_jsxs("div", { className: cn(ModalStyle({ size: modalState.size, animationBottomToTop })), children: [_jsx(Header, { modalState: modalState, modalHistory: modalHistory, goBackModal: goBackModal, closeModal: closeModal }), _jsx("div", { className: cn(ModalContentStyle({ isMobile })), children: modalState.content })] }), _jsx("div", { className: 'absolute top-0 left-0 z-40 w-full h-full bg-black/70', onClick: closeModal })] }));
 };
 export default Modal;

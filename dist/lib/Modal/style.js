@@ -5,6 +5,10 @@ const ModalContainerStyle = cva(['fixed top-0 left-0 z-30 flex justify-center w-
             true: ['bottom-0', 'items-end'],
             false: ['top-0', 'items-center'],
         },
+        isModalVisible: {
+            true: ['visible'],
+            false: ['invisible'],
+        },
     },
 });
 const ModalStyle = cva(['w-full', 'shadow', 'z-50', 'transition-300 '], {
@@ -14,8 +18,7 @@ const ModalStyle = cva(['w-full', 'shadow', 'z-50', 'transition-300 '], {
             sm: ['max-w-md'],
         },
         animationBottomToTop: {
-            true: ['tablet:translate-y-[253px]'],
-            false: ['tablet:translate-y-[-253px]'],
+            false: ['translate-y-[253px]'],
         },
     },
 });
