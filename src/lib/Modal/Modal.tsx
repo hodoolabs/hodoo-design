@@ -32,8 +32,8 @@ const Modal = ({
 	}, [modalState.isOpen]);
 
 	return (
-		<div className={ModalContainerStyle({ isMobile, animationBottomToTop })}>
-			<div className={cn(ModalStyle({ size: modalState.size }))}>
+		<div className={ModalContainerStyle({ isMobile })}>
+			<div className={cn(ModalStyle({ size: modalState.size, animationBottomToTop }))}>
 				<Header modalState={modalState} modalHistory={modalHistory} goBackModal={goBackModal} closeModal={closeModal} />
 				<div className={cn(ModalContentStyle({ isMobile }))}>{modalState.content}</div>
 			</div>
