@@ -19,3 +19,4 @@ export { default as Toast } from './lib/Toast/Toast';
 export { default as Toggle } from './lib/Toggle/Toggle';
 export { default as Tooltip } from './lib/Tooltip/Tooltip';
 export { default as Spinner } from './lib/Spinner/Spinner';
+export { default as Dropdown } from './lib/Dropdown/Dropdown';

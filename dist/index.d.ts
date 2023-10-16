@@ -18,6 +18,7 @@ export { default as Toast } from './lib/Toast/Toast';
 export { default as Toggle } from './lib/Toggle/Toggle';
 export { default as Tooltip } from './lib/Tooltip/Tooltip';
 export { default as Spinner } from './lib/Spinner/Spinner';
+export { default as Dropdown } from './lib/Dropdown/Dropdown';
 export type { ColumnType, ColumnDataType } from './types/table';
 export type { BreadCrumbsType } from './types/breadCrumbs';
 export type { ButtonGroupType } from './types/buttonGroup';
