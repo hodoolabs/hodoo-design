@@ -1,5 +1,6 @@
 declare const ModalContainerStyle: (props?: ({
     isMobile?: boolean | null | undefined;
+    animationBottomToTop?: boolean | null | undefined;
 } & import("class-variance-authority/dist/types").ClassProp) | undefined) => string;
 declare const ModalStyle: (props?: ({
     size?: "lg" | "sm" | null | undefined;
