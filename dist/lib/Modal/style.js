@@ -18,7 +18,7 @@ const ModalStyle = cva(['w-full', 'shadow', 'z-50', 'transition-300 '], {
             sm: ['max-w-md'],
         },
         animationBottomToTop: {
-            false: ['translate-y-[253px]'],
+            false: ['translate-y-full'],
         },
     },
 });
