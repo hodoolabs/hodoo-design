@@ -8,7 +8,7 @@ interface BreadCrumbsProps {
 	data: BreadCrumbsType;
 	path: string;
 	className?: string;
-	onPush: (pathname: string) => void;
+	onPush: (path: string) => void;
 }
 
 const BreadCrumbs = ({ data, path, className, onPush }: BreadCrumbsProps) => {

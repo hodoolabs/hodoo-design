@@ -10,7 +10,7 @@ interface AccordionProps {
 	list: AccordionType[];
 	path: string;
 	className?: string;
-	onPush: (pathname: string) => void;
+	onPush: (path: string) => void;
 }
 
 const Accordion = ({ list, path, className, onPush }: AccordionProps) => {
