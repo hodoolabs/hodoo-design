@@ -6,26 +6,23 @@ import { BreadCrumbsType } from '../../types/breadCrumbs';
 
 interface BreadCrumbsProps {
 	data: BreadCrumbsType;
-	pathname: string;
+	path: string;
 	className?: string;
 	onPush: (pathname: string) => void;
 }
 
-const BreadCrumbs = ({ data, pathname, className, onPush }: BreadCrumbsProps) => {
+const BreadCrumbs = ({ data, path, className, onPush }: BreadCrumbsProps) => {
 	return (
 		<div className={`flex gap-2 text-sm font-medium text-gray-500 ${className}`}>
-			{data[pathname].bread_crumbs.map((item) => (
-				<div key={item.url} className='flex items-center gap-2 leading-5'>
-					<span
-						onClick={() => onPush(item.url)}
-						className='rounded hover:text-gray-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2 cursor-pointer'
-					>
+			{data[path].bread_crumbs.map((item) => (
+				<div key={item.path} className='flex items-center gap-2'>
+					<span onClick={() => onPush(item.path)} className='rounded hover:text-gray-700 cursor-pointer'>
 						{item.label}
 					</span>
 					<ChevronRightIcon className='w-4 h-4' />
 				</div>
 			))}
-			<span className='text-gray-400'>{data[pathname].label}</span>
+			<span className='text-gray-400'>{data[path].label}</span>
 		</div>
 	);
 };
@@ -34,7 +31,7 @@ export default memo(
 	BreadCrumbs,
 	(prev: BreadCrumbsProps, next: BreadCrumbsProps) =>
 		prev.data === next.data &&
-		prev.pathname === next.pathname &&
+		prev.path === next.path &&
 		prev.className === next.className &&
 		prev.onPush === next.onPush
 );

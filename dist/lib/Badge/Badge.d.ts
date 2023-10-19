@@ -1,8 +1,8 @@
-/// <reference types="react" />
+import { ReactNode } from 'react';
 interface BadgeProps {
     color: 'blue' | 'gray' | 'gray_low' | 'red';
     size: 'lg' | 'md' | 'sm';
-    leftIcon?: string | JSX.Element;
+    leftIcon?: ReactNode;
     label?: string;
     className?: string;
     onClick?: () => void;

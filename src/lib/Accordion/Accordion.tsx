@@ -8,12 +8,12 @@ import { ArrowStyle, MenuStyle, SubMenuStyle, SubMenusStyle } from './style';
 
 interface AccordionProps {
 	list: AccordionType[];
-	pathname: string;
+	path: string;
 	className?: string;
 	onPush: (pathname: string) => void;
 }
 
-const Accordion = ({ list, pathname, className, onPush }: AccordionProps) => {
+const Accordion = ({ list, path, className, onPush }: AccordionProps) => {
 	const [expandedMenuIndex, setExpanededMenuIndex] = useState(0);
 
 	const handleMenuClick = (index: number, expandedMenuIndex: number, path: string, subMenusLength: number) => {
@@ -43,11 +43,11 @@ const Accordion = ({ list, pathname, className, onPush }: AccordionProps) => {
 			{list.map((item) => (
 				<div key={item.index}>
 					<div
-						className={cn(MenuStyle({ isCurrentPath: getIsCurrentPath(item.menu.path, pathname) }))}
+						className={cn(MenuStyle({ isCurrentPath: getIsCurrentPath(item.menu.path, path) }))}
 						onClick={() => handleMenuClick(item.index, expandedMenuIndex, item.menu.path, item.subMenus.length)}
 					>
 						<img
-							src={item[getIsCurrentPath(item.menu.path, pathname) ? 'activeIcon' : 'icon']}
+							src={item[getIsCurrentPath(item.menu.path, path) ? 'activeIcon' : 'icon']}
 							alt={item.icon}
 							className='w-6 h-6'
 						/>
@@ -55,7 +55,7 @@ const Accordion = ({ list, pathname, className, onPush }: AccordionProps) => {
 						{!!item.subMenus.length && (
 							<ChevronDownIcon
 								className={cn(
-									ArrowStyle({ isExpanded: getIsExpandedMenu(item.index, expandedMenuIndex, pathname, item.subMenus) })
+									ArrowStyle({ isExpanded: getIsExpandedMenu(item.index, expandedMenuIndex, path, item.subMenus) })
 								)}
 							/>
 						)}
@@ -64,7 +64,7 @@ const Accordion = ({ list, pathname, className, onPush }: AccordionProps) => {
 						<div
 							className={cn(
 								SubMenusStyle({
-									isExpanded: getIsExpandedMenu(item.index, expandedMenuIndex, pathname, item.subMenus),
+									isExpanded: getIsExpandedMenu(item.index, expandedMenuIndex, path, item.subMenus),
 									height: item.subMenus.length,
 								})
 							)}
@@ -72,7 +72,7 @@ const Accordion = ({ list, pathname, className, onPush }: AccordionProps) => {
 							{item.subMenus.map((subItem) => (
 								<div
 									key={subItem.path}
-									className={cn(SubMenuStyle({ isCurrentPath: getIsCurrentPath(subItem.path, pathname) }))}
+									className={cn(SubMenuStyle({ isCurrentPath: getIsCurrentPath(subItem.path, path) }))}
 									onClick={() => onPush(subItem.path)}
 								>
 									{subItem.label}
@@ -90,7 +90,7 @@ export default memo(
 	Accordion,
 	(prev: AccordionProps, next: AccordionProps) =>
 		prev.list === next.list &&
-		prev.pathname === next.pathname &&
+		prev.path === next.path &&
 		prev.className === next.className &&
 		prev.onPush === next.onPush
 );
