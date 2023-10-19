@@ -2,16 +2,14 @@
 
 import { useEffect } from 'react';
 
-const useSetTimeout = (toastingTime: number | undefined, func: () => void) => {
-	if (!toastingTime) return;
+const useSetTimeout = (time: number, callBack: () => void) => {
+	if (!time) return;
 
 	useEffect(() => {
-		const timer = setTimeout(() => {
-			func();
-		}, toastingTime);
+		const timer = setTimeout(() => callBack(), time);
 
 		return () => clearTimeout(timer);
-	}, [toastingTime]);
+	}, [time]);
 };
 
 export default useSetTimeout;

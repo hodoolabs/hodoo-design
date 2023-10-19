@@ -1,2 +1,2 @@
-declare const useSetTimeout: (toastingTime: number | undefined, func: () => void) => void;
+declare const useSetTimeout: (time: number, callBack: () => void) => void;
 export default useSetTimeout;

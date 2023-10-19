@@ -1,7 +1,7 @@
 /// <reference types="react" />
-import { MenuListType } from '../../types/accordion';
+import { AccordionType } from '../../types/accordion';
 interface AccordionProps {
-    list: MenuListType[];
+    list: AccordionType[];
     pathname: string;
     className?: string;
     onPush: (pathname: string) => void;

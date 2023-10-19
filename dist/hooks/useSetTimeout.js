@@ -1,13 +1,11 @@
 'use client';
 import { useEffect } from 'react';
-const useSetTimeout = (toastingTime, func) => {
-    if (!toastingTime)
+const useSetTimeout = (time, callBack) => {
+    if (!time)
         return;
     useEffect(() => {
-        const timer = setTimeout(() => {
-            func();
-        }, toastingTime);
+        const timer = setTimeout(() => callBack(), time);
         return () => clearTimeout(timer);
-    }, [toastingTime]);
+    }, [time]);
 };
 export default useSetTimeout;

@@ -24,5 +24,5 @@ export type { BreadCrumbsType } from './types/breadCrumbs';
 export type { ButtonGroupType } from './types/buttonGroup';
 export type { ModalStateType } from './types/modal';
 export type { ToastStateType } from './types/toast';
-export type { MenuListType } from './types/accordion';
+export type { AccordionType } from './types/accordion';
 export type { TooltipType } from './types/tooltip';

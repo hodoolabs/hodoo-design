@@ -1,4 +1,4 @@
-type MenuListType = {
+type AccordionType = {
     index: number;
     icon: string;
     activeIcon: string;
@@ -11,4 +11,4 @@ type MenuListType = {
         label: string;
     }[];
 };
-export type { MenuListType };
+export type { AccordionType };

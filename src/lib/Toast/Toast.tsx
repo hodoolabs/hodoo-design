@@ -15,7 +15,7 @@ interface ToastProps {
 }
 
 const Toast = ({ toastState, closeToast }: ToastProps) => {
-	const { toastingTime, title, description, leftButton, rightButton, position, leftIcon, isClose } = toastState;
+	const { toastingTime = 0, title, description, leftButton, rightButton, position, leftIcon, isClose } = toastState;
 
 	useSetTimeout(toastingTime, closeToast);
 
