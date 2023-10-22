@@ -17,12 +17,11 @@ interface CheckBoxProps {
 const CheckBox = ({ checked, label, helper, disabled = false, onChange }: CheckBoxProps) => {
 	return (
 		<div className='inline-flex gap-3'>
-			<button className={cn(CheckBoxStyle({ checked, disabled }))} onClick={() => !disabled && onChange(!checked)}>
+			<button className={cn(CheckBoxStyle({ checked }))} disabled={disabled} onClick={() => onChange(!checked)}>
 				{checked && (disabled ? <CheckedDisabledSvg /> : <CheckedSvg />)}
 			</button>
-
 			{label && (
-				<div className='space-y-1 font-medium'>
+				<div className='flex flex-col gap-1'>
 					<label className={cn(LabelStyle({ disabled }))} onClick={() => !disabled && onChange(!checked)}>
 						{label}
 					</label>

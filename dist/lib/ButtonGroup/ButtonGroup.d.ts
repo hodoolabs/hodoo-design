@@ -2,7 +2,7 @@
 import { ButtonGroupType } from '../../types/buttonGroup';
 interface ButtonGroupProps {
     buttons: ButtonGroupType[];
-    active?: string;
+    active: string;
     className?: string;
     onActive: (id: string) => void;
 }
