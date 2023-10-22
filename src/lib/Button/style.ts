@@ -2,7 +2,7 @@ import { cva } from 'class-variance-authority';
 
 const ButtonStyle = cva(
 	[
-		'inline-flex font-semibold gap-2 items-center justify-center disabled:bg-gray-200 disabled:border-0 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none focus-visible:ring-gray-950',
+		'inline-flex font-semibold gap-2 items-center justify-center disabled:text-gray-400 disabled:bg-gray-200 disabled:border-0 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none focus-visible:ring-gray-950',
 	],
 	{
 		variants: {
@@ -26,9 +26,6 @@ const ButtonStyle = cva(
 				base: ['p-1'],
 				sm: ['p-1.5'],
 			},
-			disabled: {
-				true: ['text-gray-400'],
-			},
 		},
 	}
 );
@@ -36,16 +33,16 @@ const ButtonStyle = cva(
 const ImageStyle = cva([], {
 	variants: {
 		size: {
-			lg: ['w-5', 'h-5'],
-			md: ['w-4', 'h-4'],
-			base: ['w-3.5', 'h-3.5'],
-			sm: ['w-3.5', 'h-3.5'],
+			lg: ['w-5 h-5'],
+			md: ['w-4 h-4'],
+			base: ['w-3.5 h-3.5'],
+			sm: ['w-3.5 h-3.5'],
 		},
 		iconOnly: {
-			lg: ['w-6', 'h-6'],
-			md: ['w-5', 'h-5'],
-			base: ['w-6', 'h-6'],
-			sm: ['w-5', 'h-5'],
+			lg: ['w-6 h-6'],
+			md: ['w-5 h-5'],
+			base: ['w-6 h-6'],
+			sm: ['w-5 h-5'],
 		},
 	},
 });

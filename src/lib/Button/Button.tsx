@@ -21,7 +21,7 @@ const Button = ({ color, size, leftIcon, rightIcon, label, disabled, className, 
 	return (
 		<button
 			type='button'
-			className={`${cn(ButtonStyle({ color, size, iconOnly, disabled }))} ${className}`}
+			className={`${cn(ButtonStyle({ color, size, iconOnly }))} ${className}`}
 			disabled={disabled}
 			onClick={onClick}
 		>
