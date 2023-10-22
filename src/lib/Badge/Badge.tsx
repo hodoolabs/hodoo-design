@@ -15,9 +15,11 @@ interface BadgeProps {
 }
 
 const Badge = ({ color, size, leftIcon, label, className, onClick }: BadgeProps) => {
+	const iconOnly = !label ? size : null;
+
 	return (
-		<div className={`${cn(BadgeStyle({ color, size, iconOnly: !label ? size : null }))} ${className}`}>
-			{leftIcon && <div className={cn(LeftImageStyle({ size, iconOnly: !label ? size : null }))}>{leftIcon}</div>}
+		<div className={`${cn(BadgeStyle({ color, size, iconOnly }))} ${className}`}>
+			{leftIcon && <div className={cn(LeftImageStyle({ size, iconOnly }))}>{leftIcon}</div>}
 			{label && <span>{label}</span>}
 			{onClick && (
 				<button type='button' className={cn(ButtonStyle({ color }))} onClick={onClick}>

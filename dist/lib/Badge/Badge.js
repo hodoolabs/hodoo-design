@@ -5,7 +5,8 @@ import { memo } from 'react';
 import { cn } from '../../utils/style';
 import { BadgeStyle, ButtonStyle, LeftImageStyle, RightImageStyle } from './style';
 const Badge = ({ color, size, leftIcon, label, className, onClick }) => {
-    return (_jsxs("div", { className: `${cn(BadgeStyle({ color, size, iconOnly: !label ? size : null }))} ${className}`, children: [leftIcon && _jsx("div", { className: cn(LeftImageStyle({ size, iconOnly: !label ? size : null })), children: leftIcon }), label && _jsx("span", { children: label }), onClick && (_jsx("button", { type: 'button', className: cn(ButtonStyle({ color })), onClick: onClick, children: _jsx(XMarkIcon, { className: cn(RightImageStyle({ size })) }) }))] }));
+    const iconOnly = !label ? size : null;
+    return (_jsxs("div", { className: `${cn(BadgeStyle({ color, size, iconOnly }))} ${className}`, children: [leftIcon && _jsx("div", { className: cn(LeftImageStyle({ size, iconOnly })), children: leftIcon }), label && _jsx("span", { children: label }), onClick && (_jsx("button", { type: 'button', className: cn(ButtonStyle({ color })), onClick: onClick, children: _jsx(XMarkIcon, { className: cn(RightImageStyle({ size })) }) }))] }));
 };
 export default memo(Badge, (prev, next) => prev.color === next.color &&
     prev.size === next.size &&
