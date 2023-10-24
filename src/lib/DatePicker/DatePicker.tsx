@@ -1,104 +1,89 @@
 'use client';
 
 import { CalendarDaysIcon } from '@heroicons/react/24/outline';
-import dayjs from 'dayjs';
 import { throttle } from 'lodash';
-import { memo, useEffect, useState } from 'react';
+import { ReactNode, memo, useEffect, useState } from 'react';
 import Datepicker, { DateValueType, DatepickerType } from 'react-tailwindcss-datepicker';
-import { styled } from 'styled-components';
 import { cn } from '../../utils/style';
 import { ErrorStyle, InputStyle, LabelStyle, SkeletonStyle, ToggleStyle } from './style';
 
 interface DatePickerProps extends DatepickerType {
 	size: 'lg' | 'sm';
-	label?: string | JSX.Element;
-	value: DateValueType;
+	label?: ReactNode;
 	error?: string;
-	format?: string;
 	helper?: string;
 	required?: boolean;
 	className?: string;
-	onChange: (value: DateValueType) => void;
 	onError?: (error: string) => void;
 }
 
 const DatePicker = ({
 	size,
 	label,
-	value,
 	error,
-	format = 'YYYY-MM-DD',
 	helper,
 	required,
 	className,
-	onChange,
 	onError,
+	onChange,
 	...props
 }: DatePickerProps) => {
-	const [isLoading, setIsLoading] = useState(false);
+	const [isDestory, setIsDestroy] = useState(false);
+	const isError = !!error;
 
-	const handleChangeDate = (
-		placeholder: string | undefined,
-		date: DateValueType,
-		event: HTMLInputElement | null | undefined,
-	) => {
-		if (!placeholder && date?.startDate === null && date?.endDate === null) {
-			event?.oncancel;
-		} else onChange(date);
+	const handleChangeDate = (date: DateValueType, event: HTMLInputElement, placeholder?: string) => {
+		if (!placeholder && !date?.startDate && !date?.endDate) event.oncancel;
+		else {
+			onChange(date);
+			onError && onError('');
+		}
 
-		setIsLoading(true);
+		setIsDestroy(true);
 	};
 
 	useEffect(() => {
-		const handleResize = throttle(() => {
-			setIsLoading(true);
-		}, 300);
+		const handleResizeBrowser = throttle(() => {
+			setIsDestroy(true);
+		}, 1000);
 
-		window.addEventListener('resize', handleResize);
+		window.addEventListener('resize', handleResizeBrowser);
 		return () => {
-			window.removeEventListener('resize', handleResize);
+			window.removeEventListener('resize', handleResizeBrowser);
 		};
 	}, []);
 
 	useEffect(() => {
-		if (!onError) return;
+		if (!isDestory) return;
 
-		onError('');
-	}, [value?.startDate, value?.endDate]);
-
-	useEffect(() => {
-		if (!isLoading) return;
-
-		setIsLoading(false);
-	}, [isLoading]);
+		setIsDestroy(false);
+	}, [isDestory]);
 
 	return (
-		<DatePickerStyled className={`flex flex-col ${className}`}>
+		<div className={`flex flex-col ${className}`}>
 			{label && (
-				<label className={cn(LabelStyle({ error: !!error }))}>
+				<label className={cn(LabelStyle({ isError }))}>
 					{required && <span className='text-red-600'>*</span>} {label}
 				</label>
 			)}
-			{!isLoading ? (
+			{!isDestory ? (
 				<Datepicker
-					i18n={'ko'}
-					value={value}
-					displayFormat={format}
+					i18n='ko'
 					readOnly={true}
-					startFrom={value?.startDate ? new Date(value?.startDate) : new Date()}
+					displayFormat={props.displayFormat}
+					startFrom={props.value?.startDate ? new Date(props.value?.startDate) : new Date()}
 					toggleIcon={() => <CalendarDaysIcon className='w-5 h-5' />}
-					toggleClassName={cn(ToggleStyle({ size, error: !!error }))}
-					inputClassName={cn(InputStyle({ size, error: !!error }))}
-					placeholder={props.placeholder ? props.placeholder : ' '}
-					onChange={(date, event) => handleChangeDate(props.placeholder, date, event)}
+					toggleClassName={cn(ToggleStyle({ size, isError }))}
+					inputClassName={cn(InputStyle({ size, isError }))}
+					placeholder={props.placeholder || ' '}
+					onChange={(date, event) => event && handleChangeDate(date, event, props.placeholder)}
 					{...props}
 				/>
 			) : (
 				<div className={cn(SkeletonStyle({ size }))} />
 			)}
 			{helper && <div className='pt-2 text-sm font-medium text-gray-500'>{helper}</div>}
-			<div className={cn(ErrorStyle({ error: !!error }))}>{error}</div>
-		</DatePickerStyled>
+			<div className={cn(ErrorStyle({ isError }))}>{error}</div>
+		</div>
 	);
 };
 
@@ -107,19 +92,10 @@ export default memo(
 	(prev: DatePickerProps, next: DatePickerProps) =>
 		prev.size === next.size &&
 		prev.label === next.label &&
-		prev.value?.startDate === next.value?.startDate &&
-		prev.value?.endDate === next.value?.endDate &&
 		prev.error === next.error &&
-		prev.format === next.format &&
 		prev.helper === next.helper &&
 		prev.required === next.required &&
 		prev.className === next.className &&
 		prev.onChange === next.onChange &&
-		prev.onError === next.onError,
+		prev.onError === next.onError
 );
-
-const DatePickerStyled = styled.div`
-	.transition-300 {
-		transition: 0.3s;
-	}
-`;
