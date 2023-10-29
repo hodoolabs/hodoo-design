@@ -1,14 +1,15 @@
-/// <reference types="react" />
+import { ReactNode } from 'react';
 interface FileInputProps {
     size: 'lg' | 'sm';
-    label?: string | JSX.Element;
     value: string;
-    error?: string;
     buttonName: string;
+    label?: ReactNode;
+    error?: string;
     placeholder?: string;
-    helper?: string | JSX.Element;
+    helper?: ReactNode;
     required?: boolean;
+    className?: string;
     onChange: (files: FileList) => void;
 }
-declare const _default: import("react").MemoExoticComponent<({ size, label, value, error, buttonName, placeholder, helper, required, onChange, }: FileInputProps) => import("react/jsx-runtime").JSX.Element>;
+declare const _default: import("react").MemoExoticComponent<({ size, value, buttonName, label, error, placeholder, helper, required, className, onChange, }: FileInputProps) => import("react/jsx-runtime").JSX.Element>;
 export default _default;

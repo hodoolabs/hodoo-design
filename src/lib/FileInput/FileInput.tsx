@@ -1,34 +1,37 @@
 'use client';
 
-import { memo } from 'react';
+import { ReactNode, memo } from 'react';
 import { cn } from '../../utils/style';
 import { ButtonStyle, ErrorStyle, HelperStyle, InputLabelStyle, LabelStyle } from './style';
-import { styled } from 'styled-components';
 
 interface FileInputProps {
 	size: 'lg' | 'sm';
-	label?: string | JSX.Element;
 	value: string;
-	error?: string;
 	buttonName: string;
+	label?: ReactNode;
+	error?: string;
 	placeholder?: string;
-	helper?: string | JSX.Element;
+	helper?: ReactNode;
 	required?: boolean;
+	className?: string;
 	onChange: (files: FileList) => void;
 }
 
 const FileInput = ({
 	size,
-	label,
 	value,
-	error,
 	buttonName,
+	label,
+	error,
 	placeholder,
 	helper,
 	required,
+	className,
 	onChange,
 }: FileInputProps) => {
-	const getLabelStatus = (value: string, error: string) => {
+	const isError = !!error;
+
+	const getLabelType = (value: string, error?: string) => {
 		if (value && !error) return 'value';
 		if (value && error) return 'valueError';
 		if (!value && !error) return 'placeholder';
@@ -36,16 +39,16 @@ const FileInput = ({
 	};
 
 	return (
-		<FileInputStyled className='flex flex-col'>
+		<div className={`flex flex-col ${className}`}>
 			{label && (
-				<label className={cn(LabelStyle({ size, error: !!error }))}>
+				<label className={cn(LabelStyle({ size, isError }))}>
 					{required && <span className='text-red-600'>*</span>} {label}
 				</label>
 			)}
 			<div className='relative flex w-full group'>
 				<button className={cn(ButtonStyle({ size }))}>{buttonName}</button>
 				{
-					<label className={cn(InputLabelStyle({ size, error: getLabelStatus(value, error!) }))}>
+					<label className={cn(InputLabelStyle({ size, type: getLabelType(value, error) }))}>
 						<span className='block overflow-hidden whitespace-nowrap'>{value || placeholder}</span>
 					</label>
 				}
@@ -56,8 +59,8 @@ const FileInput = ({
 				/>
 			</div>
 			{helper && <div className={cn(HelperStyle({ size }))}>{helper}</div>}
-			<div className={cn(ErrorStyle({ size, error: !!error }))}>{error}</div>
-		</FileInputStyled>
+			<div className={cn(ErrorStyle({ size, isError }))}>{error}</div>
+		</div>
 	);
 };
 
@@ -65,18 +68,13 @@ export default memo(
 	FileInput,
 	(prev: FileInputProps, next: FileInputProps) =>
 		prev.size === next.size &&
-		prev.label === next.label &&
 		prev.value === next.value &&
-		prev.error === next.error &&
 		prev.buttonName === next.buttonName &&
+		prev.label === next.label &&
+		prev.error === next.error &&
 		prev.placeholder === next.placeholder &&
 		prev.helper === next.helper &&
 		prev.required === next.required &&
+		prev.className === next.className &&
 		prev.onChange === next.onChange
 );
-
-const FileInputStyled = styled.div`
-	.transition-300 {
-		transition: 0.3s;
-	}
-`;

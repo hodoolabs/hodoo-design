@@ -1,10 +1,8 @@
 import { ReactNode } from 'react';
+import { DropdownType } from '../../types/dropdown';
 interface DropdownProps {
     isOpen: boolean;
-    list: {
-        label: string;
-        value: string;
-    }[];
+    list: DropdownType[];
     width: number;
     height: number;
     position: 'left' | 'right';

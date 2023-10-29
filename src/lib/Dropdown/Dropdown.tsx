@@ -2,10 +2,11 @@
 
 import { ReactNode, RefObject, memo, useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
+import { DropdownType } from '../../types/dropdown';
 
 interface DropdownProps {
 	isOpen: boolean;
-	list: { label: string; value: string }[];
+	list: DropdownType[];
 	width: number;
 	height: number;
 	position: 'left' | 'right';
@@ -78,7 +79,7 @@ const Dropdown = ({ isOpen, list, width, height, position, className, children, 
 							</p>
 						))}
 					</div>,
-					element,
+					element
 				)}
 		</div>
 	);
@@ -95,5 +96,5 @@ export default memo(
 		prev.className === next.className &&
 		prev.children === next.children &&
 		prev.onSelect === next.onSelect &&
-		prev.onOpen === next.onOpen,
+		prev.onOpen === next.onOpen
 );
