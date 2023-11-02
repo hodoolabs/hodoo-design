@@ -3,5 +3,6 @@ declare const TableHeaderStyle: (props?: ({
 } & import("class-variance-authority/dist/types").ClassProp) | undefined) => string;
 declare const TableBodyStyle: (props?: ({
     size?: "lg" | "sm" | null | undefined;
+    click?: boolean | null | undefined;
 } & import("class-variance-authority/dist/types").ClassProp) | undefined) => string;
 export { TableHeaderStyle, TableBodyStyle };

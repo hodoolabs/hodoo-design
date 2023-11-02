@@ -8,7 +8,6 @@ interface TbodyProps {
 	columns: ColumnType<any>;
 	checkedList?: Key[];
 	sortDatas: any[];
-	onChecked?: (keys: Key[]) => void;
 }
 
 const Tbody = ({ size, columns, sortDatas }: TbodyProps) => {
@@ -20,7 +19,12 @@ const Tbody = ({ size, columns, sortDatas }: TbodyProps) => {
 					className='flex items-center font-medium border-b border-solid border-b-gray-200 hover:bg-gray-50'
 				>
 					{columns.map((column, index) => (
-						<td key={index} className={cn(TableBodyStyle({ size }))} style={{ width: `${column.width}%` }}>
+						<td
+							key={index}
+							className={cn(TableBodyStyle({ size, click: !!column.onClick }))}
+							style={{ width: `${column.width}%` }}
+							onClick={() => column.onClick && column.onClick(record)}
+						>
 							{column.render ? column.render(record) : record[column.dataIndex]}
 						</td>
 					))}
@@ -36,6 +40,5 @@ export default memo(
 		prev.size === next.size &&
 		prev.columns === next.columns &&
 		prev.checkedList === next.checkedList &&
-		prev.sortDatas === next.sortDatas &&
-		prev.onChecked === next.onChecked
+		prev.sortDatas === next.sortDatas
 );

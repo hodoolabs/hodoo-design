@@ -4,13 +4,13 @@ import { memo, useEffect } from 'react';
 import { styled } from 'styled-components';
 import { cn } from '../../utils/style';
 import { ErrorStyle, HelperStyle, LabelStyle, MaxLengthStyle, TextareaStyle } from './style';
-const TextArea = ({ size, label, value, error, maxLength, placeholder, helper, disabled, height, required, onChange, onError, }) => {
+const TextArea = ({ size, label, value, error, maxLength, placeholder, helper, disabled, height, required, className, onChange, onError, }) => {
     useEffect(() => {
         if (!onError)
             return;
         onError('');
     }, [value]);
-    return (_jsxs(TextAreaStyled, { className: 'flex flex-col', children: [label && (_jsxs("label", { className: cn(LabelStyle({ size, error: !!error })), children: [required && _jsx("span", { className: 'text-red-600', children: "*" }), " ", label, maxLength && (_jsxs("span", { className: cn(MaxLengthStyle({ error: !!error })), children: [value === null || value === void 0 ? void 0 : value.length, "/", maxLength] }))] })), _jsx("textarea", { className: cn(TextareaStyle({ size, error: !!error })), value: value, maxLength: maxLength, placeholder: placeholder, disabled: disabled, onChange: (event) => onChange && onChange(event.target.value), style: { height: height } }), helper && _jsx("div", { className: cn(HelperStyle({ size })), children: helper }), _jsx("div", { className: cn(ErrorStyle({ size, error: !!error })), children: error })] }));
+    return (_jsxs(TextAreaStyled, { className: `flex flex-col ${className}`, children: [label && (_jsxs("label", { className: cn(LabelStyle({ size, error: !!error })), children: [required && _jsx("span", { className: 'text-red-600', children: "*" }), " ", label, maxLength && (_jsxs("span", { className: cn(MaxLengthStyle({ error: !!error })), children: [value === null || value === void 0 ? void 0 : value.length, "/", maxLength] }))] })), _jsx("textarea", { className: cn(TextareaStyle({ size, error: !!error })), value: value, maxLength: maxLength, placeholder: placeholder, disabled: disabled, onChange: (event) => onChange && onChange(event.target.value), style: { height: height } }), helper && _jsx("div", { className: cn(HelperStyle({ size })), children: helper }), _jsx("div", { className: cn(ErrorStyle({ size, error: !!error })), children: error })] }));
 };
 export default memo(TextArea, (prev, next) => prev.size === next.size &&
     prev.label === next.label &&

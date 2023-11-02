@@ -7,6 +7,7 @@ type ColumnType<RecordType> = {
     tooltip?: TooltipType;
     sorter?: (a: RecordType, b: RecordType) => number;
     render?: (values: RecordType) => ReactNode;
+    onClick?: (values: RecordType) => void;
 }[];
 type ColumnDataType = {
     id: string | number;

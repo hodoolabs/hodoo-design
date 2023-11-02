@@ -18,11 +18,22 @@ interface SelectProps {
 	center?: boolean;
 	label?: string;
 	placeholder?: string;
+	required?: boolean;
 	className?: string;
 	onChange: (value: string) => void;
 }
 
-const Select = ({ size, items, selected, center = false, label, placeholder, className, onChange }: SelectProps) => {
+const Select = ({
+	size,
+	items,
+	selected,
+	center = false,
+	label,
+	placeholder,
+	required,
+	className,
+	onChange,
+}: SelectProps) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [isOpenDown, setIsOpenDown] = useState(true);
 
@@ -40,9 +51,17 @@ const Select = ({ size, items, selected, center = false, label, placeholder, cla
 	return (
 		<SelectStyled className={className}>
 			<div className='relative flex flex-col gap-2' onMouseLeave={() => setIsOpen(false)}>
-				{label && <p className={cn(LabelStyle({ size }))}>{label}</p>}
+				{label && (
+					<label className={cn(LabelStyle({ size }))}>
+						{required && <span className='text-red-600'>*</span>} {label}
+					</label>
+				)}
 				<div className={BlankStyle({ isOpenDown })} />
-				<button type='button' onClick={handleSelectOpen} className={cn(SelectedStyle({ size }))}>
+				<button
+					type='button'
+					onClick={handleSelectOpen}
+					className={cn(SelectedStyle({ size, placeholder: !selected }))}
+				>
 					{selected ? getLabel(items, selected) : placeholder}
 					<ChevronDownIcon className={cn(ArrowStyle({ size }))} />
 				</button>

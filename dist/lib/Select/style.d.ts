@@ -3,6 +3,7 @@ declare const LabelStyle: (props?: ({
 } & import("class-variance-authority/dist/types").ClassProp) | undefined) => string;
 declare const SelectedStyle: (props?: ({
     size?: "lg" | "md" | "sm" | null | undefined;
+    placeholder?: boolean | null | undefined;
 } & import("class-variance-authority/dist/types").ClassProp) | undefined) => string;
 declare const ArrowStyle: (props?: ({
     size?: "lg" | "md" | "sm" | null | undefined;

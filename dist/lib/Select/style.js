@@ -25,6 +25,9 @@ const SelectedStyle = cva([
             md: ['px-4', 'py-2.5', 'text-sm', 'rounded-xl'],
             sm: ['px-3', 'py-2', 'text-xs', 'rounded-lg'],
         },
+        placeholder: {
+            true: ['text-gray-400'],
+        },
     },
 });
 const ArrowStyle = cva([], {

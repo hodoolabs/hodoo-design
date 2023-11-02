@@ -16,6 +16,7 @@ interface TextAreaProps {
 	disabled?: boolean;
 	height?: number;
 	required?: boolean;
+	className?: string;
 	onChange?: (value: string) => void;
 	onError?: (error: string) => void;
 }
@@ -31,6 +32,7 @@ const TextArea = ({
 	disabled,
 	height,
 	required,
+	className,
 	onChange,
 	onError,
 }: TextAreaProps) => {
@@ -41,7 +43,7 @@ const TextArea = ({
 	}, [value]);
 
 	return (
-		<TextAreaStyled className='flex flex-col'>
+		<TextAreaStyled className={`flex flex-col ${className}`}>
 			{label && (
 				<label className={cn(LabelStyle({ size, error: !!error }))}>
 					{required && <span className='text-red-600'>*</span>} {label}
