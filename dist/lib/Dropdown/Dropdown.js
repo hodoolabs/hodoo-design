@@ -2,7 +2,7 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { memo, useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
-const Dropdown = ({ isOpen, list, width, height, position, className, children, onSelect, onOpen }) => {
+const Dropdown = ({ isOpen, list, width, height, position = 'left', className, children, onSelect, onOpen, }) => {
     const ref = useRef(null);
     const [element, setElement] = useState();
     const [top, setTop] = useState(0);

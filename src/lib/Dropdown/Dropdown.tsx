@@ -9,14 +9,24 @@ interface DropdownProps {
 	list: DropdownType[];
 	width: number;
 	height: number;
-	position: 'left' | 'right';
+	position?: 'left' | 'right';
 	className?: string;
 	children: ReactNode;
 	onSelect: (name: string) => void;
 	onOpen: (value: boolean) => void;
 }
 
-const Dropdown = ({ isOpen, list, width, height, position, className, children, onSelect, onOpen }: DropdownProps) => {
+const Dropdown = ({
+	isOpen,
+	list,
+	width,
+	height,
+	position = 'left',
+	className,
+	children,
+	onSelect,
+	onOpen,
+}: DropdownProps) => {
 	const ref = useRef<HTMLDivElement>(null);
 	const [element, setElement] = useState<Element | DocumentFragment>();
 	const [top, setTop] = useState(0);

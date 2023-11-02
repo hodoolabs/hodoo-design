@@ -1,19 +1,18 @@
 'use client';
 
-import { HTMLInputTypeAttribute, memo, useEffect } from 'react';
+import { HTMLInputTypeAttribute, ReactNode, memo, useEffect } from 'react';
 import { cn } from '../../utils/style';
 import { ErrorStyle, HelperStyle, InputStyle, LabelStyle, MaxLengthStyle } from './style';
-import { styled } from 'styled-components';
 
 interface InputProps {
 	type?: HTMLInputTypeAttribute;
-	size: 'lg' | 'sm';
-	label?: string | JSX.Element;
+	size?: 'lg' | 'sm';
 	value: string;
 	error?: string;
+	label?: ReactNode;
 	maxLength?: number;
 	placeholder?: string;
-	helper?: string | JSX.Element;
+	helper?: ReactNode;
 	disabled?: boolean;
 	required?: boolean;
 	className?: string;
@@ -25,7 +24,7 @@ interface InputProps {
 
 const Input = ({
 	type = 'text',
-	size,
+	size = 'lg',
 	label,
 	value,
 	error,
@@ -40,6 +39,8 @@ const Input = ({
 	onError,
 	onEnter,
 }: InputProps) => {
+	const isError = !!error;
+
 	useEffect(() => {
 		if (!onError) return;
 
@@ -47,31 +48,31 @@ const Input = ({
 	}, [value]);
 
 	return (
-		<InputStyled className={`flex flex-col ${className}`}>
+		<div className={`flex flex-col ${className}`}>
 			{label && (
-				<label className={cn(LabelStyle({ size, error: !!error }))}>
+				<label className={cn(LabelStyle({ size, isError }))}>
 					{required && <span className='text-red-600'>*</span>} {label}
 					{maxLength && (
-						<span className={cn(MaxLengthStyle({ error: !!error }))}>
-							{value?.length}/{maxLength}
+						<span className={cn(MaxLengthStyle({ isError }))}>
+							{value.length}/{maxLength}
 						</span>
 					)}
 				</label>
 			)}
 			<input
-				className={cn(InputStyle({ size, error: !!error }))}
 				type={type}
 				value={value}
 				maxLength={maxLength}
 				placeholder={placeholder}
 				disabled={disabled}
+				className={cn(InputStyle({ size, isError }))}
 				onBlur={(event) => onBlur && onBlur(event.target.value)}
 				onChange={(event) => onChange && onChange(event.target.value)}
 				onKeyDown={(event) => event.key === 'Enter' && onEnter && onEnter()}
 			/>
 			{helper && <div className={cn(HelperStyle({ size }))}>{helper}</div>}
-			<div className={cn(ErrorStyle({ size, error: !!error }))}>{error}</div>
-		</InputStyled>
+			<div className={cn(ErrorStyle({ size, isError }))}>{error}</div>
+		</div>
 	);
 };
 
@@ -94,9 +95,3 @@ export default memo(
 		prev.onError === next.onError &&
 		prev.onEnter === next.onEnter
 );
-
-const InputStyled = styled.div`
-	.transition-300 {
-		transition: 0.3s;
-	}
-`;

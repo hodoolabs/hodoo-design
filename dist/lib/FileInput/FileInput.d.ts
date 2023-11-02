@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 interface FileInputProps {
-    size: 'lg' | 'sm';
+    size?: 'lg' | 'sm';
     value: string;
     buttonName: string;
     label?: ReactNode;

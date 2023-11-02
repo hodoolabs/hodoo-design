@@ -5,12 +5,12 @@ import { cn } from '../../utils/style';
 import { AvatarStyle } from './style';
 
 interface AvatarProps {
-	size: 'sm' | 'regular' | 'md' | 'lg' | 'xl';
+	size?: 'sm' | 'regular' | 'md' | 'lg' | 'xl';
 	img: string;
 	className?: string;
 }
 
-const Avatar = ({ size, img, className }: AvatarProps) => {
+const Avatar = ({ size = 'md', img, className }: AvatarProps) => {
 	return <img src={img} alt='avatar' className={`${cn(AvatarStyle({ size }))} ${className}`} />;
 };
 

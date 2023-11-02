@@ -1,13 +1,13 @@
-import { HTMLInputTypeAttribute } from 'react';
+import { HTMLInputTypeAttribute, ReactNode } from 'react';
 interface InputProps {
     type?: HTMLInputTypeAttribute;
-    size: 'lg' | 'sm';
-    label?: string | JSX.Element;
+    size?: 'lg' | 'sm';
     value: string;
     error?: string;
+    label?: ReactNode;
     maxLength?: number;
     placeholder?: string;
-    helper?: string | JSX.Element;
+    helper?: ReactNode;
     disabled?: boolean;
     required?: boolean;
     className?: string;

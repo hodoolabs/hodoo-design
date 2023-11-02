@@ -8,7 +8,7 @@ import { cn } from '../../utils/style';
 import { ErrorStyle, InputStyle, LabelStyle, SkeletonStyle, ToggleStyle } from './style';
 
 interface DatePickerProps extends DatepickerType {
-	size: 'lg' | 'sm';
+	size?: 'lg' | 'sm';
 	label?: ReactNode;
 	error?: string;
 	helper?: string;
@@ -18,7 +18,7 @@ interface DatePickerProps extends DatepickerType {
 }
 
 const DatePicker = ({
-	size,
+	size = 'lg',
 	label,
 	error,
 	helper,

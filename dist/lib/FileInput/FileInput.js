@@ -3,7 +3,7 @@ import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { memo } from 'react';
 import { cn } from '../../utils/style';
 import { ButtonStyle, ErrorStyle, HelperStyle, InputLabelStyle, LabelStyle } from './style';
-const FileInput = ({ size, value, buttonName, label, error, placeholder, helper, required, className, onChange, }) => {
+const FileInput = ({ size = 'lg', value, buttonName, label, error, placeholder, helper, required, className, onChange, }) => {
     const isError = !!error;
     const getLabelType = (value, error) => {
         if (value && !error)

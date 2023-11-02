@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 interface BadgeProps {
-    color: 'blue' | 'gray' | 'gray_low' | 'red';
-    size: 'lg' | 'md' | 'sm';
+    color?: 'blue' | 'gray' | 'gray_low' | 'red';
+    size?: 'lg' | 'md' | 'sm';
     leftIcon?: ReactNode;
     label?: string;
     className?: string;

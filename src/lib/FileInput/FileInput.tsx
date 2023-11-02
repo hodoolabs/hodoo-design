@@ -5,7 +5,7 @@ import { cn } from '../../utils/style';
 import { ButtonStyle, ErrorStyle, HelperStyle, InputLabelStyle, LabelStyle } from './style';
 
 interface FileInputProps {
-	size: 'lg' | 'sm';
+	size?: 'lg' | 'sm';
 	value: string;
 	buttonName: string;
 	label?: ReactNode;
@@ -18,7 +18,7 @@ interface FileInputProps {
 }
 
 const FileInput = ({
-	size,
+	size = 'lg',
 	value,
 	buttonName,
 	label,

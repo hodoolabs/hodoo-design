@@ -19,7 +19,7 @@ import { cn } from '../../utils/style';
 import { ErrorStyle, InputStyle, LabelStyle, SkeletonStyle, ToggleStyle } from './style';
 const DatePicker = (_a) => {
     var _b, _c;
-    var { size, label, error, helper, required, className, onError, onChange } = _a, props = __rest(_a, ["size", "label", "error", "helper", "required", "className", "onError", "onChange"]);
+    var { size = 'lg', label, error, helper, required, className, onError, onChange } = _a, props = __rest(_a, ["size", "label", "error", "helper", "required", "className", "onError", "onChange"]);
     const [isDestory, setIsDestroy] = useState(false);
     const isError = !!error;
     const handleChangeDate = (date, event, placeholder) => {

@@ -5,8 +5,8 @@ import { cn } from '../../utils/style';
 import { ButtonStyle, ImageStyle } from './style';
 
 interface ButtonProps {
-	color: 'black' | 'blue' | 'white' | 'gray' | 'red' | 'white_line';
-	size: 'lg' | 'md' | 'base' | 'sm';
+	color?: 'black' | 'blue' | 'white' | 'gray' | 'red' | 'white_line';
+	size?: 'lg' | 'md' | 'base' | 'sm';
 	leftIcon?: ReactNode;
 	rightIcon?: ReactNode;
 	label?: string;
@@ -15,7 +15,16 @@ interface ButtonProps {
 	onClick?: () => void;
 }
 
-const Button = ({ color, size, leftIcon, rightIcon, label, disabled, className, onClick }: ButtonProps) => {
+const Button = ({
+	color = 'black',
+	size = 'lg',
+	leftIcon,
+	rightIcon,
+	label,
+	disabled,
+	className,
+	onClick,
+}: ButtonProps) => {
 	const iconOnly = !label ? size : null;
 
 	return (

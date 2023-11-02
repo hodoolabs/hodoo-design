@@ -6,15 +6,15 @@ import { cn } from '../../utils/style';
 import { BadgeStyle, ButtonStyle, LeftImageStyle, RightImageStyle } from './style';
 
 interface BadgeProps {
-	color: 'blue' | 'gray' | 'gray_low' | 'red';
-	size: 'lg' | 'md' | 'sm';
+	color?: 'blue' | 'gray' | 'gray_low' | 'red';
+	size?: 'lg' | 'md' | 'sm';
 	leftIcon?: ReactNode;
 	label?: string;
 	className?: string;
 	onClick?: () => void;
 }
 
-const Badge = ({ color, size, leftIcon, label, className, onClick }: BadgeProps) => {
+const Badge = ({ color = 'blue', size = 'sm', leftIcon, label, className, onClick }: BadgeProps) => {
 	const iconOnly = !label ? size : null;
 
 	return (
