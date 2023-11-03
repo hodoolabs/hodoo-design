@@ -1,12 +1,11 @@
-declare const ModalContainerStyle: (props?: ({
-    isMobile?: boolean | null | undefined;
-    isModalVisible?: boolean | null | undefined;
-} & import("class-variance-authority/dist/types").ClassProp) | undefined) => string;
 declare const ModalStyle: (props?: ({
+    isOpen?: boolean | null | undefined;
+} & import("class-variance-authority/dist/types").ClassProp) | undefined) => string;
+declare const WrapStyle: (props?: ({
     size?: "lg" | "sm" | null | undefined;
-    animationBottomToTop?: boolean | null | undefined;
+    position?: "middle" | "bottom" | null | undefined;
 } & import("class-variance-authority/dist/types").ClassProp) | undefined) => string;
-declare const ModalContentStyle: (props?: ({
-    isMobile?: boolean | null | undefined;
+declare const ContentStyle: (props?: ({
+    position?: "middle" | "bottom" | null | undefined;
 } & import("class-variance-authority/dist/types").ClassProp) | undefined) => string;
-export { ModalStyle, ModalContainerStyle, ModalContentStyle };
+export { ModalStyle, WrapStyle, ContentStyle };

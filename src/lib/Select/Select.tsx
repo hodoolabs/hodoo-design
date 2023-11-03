@@ -20,6 +20,7 @@ interface SelectProps {
 	placeholder?: string;
 	required?: boolean;
 	className?: string;
+	onClick?: () => void;
 	onChange: (value: string) => void;
 }
 
@@ -32,6 +33,7 @@ const Select = ({
 	placeholder,
 	required,
 	className,
+	onClick,
 	onChange,
 }: SelectProps) => {
 	const [isOpen, setIsOpen] = useState(false);
@@ -59,7 +61,7 @@ const Select = ({
 				<div className={BlankStyle({ isOpenDown })} />
 				<button
 					type='button'
-					onClick={handleSelectOpen}
+					onClick={onClick || handleSelectOpen}
 					className={cn(SelectedStyle({ size, placeholder: !selected }))}
 				>
 					{selected ? getLabel(items, selected) : placeholder}

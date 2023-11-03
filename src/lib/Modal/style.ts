@@ -1,36 +1,34 @@
 import { cva } from 'class-variance-authority';
 
-const ModalContainerStyle = cva(['fixed top-0 left-0 z-30 flex justify-center w-full h-screen'], {
+const ModalStyle = cva(['fixed z-30 w-full h-screen'], {
 	variants: {
-		isMobile: {
-			true: ['bottom-0', 'items-end'],
-			false: ['top-0', 'items-center'],
-		},
-		isModalVisible: {
+		isOpen: {
 			true: ['visible'],
 			false: ['invisible'],
 		},
 	},
 });
 
-const ModalStyle = cva(['w-full', 'shadow', 'z-50', 'transition-300 '], {
+const WrapStyle = cva(['absolute w-full shadow z-50'], {
 	variants: {
 		size: {
 			lg: ['max-w-xl'],
 			sm: ['max-w-md'],
 		},
-		animationBottomToTop: {
-			false: ['translate-y-full'],
+		position: {
+			middle: ['top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'],
+			bottom: ['max-w-full bottom-0 left-0'],
 		},
 	},
 });
 
-const ModalContentStyle = cva(['px-6 pb-6 bg-white'], {
+const ContentStyle = cva(['px-6 pb-6 bg-white'], {
 	variants: {
-		isMobile: {
-			false: ['rounded-b-3xl'],
+		position: {
+			middle: ['rounded-b-3xl'],
+			bottom: ['rounded-b-none'],
 		},
 	},
 });
 
-export { ModalStyle, ModalContainerStyle, ModalContentStyle };
+export { ModalStyle, WrapStyle, ContentStyle };

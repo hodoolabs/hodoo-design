@@ -12,7 +12,8 @@ interface SelectProps {
     placeholder?: string;
     required?: boolean;
     className?: string;
+    onClick?: () => void;
     onChange: (value: string) => void;
 }
-declare const _default: import("react").MemoExoticComponent<({ size, items, selected, center, label, placeholder, required, className, onChange, }: SelectProps) => import("react/jsx-runtime").JSX.Element>;
+declare const _default: import("react").MemoExoticComponent<({ size, items, selected, center, label, placeholder, required, className, onClick, onChange, }: SelectProps) => import("react/jsx-runtime").JSX.Element>;
 export default _default;

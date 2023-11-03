@@ -1,8 +1,8 @@
 'use client';
 
 import { ArrowSmallLeftIcon, XMarkIcon } from '@heroicons/react/24/outline';
-import Button from '../Button/Button';
 import { ModalProps } from './Modal';
+import Button from '../Button/Button';
 
 const Header = ({ modalState, modalHistory, goBackModal, closeModal }: ModalProps) => {
 	return (

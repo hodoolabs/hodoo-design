@@ -1,9 +1,10 @@
 import { ReactNode } from 'react';
 type ModalStateType = {
     title: string;
-    subTitle?: string | JSX.Element;
+    subTitle?: ReactNode;
     content: ReactNode;
     size: 'lg' | 'sm';
+    position: 'middle' | 'bottom';
     isOpen?: boolean;
 };
 export type { ModalStateType };

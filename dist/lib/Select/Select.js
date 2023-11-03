@@ -5,7 +5,7 @@ import { memo, useState } from 'react';
 import { styled } from 'styled-components';
 import { cn } from '../../utils/style';
 import { ArrowStyle, BlankStyle, ButtonStyle, LabelStyle, ListStyle, SelectedStyle } from './style';
-const Select = ({ size, items, selected, center = false, label, placeholder, required, className, onChange, }) => {
+const Select = ({ size, items, selected, center = false, label, placeholder, required, className, onClick, onChange, }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [isOpenDown, setIsOpenDown] = useState(true);
     const getLabel = (items, selected) => {
@@ -17,7 +17,7 @@ const Select = ({ size, items, selected, center = false, label, placeholder, req
         setIsOpen((state) => !state);
         setIsOpenDown(distanceFromBottom > 340);
     };
-    return (_jsx(SelectStyled, { className: className, children: _jsxs("div", { className: 'relative flex flex-col gap-2', onMouseLeave: () => setIsOpen(false), children: [label && (_jsxs("label", { className: cn(LabelStyle({ size })), children: [required && _jsx("span", { className: 'text-red-600', children: "*" }), " ", label] })), _jsx("div", { className: BlankStyle({ isOpenDown }) }), _jsxs("button", { type: 'button', onClick: handleSelectOpen, className: cn(SelectedStyle({ size, placeholder: !selected })), children: [selected ? getLabel(items, selected) : placeholder, _jsx(ChevronDownIcon, { className: cn(ArrowStyle({ size })) })] }), isOpen && (_jsx("div", { className: ListStyle({ isOpenDown }), children: _jsx("ul", { className: 'flex flex-col p-1 text-base text-gray-700', children: items.map((item) => (_jsx("li", { onClick: () => {
+    return (_jsx(SelectStyled, { className: className, children: _jsxs("div", { className: 'relative flex flex-col gap-2', onMouseLeave: () => setIsOpen(false), children: [label && (_jsxs("label", { className: cn(LabelStyle({ size })), children: [required && _jsx("span", { className: 'text-red-600', children: "*" }), " ", label] })), _jsx("div", { className: BlankStyle({ isOpenDown }) }), _jsxs("button", { type: 'button', onClick: onClick || handleSelectOpen, className: cn(SelectedStyle({ size, placeholder: !selected })), children: [selected ? getLabel(items, selected) : placeholder, _jsx(ChevronDownIcon, { className: cn(ArrowStyle({ size })) })] }), isOpen && (_jsx("div", { className: ListStyle({ isOpenDown }), children: _jsx("ul", { className: 'flex flex-col p-1 text-base text-gray-700', children: items.map((item) => (_jsx("li", { onClick: () => {
                                 onChange(item.value);
                                 setIsOpen(false);
                             }, children: _jsx("button", { className: cn(ButtonStyle({ center })), children: item.label }) }, item.value))) }) }))] }) }));
