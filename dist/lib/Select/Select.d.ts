@@ -4,7 +4,7 @@ interface SelectItem {
     label: string;
 }
 interface SelectProps {
-    size: 'sm' | 'md' | 'lg';
+    size?: 'sm' | 'md' | 'lg';
     items: SelectItem[];
     selected: string;
     center?: boolean;

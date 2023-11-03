@@ -1,5 +1,5 @@
 import { cva } from 'class-variance-authority';
-const ModalStyle = cva(['fixed z-30 w-full h-screen'], {
+const ModalStyle = cva(['fixed top-0 left-0 z-30 w-full h-screen'], {
     variants: {
         isOpen: {
             true: ['visible'],

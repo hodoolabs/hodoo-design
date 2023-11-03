@@ -12,7 +12,7 @@ interface SelectItem {
 }
 
 interface SelectProps {
-	size: 'sm' | 'md' | 'lg';
+	size?: 'sm' | 'md' | 'lg';
 	items: SelectItem[];
 	selected: string;
 	center?: boolean;
@@ -99,7 +99,7 @@ export default memo(
 		prev.placeholder === next.placeholder &&
 		prev.className === next.className &&
 		prev.onClick === next.onClick &&
-		prev.onChange === next.onChange,
+		prev.onChange === next.onChange
 );
 
 const SelectStyled = styled.div`
