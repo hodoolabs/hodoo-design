@@ -3,22 +3,21 @@
 import { stringify } from 'flatted';
 import { memo, useEffect, useRef, useState } from 'react';
 import { styled } from 'styled-components';
-import { ColumnDataType, ColumnType } from '../../types/table';
 import Tbody from './components/Tbody';
 import Thead from './components/Thead';
+import { ColumnDataType, ColumnType } from '../../types/table';
 
 interface RowTableProps {
-	size: 'lg' | 'sm';
 	columns: ColumnType<any>;
 	dataSource: any[];
 	minWidth?: number;
 }
 
-const RowTable = ({ size, columns, dataSource, minWidth }: RowTableProps) => {
-	const tableContainerRef = useRef<HTMLDivElement>(null);
+const RowTable = ({ columns, dataSource, minWidth }: RowTableProps) => {
+	const wrapRef = useRef<HTMLDivElement>(null);
 	const tableRef = useRef<HTMLTableElement>(null);
 	const [sortDatas, setSortDatas] = useState(dataSource);
-	const [showShadow, setShowShadow] = useState(false);
+	const [shadow, setShadow] = useState(false);
 
 	const handleSortDatas = (
 		dataSource: ColumnDataType[],
@@ -26,14 +25,12 @@ const RowTable = ({ size, columns, dataSource, minWidth }: RowTableProps) => {
 		sorter: (a: ColumnDataType, b: ColumnDataType) => number
 	) => {
 		const isSorted = stringify(dataSource) !== stringify(sortDatas);
+		setSortDatas(isSorted ? dataSource : [...dataSource].sort((a, b) => sorter(a, b)));
+	};
 
-		setSortDatas(
-			isSorted
-				? dataSource
-				: [...dataSource].sort((a, b) => {
-						return sorter(a, b);
-				  })
-		);
+	const handleSetShadow = () => {
+		if (!wrapRef.current || !tableRef.current) return;
+		setShadow(wrapRef.current.offsetWidth < tableRef.current.offsetWidth);
 	};
 
 	useEffect(() => {
@@ -41,20 +38,24 @@ const RowTable = ({ size, columns, dataSource, minWidth }: RowTableProps) => {
 	}, [dataSource]);
 
 	useEffect(() => {
-		if (tableContainerRef.current && tableRef.current) {
-			if (tableContainerRef.current.offsetWidth < tableRef.current.offsetWidth) {
-				setShowShadow(true);
-			}
-		}
-	}, [tableContainerRef, tableRef]);
+		if (!wrapRef.current || !tableRef.current) return;
+
+		handleSetShadow();
+
+		global.window.addEventListener('resize', handleSetShadow);
+
+		return () => {
+			global.window.removeEventListener('resize', handleSetShadow);
+		};
+	}, [wrapRef, tableRef]);
 
 	return (
-		<div className='relative flex overflow-x-auto' ref={tableContainerRef}>
-			<table className='w-full' style={{ minWidth: `${minWidth}px` }} ref={tableRef}>
-				<Thead size={size} columns={columns} dataSource={dataSource} sortDatas={sortDatas} onSort={handleSortDatas} />
-				<Tbody size={size} columns={columns} sortDatas={sortDatas} />
+		<div className='relative flex overflow-x-auto' ref={wrapRef}>
+			<table className='w-full' style={{ minWidth }} ref={tableRef}>
+				<Thead columns={columns} dataSource={dataSource} sortDatas={sortDatas} onSort={handleSortDatas} />
+				<Tbody columns={columns} sortDatas={sortDatas} />
 			</table>
-			{showShadow && <Shadow />}
+			{shadow && <Shadow />}
 		</div>
 	);
 };
@@ -62,10 +63,7 @@ const RowTable = ({ size, columns, dataSource, minWidth }: RowTableProps) => {
 export default memo(
 	RowTable,
 	(prev: RowTableProps, next: RowTableProps) =>
-		prev.size === next.size &&
-		prev.columns === next.columns &&
-		prev.dataSource === next.dataSource &&
-		prev.minWidth === next.minWidth
+		prev.columns === next.columns && prev.dataSource === next.dataSource && prev.minWidth === next.minWidth
 );
 
 const Shadow = styled.div`

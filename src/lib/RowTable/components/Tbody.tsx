@@ -1,19 +1,17 @@
-import { Key, memo } from 'react';
+import { memo } from 'react';
+import { ColumnType } from '../../../types/table';
 import { cn } from '../../../utils/style';
 import { TableBodyStyle } from '../style';
-import { ColumnType } from '../../../types/table';
 
 interface TbodyProps {
-	size: 'lg' | 'sm';
 	columns: ColumnType<any>;
-	checkedList?: Key[];
 	sortDatas: any[];
 }
 
-const Tbody = ({ size, columns, sortDatas }: TbodyProps) => {
+const Tbody = ({ columns, sortDatas }: TbodyProps) => {
 	return (
 		<tbody>
-			{sortDatas?.map((record, index) => (
+			{sortDatas.map((record, index) => (
 				<tr
 					key={index}
 					className='flex items-center font-medium border-b border-solid border-b-gray-200 hover:bg-gray-50'
@@ -21,7 +19,7 @@ const Tbody = ({ size, columns, sortDatas }: TbodyProps) => {
 					{columns.map((column, index) => (
 						<td
 							key={index}
-							className={cn(TableBodyStyle({ size, click: !!column.onClick }))}
+							className={cn(TableBodyStyle({ click: !!column.onClick }))}
 							style={{ width: `${column.width}%` }}
 							onClick={() => column.onClick && column.onClick(record)}
 						>
@@ -36,9 +34,5 @@ const Tbody = ({ size, columns, sortDatas }: TbodyProps) => {
 
 export default memo(
 	Tbody,
-	(prev: TbodyProps, next: TbodyProps) =>
-		prev.size === next.size &&
-		prev.columns === next.columns &&
-		prev.checkedList === next.checkedList &&
-		prev.sortDatas === next.sortDatas
+	(prev: TbodyProps, next: TbodyProps) => prev.columns === next.columns && prev.sortDatas === next.sortDatas
 );
