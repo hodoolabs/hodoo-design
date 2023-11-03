@@ -2,7 +2,6 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { stringify } from 'flatted';
 import { memo, useEffect, useRef, useState } from 'react';
-import { styled } from 'styled-components';
 import Tbody from './components/Tbody';
 import Thead from './components/Thead';
 const RowTable = ({ columns, dataSource, minWidth }) => {
@@ -31,14 +30,6 @@ const RowTable = ({ columns, dataSource, minWidth }) => {
             global.window.removeEventListener('resize', handleSetShadow);
         };
     }, [wrapRef, tableRef]);
-    return (_jsxs("div", { className: 'relative flex overflow-x-auto', ref: wrapRef, children: [_jsxs("table", { className: 'w-full', style: { minWidth }, ref: tableRef, children: [_jsx(Thead, { columns: columns, dataSource: dataSource, sortDatas: sortDatas, onSort: handleSortDatas }), _jsx(Tbody, { columns: columns, sortDatas: sortDatas })] }), shadow && _jsx(Shadow, {})] }));
+    return (_jsxs("div", { className: 'relative flex overflow-x-auto', ref: wrapRef, children: [_jsxs("table", { className: 'w-full', style: { minWidth }, ref: tableRef, children: [_jsx(Thead, { columns: columns, dataSource: dataSource, sortDatas: sortDatas, onSort: handleSortDatas }), _jsx(Tbody, { columns: columns, sortDatas: sortDatas })] }), shadow && (_jsx("div", { className: 'sticky top-0 right-0', style: { boxShadow: '0 0 60px 30px #fff,0 0 100px 60px rgba(255, 255, 255, 0.5)' } }))] }));
 };
 export default memo(RowTable, (prev, next) => prev.columns === next.columns && prev.dataSource === next.dataSource && prev.minWidth === next.minWidth);
-const Shadow = styled.div `
-	position: sticky;
-	content: '';
-	right: 0;
-	top: 0;
-	bottom: 0;
-	box-shadow: 0 0 60px 30px #fff, 0 0 100px 60px rgba(255, 255, 255, 0);
-`;

@@ -2,10 +2,9 @@
 
 import { stringify } from 'flatted';
 import { memo, useEffect, useRef, useState } from 'react';
-import { styled } from 'styled-components';
+import { ColumnDataType, ColumnType } from '../../types/table';
 import Tbody from './components/Tbody';
 import Thead from './components/Thead';
-import { ColumnDataType, ColumnType } from '../../types/table';
 
 interface RowTableProps {
 	columns: ColumnType<any>;
@@ -55,7 +54,12 @@ const RowTable = ({ columns, dataSource, minWidth }: RowTableProps) => {
 				<Thead columns={columns} dataSource={dataSource} sortDatas={sortDatas} onSort={handleSortDatas} />
 				<Tbody columns={columns} sortDatas={sortDatas} />
 			</table>
-			{shadow && <Shadow />}
+			{shadow && (
+				<div
+					className='sticky top-0 right-0'
+					style={{ boxShadow: '0 0 60px 30px #fff,0 0 100px 60px rgba(255, 255, 255, 0.5)' }}
+				/>
+			)}
 		</div>
 	);
 };
@@ -65,12 +69,3 @@ export default memo(
 	(prev: RowTableProps, next: RowTableProps) =>
 		prev.columns === next.columns && prev.dataSource === next.dataSource && prev.minWidth === next.minWidth
 );
-
-const Shadow = styled.div`
-	position: sticky;
-	content: '';
-	right: 0;
-	top: 0;
-	bottom: 0;
-	box-shadow: 0 0 60px 30px #fff, 0 0 100px 60px rgba(255, 255, 255, 0);
-`;

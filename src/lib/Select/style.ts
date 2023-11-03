@@ -1,6 +1,6 @@
 import { cva } from 'class-variance-authority';
 
-const LabelStyle = cva(['text-gray-700', 'font-medium'], {
+const LabelStyle = cva(['font-medium text-gray-700 mb-2'], {
 	variants: {
 		size: {
 			lg: ['text-sm'],
@@ -10,93 +10,68 @@ const LabelStyle = cva(['text-gray-700', 'font-medium'], {
 	},
 });
 
+const BlankStyle = cva(['absolute w-full h-[8px]'], {
+	variants: {
+		direction: {
+			down: ['bottom-[-8px]'],
+			up: ['top-[-8px]'],
+		},
+	},
+});
+
 const SelectedStyle = cva(
 	[
-		'inline-flex',
-		'w-full',
-		'items-center',
-		'justify-between',
-		'ring-1',
-		'ring-gray-300/70',
-		'bg-gray-50',
-		'text-gray-700',
-		'hover:bg-gray-100',
+		'inline-flex w-full items-center justify-between ring-1 ring-gray-300/70 bg-gray-50 text-gray-700 hover:bg-gray-100',
 	],
 	{
 		variants: {
 			size: {
-				lg: ['px-5', 'py-3.5', 'text-base', 'rounded-xl'],
-				md: ['px-4', 'py-2.5', 'text-sm', 'rounded-xl'],
-				sm: ['px-3', 'py-2', 'text-xs', 'rounded-lg'],
+				lg: ['px-5 py-3.5 text-base rounded-xl'],
+				md: ['px-4 py-2.5 text-sm rounded-xl'],
+				sm: ['px-3 py-2 text-xs rounded-lg'],
 			},
 			placeholder: {
 				true: ['text-gray-400'],
 			},
 		},
-	}
+	},
 );
 
 const ArrowStyle = cva([], {
 	variants: {
 		size: {
-			lg: ['w-5', 'h-5'],
-			md: ['w-4', 'h-4'],
-			sm: ['w-3.5', 'h-3.5'],
+			lg: ['w-5 h-5'],
+			md: ['w-4 h-4'],
+			sm: ['w-3.5 h-3.5'],
 		},
 	},
 });
 
-const ButtonStyle = cva(
+const ListStyle = cva(
 	[
-		'w-full',
-		'px-4',
-		'py-3',
-		'rounded-lg',
-		'outline-none',
-		'focus-visible:ring-2',
-		'focus-visible:ring-gray-950',
-		'hover:bg-gray-100',
+		'absolute z-10 w-full rounded-lg text-base text-gray-700 font-medium bg-white border shadow-border max-h-[300px] overflow-scroll scroll-none',
+	],
+	{
+		variants: {
+			direction: {
+				down: ['bottom-[-8px] translate-y-[100%]'],
+				up: ['top-[-8px] translate-y-[-100%]'],
+			},
+		},
+	},
+);
+
+const ItemStyle = cva(
+	[
+		'w-full px-4 flex justify-start py-3 rounded-lg cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-gray-950 hover:bg-gray-100',
 	],
 	{
 		variants: {
 			center: {
-				false: ['flex'],
+				true: [' justify-center'],
 			},
-		},
-	}
-);
-
-const ListStyle = cva(
-	[
-		'absolute',
-		'z-10',
-		'w-full',
-		'rounded-lg',
-		'font-medium',
-		'bg-white',
-		'border',
-		'shadow-border',
-		'max-h-[300px]',
-		'overflow-scroll',
-		'scroll-none',
-	],
-	{
-		variants: {
-			isOpenDown: {
-				true: ['bottom-[-8px]', 'translate-y-[100%]'],
-				false: ['top-[-8px]', 'translate-y-[-100%]'],
-			},
-		},
-	}
-);
-
-const BlankStyle = cva(['absolute', 'w-full', 'h-[8px]'], {
-	variants: {
-		isOpenDown: {
-			true: ['bottom-[-8px]'],
-			false: ['top-[-8px]'],
 		},
 	},
-});
+);
 
-export { LabelStyle, SelectedStyle, ArrowStyle, ButtonStyle, ListStyle, BlankStyle };
+export { ArrowStyle, BlankStyle, ItemStyle, LabelStyle, ListStyle, SelectedStyle };
