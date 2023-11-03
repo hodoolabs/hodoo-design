@@ -11,12 +11,13 @@ interface CheckBoxProps {
 	label?: string;
 	helper?: string;
 	disabled?: boolean;
+	className?: string;
 	onChange: (value: boolean) => void;
 }
 
-const CheckBox = ({ checked, label, helper, disabled = false, onChange }: CheckBoxProps) => {
+const CheckBox = ({ checked, label, helper, disabled = false, className, onChange }: CheckBoxProps) => {
 	return (
-		<div className='inline-flex gap-3'>
+		<div className={`inline-flex gap-3 ${className}`}>
 			<button className={cn(CheckBoxStyle({ checked }))} disabled={disabled} onClick={() => onChange(!checked)}>
 				{checked && (disabled ? <CheckedDisabledSvg /> : <CheckedSvg />)}
 			</button>
@@ -39,5 +40,6 @@ export default memo(
 		prev.label === next.label &&
 		prev.helper === next.helper &&
 		prev.disabled === next.disabled &&
+		prev.className === next.className &&
 		prev.onChange === next.onChange
 );

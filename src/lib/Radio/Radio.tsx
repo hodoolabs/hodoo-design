@@ -7,28 +7,26 @@ import RadioSvg from './images/RadioSvg';
 import { HelperStyle, LabelStyle, RadioStyle } from './style';
 
 interface RadioProps {
-	id: string | number;
-	selected: string | number;
+	id: string;
+	selected: string;
 	label?: string;
 	helper?: string;
 	disabled?: boolean;
 	className?: string;
-	onChange?: (value: string | number) => void;
+	onChange: (value: string) => void;
 }
 
 const Radio = ({ id, selected, label, helper, disabled = false, className, onChange }: RadioProps) => {
+	const isSelected = id === selected;
+
 	return (
 		<div className={`inline-flex gap-3 ${className}`}>
-			<button
-				className={cn(RadioStyle({ selected: id === selected, disabled }))}
-				onClick={() => !disabled && onChange && onChange(id)}
-			>
-				{id === selected && (disabled ? <RadioDisabledSvg /> : <RadioSvg />)}
+			<button className={cn(RadioStyle({ isSelected }))} disabled={disabled} onClick={() => onChange(id)}>
+				{isSelected && (disabled ? <RadioDisabledSvg /> : <RadioSvg />)}
 			</button>
-
 			{label && (
-				<div className='space-y-1 font-medium'>
-					<label className={cn(LabelStyle({ disabled }))} onClick={() => !disabled && onChange && onChange(id)}>
+				<div className='flex flex-col gap-1'>
+					<label className={cn(LabelStyle({ disabled }))} onClick={() => !disabled && onChange(id)}>
 						{label}
 					</label>
 					{helper && <p className={cn(HelperStyle({ disabled }))}>{helper}</p>}
@@ -46,5 +44,6 @@ export default memo(
 		prev.label === next.label &&
 		prev.helper === next.helper &&
 		prev.disabled === next.disabled &&
-		prev.onChange === next.onChange
+		prev.className === next.className &&
+		prev.onChange === next.onChange,
 );

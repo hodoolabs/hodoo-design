@@ -8,19 +8,17 @@ const CheckBoxStyle = cva([
         },
     },
 });
-const LabelStyle = cva(['text-base font-medium leading-5'], {
+const LabelStyle = cva(['text-base font-medium leading-5  text-gray-900 cursor-pointer'], {
     variants: {
         disabled: {
             true: ['text-gray-400 cursor-default'],
-            false: ['text-gray-900 cursor-pointer'],
         },
     },
 });
-const HelperStyle = cva(['text-sm font-medium'], {
+const HelperStyle = cva(['text-sm font-medium text-gray-500'], {
     variants: {
         disabled: {
             true: ['text-gray-400'],
-            false: ['text-gray-500'],
         },
     },
 });

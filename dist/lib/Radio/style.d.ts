@@ -1,6 +1,5 @@
 declare const RadioStyle: (props?: ({
-    selected?: boolean | null | undefined;
-    disabled?: boolean | null | undefined;
+    isSelected?: boolean | null | undefined;
 } & import("class-variance-authority/dist/types").ClassProp) | undefined) => string;
 declare const LabelStyle: (props?: ({
     disabled?: boolean | null | undefined;
