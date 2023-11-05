@@ -69,7 +69,7 @@ const Dropdown = ({
 	}, [ref]);
 
 	return (
-		<div ref={ref} className='inline-block'>
+		<div ref={ref} className={`inline-block ${className}`}>
 			{children}
 			{isOpen &&
 				element &&

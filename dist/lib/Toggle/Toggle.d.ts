@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 interface ToggleProps {
-    size: 'sm' | 'md' | 'lg';
+    size?: 'sm' | 'md' | 'lg';
     activated: boolean;
     label?: ReactNode;
     helper?: string;

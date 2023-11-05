@@ -5,45 +5,58 @@ import ReactDOM from 'react-dom';
 import { cn } from '../../utils/style';
 import VectorDarkSvg from './images/VectorDarkSvg';
 import VectorWhiteSVG from './images/VectorWhiteSvg';
-import { ArrowStyle, DescriptionStyle, TooltipBoxStyle, TooltipStyle } from './style';
-import { throttle } from 'lodash';
+import { ArrowStyle, DescriptionStyle, TooltipStyle, WrapStyle } from './style';
 const Tooltip = ({ color = 'dark', title, description, isShowArrow = true, children, position = 'top', className, }) => {
+    const ref = useRef(null);
     const [isHovered, setIsHovered] = useState(false);
-    const [tooltipElement, setTooltipElement] = useState(null);
-    const [tooltipPosition, setTooltipPosition] = useState({ top: 0, left: 0 });
-    const targetRef = useRef(null);
-    useEffect(() => {
-        const element = document.createElement('div');
-        document.body.appendChild(element);
-        setTooltipElement(element);
-        return () => {
-            document.body.removeChild(element);
-        };
-    }, []);
-    useEffect(() => {
-        if (isHovered && targetRef.current) {
-            const targetRect = targetRef.current.getBoundingClientRect();
-            setTooltipPosition({
-                top: targetRect.top + window.scrollY - (targetRect.height * 2) / 3,
-                left: targetRect.left + window.scrollX + targetRect.width / 2,
-            });
+    const [element, setElement] = useState();
+    const [top, setTop] = useState(0);
+    const [left, setLeft] = useState(0);
+    const handleSetPosition = (ref) => {
+        if (!ref.current)
+            return;
+        const target = ref.current.getBoundingClientRect();
+        const gap = 12;
+        if (position === 'top') {
+            setTop(target.top - gap);
+            setLeft(target.left + target.width / 2);
         }
-    }, [isHovered]);
+        if (position === 'left') {
+            setTop(target.top + target.height / 2);
+            setLeft(target.left - gap);
+        }
+        if (position === 'right') {
+            setTop(target.top + target.height / 2);
+            setLeft(target.right + gap);
+        }
+        if (position === 'bottom') {
+            setTop(target.bottom + gap);
+            setLeft(target.left + target.width / 2);
+        }
+    };
     useEffect(() => {
-        const hideTooltipOnScroll = throttle(() => {
-            setIsHovered(false);
-        }, 200);
-        window.addEventListener('scroll', hideTooltipOnScroll);
-        window.addEventListener('touchmove', hideTooltipOnScroll);
+        const div = document.createElement('div');
+        document.body.appendChild(div);
+        setElement(div);
         return () => {
-            window.removeEventListener('scroll', hideTooltipOnScroll);
-            window.removeEventListener('touchmove', hideTooltipOnScroll);
-            hideTooltipOnScroll.cancel();
+            document.body.removeChild(div);
         };
     }, []);
-    return (_jsxs("div", { className: `relative inline-block ${className}`, onMouseEnter: () => setIsHovered(true), onMouseLeave: () => setIsHovered(false), ref: targetRef, children: [_jsx("div", { children: children }), isHovered &&
-                tooltipElement &&
-                ReactDOM.createPortal(_jsx("div", { className: cn(TooltipBoxStyle({ position, isShowArrow: isShowArrow ? position : null })), style: { top: `${tooltipPosition.top}px`, left: `${tooltipPosition.left}px` }, children: _jsxs("div", { className: `${cn(TooltipStyle({ color }))}`, children: [_jsx("div", { children: title }), _jsx("div", { className: cn(DescriptionStyle({ color })), children: description }), isShowArrow && (_jsx("div", { className: cn(ArrowStyle({ position })), children: color === 'white' ? _jsx(VectorWhiteSVG, {}) : _jsx(VectorDarkSvg, {}) }))] }) }), tooltipElement)] }));
+    useEffect(() => {
+        const content = document.getElementById('content');
+        handleSetPosition(ref);
+        const hideTooltipOnScroll = () => {
+            handleSetPosition(ref);
+            setIsHovered(false);
+        };
+        content === null || content === void 0 ? void 0 : content.addEventListener('scroll', hideTooltipOnScroll);
+        return () => {
+            content === null || content === void 0 ? void 0 : content.removeEventListener('scroll', hideTooltipOnScroll);
+        };
+    }, [ref]);
+    return (_jsxs("div", { className: `relative inline-block ${className}`, ref: ref, onMouseEnter: () => setIsHovered(true), onMouseLeave: () => setIsHovered(false), children: [children, isHovered &&
+                element &&
+                ReactDOM.createPortal(_jsx("div", { className: cn(TooltipStyle({ position })), style: { top, left }, children: _jsxs("div", { className: `${cn(WrapStyle({ color }))}`, children: [_jsx("div", { children: title }), _jsx("div", { className: cn(DescriptionStyle({ color })), children: description }), isShowArrow && (_jsx("div", { className: cn(ArrowStyle({ position })), children: color === 'white' ? _jsx(VectorWhiteSVG, {}) : _jsx(VectorDarkSvg, {}) }))] }) }), element)] }));
 };
 export default memo(Tooltip, (prev, next) => prev.color === next.color &&
     prev.title === next.title &&

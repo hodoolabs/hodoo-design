@@ -1,13 +1,12 @@
 'use client';
 
-import { memo, useEffect, useRef, useState } from 'react';
+import { RefObject, memo, useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { TooltipType } from '../../types/tooltip';
 import { cn } from '../../utils/style';
 import VectorDarkSvg from './images/VectorDarkSvg';
 import VectorWhiteSVG from './images/VectorWhiteSvg';
-import { ArrowStyle, DescriptionStyle, TooltipBoxStyle, TooltipStyle } from './style';
-import { throttle } from 'lodash';
+import { ArrowStyle, DescriptionStyle, TooltipStyle, WrapStyle } from './style';
 
 const Tooltip = ({
 	color = 'dark',
@@ -18,64 +17,79 @@ const Tooltip = ({
 	position = 'top',
 	className,
 }: TooltipType) => {
+	const ref = useRef<HTMLDivElement>(null);
 	const [isHovered, setIsHovered] = useState(false);
-	const [tooltipElement, setTooltipElement] = useState<HTMLDivElement | null>(null);
-	const [tooltipPosition, setTooltipPosition] = useState({ top: 0, left: 0 });
-	const targetRef = useRef<HTMLDivElement>(null);
+	const [element, setElement] = useState<Element | DocumentFragment>();
+	const [top, setTop] = useState(0);
+	const [left, setLeft] = useState(0);
 
-	useEffect(() => {
-		const element = document.createElement('div');
-		document.body.appendChild(element);
-		setTooltipElement(element);
+	const handleSetPosition = (ref: RefObject<HTMLDivElement>) => {
+		if (!ref.current) return;
 
-		return () => {
-			document.body.removeChild(element);
-		};
-	}, []);
+		const target = ref.current.getBoundingClientRect();
+		const gap = 12;
 
-	useEffect(() => {
-		if (isHovered && targetRef.current) {
-			const targetRect = targetRef.current.getBoundingClientRect();
-
-			setTooltipPosition({
-				top: targetRect.top + window.scrollY - (targetRect.height * 2) / 3,
-				left: targetRect.left + window.scrollX + targetRect.width / 2,
-			});
+		if (position === 'top') {
+			setTop(target.top - gap);
+			setLeft(target.left + target.width / 2);
 		}
-	}, [isHovered]);
+
+		if (position === 'left') {
+			setTop(target.top + target.height / 2);
+			setLeft(target.left - gap);
+		}
+
+		if (position === 'right') {
+			setTop(target.top + target.height / 2);
+			setLeft(target.right + gap);
+		}
+
+		if (position === 'bottom') {
+			setTop(target.bottom + gap);
+			setLeft(target.left + target.width / 2);
+		}
+	};
 
 	useEffect(() => {
-		const hideTooltipOnScroll = throttle(() => {
-			setIsHovered(false);
-		}, 200);
-
-		window.addEventListener('scroll', hideTooltipOnScroll);
-		window.addEventListener('touchmove', hideTooltipOnScroll);
+		const div = document.createElement('div');
+		document.body.appendChild(div);
+		setElement(div);
 
 		return () => {
-			window.removeEventListener('scroll', hideTooltipOnScroll);
-			window.removeEventListener('touchmove', hideTooltipOnScroll);
-
-			hideTooltipOnScroll.cancel();
+			document.body.removeChild(div);
 		};
 	}, []);
+
+	useEffect(() => {
+		const content = document.getElementById('content');
+
+		handleSetPosition(ref);
+
+		const hideTooltipOnScroll = () => {
+			handleSetPosition(ref);
+			setIsHovered(false);
+		};
+
+		content?.addEventListener('scroll', hideTooltipOnScroll);
+
+		return () => {
+			content?.removeEventListener('scroll', hideTooltipOnScroll);
+		};
+	}, [ref]);
 
 	return (
 		<div
 			className={`relative inline-block ${className}`}
+			ref={ref}
 			onMouseEnter={() => setIsHovered(true)}
 			onMouseLeave={() => setIsHovered(false)}
-			ref={targetRef}
 		>
-			<div>{children}</div>
+			{children}
 			{isHovered &&
-				tooltipElement &&
+				element &&
 				ReactDOM.createPortal(
-					<div
-						className={cn(TooltipBoxStyle({ position, isShowArrow: isShowArrow ? position : null }))}
-						style={{ top: `${tooltipPosition.top}px`, left: `${tooltipPosition.left}px` }}
-					>
-						<div className={`${cn(TooltipStyle({ color }))}`}>
+					<div className={cn(TooltipStyle({ position }))} style={{ top, left }}>
+						<div className={`${cn(WrapStyle({ color }))}`}>
 							<div>{title}</div>
 							<div className={cn(DescriptionStyle({ color }))}>{description}</div>
 							{isShowArrow && (
@@ -85,7 +99,7 @@ const Tooltip = ({
 							)}
 						</div>
 					</div>,
-					tooltipElement
+					element
 				)}
 		</div>
 	);

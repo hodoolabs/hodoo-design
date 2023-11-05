@@ -81,9 +81,9 @@ export default memo(
 	(prev: InputProps, next: InputProps) =>
 		prev.type === next.type &&
 		prev.size === next.size &&
-		prev.label === next.label &&
 		prev.value === next.value &&
 		prev.error === next.error &&
+		prev.label === next.label &&
 		prev.maxLength === next.maxLength &&
 		prev.placeholder === next.placeholder &&
 		prev.helper === next.helper &&

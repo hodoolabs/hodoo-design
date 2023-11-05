@@ -2,7 +2,7 @@ interface SpinnerProps {
 	size?: 'small' | 'medium' | 'large';
 }
 
-const SpinnerSvg = ({ size = 'medium' }: SpinnerProps) => {
+const SpinnerSvg = ({ size }: SpinnerProps) => {
 	return (
 		<svg
 			width={size === 'large' ? '40' : size === 'medium' ? '32' : '24'}

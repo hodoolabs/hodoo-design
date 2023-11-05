@@ -1,12 +1,12 @@
-/// <reference types="react" />
+import { ReactNode } from 'react';
 interface TextAreaProps {
-    size: 'lg' | 'sm';
-    label?: string | JSX.Element;
+    size?: 'lg' | 'sm';
     value: string;
     error?: string;
+    label?: ReactNode;
     maxLength?: number;
     placeholder?: string;
-    helper?: string | JSX.Element;
+    helper?: ReactNode;
     disabled?: boolean;
     height?: number;
     required?: boolean;
