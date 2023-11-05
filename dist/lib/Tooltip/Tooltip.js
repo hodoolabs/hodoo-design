@@ -43,15 +43,15 @@ const Tooltip = ({ color = 'dark', title, description, isShowArrow = true, child
         };
     }, []);
     useEffect(() => {
-        const content = document.getElementById('content');
+        const tooltip = document.getElementById('tooltip');
         handleSetPosition(ref);
         const hideTooltipOnScroll = () => {
             handleSetPosition(ref);
             setIsHovered(false);
         };
-        content === null || content === void 0 ? void 0 : content.addEventListener('scroll', hideTooltipOnScroll);
+        tooltip === null || tooltip === void 0 ? void 0 : tooltip.addEventListener('scroll', hideTooltipOnScroll);
         return () => {
-            content === null || content === void 0 ? void 0 : content.removeEventListener('scroll', hideTooltipOnScroll);
+            tooltip === null || tooltip === void 0 ? void 0 : tooltip.removeEventListener('scroll', hideTooltipOnScroll);
         };
     }, [ref]);
     return (_jsxs("div", { className: `relative inline-block ${className}`, ref: ref, onMouseEnter: () => setIsHovered(true), onMouseLeave: () => setIsHovered(false), children: [children, isHovered &&

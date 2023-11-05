@@ -1,6 +1,6 @@
 'use client';
 import { useEffect } from 'react';
-const useSetTimeout = (time, callBack) => {
+const useSetTimeout = (callBack, time) => {
     if (!time)
         return;
     useEffect(() => {

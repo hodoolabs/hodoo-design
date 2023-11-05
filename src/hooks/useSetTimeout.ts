@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 
-const useSetTimeout = (time: number, callBack: () => void) => {
+const useSetTimeout = (callBack: () => void, time?: number) => {
 	if (!time) return;
 
 	useEffect(() => {

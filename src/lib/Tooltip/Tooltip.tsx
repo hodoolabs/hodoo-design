@@ -61,7 +61,7 @@ const Tooltip = ({
 	}, []);
 
 	useEffect(() => {
-		const content = document.getElementById('content');
+		const tooltip = document.getElementById('tooltip');
 
 		handleSetPosition(ref);
 
@@ -70,10 +70,10 @@ const Tooltip = ({
 			setIsHovered(false);
 		};
 
-		content?.addEventListener('scroll', hideTooltipOnScroll);
+		tooltip?.addEventListener('scroll', hideTooltipOnScroll);
 
 		return () => {
-			content?.removeEventListener('scroll', hideTooltipOnScroll);
+			tooltip?.removeEventListener('scroll', hideTooltipOnScroll);
 		};
 	}, [ref]);
 

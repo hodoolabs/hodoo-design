@@ -15,18 +15,19 @@ export interface ModalProps {
 }
 
 const Modal = ({ modalState, modalHistory, goBackModal, closeModal }: ModalProps) => {
+	const { content, size, position, isOpen } = modalState;
 	const { blockScroll, allowScroll } = useScrollBlock();
 
 	useEffect(() => {
-		if (modalState.isOpen) blockScroll();
+		if (isOpen) blockScroll();
 		else allowScroll();
-	}, [modalState.isOpen]);
+	}, [isOpen]);
 
 	return (
-		<div className={ModalStyle({ isOpen: modalState.isOpen })}>
-			<div className={cn(WrapStyle({ size: modalState.size, position: modalState.position }))}>
+		<div className={ModalStyle({ isOpen })}>
+			<div className={cn(WrapStyle({ size, position }))}>
 				<Header modalState={modalState} modalHistory={modalHistory} goBackModal={goBackModal} closeModal={closeModal} />
-				<div className={cn(ContentStyle({ position: modalState.position }))}>{modalState.content}</div>
+				<div className={cn(ContentStyle({ position }))}>{content}</div>
 			</div>
 			<div className='absolute top-0 left-0 z-40 w-full h-full bg-black/70' onClick={closeModal} />
 		</div>

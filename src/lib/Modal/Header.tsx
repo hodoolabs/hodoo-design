@@ -5,6 +5,7 @@ import { ModalProps } from './Modal';
 import Button from '../Button/Button';
 
 const Header = ({ modalState, modalHistory, goBackModal, closeModal }: ModalProps) => {
+	const { title, subTitle } = modalState;
 	return (
 		<div className='flex flex-col bg-white rounded-t-3xl'>
 			<div className='flex px-8 pt-8 pb-5'>
@@ -19,7 +20,7 @@ const Header = ({ modalState, modalHistory, goBackModal, closeModal }: ModalProp
 					)}
 				</div>
 				<div className='flex items-center justify-center text-xl font-semibold text-center text-gray-900 grow'>
-					{modalState.title}
+					{title}
 				</div>
 				<Button
 					color='white'
@@ -28,9 +29,9 @@ const Header = ({ modalState, modalHistory, goBackModal, closeModal }: ModalProp
 					onClick={closeModal}
 				/>
 			</div>
-			{modalState.subTitle && (
+			{subTitle && (
 				<div className='px-8 pb-6'>
-					<div className='text-base font-medium leading-relaxed text-center text-gray-500'>{modalState.subTitle}</div>
+					<div className='text-base font-medium leading-relaxed text-center text-gray-500'>{subTitle}</div>
 				</div>
 			)}
 		</div>

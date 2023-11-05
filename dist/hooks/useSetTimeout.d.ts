@@ -1,2 +1,2 @@
-declare const useSetTimeout: (time: number, callBack: () => void) => void;
+declare const useSetTimeout: (callBack: () => void, time?: number) => void;
 export default useSetTimeout;
