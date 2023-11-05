@@ -14,4 +14,4 @@ type ModalStateType = {
     position?: 'middle' | 'bottom';
     isOpen?: boolean;
 };
-export type { ModalType, ModalStateType };
+export type { ModalStateType, ModalType };

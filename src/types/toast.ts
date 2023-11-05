@@ -1,5 +1,20 @@
 import { ReactNode } from 'react';
 
+type ToastType = {
+	toastState: ToastStateType;
+	openToast: ({
+		toastingTime,
+		title,
+		description,
+		leftButton,
+		rightButton,
+		isClose,
+		position,
+		leftIcon,
+	}: ToastStateType) => void;
+	closeToast: () => void;
+};
+
 type ToastStateType = {
 	toastingTime?: number;
 	title: string;
@@ -12,4 +27,4 @@ type ToastStateType = {
 	isOpen?: boolean;
 };
 
-export type { ToastStateType };
+export type { ToastStateType, ToastType };

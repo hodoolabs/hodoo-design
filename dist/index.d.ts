@@ -26,5 +26,5 @@ export type { DropdownType } from './types/dropdown';
 export type { ModalStateType, ModalType } from './types/modal';
 export type { SelectType } from './types/select';
 export type { ColumnDataType, ColumnType } from './types/table';
-export type { ToastStateType } from './types/toast';
+export type { ToastStateType, ToastType } from './types/toast';
 export type { TooltipType } from './types/tooltip';

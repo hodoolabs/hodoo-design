@@ -17,4 +17,4 @@ type ModalStateType = {
 	isOpen?: boolean;
 };
 
-export type { ModalType, ModalStateType };
+export type { ModalStateType, ModalType };
