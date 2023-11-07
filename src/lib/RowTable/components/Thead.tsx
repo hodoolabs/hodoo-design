@@ -1,3 +1,5 @@
+'use client';
+
 import { ChevronUpDownIcon } from '@heroicons/react/24/outline';
 import { QuestionMarkCircleIcon } from '@heroicons/react/24/solid';
 import { memo } from 'react';
@@ -20,7 +22,11 @@ const Thead = ({ columns, dataSource, sortDatas, onSort }: TheadProps) => {
 		<thead className='text-sm font-semibold text-gray-500 border-b border-gray-200 bg-gray-50'>
 			<tr className='flex'>
 				{columns.map((column, index) => (
-					<th key={index} className='flex items-center gap-2 px-4 py-2 min-w-fit' style={{ width: `${column.width}%` }}>
+					<th
+						key={index}
+						className='flex items-center gap-2 px-4 py-2 min-w-fit grow'
+						style={{ width: `${column.width}%`, minWidth: column.fixWidth, maxWidth: column.fixWidth }}
+					>
 						<span>{column.title}</span>
 						{column.sorter && (
 							<div className='flex items-center justify-center cursor-pointer w-7 h-7'>

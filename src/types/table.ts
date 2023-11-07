@@ -5,6 +5,7 @@ type ColumnType<RecordType> = {
 	title: ReactNode;
 	dataIndex: keyof RecordType;
 	width?: number;
+	fixWidth?: number;
 	tooltip?: TooltipType;
 	sorter?: (a: RecordType, b: RecordType) => number;
 	render?: (values: RecordType) => ReactNode;
@@ -16,4 +17,4 @@ type ColumnDataType = {
 	[key: string]: ReactNode;
 };
 
-export type { ColumnType, ColumnDataType };
+export type { ColumnDataType, ColumnType };

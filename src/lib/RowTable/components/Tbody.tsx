@@ -1,3 +1,5 @@
+'use client';
+
 import { memo } from 'react';
 import { ColumnType } from '../../../types/table';
 import { cn } from '../../../utils/style';
@@ -20,7 +22,7 @@ const Tbody = ({ columns, sortDatas }: TbodyProps) => {
 						<td
 							key={index}
 							className={cn(TableBodyStyle({ click: !!column.onClick }))}
-							style={{ width: `${column.width}%` }}
+							style={{ width: `${column.width}%`, minWidth: column.fixWidth, maxWidth: column.fixWidth }}
 							onClick={() => column.onClick && column.onClick(record)}
 						>
 							{column.render ? column.render(record) : record[column.dataIndex]}
