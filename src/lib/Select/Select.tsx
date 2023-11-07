@@ -111,12 +111,14 @@ export default memo(
 		prev.size === next.size &&
 		prev.items === next.items &&
 		prev.selected === next.selected &&
+		prev.error === next.error &&
 		prev.center === next.center &&
 		prev.label === next.label &&
 		prev.placeholder === next.placeholder &&
 		prev.className === next.className &&
 		prev.onClick === next.onClick &&
-		prev.onChange === next.onChange,
+		prev.onChange === next.onChange &&
+		prev.onError === next.onError
 );
 
 const SelectStyled = styled.div`
