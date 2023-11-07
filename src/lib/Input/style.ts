@@ -34,7 +34,7 @@ const InputStyle = cva(
 				true: ['border-rose-200 bg-red-50 text-red-900 placeholder-rose-400'],
 			},
 		},
-	},
+	}
 );
 
 const HelperStyle = cva(['text-gray-500 font-medium pt-2'], {

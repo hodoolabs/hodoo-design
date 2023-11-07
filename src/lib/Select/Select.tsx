@@ -1,10 +1,10 @@
 'use client';
 
 import { ChevronDownIcon } from '@heroicons/react/24/solid';
-import { MouseEvent, memo, useState } from 'react';
+import { MouseEvent, memo, useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import { cn } from '../../utils/style';
-import { ArrowStyle, BlankStyle, ItemStyle, LabelStyle, ListStyle, SelectedStyle } from './style';
+import { ArrowStyle, BlankStyle, ErrorStyle, ItemStyle, LabelStyle, ListStyle, SelectedStyle } from './style';
 
 interface SelectItem {
 	value: string;
@@ -15,6 +15,7 @@ interface SelectProps {
 	size?: 'sm' | 'md' | 'lg';
 	items: SelectItem[];
 	selected: string;
+	error?: string;
 	center?: boolean;
 	label?: string;
 	placeholder?: string;
@@ -22,12 +23,14 @@ interface SelectProps {
 	className?: string;
 	onClick?: () => void;
 	onChange: (value: string) => void;
+	onError?: (error: string) => void;
 }
 
 const Select = ({
 	size = 'lg',
 	items,
 	selected,
+	error,
 	center = false,
 	label,
 	placeholder,
@@ -35,9 +38,11 @@ const Select = ({
 	className,
 	onClick,
 	onChange,
+	onError,
 }: SelectProps) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [direction, setDirection] = useState<'down' | 'up'>('down');
+	const isError = !!error;
 
 	const getLabel = (items: SelectItem[], selected: string) => {
 		return items.filter((item) => item.value === selected)[0]?.label;
@@ -50,40 +55,52 @@ const Select = ({
 		setDirection(distanceFromBottom > 340 ? 'down' : 'up');
 	};
 
+	useEffect(() => {
+		if (!onError) return;
+
+		onError('');
+	}, [selected]);
+
 	return (
-		<SelectStyled className={`relative flex flex-col ${className}`} onMouseLeave={() => setIsOpen(false)}>
+		<SelectStyled className={`flex flex-col ${className}`} onMouseLeave={() => setIsOpen(false)}>
 			{label && (
-				<label className={cn(LabelStyle({ size }))}>
+				<label className={cn(LabelStyle({ size, isError }))}>
 					{required && <span className='text-red-600'>*</span>} {label}
 				</label>
 			)}
-			<div className={BlankStyle({ direction })} />
-			<button
-				type='button'
-				onClick={onClick || handleClickSelect}
-				className={cn(SelectedStyle({ size, placeholder: !selected }))}
-			>
-				{selected ? getLabel(items, selected) : placeholder}
-				<ChevronDownIcon className={cn(ArrowStyle({ size }))} />
-			</button>
-			{isOpen && (
-				<div className={ListStyle({ direction })}>
-					<ul className='flex flex-col p-1'>
-						{items.map((item) => (
-							<li
-								key={item.value}
-								className={cn(ItemStyle({ center }))}
-								onClick={() => {
-									onChange(item.value);
-									setIsOpen(false);
-								}}
-							>
-								{item.label}
-							</li>
-						))}
-					</ul>
-				</div>
-			)}
+			<div className='relative'>
+				<button
+					type='button'
+					onClick={(event) => {
+						onClick ? onClick() : handleClickSelect(event);
+						onError && onError('');
+					}}
+					className={cn(SelectedStyle({ size, placeholder: !selected, isError }))}
+				>
+					{selected ? getLabel(items, selected) : placeholder}
+					<ChevronDownIcon className={cn(ArrowStyle({ size }))} />
+				</button>
+				<div className={BlankStyle({ direction })} />
+				{isOpen && (
+					<div className={ListStyle({ direction })}>
+						<ul className='flex flex-col p-1'>
+							{items.map((item) => (
+								<li
+									key={item.value}
+									className={cn(ItemStyle({ center }))}
+									onClick={() => {
+										onChange(item.value);
+										setIsOpen(false);
+									}}
+								>
+									{item.label}
+								</li>
+							))}
+						</ul>
+					</div>
+				)}
+			</div>
+			<div className={cn(ErrorStyle({ size, isError }))}>{error}</div>
 		</SelectStyled>
 	);
 };
@@ -99,7 +116,7 @@ export default memo(
 		prev.placeholder === next.placeholder &&
 		prev.className === next.className &&
 		prev.onClick === next.onClick &&
-		prev.onChange === next.onChange
+		prev.onChange === next.onChange,
 );
 
 const SelectStyled = styled.div`

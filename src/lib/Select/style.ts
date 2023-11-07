@@ -7,6 +7,9 @@ const LabelStyle = cva(['font-medium text-gray-700 mb-2'], {
 			md: ['text-xs'],
 			sm: ['text-xs'],
 		},
+		isError: {
+			true: ['text-red-700'],
+		},
 	},
 });
 
@@ -32,6 +35,9 @@ const SelectedStyle = cva(
 			},
 			placeholder: {
 				true: ['text-gray-400'],
+			},
+			isError: {
+				true: ['ring-rose-200 bg-red-50 text-red-400 hover:bg-red-50'],
 			},
 		},
 	},
@@ -74,4 +80,18 @@ const ItemStyle = cva(
 	},
 );
 
-export { ArrowStyle, BlankStyle, ItemStyle, LabelStyle, ListStyle, SelectedStyle };
+const ErrorStyle = cva(['font-medium overflow-hidden text-red-600 duration-300'], {
+	variants: {
+		size: {
+			lg: ['text-sm h-7'],
+			md: ['text-xs h-6'],
+			sm: ['text-xs h-6'],
+		},
+		isError: {
+			true: ['pt-2'],
+			false: ['h-0 pt-0'],
+		},
+	},
+});
+
+export { ArrowStyle, BlankStyle, ItemStyle, LabelStyle, ListStyle, SelectedStyle, ErrorStyle };
