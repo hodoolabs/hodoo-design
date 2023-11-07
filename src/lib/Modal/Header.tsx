@@ -1,14 +1,16 @@
 'use client';
 
 import { ArrowSmallLeftIcon, XMarkIcon } from '@heroicons/react/24/outline';
-import { ModalProps } from './Modal';
+import { cn } from '../../utils/style';
 import Button from '../Button/Button';
+import { ModalProps } from './Modal';
+import { SubTitleStyle, TitleStyle } from './style';
 
 const Header = ({ modalState, modalHistory, goBackModal, closeModal }: ModalProps) => {
-	const { title, subTitle } = modalState;
+	const { title, subTitle, size } = modalState;
 	return (
 		<div className='flex flex-col bg-white rounded-t-3xl'>
-			<div className='flex px-8 pt-8 pb-5'>
+			<div className={cn(TitleStyle({ size }))}>
 				<div className='w-8 h-8'>
 					{modalHistory && modalHistory.length > 1 && goBackModal && (
 						<Button
@@ -30,7 +32,7 @@ const Header = ({ modalState, modalHistory, goBackModal, closeModal }: ModalProp
 				/>
 			</div>
 			{subTitle && (
-				<div className='px-8 pb-6'>
+				<div className={cn(SubTitleStyle({ size }))}>
 					<div className='text-base font-medium leading-relaxed text-center text-gray-500'>{subTitle}</div>
 				</div>
 			)}
