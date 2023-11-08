@@ -72,8 +72,8 @@ const DatePicker = ({
 					displayFormat={props.displayFormat}
 					startFrom={props.value?.startDate ? new Date(props.value?.startDate) : new Date()}
 					toggleIcon={() => <CalendarDaysIcon className='w-5 h-5' />}
-					toggleClassName={cn(ToggleStyle({ size, error: !error, disabled }))}
-					inputClassName={cn(InputStyle({ size, error: !error, disabled }))}
+					toggleClassName={cn(ToggleStyle({ size, error: !!error, disabled }))}
+					inputClassName={cn(InputStyle({ size, error: !!error, disabled }))}
 					placeholder={props.placeholder || ' '}
 					disabled={disabled}
 					onChange={(date, event) => event && handleChangeDate(date, event, props.placeholder)}
