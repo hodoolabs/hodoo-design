@@ -16,5 +16,5 @@ interface InputProps {
     onError?: (error: string) => void;
     onEnter?: () => void;
 }
-declare const _default: import("react").MemoExoticComponent<({ type, size, label, value, error, maxLength, placeholder, helper, disabled, required, className, onBlur, onChange, onError, onEnter, }: InputProps) => import("react/jsx-runtime").JSX.Element>;
-export default _default;
+declare const Input: ({ type, size, label, value, error, maxLength, placeholder, helper, disabled, required, className, onBlur, onChange, onError, onEnter, }: InputProps) => import("react/jsx-runtime").JSX.Element;
+export default Input;

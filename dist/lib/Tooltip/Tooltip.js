@@ -1,6 +1,6 @@
 'use client';
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
-import { memo, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { cn } from '../../utils/style';
 import VectorDarkSvg from './images/VectorDarkSvg';
@@ -58,10 +58,4 @@ const Tooltip = ({ color = 'dark', title, description, isShowArrow = true, child
                 element &&
                 ReactDOM.createPortal(_jsx("div", { className: cn(TooltipStyle({ position })), style: { top, left }, children: _jsxs("div", { className: `${cn(WrapStyle({ color }))}`, children: [_jsx("div", { children: title }), _jsx("div", { className: cn(DescriptionStyle({ color })), children: description }), isShowArrow && (_jsx("div", { className: cn(ArrowStyle({ position })), children: color === 'white' ? _jsx(VectorWhiteSVG, {}) : _jsx(VectorDarkSvg, {}) }))] }) }), element)] }));
 };
-export default memo(Tooltip, (prev, next) => prev.color === next.color &&
-    prev.title === next.title &&
-    prev.description === next.description &&
-    prev.isShowArrow === next.isShowArrow &&
-    prev.children === next.children &&
-    prev.position === next.position &&
-    prev.className === next.className);
+export default Tooltip;

@@ -1,13 +1,13 @@
 'use client';
 
 import { XMarkIcon } from '@heroicons/react/24/outline';
+import useSetTimeout from '../../hooks/useSetTimeout';
 import { ToastStateType } from '../../types/toast';
 import { cn } from '../../utils/style';
 import ToastQuestionSvg from './images/ToastQuestionSvg';
 import ToastSuccessSvg from './images/ToastSuccessSvg';
 import ToastWarningSvg from './images/ToastWarningSvg';
 import { ToastStyle } from './style';
-import useSetTimeout from '../../hooks/useSetTimeout';
 
 interface ToastProps {
 	toastState: ToastStateType;

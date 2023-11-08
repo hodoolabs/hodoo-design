@@ -1,6 +1,5 @@
 'use client';
 
-import { memo } from 'react';
 import { cn } from '../../utils/style';
 import CheckedDisabledSvg from './images/CheckedDisabledSvg';
 import CheckedSvg from './images/CheckedSvg';
@@ -33,13 +32,4 @@ const CheckBox = ({ checked, label, helper, disabled = false, className, onChang
 	);
 };
 
-export default memo(
-	CheckBox,
-	(prev: CheckBoxProps, next: CheckBoxProps) =>
-		prev.checked === next.checked &&
-		prev.label === next.label &&
-		prev.helper === next.helper &&
-		prev.disabled === next.disabled &&
-		prev.className === next.className &&
-		prev.onChange === next.onChange
-);
+export default CheckBox;

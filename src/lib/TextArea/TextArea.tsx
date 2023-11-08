@@ -1,9 +1,12 @@
 'use client';
 
-import { ReactNode, memo, useEffect } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { styled } from 'styled-components';
 import { cn } from '../../utils/style';
-import { ErrorStyle, HelperStyle, LabelStyle, MaxLengthStyle, TextareaStyle } from './style';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import Helper from '../Helper/Helper';
+import Label from '../Label/Label';
+import { TextareaStyle } from './style';
 
 interface TextAreaProps {
 	size?: 'lg' | 'sm';
@@ -36,8 +39,6 @@ const TextArea = ({
 	onChange,
 	onError,
 }: TextAreaProps) => {
-	const isError = !!error;
-
 	useEffect(() => {
 		if (!onError) return;
 
@@ -46,48 +47,31 @@ const TextArea = ({
 
 	return (
 		<TextAreaStyled className={`flex flex-col ${className}`}>
-			{label && (
-				<label className={cn(LabelStyle({ size, isError }))}>
-					{required && <span className='text-red-600'>*</span>} {label}
-					{maxLength && (
-						<span className={cn(MaxLengthStyle({ isError }))}>
-							{value.length}/{maxLength}
-						</span>
-					)}
-				</label>
-			)}
+			<Label
+				size={size}
+				value={value}
+				error={error}
+				label={label}
+				maxLength={maxLength}
+				disabled={disabled}
+				required={required}
+			/>
 			<textarea
 				value={value}
 				maxLength={maxLength}
 				placeholder={placeholder}
 				disabled={disabled}
-				className={cn(TextareaStyle({ size, isError }))}
+				className={cn(TextareaStyle({ size, error: !!error }))}
 				onChange={(event) => onChange && onChange(event.target.value)}
-				style={{ height: height }}
+				style={{ height }}
 			/>
-			{helper && <div className={cn(HelperStyle({ size }))}>{helper}</div>}
-			<div className={cn(ErrorStyle({ size, isError }))}>{error}</div>
+			<Helper size={size} error={error} helper={helper} disabled={disabled} />
+			<ErrorMessage size={size} error={error} />
 		</TextAreaStyled>
 	);
 };
 
-export default memo(
-	TextArea,
-	(prev: TextAreaProps, next: TextAreaProps) =>
-		prev.size === next.size &&
-		prev.value === next.value &&
-		prev.error === next.error &&
-		prev.label === next.label &&
-		prev.maxLength === next.maxLength &&
-		prev.placeholder === next.placeholder &&
-		prev.helper === next.helper &&
-		prev.disabled === next.disabled &&
-		prev.height === next.height &&
-		prev.required === next.required &&
-		prev.className === next.className &&
-		prev.onChange === next.onChange &&
-		prev.onError === next.onError
-);
+export default TextArea;
 
 const TextAreaStyled = styled.div`
 	.scroll-none::-webkit-scrollbar {

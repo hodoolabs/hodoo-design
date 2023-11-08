@@ -1,6 +1,5 @@
 'use client';
 
-import { memo } from 'react';
 import { ColumnType } from '../../../types/table';
 import { cn } from '../../../utils/style';
 import { TableBodyStyle } from '../style';
@@ -34,7 +33,4 @@ const Tbody = ({ columns, sortDatas }: TbodyProps) => {
 	);
 };
 
-export default memo(
-	Tbody,
-	(prev: TbodyProps, next: TbodyProps) => prev.columns === next.columns && prev.sortDatas === next.sortDatas
-);
+export default Tbody;

@@ -2,10 +2,13 @@
 
 import { CalendarDaysIcon } from '@heroicons/react/24/outline';
 import { throttle } from 'lodash';
-import { ReactNode, memo, useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import Datepicker, { DateValueType, DatepickerType } from 'react-tailwindcss-datepicker';
+import { InputStyle, SkeletonStyle, ToggleStyle } from './style';
+import Label from '../Label/Label';
+import Helper from '../Helper/Helper';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import { cn } from '../../utils/style';
-import { ErrorStyle, InputStyle, LabelStyle, SkeletonStyle, ToggleStyle } from './style';
 
 interface DatePickerProps extends DatepickerType {
 	size?: 'lg' | 'sm';
@@ -13,6 +16,7 @@ interface DatePickerProps extends DatepickerType {
 	error?: string;
 	helper?: string;
 	required?: boolean;
+	disabled?: boolean;
 	className?: string;
 	onError?: (error: string) => void;
 }
@@ -23,13 +27,13 @@ const DatePicker = ({
 	error,
 	helper,
 	required,
+	disabled = false,
 	className,
 	onError,
 	onChange,
 	...props
 }: DatePickerProps) => {
 	const [isDestory, setIsDestroy] = useState(false);
-	const isError = !!error;
 
 	const handleChangeDate = (date: DateValueType, event: HTMLInputElement, placeholder?: string) => {
 		if (!placeholder && !date?.startDate && !date?.endDate) event.oncancel;
@@ -60,11 +64,7 @@ const DatePicker = ({
 
 	return (
 		<div className={`flex flex-col ${className}`}>
-			{label && (
-				<label className={cn(LabelStyle({ isError }))}>
-					{required && <span className='text-red-600'>*</span>} {label}
-				</label>
-			)}
+			<Label size={size} error={error} label={label} disabled={disabled} required={required} />
 			{!isDestory ? (
 				<Datepicker
 					i18n='ko'
@@ -72,30 +72,20 @@ const DatePicker = ({
 					displayFormat={props.displayFormat}
 					startFrom={props.value?.startDate ? new Date(props.value?.startDate) : new Date()}
 					toggleIcon={() => <CalendarDaysIcon className='w-5 h-5' />}
-					toggleClassName={cn(ToggleStyle({ size, isError }))}
-					inputClassName={cn(InputStyle({ size, isError }))}
+					toggleClassName={cn(ToggleStyle({ size, error: !error, disabled }))}
+					inputClassName={cn(InputStyle({ size, error: !error, disabled }))}
 					placeholder={props.placeholder || ' '}
+					disabled={disabled}
 					onChange={(date, event) => event && handleChangeDate(date, event, props.placeholder)}
 					{...props}
 				/>
 			) : (
 				<div className={cn(SkeletonStyle({ size }))} />
 			)}
-			{helper && <div className='pt-2 text-sm font-medium text-gray-500'>{helper}</div>}
-			<div className={cn(ErrorStyle({ isError }))}>{error}</div>
+			<Helper size={size} error={error} helper={helper} disabled={disabled} />
+			<ErrorMessage size={size} error={error} />
 		</div>
 	);
 };
 
-export default memo(
-	DatePicker,
-	(prev: DatePickerProps, next: DatePickerProps) =>
-		prev.size === next.size &&
-		prev.label === next.label &&
-		prev.error === next.error &&
-		prev.helper === next.helper &&
-		prev.required === next.required &&
-		prev.className === next.className &&
-		prev.onChange === next.onChange &&
-		prev.onError === next.onError
-);
+export default DatePicker;

@@ -14,5 +14,5 @@ interface TextAreaProps {
     onChange?: (value: string) => void;
     onError?: (error: string) => void;
 }
-declare const _default: import("react").MemoExoticComponent<({ size, label, value, error, maxLength, placeholder, helper, disabled, height, required, className, onChange, onError, }: TextAreaProps) => import("react/jsx-runtime").JSX.Element>;
-export default _default;
+declare const TextArea: ({ size, label, value, error, maxLength, placeholder, helper, disabled, height, required, className, onChange, onError, }: TextAreaProps) => import("react/jsx-runtime").JSX.Element;
+export default TextArea;

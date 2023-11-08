@@ -1,13 +1,4 @@
 import { cva } from 'class-variance-authority';
-const LabelStyle = cva(['font-medium text-gray-700 mb-2'], {
-    variants: {
-        size: {
-            lg: ['text-sm'],
-            md: ['text-xs'],
-            sm: ['text-xs'],
-        },
-    },
-});
 const BlankStyle = cva(['absolute w-full h-[8px]'], {
     variants: {
         direction: {
@@ -17,7 +8,7 @@ const BlankStyle = cva(['absolute w-full h-[8px]'], {
     },
 });
 const SelectedStyle = cva([
-    'inline-flex w-full items-center justify-between ring-1 ring-gray-300/70 bg-gray-50 text-gray-700 hover:bg-gray-100',
+    'inline-flex w-full items-center justify-between ring-1 ring-gray-300/70 bg-gray-50 text-gray-700 hover:bg-gray-100 disabled:ring-gray-200 disabled:bg-gray-100 disabled:text-gray-400',
 ], {
     variants: {
         size: {
@@ -27,6 +18,9 @@ const SelectedStyle = cva([
         },
         placeholder: {
             true: ['text-gray-400'],
+        },
+        error: {
+            true: ['ring-rose-200 bg-red-50 text-red-400 hover:bg-red-50'],
         },
     },
 });
@@ -54,8 +48,33 @@ const ItemStyle = cva([
 ], {
     variants: {
         center: {
-            true: [' justify-center'],
+            true: ['justify-center'],
         },
     },
 });
-export { ArrowStyle, BlankStyle, ItemStyle, LabelStyle, ListStyle, SelectedStyle };
+const HelperStyle = cva(['text-gray-500 font-medium pt-2'], {
+    variants: {
+        size: {
+            lg: ['text-sm'],
+            md: ['text-xs'],
+            sm: ['text-xs'],
+        },
+        disabled: {
+            true: ['text-gray-400'],
+        },
+    },
+});
+const ErrorStyle = cva(['font-medium overflow-hidden text-red-600 duration-300'], {
+    variants: {
+        size: {
+            lg: ['text-sm h-7'],
+            md: ['text-xs h-6'],
+            sm: ['text-xs h-6'],
+        },
+        isError: {
+            true: ['pt-2'],
+            false: ['h-0 pt-0'],
+        },
+    },
+});
+export { ArrowStyle, BlankStyle, ErrorStyle, HelperStyle, ItemStyle, ListStyle, SelectedStyle };

@@ -1,6 +1,5 @@
 'use client';
 
-import { memo } from 'react';
 import styled from 'styled-components';
 import SpinnerSvg from './images/SpinnerSvg';
 
@@ -22,10 +21,7 @@ const Spinner = ({ isLoading, size = 'medium' }: SpinnerProps) => {
 	);
 };
 
-export default memo(
-	Spinner,
-	(prev: SpinnerProps, next: SpinnerProps) => prev.isLoading === next.isLoading && prev.size === next.size
-);
+export default Spinner;
 
 const SpinnerStyled = styled.div`
 	@keyframes spinFadeIn {

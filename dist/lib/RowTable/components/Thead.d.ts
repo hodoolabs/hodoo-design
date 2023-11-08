@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { ColumnDataType, ColumnType } from '../../../types/table';
 interface TheadProps {
     columns: ColumnType<any>;
@@ -6,5 +5,5 @@ interface TheadProps {
     sortDatas: any[];
     onSort: (dataSource: ColumnDataType[], sortDatas: ColumnDataType[], sorter: (a: ColumnDataType, b: ColumnDataType) => number) => void;
 }
-declare const _default: import("react").MemoExoticComponent<({ columns, dataSource, sortDatas, onSort }: TheadProps) => import("react/jsx-runtime").JSX.Element>;
-export default _default;
+declare const Thead: ({ columns, dataSource, sortDatas, onSort }: TheadProps) => import("react/jsx-runtime").JSX.Element;
+export default Thead;

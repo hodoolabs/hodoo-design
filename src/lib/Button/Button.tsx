@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode, memo } from 'react';
+import { ReactNode } from 'react';
 import { cn } from '../../utils/style';
 import { ButtonStyle, ImageStyle } from './style';
 
@@ -41,15 +41,4 @@ const Button = ({
 	);
 };
 
-export default memo(
-	Button,
-	(prev: ButtonProps, next: ButtonProps) =>
-		prev.color === next.color &&
-		prev.size === next.size &&
-		prev.leftIcon === next.leftIcon &&
-		prev.rightIcon === next.rightIcon &&
-		prev.label === next.label &&
-		prev.disabled === next.disabled &&
-		prev.className === next.className &&
-		prev.onClick === next.onClick
-);
+export default Button;

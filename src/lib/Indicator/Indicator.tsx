@@ -1,6 +1,5 @@
 'use client';
 
-import { memo } from 'react';
 import { cn } from '../../utils/style';
 import { IndicatorStyle } from './style';
 
@@ -19,8 +18,4 @@ const Indicator = ({ label, count, className }: IndicatorProps) => {
 	);
 };
 
-export default memo(
-	Indicator,
-	(prev: IndicatorProps, next: IndicatorProps) =>
-		prev.label === next.label && prev.count === next.count && prev.className === next.className
-);
+export default Indicator;

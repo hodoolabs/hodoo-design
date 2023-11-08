@@ -1,7 +1,6 @@
 'use client';
 
 import { ChevronRightIcon } from '@heroicons/react/24/outline';
-import { memo } from 'react';
 import { BreadCrumbsType } from '../../types/breadCrumbs';
 
 interface BreadCrumbsProps {
@@ -27,11 +26,4 @@ const BreadCrumbs = ({ data, path, className, onPush }: BreadCrumbsProps) => {
 	);
 };
 
-export default memo(
-	BreadCrumbs,
-	(prev: BreadCrumbsProps, next: BreadCrumbsProps) =>
-		prev.data === next.data &&
-		prev.path === next.path &&
-		prev.className === next.className &&
-		prev.onPush === next.onPush
-);
+export default BreadCrumbs;

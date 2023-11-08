@@ -1,8 +1,11 @@
 'use client';
 
-import { HTMLInputTypeAttribute, ReactNode, memo, useEffect } from 'react';
+import { HTMLInputTypeAttribute, ReactNode, useEffect } from 'react';
 import { cn } from '../../utils/style';
-import { ErrorStyle, HelperStyle, InputStyle, LabelStyle, MaxLengthStyle } from './style';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import Helper from '../Helper/Helper';
+import Label from '../Label/Label';
+import { InputStyle } from './style';
 
 interface InputProps {
 	type?: HTMLInputTypeAttribute;
@@ -39,8 +42,6 @@ const Input = ({
 	onError,
 	onEnter,
 }: InputProps) => {
-	const isError = !!error;
-
 	useEffect(() => {
 		if (!onError) return;
 
@@ -49,49 +50,30 @@ const Input = ({
 
 	return (
 		<div className={`flex flex-col ${className}`}>
-			{label && (
-				<label className={cn(LabelStyle({ size, isError }))}>
-					{required && <span className='text-red-600'>*</span>} {label}
-					{maxLength && (
-						<span className={cn(MaxLengthStyle({ isError }))}>
-							{value.length}/{maxLength}
-						</span>
-					)}
-				</label>
-			)}
+			<Label
+				size={size}
+				value={value}
+				error={error}
+				label={label}
+				maxLength={maxLength}
+				disabled={disabled}
+				required={required}
+			/>
 			<input
 				type={type}
 				value={value}
 				maxLength={maxLength}
 				placeholder={placeholder}
 				disabled={disabled}
-				className={cn(InputStyle({ size, isError }))}
+				className={cn(InputStyle({ size, error: !!error }))}
 				onBlur={(event) => onBlur && onBlur(event.target.value)}
 				onChange={(event) => onChange && onChange(event.target.value)}
 				onKeyDown={(event) => event.key === 'Enter' && onEnter && onEnter()}
 			/>
-			{helper && <div className={cn(HelperStyle({ size }))}>{helper}</div>}
-			<div className={cn(ErrorStyle({ size, isError }))}>{error}</div>
+			<Helper size={size} error={error} helper={helper} disabled={disabled} />
+			<ErrorMessage size={size} error={error} />
 		</div>
 	);
 };
 
-export default memo(
-	Input,
-	(prev: InputProps, next: InputProps) =>
-		prev.type === next.type &&
-		prev.size === next.size &&
-		prev.value === next.value &&
-		prev.error === next.error &&
-		prev.label === next.label &&
-		prev.maxLength === next.maxLength &&
-		prev.placeholder === next.placeholder &&
-		prev.helper === next.helper &&
-		prev.disabled === next.disabled &&
-		prev.required === next.required &&
-		prev.className === next.className &&
-		prev.onBlur === next.onBlur &&
-		prev.onChange === next.onChange &&
-		prev.onError === next.onError &&
-		prev.onEnter === next.onEnter
-);
+export default Input;

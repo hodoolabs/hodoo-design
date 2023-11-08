@@ -9,7 +9,7 @@ const ToastStyle = cva([
         },
         position: {
             left: ['left-8'],
-            center: ['left-[50%]', 'translate-x-[-50%]'],
+            center: ['left-[50%] translate-x-[-50%]'],
             right: ['right-8'],
         },
     },

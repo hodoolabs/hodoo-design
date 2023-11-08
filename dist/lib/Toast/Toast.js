@@ -1,12 +1,12 @@
 'use client';
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { XMarkIcon } from '@heroicons/react/24/outline';
+import useSetTimeout from '../../hooks/useSetTimeout';
 import { cn } from '../../utils/style';
 import ToastQuestionSvg from './images/ToastQuestionSvg';
 import ToastSuccessSvg from './images/ToastSuccessSvg';
 import ToastWarningSvg from './images/ToastWarningSvg';
 import { ToastStyle } from './style';
-import useSetTimeout from '../../hooks/useSetTimeout';
 const Toast = ({ toastState, closeToast }) => {
     const { toastingTime, title, description, leftButton, rightButton, position, leftIcon, isClose, isOpen } = toastState;
     useSetTimeout(closeToast, toastingTime);

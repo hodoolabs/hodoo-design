@@ -95,16 +95,4 @@ const Dropdown = ({
 	);
 };
 
-export default memo(
-	Dropdown,
-	(prev: DropdownProps, next: DropdownProps) =>
-		prev.isOpen === next.isOpen &&
-		prev.list === next.list &&
-		prev.width === next.width &&
-		prev.height === next.height &&
-		prev.position === next.position &&
-		prev.className === next.className &&
-		prev.children === next.children &&
-		prev.onSelect === next.onSelect &&
-		prev.onOpen === next.onOpen
-);
+export default Dropdown;

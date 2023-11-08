@@ -1,6 +1,6 @@
 'use client';
 
-import { RefObject, memo, useEffect, useRef, useState } from 'react';
+import { RefObject, useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { TooltipType } from '../../types/tooltip';
 import { cn } from '../../utils/style';
@@ -105,14 +105,4 @@ const Tooltip = ({
 	);
 };
 
-export default memo(
-	Tooltip,
-	(prev: TooltipType, next: TooltipType) =>
-		prev.color === next.color &&
-		prev.title === next.title &&
-		prev.description === next.description &&
-		prev.isShowArrow === next.isShowArrow &&
-		prev.children === next.children &&
-		prev.position === next.position &&
-		prev.className === next.className
-);
+export default Tooltip;

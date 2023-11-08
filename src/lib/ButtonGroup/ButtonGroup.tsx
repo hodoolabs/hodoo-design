@@ -1,6 +1,5 @@
 'use client';
 
-import { memo } from 'react';
 import { styled } from 'styled-components';
 import { ButtonGroupType } from '../../types/buttonGroup';
 import { cn } from '../../utils/style';
@@ -10,7 +9,7 @@ interface ButtonGroupProps {
 	buttons: ButtonGroupType[];
 	active: string;
 	className?: string;
-	onActive: (id: string) => void;
+	onActive: (value: string) => void;
 }
 
 const ButtonGroup = ({ buttons, active, className, onActive }: ButtonGroupProps) => {
@@ -18,9 +17,9 @@ const ButtonGroup = ({ buttons, active, className, onActive }: ButtonGroupProps)
 		<ButtonGroupStyled className={className}>
 			{buttons.map((button) => (
 				<button
-					key={button.id}
-					className={cn(ButtonStyle({ active: active === button.id }))}
-					onClick={() => onActive(button.id)}
+					key={button.value}
+					className={cn(ButtonStyle({ active: active === button.value }))}
+					onClick={() => onActive(button.value)}
 				>
 					{button.label}
 				</button>
@@ -29,14 +28,7 @@ const ButtonGroup = ({ buttons, active, className, onActive }: ButtonGroupProps)
 	);
 };
 
-export default memo(
-	ButtonGroup,
-	(prev: ButtonGroupProps, next: ButtonGroupProps) =>
-		prev.buttons === next.buttons &&
-		prev.active === next.active &&
-		prev.className === next.className &&
-		prev.onActive === next.onActive
-);
+export default ButtonGroup;
 
 const ButtonGroupStyled = styled.div`
 	.active-button + button {

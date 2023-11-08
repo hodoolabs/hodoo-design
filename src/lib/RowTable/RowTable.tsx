@@ -1,7 +1,7 @@
 'use client';
 
 import { stringify } from 'flatted';
-import { memo, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ColumnDataType, ColumnType } from '../../types/table';
 import Tbody from './components/Tbody';
 import Thead from './components/Thead';
@@ -64,8 +64,4 @@ const RowTable = ({ columns, dataSource, minWidth }: RowTableProps) => {
 	);
 };
 
-export default memo(
-	RowTable,
-	(prev: RowTableProps, next: RowTableProps) =>
-		prev.columns === next.columns && prev.dataSource === next.dataSource && prev.minWidth === next.minWidth
-);
+export default RowTable;

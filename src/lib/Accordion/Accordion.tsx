@@ -1,7 +1,7 @@
 'use client';
 
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
-import { memo, useState } from 'react';
+import { useState } from 'react';
 import { AccordionType } from '../../types/accordion';
 import { cn } from '../../utils/style';
 import { ArrowStyle, MenuStyle, SubMenuStyle, SubMenusStyle } from './style';
@@ -86,11 +86,4 @@ const Accordion = ({ list, path, className, onPush }: AccordionProps) => {
 	);
 };
 
-export default memo(
-	Accordion,
-	(prev: AccordionProps, next: AccordionProps) =>
-		prev.list === next.list &&
-		prev.path === next.path &&
-		prev.className === next.className &&
-		prev.onPush === next.onPush
-);
+export default Accordion;

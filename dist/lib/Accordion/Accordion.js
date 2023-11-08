@@ -1,7 +1,7 @@
 'use client';
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
-import { memo, useState } from 'react';
+import { useState } from 'react';
 import { cn } from '../../utils/style';
 import { ArrowStyle, MenuStyle, SubMenuStyle, SubMenusStyle } from './style';
 const Accordion = ({ list, path, className, onPush }) => {
@@ -25,7 +25,4 @@ const Accordion = ({ list, path, className, onPush }) => {
                         height: item.subMenus.length,
                     })), children: item.subMenus.map((subItem) => (_jsx("div", { className: cn(SubMenuStyle({ isCurrentPath: getIsCurrentPath(subItem.path, path) })), onClick: () => onPush(subItem.path), children: subItem.label }, subItem.path))) }))] }, item.index))) }));
 };
-export default memo(Accordion, (prev, next) => prev.list === next.list &&
-    prev.path === next.path &&
-    prev.className === next.className &&
-    prev.onPush === next.onPush);
+export default Accordion;

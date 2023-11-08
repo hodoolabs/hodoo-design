@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode, memo } from 'react';
+import { ReactNode } from 'react';
 import { cn } from '../../utils/style';
 import { HelperStyle, LabelStyle, ToogleBoxStyle } from './style';
 
@@ -37,14 +37,4 @@ const Toggle = ({ size = 'sm', activated, label, helper, disabled = false, class
 	);
 };
 
-export default memo(
-	Toggle,
-	(prev: ToggleProps, next: ToggleProps) =>
-		prev.size === next.size &&
-		prev.activated === next.activated &&
-		prev.label === next.label &&
-		prev.helper === next.helper &&
-		prev.disabled === next.disabled &&
-		prev.className === next.className &&
-		prev.onChange === next.onChange,
-);
+export default Toggle;

@@ -8,8 +8,9 @@ interface FileInputProps {
     placeholder?: string;
     helper?: ReactNode;
     required?: boolean;
+    disabled?: boolean;
     className?: string;
     onChange: (files: FileList) => void;
 }
-declare const _default: import("react").MemoExoticComponent<({ size, value, buttonName, label, error, placeholder, helper, required, className, onChange, }: FileInputProps) => import("react/jsx-runtime").JSX.Element>;
-export default _default;
+declare const FileInput: ({ size, value, buttonName, label, error, placeholder, helper, required, disabled, className, onChange, }: FileInputProps) => import("react/jsx-runtime").JSX.Element;
+export default FileInput;

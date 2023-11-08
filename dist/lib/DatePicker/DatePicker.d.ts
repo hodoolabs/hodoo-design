@@ -6,8 +6,9 @@ interface DatePickerProps extends DatepickerType {
     error?: string;
     helper?: string;
     required?: boolean;
+    disabled?: boolean;
     className?: string;
     onError?: (error: string) => void;
 }
-declare const _default: import("react").MemoExoticComponent<({ size, label, error, helper, required, className, onError, onChange, ...props }: DatePickerProps) => import("react/jsx-runtime").JSX.Element>;
-export default _default;
+declare const DatePicker: ({ size, label, error, helper, required, disabled, className, onError, onChange, ...props }: DatePickerProps) => import("react/jsx-runtime").JSX.Element;
+export default DatePicker;

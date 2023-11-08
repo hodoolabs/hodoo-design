@@ -1,19 +1,15 @@
 import { cva } from 'class-variance-authority';
-const LabelStyle = cva(['font-medium text-sm mb-2 text-gray-700'], {
-    variants: {
-        isError: {
-            true: ['text-red-700'],
-        },
-    },
-});
 const ToggleStyle = cva(['absolute h-full left-0 pl-4 pr-3 text-gray-500 rounded-l-xl focus:outline-none'], {
     variants: {
         size: {
             lg: ['py-3.5'],
             sm: ['py-2.5'],
         },
-        isError: {
+        error: {
             true: ['text-red-700'],
+        },
+        disabled: {
+            true: ['text-gray-400'],
         },
     },
 });
@@ -23,8 +19,11 @@ const InputStyle = cva(['cursor-pointer w-full px-4 bg-gray-50 text-gray-900 bor
             lg: ['py-3.5 text-base pl-12'],
             sm: ['py-2.5 text-sm pl-11'],
         },
-        isError: {
+        error: {
             true: ['text-red-700 border-red-200 bg-red-50 placeholder-red-400 hover:bg-red-50'],
+        },
+        disabled: {
+            true: ['ring-gray-200 bg-gray-100 text-gray-400 cursor-default'],
         },
     },
 });
@@ -36,11 +35,4 @@ const SkeletonStyle = cva(['w-full bg-gray-50 border rounded-xl'], {
         },
     },
 });
-const ErrorStyle = cva(['font-medium overflow-hidden text-red-600 duration-300 text-sm h-0 pt-0'], {
-    variants: {
-        isError: {
-            true: ['h-7 pt-2'],
-        },
-    },
-});
-export { LabelStyle, ToggleStyle, InputStyle, SkeletonStyle, ErrorStyle };
+export { ToggleStyle, InputStyle, SkeletonStyle };

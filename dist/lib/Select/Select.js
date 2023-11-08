@@ -1,11 +1,14 @@
 'use client';
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { ChevronDownIcon } from '@heroicons/react/24/solid';
-import { memo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import { cn } from '../../utils/style';
-import { ArrowStyle, BlankStyle, ItemStyle, LabelStyle, ListStyle, SelectedStyle } from './style';
-const Select = ({ size = 'lg', items, selected, center = false, label, placeholder, required, className, onClick, onChange, }) => {
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import Helper from '../Helper/Helper';
+import Label from '../Label/Label';
+import { ArrowStyle, BlankStyle, ItemStyle, ListStyle, SelectedStyle } from './style';
+const Select = ({ size = 'lg', items, selected, error, center = false, label, placeholder, helper, disabled = false, required, className, onClick, onChange, onError, }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [direction, setDirection] = useState('down');
     const getLabel = (items, selected) => {
@@ -17,20 +20,20 @@ const Select = ({ size = 'lg', items, selected, center = false, label, placehold
         setIsOpen((state) => !state);
         setDirection(distanceFromBottom > 340 ? 'down' : 'up');
     };
-    return (_jsxs(SelectStyled, { className: `relative flex flex-col ${className}`, onMouseLeave: () => setIsOpen(false), children: [label && (_jsxs("label", { className: cn(LabelStyle({ size })), children: [required && _jsx("span", { className: 'text-red-600', children: "*" }), " ", label] })), _jsx("div", { className: BlankStyle({ direction }) }), _jsxs("button", { type: 'button', onClick: onClick || handleClickSelect, className: cn(SelectedStyle({ size, placeholder: !selected })), children: [selected ? getLabel(items, selected) : placeholder, _jsx(ChevronDownIcon, { className: cn(ArrowStyle({ size })) })] }), isOpen && (_jsx("div", { className: ListStyle({ direction }), children: _jsx("ul", { className: 'flex flex-col p-1', children: items.map((item) => (_jsx("li", { className: cn(ItemStyle({ center })), onClick: () => {
-                            onChange(item.value);
-                            setIsOpen(false);
-                        }, children: item.label }, item.value))) }) }))] }));
+    useEffect(() => {
+        if (!onError)
+            return;
+        onError('');
+    }, [selected]);
+    return (_jsxs(SelectStyled, { className: `flex flex-col ${className}`, onMouseLeave: () => setIsOpen(false), children: [_jsx(Label, { size: size, error: error, label: label, disabled: disabled, required: required }), _jsxs("div", { className: 'relative', children: [_jsxs("button", { type: 'button', onClick: (event) => {
+                            onClick ? onClick() : handleClickSelect(event);
+                            onError && onError('');
+                        }, disabled: disabled, className: cn(SelectedStyle({ size, placeholder: !selected, error: !!error })), children: [selected ? getLabel(items, selected) : placeholder, _jsx(ChevronDownIcon, { className: cn(ArrowStyle({ size })) })] }), _jsx("div", { className: BlankStyle({ direction }) }), isOpen && (_jsx("div", { className: ListStyle({ direction }), children: _jsx("ul", { className: 'flex flex-col p-1', children: items.map((item) => (_jsx("li", { className: cn(ItemStyle({ center })), onClick: () => {
+                                    onChange(item.value);
+                                    setIsOpen(false);
+                                }, children: item.label }, item.value))) }) }))] }), _jsx(Helper, { size: size, error: error, helper: helper, disabled: disabled }), _jsx(ErrorMessage, { size: size, error: error })] }));
 };
-export default memo(Select, (prev, next) => prev.size === next.size &&
-    prev.items === next.items &&
-    prev.selected === next.selected &&
-    prev.center === next.center &&
-    prev.label === next.label &&
-    prev.placeholder === next.placeholder &&
-    prev.className === next.className &&
-    prev.onClick === next.onClick &&
-    prev.onChange === next.onChange);
+export default Select;
 const SelectStyled = styled.div `
 	.scroll-none::-webkit-scrollbar {
 		display: none;

@@ -2,7 +2,6 @@
 
 import { ChevronUpDownIcon } from '@heroicons/react/24/outline';
 import { QuestionMarkCircleIcon } from '@heroicons/react/24/solid';
-import { memo } from 'react';
 import { ColumnDataType, ColumnType } from '../../../types/table';
 import Tooltip from '../../Tooltip/Tooltip';
 
@@ -45,11 +44,4 @@ const Thead = ({ columns, dataSource, sortDatas, onSort }: TheadProps) => {
 	);
 };
 
-export default memo(
-	Thead,
-	(prev: TheadProps, next: TheadProps) =>
-		prev.columns === next.columns &&
-		prev.dataSource === next.dataSource &&
-		prev.sortDatas === next.sortDatas &&
-		prev.onSort === next.onSort
-);
+export default Thead;

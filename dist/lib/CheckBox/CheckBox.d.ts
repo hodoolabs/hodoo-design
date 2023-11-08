@@ -1,4 +1,3 @@
-/// <reference types="react" />
 interface CheckBoxProps {
     checked: boolean;
     label?: string;
@@ -7,5 +6,5 @@ interface CheckBoxProps {
     className?: string;
     onChange: (value: boolean) => void;
 }
-declare const _default: import("react").MemoExoticComponent<({ checked, label, helper, disabled, className, onChange }: CheckBoxProps) => import("react/jsx-runtime").JSX.Element>;
-export default _default;
+declare const CheckBox: ({ checked, label, helper, disabled, className, onChange }: CheckBoxProps) => import("react/jsx-runtime").JSX.Element;
+export default CheckBox;

@@ -1,10 +1,13 @@
 'use client';
 
 import { ChevronDownIcon } from '@heroicons/react/24/solid';
-import { MouseEvent, memo, useEffect, useState } from 'react';
+import { MouseEvent, ReactNode, useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import { cn } from '../../utils/style';
-import { ArrowStyle, BlankStyle, ErrorStyle, ItemStyle, LabelStyle, ListStyle, SelectedStyle } from './style';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import Helper from '../Helper/Helper';
+import Label from '../Label/Label';
+import { ArrowStyle, BlankStyle, ItemStyle, ListStyle, SelectedStyle } from './style';
 
 interface SelectItem {
 	value: string;
@@ -19,6 +22,8 @@ interface SelectProps {
 	center?: boolean;
 	label?: string;
 	placeholder?: string;
+	helper?: ReactNode;
+	disabled?: boolean;
 	required?: boolean;
 	className?: string;
 	onClick?: () => void;
@@ -34,6 +39,8 @@ const Select = ({
 	center = false,
 	label,
 	placeholder,
+	helper,
+	disabled = false,
 	required,
 	className,
 	onClick,
@@ -42,7 +49,6 @@ const Select = ({
 }: SelectProps) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [direction, setDirection] = useState<'down' | 'up'>('down');
-	const isError = !!error;
 
 	const getLabel = (items: SelectItem[], selected: string) => {
 		return items.filter((item) => item.value === selected)[0]?.label;
@@ -63,11 +69,7 @@ const Select = ({
 
 	return (
 		<SelectStyled className={`flex flex-col ${className}`} onMouseLeave={() => setIsOpen(false)}>
-			{label && (
-				<label className={cn(LabelStyle({ size, isError }))}>
-					{required && <span className='text-red-600'>*</span>} {label}
-				</label>
-			)}
+			<Label size={size} error={error} label={label} disabled={disabled} required={required} />
 			<div className='relative'>
 				<button
 					type='button'
@@ -75,7 +77,8 @@ const Select = ({
 						onClick ? onClick() : handleClickSelect(event);
 						onError && onError('');
 					}}
-					className={cn(SelectedStyle({ size, placeholder: !selected, isError }))}
+					disabled={disabled}
+					className={cn(SelectedStyle({ size, placeholder: !selected, error: !!error }))}
 				>
 					{selected ? getLabel(items, selected) : placeholder}
 					<ChevronDownIcon className={cn(ArrowStyle({ size }))} />
@@ -100,26 +103,13 @@ const Select = ({
 					</div>
 				)}
 			</div>
-			<div className={cn(ErrorStyle({ size, isError }))}>{error}</div>
+			<Helper size={size} error={error} helper={helper} disabled={disabled} />
+			<ErrorMessage size={size} error={error} />
 		</SelectStyled>
 	);
 };
 
-export default memo(
-	Select,
-	(prev: SelectProps, next: SelectProps) =>
-		prev.size === next.size &&
-		prev.items === next.items &&
-		prev.selected === next.selected &&
-		prev.error === next.error &&
-		prev.center === next.center &&
-		prev.label === next.label &&
-		prev.placeholder === next.placeholder &&
-		prev.className === next.className &&
-		prev.onClick === next.onClick &&
-		prev.onChange === next.onChange &&
-		prev.onError === next.onError
-);
+export default Select;
 
 const SelectStyled = styled.div`
 	.scroll-none::-webkit-scrollbar {

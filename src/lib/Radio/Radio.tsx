@@ -1,6 +1,5 @@
 'use client';
 
-import { memo } from 'react';
 import { cn } from '../../utils/style';
 import RadioDisabledSvg from './images/RadioDisabledSvg';
 import RadioSvg from './images/RadioSvg';
@@ -36,14 +35,4 @@ const Radio = ({ id, selected, label, helper, disabled = false, className, onCha
 	);
 };
 
-export default memo(
-	Radio,
-	(prev: RadioProps, next: RadioProps) =>
-		prev.id === next.id &&
-		prev.selected === next.selected &&
-		prev.label === next.label &&
-		prev.helper === next.helper &&
-		prev.disabled === next.disabled &&
-		prev.className === next.className &&
-		prev.onChange === next.onChange,
-);
+export default Radio;

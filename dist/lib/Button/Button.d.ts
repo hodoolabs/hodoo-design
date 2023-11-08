@@ -9,5 +9,5 @@ interface ButtonProps {
     className?: string;
     onClick?: () => void;
 }
-declare const _default: import("react").MemoExoticComponent<({ color, size, leftIcon, rightIcon, label, disabled, className, onClick, }: ButtonProps) => import("react/jsx-runtime").JSX.Element>;
-export default _default;
+declare const Button: ({ color, size, leftIcon, rightIcon, label, disabled, className, onClick, }: ButtonProps) => import("react/jsx-runtime").JSX.Element;
+export default Button;

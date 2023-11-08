@@ -1,7 +1,7 @@
-/// <reference types="react" />
 interface IndicatorProps {
     label?: string;
     count?: number;
+    className?: string;
 }
-declare const _default: import("react").MemoExoticComponent<({ label, count }: IndicatorProps) => import("react/jsx-runtime").JSX.Element>;
-export default _default;
+declare const Indicator: ({ label, count, className }: IndicatorProps) => import("react/jsx-runtime").JSX.Element;
+export default Indicator;

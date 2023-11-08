@@ -11,5 +11,5 @@ interface DropdownProps {
     onSelect: (name: string) => void;
     onOpen: (value: boolean) => void;
 }
-declare const _default: import("react").MemoExoticComponent<({ isOpen, list, width, height, position, className, children, onSelect, onOpen, }: DropdownProps) => import("react/jsx-runtime").JSX.Element>;
-export default _default;
+declare const Dropdown: ({ isOpen, list, width, height, position, className, children, onSelect, onOpen, }: DropdownProps) => import("react/jsx-runtime").JSX.Element;
+export default Dropdown;

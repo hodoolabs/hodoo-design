@@ -7,5 +7,5 @@ interface BadgeProps {
     className?: string;
     onClick?: () => void;
 }
-declare const _default: import("react").MemoExoticComponent<({ color, size, leftIcon, label, className, onClick }: BadgeProps) => import("react/jsx-runtime").JSX.Element>;
-export default _default;
+declare const Badge: ({ color, size, leftIcon, label, className, onClick }: BadgeProps) => import("react/jsx-runtime").JSX.Element;
+export default Badge;

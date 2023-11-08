@@ -1,18 +1,5 @@
 import { cva } from 'class-variance-authority';
 
-const LabelStyle = cva(['font-medium text-gray-700 mb-2'], {
-	variants: {
-		size: {
-			lg: ['text-sm'],
-			md: ['text-xs'],
-			sm: ['text-xs'],
-		},
-		isError: {
-			true: ['text-red-700'],
-		},
-	},
-});
-
 const BlankStyle = cva(['absolute w-full h-[8px]'], {
 	variants: {
 		direction: {
@@ -24,7 +11,7 @@ const BlankStyle = cva(['absolute w-full h-[8px]'], {
 
 const SelectedStyle = cva(
 	[
-		'inline-flex w-full items-center justify-between ring-1 ring-gray-300/70 bg-gray-50 text-gray-700 hover:bg-gray-100',
+		'inline-flex w-full items-center justify-between ring-1 ring-gray-300/70 bg-gray-50 text-gray-700 hover:bg-gray-100 disabled:ring-gray-200 disabled:bg-gray-100 disabled:text-gray-400',
 	],
 	{
 		variants: {
@@ -36,11 +23,11 @@ const SelectedStyle = cva(
 			placeholder: {
 				true: ['text-gray-400'],
 			},
-			isError: {
+			error: {
 				true: ['ring-rose-200 bg-red-50 text-red-400 hover:bg-red-50'],
 			},
 		},
-	},
+	}
 );
 
 const ArrowStyle = cva([], {
@@ -64,7 +51,7 @@ const ListStyle = cva(
 				up: ['top-[-8px] translate-y-[-100%]'],
 			},
 		},
-	},
+	}
 );
 
 const ItemStyle = cva(
@@ -74,11 +61,24 @@ const ItemStyle = cva(
 	{
 		variants: {
 			center: {
-				true: [' justify-center'],
+				true: ['justify-center'],
 			},
 		},
-	},
+	}
 );
+
+const HelperStyle = cva(['text-gray-500 font-medium pt-2'], {
+	variants: {
+		size: {
+			lg: ['text-sm'],
+			md: ['text-xs'],
+			sm: ['text-xs'],
+		},
+		disabled: {
+			true: ['text-gray-400'],
+		},
+	},
+});
 
 const ErrorStyle = cva(['font-medium overflow-hidden text-red-600 duration-300'], {
 	variants: {
@@ -94,4 +94,4 @@ const ErrorStyle = cva(['font-medium overflow-hidden text-red-600 duration-300']
 	},
 });
 
-export { ArrowStyle, BlankStyle, ItemStyle, LabelStyle, ListStyle, SelectedStyle, ErrorStyle };
+export { ArrowStyle, BlankStyle, ErrorStyle, HelperStyle, ItemStyle, ListStyle, SelectedStyle };

@@ -1,7 +1,7 @@
 'use client';
 
 import { XMarkIcon } from '@heroicons/react/24/outline';
-import { ReactNode, memo } from 'react';
+import { ReactNode } from 'react';
 import { cn } from '../../utils/style';
 import { BadgeStyle, ButtonStyle, LeftImageStyle, RightImageStyle } from './style';
 
@@ -30,13 +30,4 @@ const Badge = ({ color = 'blue', size = 'sm', leftIcon, label, className, onClic
 	);
 };
 
-export default memo(
-	Badge,
-	(prev: BadgeProps, next: BadgeProps) =>
-		prev.color === next.color &&
-		prev.size === next.size &&
-		prev.leftIcon === next.leftIcon &&
-		prev.label === next.label &&
-		prev.className === next.className &&
-		prev.onClick === next.onClick
-);
+export default Badge;
