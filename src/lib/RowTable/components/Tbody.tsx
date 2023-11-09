@@ -12,7 +12,7 @@ interface TbodyProps {
 const Tbody = ({ columns, sortDatas }: TbodyProps) => {
 	return (
 		<tbody>
-			{sortDatas.map((record, index) => (
+			{sortDatas?.map((record, index) => (
 				<tr
 					key={index}
 					className='flex items-center font-medium border-b border-solid border-b-gray-200 hover:bg-gray-50'
