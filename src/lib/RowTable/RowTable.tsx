@@ -10,9 +10,10 @@ interface RowTableProps {
 	columns: ColumnType<any>;
 	dataSource: any[];
 	minWidth?: number;
+	className?: string;
 }
 
-const RowTable = ({ columns, dataSource, minWidth }: RowTableProps) => {
+const RowTable = ({ columns, dataSource, minWidth, className }: RowTableProps) => {
 	const wrapRef = useRef<HTMLDivElement>(null);
 	const tableRef = useRef<HTMLTableElement>(null);
 	const [sortDatas, setSortDatas] = useState(dataSource);
@@ -49,17 +50,19 @@ const RowTable = ({ columns, dataSource, minWidth }: RowTableProps) => {
 	}, [wrapRef, tableRef]);
 
 	return (
-		<div className='relative flex overflow-x-auto' ref={wrapRef}>
-			<table className='w-full' style={{ minWidth }} ref={tableRef}>
-				<Thead columns={columns} dataSource={dataSource} sortDatas={sortDatas} onSort={handleSortDatas} />
-				<Tbody columns={columns} sortDatas={sortDatas} />
-			</table>
-			{shadow && (
-				<div
-					className='sticky top-0 right-0'
-					style={{ boxShadow: '0 0 60px 30px #fff,0 0 100px 60px rgba(255, 255, 255, 0.5)' }}
-				/>
-			)}
+		<div className={className}>
+			<div className='relative flex overflow-x-auto' ref={wrapRef}>
+				<table className='w-full' style={{ minWidth }} ref={tableRef}>
+					<Thead columns={columns} dataSource={dataSource} sortDatas={sortDatas} onSort={handleSortDatas} />
+					<Tbody columns={columns} sortDatas={sortDatas} />
+				</table>
+				{shadow && (
+					<div
+						className='sticky top-0 right-0'
+						style={{ boxShadow: '0 0 60px 30px #fff,0 0 100px 60px rgba(255, 255, 255, 0.5)' }}
+					/>
+				)}
+			</div>
 		</div>
 	);
 };
