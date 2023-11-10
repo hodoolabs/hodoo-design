@@ -2,7 +2,7 @@ import { cva } from 'class-variance-authority';
 
 const InputStyle = cva(
 	[
-		'block w-full rounded-xl border border-gray-300/70 bg-gray-50 text-gray-900 placeholder-gray-400 font-medium disabled:text-gray-500',
+		'block w-full rounded-xl border border-gray-300/70 bg-gray-50 text-gray-900 placeholder-gray-400 font-medium disabled:text-gray-500 disabled:bg-gray-100',
 	],
 	{
 		variants: {

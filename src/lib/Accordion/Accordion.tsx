@@ -40,8 +40,8 @@ const Accordion = ({ list, path, className, onPush }: AccordionProps) => {
 
 	return (
 		<div className={`text-base font-semibold flex flex-col gap-3 ${className}`}>
-			{list.map((item) => (
-				<div key={item.index}>
+			{list.map((item, index) => (
+				<div key={index}>
 					<div
 						className={cn(MenuStyle({ isCurrentPath: getIsCurrentPath(item.menu.path, path) }))}
 						onClick={() => handleMenuClick(item.index, expandedMenuIndex, item.menu.path, item.subMenus.length)}
@@ -69,9 +69,9 @@ const Accordion = ({ list, path, className, onPush }: AccordionProps) => {
 								})
 							)}
 						>
-							{item.subMenus.map((subItem) => (
+							{item.subMenus.map((subItem, index) => (
 								<div
-									key={subItem.path}
+									key={index}
 									className={cn(SubMenuStyle({ isCurrentPath: getIsCurrentPath(subItem.path, path) }))}
 									onClick={() => onPush(subItem.path)}
 								>
