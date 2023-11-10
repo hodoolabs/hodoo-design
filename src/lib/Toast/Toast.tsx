@@ -1,7 +1,7 @@
 'use client';
 
 import { XMarkIcon } from '@heroicons/react/24/outline';
-import useSetTimeout from '../../hooks/useSetTimeout';
+import { useEffect } from 'react';
 import { ToastStateType } from '../../types/toast';
 import { cn } from '../../utils/style';
 import ToastQuestionSvg from './images/ToastQuestionSvg';
@@ -17,7 +17,13 @@ interface ToastProps {
 const Toast = ({ toastState, closeToast }: ToastProps) => {
 	const { toastingTime, title, description, leftButton, rightButton, position, leftIcon, isClose, isOpen } = toastState;
 
-	useSetTimeout(closeToast, toastingTime);
+	useEffect(() => {
+		if (!toastingTime) return;
+
+		const timer = setTimeout(() => closeToast(), toastingTime);
+
+		return () => clearTimeout(timer);
+	}, [toastingTime]);
 
 	return (
 		<div className={cn(ToastStyle({ isOpen, position }))}>
