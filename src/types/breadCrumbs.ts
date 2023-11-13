@@ -1,7 +1,7 @@
 type BreadCrumbsType = {
 	[key: string]: {
 		label: string;
-		bread_crumbs: {
+		bread_crumbs?: {
 			path: string;
 			label: string;
 		}[];
