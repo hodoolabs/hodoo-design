@@ -2,7 +2,7 @@
 
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
-import { AccordionType } from '../../types/accordion';
+import { AccordionMenuType, AccordionType } from '../../types/accordion';
 import { cn } from '../../utils/style';
 import { ArrowStyle, MenuStyle, SubMenuStyle, SubMenusStyle } from './style';
 
@@ -16,9 +16,9 @@ interface AccordionProps {
 const Accordion = ({ list, path, className, onPush }: AccordionProps) => {
 	const [expandedMenuIndex, setExpanededMenuIndex] = useState(0);
 
-	const handleMenuClick = (index: number, expandedMenuIndex: number, path: string, subMenusLength: number) => {
+	const handleMenuClick = (index: number, expandedMenuIndex: number, path: string, subMenu?: AccordionMenuType[]) => {
 		if (path) onPush(path);
-		if (subMenusLength) setExpanededMenuIndex(index !== expandedMenuIndex ? index : -1);
+		if (!!subMenu) setExpanededMenuIndex(index !== expandedMenuIndex ? index : -1);
 		else setExpanededMenuIndex(index);
 	};
 
@@ -44,7 +44,7 @@ const Accordion = ({ list, path, className, onPush }: AccordionProps) => {
 				<div key={index}>
 					<div
 						className={cn(MenuStyle({ isCurrentPath: getIsCurrentPath(item.menu.path, path) }))}
-						onClick={() => handleMenuClick(item.index, expandedMenuIndex, item.menu.path, item.subMenus.length)}
+						onClick={() => handleMenuClick(item.index, expandedMenuIndex, item.menu.path, item.subMenus)}
 					>
 						<img
 							src={item[getIsCurrentPath(item.menu.path, path) ? 'activeIcon' : 'icon']}
@@ -52,7 +52,7 @@ const Accordion = ({ list, path, className, onPush }: AccordionProps) => {
 							className='w-6 h-6'
 						/>
 						<span>{item.menu.label}</span>
-						{!!item.subMenus.length && (
+						{!!item.subMenus && (
 							<ChevronDownIcon
 								className={cn(
 									ArrowStyle({ isExpanded: getIsExpandedMenu(item.index, expandedMenuIndex, path, item.subMenus) })
@@ -60,7 +60,7 @@ const Accordion = ({ list, path, className, onPush }: AccordionProps) => {
 							/>
 						)}
 					</div>
-					{!!item.subMenus.length && (
+					{!!item.subMenus && (
 						<div
 							className={cn(
 								SubMenusStyle({
