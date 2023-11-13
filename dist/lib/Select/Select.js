@@ -29,7 +29,7 @@ const Select = ({ size = 'lg', items, selected, error, center = false, label, pl
                             onClick ? onClick() : handleClickSelect(event);
                             onError && onError('');
                         }, disabled: disabled, className: cn(SelectedStyle({ size, placeholder: !selected, error: !!error })), children: [selected ? getLabel(items, selected) : placeholder, _jsx(ChevronDownIcon, { className: cn(ArrowStyle({ size })) })] }), _jsx("div", { className: BlankStyle({ direction }) }), isOpen && (_jsx("div", { className: ListStyle({ direction }), children: _jsx("ul", { className: 'flex flex-col p-1', children: items.map((item) => (_jsx("li", { className: cn(ItemStyle({ center })), onClick: () => {
-                                    onChange(item.value);
+                                    onChange && onChange(item.value);
                                     setIsOpen(false);
                                 }, children: item.label }, item.value))) }) }))] }), _jsx(Helper, { size: size, error: error, helper: helper, disabled: disabled }), _jsx(ErrorMessage, { size: size, error: error })] }));
 };

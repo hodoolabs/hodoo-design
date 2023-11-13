@@ -15,7 +15,8 @@ interface ToastProps {
 }
 
 const Toast = ({ toastState, closeToast }: ToastProps) => {
-	const { toastingTime, title, description, leftButton, rightButton, position, leftIcon, isClose, isOpen } = toastState;
+	const { toastingTime, title, description, leftButton, rightButton, position, leftIcon, closeButton, isOpen } =
+		toastState;
 
 	useEffect(() => {
 		if (!toastingTime) return;
@@ -41,7 +42,7 @@ const Toast = ({ toastState, closeToast }: ToastProps) => {
 					<div className='flex items-center text-[15px] font-medium text-white mt-1'>{title}</div>
 					{description && <div className='mt-2 text-sm font-medium text-gray-400'>{description}</div>}
 				</div>
-				{isClose && (
+				{closeButton && (
 					<button
 						className='flex items-center justify-center flex-none w-8 h-8 rounded-lg cursor-pointer hover:bg-gray-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-300'
 						onClick={closeToast}

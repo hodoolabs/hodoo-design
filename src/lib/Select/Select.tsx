@@ -27,7 +27,7 @@ interface SelectProps {
 	required?: boolean;
 	className?: string;
 	onClick?: () => void;
-	onChange: (value: string) => void;
+	onChange?: (value: string) => void;
 	onError?: (error: string) => void;
 }
 
@@ -92,7 +92,7 @@ const Select = ({
 									key={item.value}
 									className={cn(ItemStyle({ center }))}
 									onClick={() => {
-										onChange(item.value);
+										onChange && onChange(item.value);
 										setIsOpen(false);
 									}}
 								>
