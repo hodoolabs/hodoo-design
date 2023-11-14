@@ -50,8 +50,10 @@ const Tooltip = ({ color = 'dark', title, description, isShowArrow = true, child
             setIsHovered(false);
         };
         tooltip === null || tooltip === void 0 ? void 0 : tooltip.addEventListener('scroll', hideTooltipOnScroll);
+        global.window.addEventListener('resize', hideTooltipOnScroll);
         return () => {
             tooltip === null || tooltip === void 0 ? void 0 : tooltip.removeEventListener('scroll', hideTooltipOnScroll);
+            global.window.addEventListener('resize', hideTooltipOnScroll);
         };
     }, [ref]);
     return (_jsxs("div", { className: `relative inline-block ${className}`, ref: ref, onMouseEnter: () => setIsHovered(true), onMouseLeave: () => setIsHovered(false), children: [children, isHovered &&

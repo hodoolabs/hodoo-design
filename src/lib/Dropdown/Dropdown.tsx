@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode, RefObject, memo, useEffect, useRef, useState } from 'react';
+import { ReactNode, RefObject, useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { DropdownType } from '../../types/dropdown';
 
@@ -12,7 +12,7 @@ interface DropdownProps {
 	position?: 'left' | 'right';
 	className?: string;
 	children: ReactNode;
-	onSelect: (name: string) => void;
+	onSelect: (value: string) => void;
 	onOpen: (value: boolean) => void;
 }
 

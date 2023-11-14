@@ -71,9 +71,11 @@ const Tooltip = ({
 		};
 
 		tooltip?.addEventListener('scroll', hideTooltipOnScroll);
+		global.window.addEventListener('resize', hideTooltipOnScroll);
 
 		return () => {
 			tooltip?.removeEventListener('scroll', hideTooltipOnScroll);
+			global.window.addEventListener('resize', hideTooltipOnScroll);
 		};
 	}, [ref]);
 
