@@ -5,10 +5,10 @@ import SpinnerSvg from './images/SpinnerSvg';
 
 interface SpinnerProps {
 	isLoading: boolean;
-	size?: 'small' | 'medium' | 'large';
+	size?: 'sm' | 'md' | 'lg';
 }
 
-const Spinner = ({ isLoading, size = 'medium' }: SpinnerProps) => {
+const Spinner = ({ isLoading, size = 'md' }: SpinnerProps) => {
 	return (
 		<SpinnerStyled
 			className={`fixed top-0 left-0 w-full flex items-center justify-center h-full z-[9999999999] opacity-0 pointer-events-none ${
