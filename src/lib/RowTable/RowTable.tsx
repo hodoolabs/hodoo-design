@@ -18,31 +18,23 @@ const RowTable = ({ columns, dataSource, className }: RowTableProps) => {
 	const [sortStatus, setSortStatus] = useState('basic');
 	const [shadow, setShadow] = useState(false);
 
+	const getSortDatas = (a: any, b: any, dataIndex: any) => {
+		if (typeof a[dataIndex] === 'number' && typeof b[dataIndex] === 'number') {
+			return a[dataIndex] - b[dataIndex];
+		} else {
+			return String(a[dataIndex]).localeCompare(String(b[dataIndex]));
+		}
+	};
+
 	const handleClickSort = (dataIndex: any) => {
 		if (sortStatus === 'basic') {
 			setSortStatus('descend');
-			setSortDatas(
-				[...dataSource].sort((b, a) => {
-					if (typeof a[dataIndex] === 'number' && typeof b[dataIndex] === 'number') {
-						return a[dataIndex] - b[dataIndex];
-					} else {
-						return String(a[dataIndex]).localeCompare(String(b[dataIndex]));
-					}
-				})
-			);
+			setSortDatas([...dataSource].sort((b, a) => getSortDatas(a, b, dataIndex)));
 		}
 
 		if (sortStatus === 'descend') {
 			setSortStatus('ascend');
-			setSortDatas(
-				[...dataSource].sort((a, b) => {
-					if (typeof a[dataIndex] === 'number' && typeof b[dataIndex] === 'number') {
-						return a[dataIndex] - b[dataIndex];
-					} else {
-						return String(a[dataIndex]).localeCompare(String(b[dataIndex]));
-					}
-				})
-			);
+			setSortDatas([...dataSource].sort((a, b) => getSortDatas(a, b, dataIndex)));
 		}
 
 		if (sortStatus === 'ascend') {
