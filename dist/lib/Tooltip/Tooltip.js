@@ -44,16 +44,19 @@ const Tooltip = ({ color = 'dark', title, description, isShowArrow = true, child
     }, []);
     useEffect(() => {
         const tooltip = document.getElementById('tooltip');
+        const table = document.getElementById('table');
         handleSetPosition(ref);
-        const hideTooltipOnScroll = () => {
+        const handlehideTooltip = () => {
             handleSetPosition(ref);
             setIsHovered(false);
         };
-        tooltip === null || tooltip === void 0 ? void 0 : tooltip.addEventListener('scroll', hideTooltipOnScroll);
-        global.window.addEventListener('resize', hideTooltipOnScroll);
+        tooltip === null || tooltip === void 0 ? void 0 : tooltip.addEventListener('scroll', handlehideTooltip);
+        table === null || table === void 0 ? void 0 : table.addEventListener('scroll', handlehideTooltip);
+        global.window.addEventListener('resize', handlehideTooltip);
         return () => {
-            tooltip === null || tooltip === void 0 ? void 0 : tooltip.removeEventListener('scroll', hideTooltipOnScroll);
-            global.window.addEventListener('resize', hideTooltipOnScroll);
+            tooltip === null || tooltip === void 0 ? void 0 : tooltip.removeEventListener('scroll', handlehideTooltip);
+            table === null || table === void 0 ? void 0 : table.removeEventListener('scroll', handlehideTooltip);
+            global.window.addEventListener('resize', handlehideTooltip);
         };
     }, [ref]);
     return (_jsxs("div", { className: `relative inline-block ${className}`, ref: ref, onMouseEnter: () => setIsHovered(true), onMouseLeave: () => setIsHovered(false), children: [children, isHovered &&

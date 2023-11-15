@@ -2,11 +2,11 @@
 
 import { RefObject, useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
-import { TooltipType } from '../../types/tooltip';
 import { cn } from '../../utils/style';
 import VectorDarkSvg from './images/VectorDarkSvg';
 import VectorWhiteSVG from './images/VectorWhiteSvg';
 import { ArrowStyle, DescriptionStyle, TooltipStyle, WrapStyle } from './style';
+import { TooltipType } from '../../types/tooltip';
 
 const Tooltip = ({
 	color = 'dark',
@@ -62,20 +62,23 @@ const Tooltip = ({
 
 	useEffect(() => {
 		const tooltip = document.getElementById('tooltip');
+		const table = document.getElementById('table');
 
 		handleSetPosition(ref);
 
-		const hideTooltipOnScroll = () => {
+		const handlehideTooltip = () => {
 			handleSetPosition(ref);
 			setIsHovered(false);
 		};
 
-		tooltip?.addEventListener('scroll', hideTooltipOnScroll);
-		global.window.addEventListener('resize', hideTooltipOnScroll);
+		tooltip?.addEventListener('scroll', handlehideTooltip);
+		table?.addEventListener('scroll', handlehideTooltip);
+		global.window.addEventListener('resize', handlehideTooltip);
 
 		return () => {
-			tooltip?.removeEventListener('scroll', hideTooltipOnScroll);
-			global.window.addEventListener('resize', hideTooltipOnScroll);
+			tooltip?.removeEventListener('scroll', handlehideTooltip);
+			table?.removeEventListener('scroll', handlehideTooltip);
+			global.window.addEventListener('resize', handlehideTooltip);
 		};
 	}, [ref]);
 

@@ -1,31 +1,54 @@
 'use client';
 
-import { stringify } from 'flatted';
 import { useEffect, useRef, useState } from 'react';
-import { ColumnDataType, ColumnType } from '../../types/table';
 import Tbody from './components/Tbody';
 import Thead from './components/Thead';
+import { ColumnType } from '../../types/table';
 
 interface RowTableProps {
 	columns: ColumnType<any>;
 	dataSource: any[];
-	minWidth?: number;
 	className?: string;
 }
 
-const RowTable = ({ columns, dataSource, minWidth, className }: RowTableProps) => {
+const RowTable = ({ columns, dataSource, className }: RowTableProps) => {
 	const wrapRef = useRef<HTMLDivElement>(null);
 	const tableRef = useRef<HTMLTableElement>(null);
 	const [sortDatas, setSortDatas] = useState(dataSource);
+	const [sortStatus, setSortStatus] = useState('basic');
 	const [shadow, setShadow] = useState(false);
 
-	const handleSortDatas = (
-		dataSource: ColumnDataType[],
-		sortDatas: ColumnDataType[],
-		sorter: (a: ColumnDataType, b: ColumnDataType) => number
-	) => {
-		const isSorted = stringify(dataSource) !== stringify(sortDatas);
-		setSortDatas(isSorted ? dataSource : [...dataSource].sort((a, b) => sorter(a, b)));
+	const handleClickSort = (dataIndex: any) => {
+		if (sortStatus === 'basic') {
+			setSortStatus('descend');
+			setSortDatas(
+				[...dataSource].sort((b, a) => {
+					if (typeof a[dataIndex] === 'number' && typeof b[dataIndex] === 'number') {
+						return a[dataIndex] - b[dataIndex];
+					} else {
+						return String(a[dataIndex]).localeCompare(String(b[dataIndex]));
+					}
+				})
+			);
+		}
+
+		if (sortStatus === 'descend') {
+			setSortStatus('ascend');
+			setSortDatas(
+				[...dataSource].sort((a, b) => {
+					if (typeof a[dataIndex] === 'number' && typeof b[dataIndex] === 'number') {
+						return a[dataIndex] - b[dataIndex];
+					} else {
+						return String(a[dataIndex]).localeCompare(String(b[dataIndex]));
+					}
+				})
+			);
+		}
+
+		if (sortStatus === 'ascend') {
+			setSortStatus('basic');
+			setSortDatas(dataSource);
+		}
 	};
 
 	const handleSetShadow = () => {
@@ -51,9 +74,9 @@ const RowTable = ({ columns, dataSource, minWidth, className }: RowTableProps) =
 
 	return (
 		<div className={className}>
-			<div className='relative flex overflow-x-auto' ref={wrapRef}>
-				<table className='w-full' style={{ minWidth }} ref={tableRef}>
-					<Thead columns={columns} dataSource={dataSource} sortDatas={sortDatas} onSort={handleSortDatas} />
+			<div id='table' className='relative flex overflow-x-auto' ref={wrapRef}>
+				<table className='w-full' ref={tableRef}>
+					<Thead columns={columns} onSort={handleClickSort} />
 					<Tbody columns={columns} sortDatas={sortDatas} />
 				</table>
 				{shadow && (

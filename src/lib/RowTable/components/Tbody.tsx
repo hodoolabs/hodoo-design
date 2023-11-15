@@ -21,7 +21,7 @@ const Tbody = ({ columns, sortDatas }: TbodyProps) => {
 						<td
 							key={index}
 							className={cn(TableBodyStyle({ click: !!column.onClick }))}
-							style={{ width: `${column.width}%`, minWidth: column.fixWidth, maxWidth: column.fixWidth }}
+							style={{ width: `${column.width}%`, minWidth: column.minWidth }}
 							onClick={() => column.onClick && column.onClick(record)}
 						>
 							{column.render ? column.render(record) : record[column.dataIndex]}
