@@ -3,20 +3,16 @@
 import { ChevronDownIcon } from '@heroicons/react/24/solid';
 import { MouseEvent, ReactNode, useEffect, useState } from 'react';
 import { styled } from 'styled-components';
+import { SelectType } from '../../types/select';
 import { cn } from '../../utils/style';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import Helper from '../Helper/Helper';
 import Label from '../Label/Label';
 import { ArrowStyle, BlankStyle, ItemStyle, ListStyle, SelectedStyle } from './style';
 
-interface SelectItem {
-	value: string;
-	label: string;
-}
-
 interface SelectProps {
 	size?: 'sm' | 'md' | 'lg';
-	items: SelectItem[];
+	items: SelectType[];
 	selected: string;
 	error?: string;
 	center?: boolean;
