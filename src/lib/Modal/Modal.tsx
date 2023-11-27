@@ -1,11 +1,9 @@
 'use client';
 
-import { useEffect } from 'react';
+import { ModalStateType } from '../../types/modal';
 import { cn } from '../../utils/style';
 import Header from './Header';
 import { ContentStyle, ModalStyle, WrapStyle } from './style';
-import { ModalStateType } from '../../types/modal';
-import useScrollBlock from '../../hooks/useScrollBlock';
 
 export interface ModalProps {
 	modalState: ModalStateType;
@@ -16,12 +14,6 @@ export interface ModalProps {
 
 const Modal = ({ modalState, modalHistory, goBackModal, closeModal }: ModalProps) => {
 	const { content, size, isOpen } = modalState;
-	const { blockScroll, allowScroll } = useScrollBlock();
-
-	useEffect(() => {
-		if (isOpen) blockScroll();
-		else allowScroll();
-	}, [isOpen]);
 
 	return (
 		<div className={ModalStyle({ isOpen })}>
