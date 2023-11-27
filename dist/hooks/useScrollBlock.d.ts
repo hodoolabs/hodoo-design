@@ -1,5 +1,5 @@
 declare const useScrollBlock: () => {
-    blockScroll: () => void;
-    allowScroll: () => void;
+    blockScroll: () => false | undefined;
+    allowScroll: () => false | undefined;
 };
 export default useScrollBlock;

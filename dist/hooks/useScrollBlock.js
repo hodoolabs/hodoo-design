@@ -1,10 +1,12 @@
 'use client';
 import { useRef } from 'react';
 const useScrollBlock = () => {
-    const isBlock = useRef(false);
-    const html = document.documentElement;
-    const body = document.body;
     const blockScroll = () => {
+        if (!document)
+            return false;
+        const isBlock = useRef(false);
+        const html = document.documentElement;
+        const body = document.body;
         if (!body || !body.style || isBlock.current)
             return;
         const scrollBarWidth = window.innerWidth - html.clientWidth;
@@ -16,6 +18,11 @@ const useScrollBlock = () => {
         isBlock.current = true;
     };
     const allowScroll = () => {
+        if (!document)
+            return false;
+        const isBlock = useRef(false);
+        const html = document.documentElement;
+        const body = document.body;
         if (!body || !body.style || !isBlock.current)
             return;
         html.style.position = '';

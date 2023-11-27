@@ -46,7 +46,7 @@ const Select = ({
 	const [isOpen, setIsOpen] = useState(false);
 	const [direction, setDirection] = useState<'down' | 'up'>('down');
 
-	const getLabel = (items: SelectItem[], selected: string) => {
+	const getLabel = (items: SelectType[], selected: string) => {
 		return items.filter((item) => item.value === selected)[0]?.label;
 	};
 

@@ -1,11 +1,8 @@
 import { ReactNode } from 'react';
-interface SelectItem {
-    value: string;
-    label: string;
-}
+import { SelectType } from '../../types/select';
 interface SelectProps {
     size?: 'sm' | 'md' | 'lg';
-    items: SelectItem[];
+    items: SelectType[];
     selected: string;
     error?: string;
     center?: boolean;
