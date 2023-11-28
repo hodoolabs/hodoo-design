@@ -1,17 +1,18 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { ColumnType, TableCheckBoxType } from '../../types/table';
 import Tbody from './components/Tbody';
 import Thead from './components/Thead';
-import { ColumnType } from '../../types/table';
 
 interface RowTableProps {
 	columns: ColumnType<any>;
 	dataSource: any[];
+	checkBox?: TableCheckBoxType;
 	className?: string;
 }
 
-const RowTable = ({ columns, dataSource, className }: RowTableProps) => {
+const RowTable = ({ columns, dataSource, checkBox, className }: RowTableProps) => {
 	const wrapRef = useRef<HTMLDivElement>(null);
 	const tableRef = useRef<HTMLTableElement>(null);
 	const [sortDatas, setSortDatas] = useState(dataSource);
@@ -68,8 +69,8 @@ const RowTable = ({ columns, dataSource, className }: RowTableProps) => {
 		<div className={className}>
 			<div id='table' className='relative flex overflow-x-auto' ref={wrapRef}>
 				<table className='w-full' ref={tableRef}>
-					<Thead columns={columns} onSort={handleClickSort} />
-					<Tbody columns={columns} sortDatas={sortDatas} />
+					<Thead columns={columns} checkBox={checkBox} sortDatas={sortDatas} onSort={handleClickSort} />
+					<Tbody columns={columns} checkBox={checkBox} sortDatas={sortDatas} />
 				</table>
 				{shadow && (
 					<div

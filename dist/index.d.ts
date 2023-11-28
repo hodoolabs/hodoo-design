@@ -28,6 +28,6 @@ export type { ButtonGroupType } from './types/buttonGroup';
 export type { DropdownType } from './types/dropdown';
 export type { ModalStateType, ModalType } from './types/modal';
 export type { SelectType } from './types/select';
-export type { ColumnDataType, ColumnType } from './types/table';
+export type { ColumnDataType, ColumnType, TableCheckBoxType } from './types/table';
 export type { ToastStateType, ToastType } from './types/toast';
 export type { TooltipType } from './types/tooltip';

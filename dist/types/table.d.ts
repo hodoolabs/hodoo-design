@@ -14,4 +14,9 @@ type ColumnDataType = {
     id: string | number;
     [key: string]: ReactNode;
 };
-export type { ColumnDataType, ColumnType };
+type TableCheckBoxType = {
+    id: string;
+    selected: ReactNode[];
+    onSelect: (keys: ReactNode[]) => void;
+};
+export type { ColumnDataType, ColumnType, TableCheckBoxType };

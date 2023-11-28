@@ -2,18 +2,38 @@
 
 import { ChevronUpDownIcon } from '@heroicons/react/24/outline';
 import { QuestionMarkCircleIcon } from '@heroicons/react/24/solid';
-import { ColumnType } from '../../../types/table';
+import { ReactNode } from 'react';
+import { ColumnType, TableCheckBoxType } from '../../../types/table';
+import CheckBox from '../../CheckBox/CheckBox';
 import Tooltip from '../../Tooltip/Tooltip';
 
 interface TheadProps {
 	columns: ColumnType<any>;
+	checkBox?: TableCheckBoxType;
+	sortDatas: any[];
 	onSort: (dataIndex: any) => void;
 }
 
-const Thead = ({ columns, onSort }: TheadProps) => {
+const Thead = ({ columns, checkBox, sortDatas, onSort }: TheadProps) => {
+	const id = checkBox?.id;
+	const selected = checkBox?.selected;
+	const isAllCheck = selected?.length === sortDatas.length;
+
+	const onSelect = (seleted: ReactNode[]) => {
+		checkBox?.onSelect(seleted);
+	};
+
 	return (
 		<thead className='text-sm font-semibold text-gray-500 border-b border-gray-200 bg-gray-50'>
 			<tr className='flex'>
+				{checkBox && (
+					<th className='p-4 leading-none'>
+						<CheckBox
+							checked={isAllCheck}
+							onChange={() => (isAllCheck ? onSelect([]) : onSelect(sortDatas.map((record) => record[id!])))}
+						/>
+					</th>
+				)}
 				{columns.map((column, index) => (
 					<th
 						key={index}

@@ -3,7 +3,7 @@ import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { useEffect, useRef, useState } from 'react';
 import Tbody from './components/Tbody';
 import Thead from './components/Thead';
-const RowTable = ({ columns, dataSource, className }) => {
+const RowTable = ({ columns, dataSource, checkBox, className }) => {
     const wrapRef = useRef(null);
     const tableRef = useRef(null);
     const [sortDatas, setSortDatas] = useState(dataSource);
@@ -48,6 +48,6 @@ const RowTable = ({ columns, dataSource, className }) => {
             global.window.removeEventListener('resize', handleSetShadow);
         };
     }, [wrapRef, tableRef]);
-    return (_jsx("div", { className: className, children: _jsxs("div", { id: 'table', className: 'relative flex overflow-x-auto', ref: wrapRef, children: [_jsxs("table", { className: 'w-full', ref: tableRef, children: [_jsx(Thead, { columns: columns, onSort: handleClickSort }), _jsx(Tbody, { columns: columns, sortDatas: sortDatas })] }), shadow && (_jsx("div", { className: 'sticky top-0 right-0', style: { boxShadow: '0 0 60px 30px #fff,0 0 100px 60px rgba(255, 255, 255, 0.5)' } }))] }) }));
+    return (_jsx("div", { className: className, children: _jsxs("div", { id: 'table', className: 'relative flex overflow-x-auto', ref: wrapRef, children: [_jsxs("table", { className: 'w-full', ref: tableRef, children: [_jsx(Thead, { columns: columns, checkBox: checkBox, sortDatas: sortDatas, onSort: handleClickSort }), _jsx(Tbody, { columns: columns, checkBox: checkBox, sortDatas: sortDatas })] }), shadow && (_jsx("div", { className: 'sticky top-0 right-0', style: { boxShadow: '0 0 60px 30px #fff,0 0 100px 60px rgba(255, 255, 255, 0.5)' } }))] }) }));
 };
 export default RowTable;
