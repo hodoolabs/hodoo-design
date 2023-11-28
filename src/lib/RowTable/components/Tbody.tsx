@@ -1,10 +1,9 @@
 'use client';
 
-import { ReactNode } from 'react';
 import { ColumnType, TableCheckBoxType } from '../../../types/table';
 import { cn } from '../../../utils/style';
-import { TableBodyStyle } from '../style';
 import CheckBox from '../../CheckBox/CheckBox';
+import { TableBodyStyle } from '../style';
 
 interface TbodyProps {
 	columns: ColumnType<any>;
@@ -16,7 +15,7 @@ const Tbody = ({ columns, checkBox, sortDatas }: TbodyProps) => {
 	const id = checkBox?.id;
 	const selected = checkBox?.selected;
 
-	const onSelect = (seleted: ReactNode[]) => {
+	const onSelect = (seleted: any[]) => {
 		checkBox?.onSelect(seleted);
 	};
 
@@ -30,11 +29,11 @@ const Tbody = ({ columns, checkBox, sortDatas }: TbodyProps) => {
 					{checkBox && (
 						<td className='p-4 leading-none'>
 							<CheckBox
-								checked={selected!.includes(record[id!])}
+								checked={selected!.map((item) => item[id!]).includes(record[id!])}
 								onChange={() => {
-									const select = selected!.includes(record[id!])
-										? selected!.filter((key) => key !== record[id!])
-										: [...selected!, record[id!]];
+									const select = selected!.map((item) => item[id!]).includes(record[id!])
+										? selected!.filter((item) => item[id!] !== record[id!])
+										: [...selected!, record];
 
 									onSelect(select);
 								}}

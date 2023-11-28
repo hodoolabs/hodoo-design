@@ -15,7 +15,6 @@ interface TheadProps {
 }
 
 const Thead = ({ columns, checkBox, sortDatas, onSort }: TheadProps) => {
-	const id = checkBox?.id;
 	const selected = checkBox?.selected;
 	const isAllCheck = selected?.length === sortDatas.length;
 
@@ -28,10 +27,7 @@ const Thead = ({ columns, checkBox, sortDatas, onSort }: TheadProps) => {
 			<tr className='flex'>
 				{checkBox && (
 					<th className='p-4 leading-none'>
-						<CheckBox
-							checked={isAllCheck}
-							onChange={() => (isAllCheck ? onSelect([]) : onSelect(sortDatas.map((record) => record[id!])))}
-						/>
+						<CheckBox checked={isAllCheck} onChange={() => (isAllCheck ? onSelect([]) : onSelect(sortDatas))} />
 					</th>
 				)}
 				{columns.map((column, index) => (
