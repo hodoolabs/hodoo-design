@@ -13,7 +13,7 @@ interface SelectProps {
     required?: boolean;
     className?: string;
     onClick?: () => void;
-    onChange?: (value: string) => void;
+    onChange?: (value: any) => void;
     onError?: (error: string) => void;
 }
 declare const Select: ({ size, items, selected, error, center, label, placeholder, helper, disabled, required, className, onClick, onChange, onError, }: SelectProps) => import("react/jsx-runtime").JSX.Element;

@@ -28,10 +28,10 @@ const Select = ({ size = 'lg', items, selected, error, center = false, label, pl
     return (_jsxs(SelectStyled, { className: `flex flex-col ${className}`, onMouseLeave: () => setIsOpen(false), children: [_jsx(Label, { size: size, error: error, label: label, disabled: disabled, required: required }), _jsxs("div", { className: 'relative', children: [_jsxs("button", { type: 'button', onClick: (event) => {
                             onClick ? onClick() : handleClickSelect(event);
                             onError && onError('');
-                        }, disabled: disabled, className: cn(SelectedStyle({ size, placeholder: !selected, error: !!error })), children: [selected ? getLabel(items, selected) : placeholder, _jsx(ChevronDownIcon, { className: cn(ArrowStyle({ size })) })] }), _jsx("div", { className: BlankStyle({ direction }) }), isOpen && (_jsx("div", { className: ListStyle({ direction }), children: _jsx("ul", { className: 'flex flex-col p-1', children: items.map((item) => (_jsx("li", { className: cn(ItemStyle({ center })), onClick: () => {
+                        }, disabled: disabled, className: cn(SelectedStyle({ size, placeholder: !selected, error: !!error })), children: [selected ? getLabel(items, selected) : placeholder, _jsx(ChevronDownIcon, { className: cn(ArrowStyle({ size })) })] }), _jsx("div", { className: BlankStyle({ direction }) }), isOpen && (_jsx("div", { className: ListStyle({ direction }), children: _jsx("ul", { className: 'flex flex-col p-1', children: items.map((item, index) => (_jsx("li", { className: cn(ItemStyle({ center })), onClick: () => {
                                     onChange && onChange(item.value);
                                     setIsOpen(false);
-                                }, children: item.label }, item.value))) }) }))] }), _jsx(Helper, { size: size, error: error, helper: helper, disabled: disabled }), _jsx(ErrorMessage, { size: size, error: error })] }));
+                                }, children: item.label }, index))) }) }))] }), _jsx(Helper, { size: size, error: error, helper: helper, disabled: disabled }), _jsx(ErrorMessage, { size: size, error: error })] }));
 };
 export default Select;
 const SelectStyled = styled.div `
