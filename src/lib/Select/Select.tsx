@@ -23,7 +23,7 @@ interface SelectProps {
 	required?: boolean;
 	className?: string;
 	onClick?: () => void;
-	onChange?: (value: string) => void;
+	onChange?: (value: any) => void;
 	onError?: (error: string) => void;
 }
 
@@ -83,9 +83,9 @@ const Select = ({
 				{isOpen && (
 					<div className={ListStyle({ direction })}>
 						<ul className='flex flex-col p-1'>
-							{items.map((item) => (
+							{items.map((item, index) => (
 								<li
-									key={item.value}
+									key={index}
 									className={cn(ItemStyle({ center }))}
 									onClick={() => {
 										onChange && onChange(item.value);
