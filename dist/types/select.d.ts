@@ -1,5 +1,5 @@
 type SelectType = {
-    value: string;
+    value: any;
     label: string;
 };
 export type { SelectType };
