@@ -23,7 +23,7 @@ interface SelectProps {
 	required?: boolean;
 	className?: string;
 	onClick?: () => void;
-	onChange?: (value: any) => void;
+	onChange?: (value: string) => void;
 	onError?: (error: string) => void;
 }
 
