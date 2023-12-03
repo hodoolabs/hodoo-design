@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 type ModalType = {
 	modalState: ModalStateType;
 	modalHistory: ModalStateType[];
-	openModal: ({ title, subTitle, content, size }: ModalStateType) => void;
+	openModal: ({ title, subTitle, content, size, isOpen }: ModalStateType) => void;
 	goBackModal: () => void;
 	closeModal: () => void;
 };
