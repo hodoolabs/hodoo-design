@@ -1,5 +1,5 @@
 type ButtonGroupType = {
-	value: any;
+	value: string;
 	label: string;
 };
 
