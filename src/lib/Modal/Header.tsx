@@ -9,7 +9,7 @@ import { SubTitleStyle, TitleStyle } from './style';
 const Header = ({ modalState, modalHistory, goBackModal, closeModal }: ModalProps) => {
 	const { title, subTitle, size } = modalState;
 	return (
-		<div className='flex flex-col bg-white rounded-t-3xl'>
+		<div className='flex flex-col bg-white'>
 			<div className={cn(TitleStyle({ size }))}>
 				<div className='w-8 h-8'>
 					{modalHistory && modalHistory.length > 1 && goBackModal && (

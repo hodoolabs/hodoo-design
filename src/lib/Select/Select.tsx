@@ -66,7 +66,7 @@ const Select = ({
 	return (
 		<SelectStyled className={`flex flex-col ${className}`} onMouseLeave={() => setIsOpen(false)}>
 			<Label size={size} error={error} label={label} disabled={disabled} required={required} />
-			<div className='relative'>
+			<div className='relative w-full'>
 				<button
 					type='button'
 					onClick={(event) => {
