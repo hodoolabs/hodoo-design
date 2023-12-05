@@ -12,7 +12,7 @@ const Illustrations = ({ type = 'noReseults', description }: IllustrationsProps)
 		<div className='flex flex-col gap-4 items-center'>
 			{type === 'list' && <ListSvg />}
 			{type === 'noReseults' && <NoResultsSvg />}
-			<div className='text-center'>{description}</div>
+			<div className='text-center text-slate-500 text-base font-medium'>{description}</div>
 		</div>
 	);
 };
