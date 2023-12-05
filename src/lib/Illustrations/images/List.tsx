@@ -7,8 +7,8 @@ const ListSvg = () => {
 			/>
 			<rect x='34.1334' y='25.6' width='59.7333' height='74.6667' rx='8' fill='white' />
 			<path
-				fill-rule='evenodd'
-				clip-rule='evenodd'
+				fillRule='evenodd'
+				clipRule='evenodd'
 				d='M45.8667 41.6H42.6667V44.8H45.8667V41.6ZM85.3334 41.6H50.1334V44.8H85.3334V41.6ZM50.1334 51.2H85.3334V54.4H50.1334V51.2ZM45.8667 51.2H42.6667V54.4H45.8667V51.2ZM50.1334 60.8H85.3334V64H50.1334V60.8ZM45.8667 60.8H42.6667V64H45.8667V60.8Z'
 				fill='#CDD5E0'
 			/>
