@@ -10,6 +10,7 @@ export { default as Dropdown } from './lib/Dropdown/Dropdown';
 export { default as ErrorMessage } from './lib/ErrorMessage/ErrorMessage';
 export { default as FileInput } from './lib/FileInput/FileInput';
 export { default as Helper } from './lib/Helper/Helper';
+export { default as Illustrations } from './lib/Illustrations/Illustrations';
 export { default as Indicator } from './lib/Indicator/Indicator';
 export { default as Input } from './lib/Input/Input';
 export { default as Label } from './lib/Label/Label';
