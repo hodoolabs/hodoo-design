@@ -7,7 +7,7 @@ const ModalStyle = cva(['fixed top-0 left-0 z-30 w-full h-screen z-[999999999]']
         },
     },
 });
-const WrapStyle = cva(['absolute w-full shadow z-50 bg-white rounded-t-3xl overflow-hidden'], {
+const WrapStyle = cva(['absolute w-full shadow z-50 bg-white rounded-t-3xl'], {
     variants: {
         size: {
             lg: ['max-w-xl top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-b-3xl'],
@@ -37,9 +37,9 @@ const SubTitleStyle = cva(['px-8 pb-6'], {
 const ContentStyle = cva(['bg-white'], {
     variants: {
         size: {
-            lg: ['px-6 pb-6'],
-            sm: ['px-6 pb-6'],
-            mobile: ['px-5 pb-5'],
+            lg: ['px-6 pb-6 rounded-b-3xl'],
+            sm: ['px-6 pb-6 rounded-b-3xl'],
+            mobile: ['px-5 pb-5 rounded-b-none'],
         },
     },
 });
