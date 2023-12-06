@@ -33,7 +33,9 @@ const Header = ({ modalState, modalHistory, goBackModal, closeModal }: ModalProp
 			</div>
 			{subTitle && (
 				<div className={cn(SubTitleStyle({ size }))}>
-					<div className='text-base font-medium leading-relaxed text-center text-gray-500'>{subTitle}</div>
+					<div className='text-base font-medium leading-relaxed text-center text-gray-500 whitespace-pre-line'>
+						{subTitle}
+					</div>
 				</div>
 			)}
 		</div>

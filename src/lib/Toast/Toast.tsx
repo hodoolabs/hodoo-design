@@ -24,7 +24,7 @@ const Toast = ({ toastState, closeToast }: ToastProps) => {
 		const timer = setTimeout(() => closeToast(), toastingTime);
 
 		return () => clearTimeout(timer);
-	}, [toastingTime]);
+	}, [toastingTime, title]);
 
 	return (
 		<div className={cn(ToastStyle({ isOpen, position }))}>

@@ -14,7 +14,7 @@ const ArrowStyle = cva(['w-5 h-5 stroke-gray-500 transform ml-auto'], {
         },
     },
 });
-const SubMenusStyle = cva(['flex flex-col gap-1 duration-300 overflow-hidden'], {
+const SubMenusStyle = cva(['flex flex-col gap-1 overflow-hidden'], {
     variants: {
         height: {
             [2]: ['h-[100px]'],
