@@ -21,7 +21,7 @@ const Label = ({ size = 'lg', value = '', error, label, maxLength, disabled = fa
 				{required && <span className={cn(RequiredStyle({ disabled }))}>*</span>} {label}
 				{maxLength && (
 					<span className={cn(MaxLengthStyle({ error: !!error }))}>
-						{value.length}/{maxLength}
+						{value?.length || 0}/{maxLength}
 					</span>
 				)}
 			</label>

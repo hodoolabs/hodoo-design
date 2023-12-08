@@ -82,7 +82,7 @@ const Select = ({
 				<div className={BlankStyle({ direction })} />
 				{isOpen && (
 					<div className={ListStyle({ direction })}>
-						<ul className='flex flex-col p-1'>
+						<ul className='flex flex-col p-1 m-0'>
 							{items.map((item, index) => (
 								<li
 									key={index}
