@@ -27,7 +27,7 @@ const Tbody = ({ columns, checkBox, sortDatas }: TbodyProps) => {
 					className='flex items-center font-medium border-b border-solid border-b-gray-200 hover:bg-gray-50'
 				>
 					{checkBox && (
-						<td className='p-4 leading-none'>
+						<td className='px-4 flex items-center leading-none'>
 							<CheckBox
 								checked={selected!.map((item) => item[id!]).includes(record[id!])}
 								onChange={() => {
