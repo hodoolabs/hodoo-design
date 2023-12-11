@@ -39,7 +39,9 @@ const Toast = ({ toastState, closeToast }: ToastProps) => {
 					)}
 				</div>
 				<div className='flex flex-col grow'>
-					<div className='flex items-center text-[15px] text-start font-medium text-white mt-1'>{title}</div>
+					<div className='flex items-center text-[15px] leading-normal text-start font-medium text-white mt-1'>
+						{title}
+					</div>
 					{description && <div className='mt-2 text-sm font-medium text-gray-400'>{description}</div>}
 				</div>
 				{closeButton && (
