@@ -6,5 +6,5 @@ interface HelperProps {
     disabled?: boolean;
     required?: boolean;
 }
-declare const Helper: ({ size, error, helper, disabled }: HelperProps) => false | "" | 0 | import("react/jsx-runtime").JSX.Element | null | undefined;
+declare const Helper: ({ size, error, helper, disabled }: HelperProps) => import("react/jsx-runtime").JSX.Element;
 export default Helper;
