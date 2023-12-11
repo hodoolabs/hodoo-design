@@ -8,5 +8,5 @@ interface LabelProps {
     disabled?: boolean;
     required?: boolean;
 }
-declare const Label: ({ size, value, error, label, maxLength, disabled, required }: LabelProps) => false | "" | 0 | import("react/jsx-runtime").JSX.Element | null | undefined;
+declare const Label: ({ size, value, error, label, maxLength, disabled, required }: LabelProps) => import("react/jsx-runtime").JSX.Element;
 export default Label;
