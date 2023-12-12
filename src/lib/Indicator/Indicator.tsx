@@ -6,15 +6,16 @@ import { IndicatorStyle } from './style';
 interface IndicatorProps {
 	label?: string;
 	count?: number;
-	className?: string;
 	isNew?: boolean;
+	className?: string;
 }
 
-const Indicator = ({ label, count, className, isNew }: IndicatorProps) => {
+const Indicator = ({ label, count, isNew, className }: IndicatorProps) => {
 	const getIndicatorText = () => {
 		if (count) return count;
 		if (isNew) return 'N';
 	};
+
 	return (
 		<div className={`inline-flex items-center gap-2 ${className}`}>
 			<div className={cn(IndicatorStyle({ label: !!label, count: typeof count === 'number', isNew }))}>

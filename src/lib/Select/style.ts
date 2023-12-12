@@ -11,7 +11,7 @@ const BlankStyle = cva(['absolute w-full h-[8px]'], {
 
 const SelectedStyle = cva(
 	[
-		'inline-flex w-full items-center justify-between ring-1 ring-gray-300/70 bg-gray-50 text-gray-700 hover:bg-gray-100 disabled:ring-gray-300 disabled:bg-gray-200 disabled:text-gray-400',
+		'inline-flex w-full items-center font-medium justify-between ring-1 ring-gray-300/70 bg-gray-50 text-gray-700 hover:bg-gray-100 disabled:ring-gray-300 disabled:bg-gray-200 disabled:text-gray-400',
 	],
 	{
 		variants: {

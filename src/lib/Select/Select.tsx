@@ -80,7 +80,7 @@ const Select = ({
 					<ChevronDownIcon className={cn(ArrowStyle({ size }))} />
 				</button>
 				<div className={BlankStyle({ direction })} />
-				{isOpen && (
+				{isOpen && items.length && (
 					<div className={ListStyle({ direction })}>
 						<ul className='flex flex-col p-1 m-0'>
 							{items.map((item, index) => (

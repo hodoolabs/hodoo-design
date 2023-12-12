@@ -2,7 +2,7 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { cn } from '../../utils/style';
 import { IndicatorStyle } from './style';
-const Indicator = ({ label, count, className, isNew }) => {
+const Indicator = ({ label, count, isNew, className }) => {
     const getIndicatorText = () => {
         if (count)
             return count;
