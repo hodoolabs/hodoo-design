@@ -108,11 +108,11 @@ const Select = ({
 export default Select;
 
 const SelectStyled = styled.div`
-	.select-scroll-none::-webkit-scrollbar {
+	.scroll-custom::-webkit-scrollbar {
 		width: 11px;
 	}
 
-	.select-scroll-none::-webkit-scrollbar-thumb {
+	.scroll-custom::-webkit-scrollbar-thumb {
 		height: 75%;
 		background: rgba(0, 0, 0, 0.2);
 		background-clip: padding-box;
@@ -120,7 +120,7 @@ const SelectStyled = styled.div`
 		border-radius: 100px;
 	}
 
-	.select-scroll-none::-webkit-scrollbar-track {
+	.scroll-none::-webkit-scrollbar-track {
 		background: transparent;
 	}
 `;
