@@ -27,9 +27,10 @@ const Tbody = ({ columns, checkBox, sortDatas }: TbodyProps) => {
 					className='flex items-center font-medium border-b border-solid border-b-gray-200 hover:bg-gray-50'
 				>
 					{checkBox && (
-						<td className='px-4 leading-[0px]'>
+						<td className='py-3 px-4 leading-[0px]'>
 							<CheckBox
 								checked={selected!.map((item) => item[id!]).includes(record[id!])}
+								className='m-1'
 								onChange={() => {
 									const select = selected!.map((item) => item[id!]).includes(record[id!])
 										? selected!.filter((item) => item[id!] !== record[id!])

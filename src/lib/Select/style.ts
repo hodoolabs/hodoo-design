@@ -42,7 +42,7 @@ const ArrowStyle = cva([], {
 
 const ListStyle = cva(
 	[
-		'absolute z-10 w-full rounded-lg text-base text-gray-700 font-medium bg-white border shadow-border max-h-[300px] overflow-scroll scroll-none',
+		'absolute z-10 w-full rounded-lg text-base text-gray-700 font-medium bg-white border shadow-border max-h-[300px] overflow-auto select-scroll-none',
 	],
 	{
 		variants: {

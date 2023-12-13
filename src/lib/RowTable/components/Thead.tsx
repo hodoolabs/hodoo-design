@@ -26,8 +26,12 @@ const Thead = ({ columns, checkBox, sortDatas, onSort }: TheadProps) => {
 		<thead className='text-sm font-semibold text-gray-500 border-b border-gray-200 bg-gray-50'>
 			<tr className='flex'>
 				{checkBox && (
-					<th className='p-4 leading-[0px]'>
-						<CheckBox checked={isAllCheck} onChange={() => (isAllCheck ? onSelect([]) : onSelect(sortDatas))} />
+					<th className='py-2 px-4 leading-[0px]'>
+						<CheckBox
+							checked={isAllCheck}
+							className='m-1'
+							onChange={() => (isAllCheck ? onSelect([]) : onSelect(sortDatas))}
+						/>
 					</th>
 				)}
 				{columns.map((column, index) => (

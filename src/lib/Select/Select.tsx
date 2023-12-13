@@ -108,11 +108,19 @@ const Select = ({
 export default Select;
 
 const SelectStyled = styled.div`
-	.scroll-none::-webkit-scrollbar {
-		display: none;
+	.select-scroll-none::-webkit-scrollbar {
+		width: 11px;
 	}
 
-	.scroll-none::-webkit-scrollbar-thumb {
-		display: none;
+	.select-scroll-none::-webkit-scrollbar-thumb {
+		height: 75%;
+		background: rgba(0, 0, 0, 0.2);
+		background-clip: padding-box;
+		border: 4px solid transparent;
+		border-radius: 100px;
+	}
+
+	.select-scroll-none::-webkit-scrollbar-track {
+		background: transparent;
 	}
 `;
