@@ -1,7 +1,6 @@
 'use client';
 
 import { ReactNode, useEffect } from 'react';
-import { styled } from 'styled-components';
 import { cn } from '../../utils/style';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import Helper from '../Helper/Helper';
@@ -46,7 +45,7 @@ const TextArea = ({
 	}, [value]);
 
 	return (
-		<TextAreaStyled className={`flex flex-col ${className}`}>
+		<div className={`flex flex-col ${className}`}>
 			<Label
 				size={size}
 				value={value}
@@ -67,18 +66,8 @@ const TextArea = ({
 			/>
 			<Helper size={size} error={error} helper={helper} disabled={disabled} />
 			<ErrorMessage size={size} error={error} />
-		</TextAreaStyled>
+		</div>
 	);
 };
 
 export default TextArea;
-
-const TextAreaStyled = styled.div`
-	.scroll-none::-webkit-scrollbar {
-		display: none;
-	}
-
-	.scroll-none::-webkit-scrollbar-thumb {
-		display: none;
-	}
-`;

@@ -32,3 +32,5 @@ export type { SelectType } from './types/select';
 export type { ColumnDataType, ColumnType, TableCheckBoxType } from './types/table';
 export type { ToastStateType, ToastType } from './types/toast';
 export type { TooltipType } from './types/tooltip';
+declare const _default: "hodooStyle.css";
+export default _default;

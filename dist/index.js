@@ -24,3 +24,4 @@ export { default as TextArea } from './lib/TextArea/TextArea';
 export { default as Toast } from './lib/Toast/Toast';
 export { default as Toggle } from './lib/Toggle/Toggle';
 export { default as Tooltip } from './lib/Tooltip/Tooltip';
+export default 'hodooStyle.css';

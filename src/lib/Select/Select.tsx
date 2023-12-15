@@ -2,7 +2,6 @@
 
 import { ChevronDownIcon } from '@heroicons/react/24/solid';
 import { MouseEvent, ReactNode, useEffect, useState } from 'react';
-import { styled } from 'styled-components';
 import { SelectType } from '../../types/select';
 import { cn } from '../../utils/style';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
@@ -64,7 +63,7 @@ const Select = ({
 	}, [selected]);
 
 	return (
-		<SelectStyled className={`flex flex-col ${className}`} onMouseLeave={() => setIsOpen(false)}>
+		<div className={`flex flex-col ${className}`} onMouseLeave={() => setIsOpen(false)}>
 			<Label size={size} error={error} label={label} disabled={disabled} required={required} />
 			<div className='relative w-full'>
 				<button
@@ -101,26 +100,8 @@ const Select = ({
 			</div>
 			<Helper size={size} error={error} helper={helper} disabled={disabled} />
 			<ErrorMessage size={size} error={error} />
-		</SelectStyled>
+		</div>
 	);
 };
 
 export default Select;
-
-const SelectStyled = styled.div`
-	.scroll-custom::-webkit-scrollbar {
-		width: 11px;
-	}
-
-	.scroll-custom::-webkit-scrollbar-thumb {
-		height: 75%;
-		background: rgba(0, 0, 0, 0.2);
-		background-clip: padding-box;
-		border: 4px solid transparent;
-		border-radius: 100px;
-	}
-
-	.scroll-none::-webkit-scrollbar-track {
-		background: transparent;
-	}
-`;

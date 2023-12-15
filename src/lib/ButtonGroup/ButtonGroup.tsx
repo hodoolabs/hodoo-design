@@ -14,7 +14,7 @@ interface ButtonGroupProps {
 
 const ButtonGroup = ({ buttons, active, className, onActive }: ButtonGroupProps) => {
 	return (
-		<ButtonGroupStyled className={className}>
+		<div className={className}>
 			{buttons.map((button) => (
 				<button
 					key={button.value}
@@ -24,14 +24,8 @@ const ButtonGroup = ({ buttons, active, className, onActive }: ButtonGroupProps)
 					{button.label}
 				</button>
 			))}
-		</ButtonGroupStyled>
+		</div>
 	);
 };
 
 export default ButtonGroup;
-
-const ButtonGroupStyled = styled.div`
-	.active-button + button {
-		border-left: 1px solid #c3ddfd;
-	}
-`;
