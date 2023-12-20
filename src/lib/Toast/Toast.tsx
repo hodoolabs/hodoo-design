@@ -62,7 +62,7 @@ const Toast = ({ toastState, closeToast }: ToastProps) => {
 					{leftButton?.text && (
 						<button
 							onClick={leftButton?.onClick}
-							className='px-4 py-2 text-xs font-semibold text-gray-200 bg-gray-700 rounded-lg grow hover:bg-gray-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-300 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900'
+							className='px-4 py-2 text-xs font-semibold basis-0 text-gray-200 bg-gray-700 rounded-lg grow hover:bg-gray-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-300 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900'
 						>
 							{leftButton?.text}
 						</button>
@@ -70,7 +70,7 @@ const Toast = ({ toastState, closeToast }: ToastProps) => {
 					{rightButton?.text && (
 						<button
 							onClick={rightButton?.onClick}
-							className='px-4 py-2 text-xs font-semibold text-blue-800 bg-blue-200 rounded-lg grow hover:bg-blue-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-300 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900'
+							className='px-4 py-2 text-xs font-semibold basis-0 text-blue-800 bg-blue-200 rounded-lg grow hover:bg-blue-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-300 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900'
 						>
 							{rightButton?.text}
 						</button>
