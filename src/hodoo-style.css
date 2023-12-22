@@ -10,22 +10,22 @@
 		outline: none;
 		vertical-align: top;
 		box-sizing: border-box;
+	}
 
-		&::-webkit-scrollbar {
-			width: 11px;
-		}
+	*::-webkit-scrollbar {
+		width: 11px;
+	}
 
-		&::-webkit-scrollbar-thumb {
-			height: 75%;
-			background: #e3e8ef;
-			background-clip: padding-box;
-			border: 4px solid transparent;
-			border-radius: 100px;
-		}
+	*::-webkit-scrollbar-thumb {
+		height: 75%;
+		background: #e3e8ef;
+		background-clip: padding-box;
+		border: 4px solid transparent;
+		border-radius: 100px;
+	}
 
-		&::-webkit-scrollbar-track {
-			background: transparent;
-		}
+	*::-webkit-scrollbar-track {
+		background: transparent;
 	}
 
 	html {
