@@ -1,6 +1,5 @@
 'use client';
 
-import { styled } from 'styled-components';
 import { ButtonGroupType } from '../../types/buttonGroup';
 import { cn } from '../../utils/style';
 import { ButtonStyle } from './style';

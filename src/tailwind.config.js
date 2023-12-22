@@ -1,10 +1,10 @@
-const content = [
+const Hodoocontent = [
 	'./src/**/*.{js,ts,jsx,tsx,mdx}',
 	'./node_modules/react-tailwindcss-datepicker/dist/index.esm.js',
 	'./node_modules/hodoo-design/**/*.{js,jsx,ts,tsx}',
 ];
 
-const theme = {
+const Hodootheme = {
 	extend: {
 		colors: {
 			gray: {
@@ -139,12 +139,12 @@ const theme = {
 	},
 };
 
-const variants = {
+const Hodoovariants = {
 	extend: {
 		screens: {},
 	},
 };
 
-const darkMode = ['false'];
+const HodoodarkMode = ['false'];
 
-module.exports = { content, theme, variants, darkMode };
+module.exports = { Hodoocontent, Hodootheme, Hodoovariants, HodoodarkMode };

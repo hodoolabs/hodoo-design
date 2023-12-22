@@ -36,6 +36,6 @@ export type { ColumnDataType, ColumnType, TableCheckBoxType } from './types/tabl
 export type { ToastStateType, ToastType } from './types/toast';
 export type { TooltipType } from './types/tooltip';
 
-export { content, theme, variants, darkMode } from './tailwind.config.js';
+export { Hodoocontent, Hodootheme, Hodoovariants, HodoodarkMode } from './tailwind.config.js';
 
 export default 'hodooStyle.css';
