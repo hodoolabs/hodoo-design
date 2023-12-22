@@ -26,6 +26,8 @@ export { default as Toast } from './lib/Toast/Toast';
 export { default as Toggle } from './lib/Toggle/Toggle';
 export { default as Tooltip } from './lib/Tooltip/Tooltip';
 
+export { cn } from './utils/style';
+
 export type { AccordionMenuType, AccordionType } from './types/accordion';
 export type { BreadCrumbsType } from './types/breadCrumbs';
 export type { ButtonGroupType } from './types/buttonGroup';
@@ -35,5 +37,7 @@ export type { SelectType } from './types/select';
 export type { ColumnDataType, ColumnType, TableCheckBoxType } from './types/table';
 export type { ToastStateType, ToastType } from './types/toast';
 export type { TooltipType } from './types/tooltip';
+
+export { content, theme, variants, darkMode } from './tailwind.config.js';
 
 export default 'hodooStyle.css';

@@ -11,7 +11,7 @@ const LabelStyle = cva(['font-medium text-gray-700 mb-2'], {
 			true: ['text-red-700'],
 		},
 		disabled: {
-			true: ['text-slate-500'],
+			true: ['text-gray-500'],
 		},
 	},
 });
@@ -22,7 +22,7 @@ const MaxLengthStyle = cva(['float-right text-gray-500'], {
 			true: ['text-red-700'],
 		},
 		disabled: {
-			true: ['text-slate-500'],
+			true: ['text-gray-500'],
 		},
 	},
 });
