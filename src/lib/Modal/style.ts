@@ -39,7 +39,7 @@ const SubTitleStyle = cva(['px-8 pb-6'], {
 	},
 });
 
-const ContentStyle = cva(['bg-white overflow-hidden'], {
+const ContentStyle = cva(['bg-white'], {
 	variants: {
 		size: {
 			lg: ['px-6 pb-6 rounded-b-3xl'],
