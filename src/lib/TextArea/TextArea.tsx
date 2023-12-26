@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode, useEffect } from 'react';
+import { ChangeEvent, ReactNode, useEffect } from 'react';
 import { cn } from '../../utils/style';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import Helper from '../Helper/Helper';
@@ -44,13 +44,13 @@ const TextArea = ({
 		onError('');
 	}, [value]);
 
-	const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-		if (onChange) {
-			if (maxLength && e.target.value.length > maxLength) {
-				return;
-			}
-			onChange(e.target.value);
-		}
+	const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+		const value = event.target.value;
+
+		if (!onChange) return;
+		if (maxLength && value.length > maxLength) return;
+
+		onChange(value);
 	};
 
 	return (
@@ -70,7 +70,7 @@ const TextArea = ({
 				placeholder={placeholder}
 				disabled={disabled}
 				className={cn(TextareaStyle({ size, error: !!error }))}
-				onChange={(event) => onChange && handleChange(event)}
+				onChange={handleChange}
 				style={{ height }}
 			/>
 			<Helper size={size} error={error} helper={helper} disabled={disabled} />

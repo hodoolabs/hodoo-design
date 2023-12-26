@@ -1,6 +1,6 @@
 'use client';
 
-import { HTMLInputTypeAttribute, ReactNode, useEffect } from 'react';
+import { ChangeEvent, HTMLInputTypeAttribute, ReactNode, useEffect } from 'react';
 import { cn } from '../../utils/style';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import Helper from '../Helper/Helper';
@@ -48,6 +48,15 @@ const Input = ({
 		onError('');
 	}, [value]);
 
+	const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+		const value = event.target.value;
+
+		if (!onChange) return;
+		if (maxLength && value.length > maxLength) return;
+
+		onChange(value);
+	};
+
 	return (
 		<div className={`flex flex-col ${className}`}>
 			<Label
@@ -67,7 +76,7 @@ const Input = ({
 				disabled={disabled}
 				className={cn(InputStyle({ size, error: !!error }))}
 				onBlur={(event) => onBlur && onBlur(event.target.value)}
-				onChange={(event) => onChange && onChange(event.target.value)}
+				onChange={handleChange}
 				onKeyDown={(event) => event.key === 'Enter' && onEnter && onEnter()}
 			/>
 			<Helper size={size} error={error} helper={helper} disabled={disabled} />
