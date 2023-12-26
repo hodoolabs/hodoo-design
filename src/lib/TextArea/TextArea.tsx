@@ -44,6 +44,15 @@ const TextArea = ({
 		onError('');
 	}, [value]);
 
+	const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+		if (onChange) {
+			if (maxLength && e.target.value.length > maxLength) {
+				return;
+			}
+			onChange(e.target.value);
+		}
+	};
+
 	return (
 		<div className={`flex flex-col ${className}`}>
 			<Label
@@ -61,7 +70,7 @@ const TextArea = ({
 				placeholder={placeholder}
 				disabled={disabled}
 				className={cn(TextareaStyle({ size, error: !!error }))}
-				onChange={(event) => onChange && onChange(event.target.value)}
+				onChange={(event) => onChange && handleChange(event)}
 				style={{ height }}
 			/>
 			<Helper size={size} error={error} helper={helper} disabled={disabled} />
