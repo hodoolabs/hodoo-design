@@ -8,6 +8,7 @@ const ButtonStyle = cva(
 		variants: {
 			active: {
 				true: ['text-blue-600 bg-blue-100 border-blue-200 active-button hover:bg-blue-100'],
+				false: ['disabled:text-gray-400 disabled:bg-gray-200 disabled:border-gray-300/70'],
 			},
 		},
 	}

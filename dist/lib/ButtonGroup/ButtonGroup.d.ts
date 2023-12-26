@@ -1,9 +1,17 @@
+import { ReactNode } from 'react';
 import { ButtonGroupType } from '../../types/buttonGroup';
 interface ButtonGroupProps {
-    buttons: ButtonGroupType[];
+    type?: 'primary' | 'secondary';
     active: string;
+    error?: string;
+    buttons: ButtonGroupType[];
+    label?: ReactNode;
+    helper?: ReactNode;
+    disabled?: boolean;
+    required?: boolean;
     className?: string;
-    onActive: (value: string) => void;
+    onActive: (active: string) => void;
+    onError?: (error: string) => void;
 }
-declare const ButtonGroup: ({ buttons, active, className, onActive }: ButtonGroupProps) => import("react/jsx-runtime").JSX.Element;
+declare const ButtonGroup: ({ type, active, error, buttons, label, helper, disabled, required, className, onActive, onError, }: ButtonGroupProps) => import("react/jsx-runtime").JSX.Element;
 export default ButtonGroup;

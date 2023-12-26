@@ -59,7 +59,7 @@
 	}
 
 	.active-button + button {
-		border-left: 1px solid #c3ddfd;
+		border-left: 1px solid #c3ddfd !important;
 	}
 }
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { ButtonGroupType } from '../../types/buttonGroup';
 import { cn } from '../../utils/style';
 import Button from '../Button/Button';
@@ -10,7 +10,7 @@ import Label from '../Label/Label';
 import { ButtonStyle } from './style';
 
 interface ButtonGroupProps {
-	type: 'primary' | 'secondary';
+	type?: 'primary' | 'secondary';
 	active: string;
 	error?: string;
 	buttons: ButtonGroupType[];
@@ -36,6 +36,12 @@ const ButtonGroup = ({
 	onActive,
 	onError,
 }: ButtonGroupProps) => {
+	useEffect(() => {
+		if (!onError) return;
+
+		onError('');
+	}, [active]);
+
 	return (
 		<div className={`flex flex-col ${className}`}>
 			<Label error={error} label={label} disabled={disabled} required={required} />
@@ -44,6 +50,7 @@ const ButtonGroup = ({
 					{buttons.map((button) => (
 						<button
 							key={button.value}
+							disabled={disabled}
 							className={cn(ButtonStyle({ active: active === button.value }))}
 							onClick={() => onActive(button.value)}
 						>
