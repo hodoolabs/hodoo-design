@@ -129,13 +129,6 @@ const Hodootheme = {
                 50: '#FDF2F8',
             },
         },
-        screens: {
-            tablet: { max: '1280px' },
-            mobile: { min: '0px', max: '640px' },
-            lg: '',
-            md: '',
-            sm: '',
-        },
     },
 };
 const Hodoovariants = {

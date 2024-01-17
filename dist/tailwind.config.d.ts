@@ -124,25 +124,11 @@ export namespace Hodootheme {
                 50: string;
             };
         }
-        namespace screens {
-            namespace tablet {
-                let max: string;
-            }
-            namespace mobile {
-                export let min: string;
-                let max_1: string;
-                export { max_1 as max };
-            }
-            let lg: string;
-            let md: string;
-            let sm: string;
-        }
     }
 }
 export namespace Hodoovariants {
     export namespace extend_1 {
-        let screens_1: {};
-        export { screens_1 as screens };
+        let screens: {};
     }
     export { extend_1 as extend };
 }
