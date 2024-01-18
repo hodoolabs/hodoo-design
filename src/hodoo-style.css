@@ -63,6 +63,27 @@
 	}
 }
 
+@layer components {
+	.pc {
+		@apply block tablet:hidden;
+	}
+	.tablet {
+		@apply hidden tablet:block mobile:hidden;
+	}
+	.mobile {
+		@apply hidden mobile:block;
+	}
+	.pc-tablet {
+		@apply block mobile:hidden;
+	}
+	.pc-mobile {
+		@apply block tablet:hidden mobile:block;
+	}
+	.tablet-mobile {
+		@apply hidden tablet:block;
+	}
+}
+
 @layer utilities {
 	.scroll-none::-webkit-scrollbar {
 		display: none;
