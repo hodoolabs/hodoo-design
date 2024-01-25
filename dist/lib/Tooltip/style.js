@@ -17,7 +17,7 @@ const WrapStyle = cva(['relative inline-block px-3 py-2 text-sm font-medium roun
         },
     },
 });
-const DescriptionStyle = cva(['mt-0.5'], {
+const DescriptionStyle = cva(['mt-0.5 whitespace-pre-line'], {
     variants: {
         color: {
             dark: ['text-gray-400'],

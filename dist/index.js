@@ -24,5 +24,5 @@ export { default as TextArea } from './lib/TextArea/TextArea';
 export { default as Toast } from './lib/Toast/Toast';
 export { default as Toggle } from './lib/Toggle/Toggle';
 export { default as Tooltip } from './lib/Tooltip/Tooltip';
-export { Hodoocontent, Hodootheme, Hodoovariants, HodoodarkMode } from './tailwind.config.js';
+export { HodooContent, HodooTheme, HodooVariants, HodooDarkMode } from './tailwind.config.js';
 export default 'hodooStyle.css';

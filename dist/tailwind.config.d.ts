@@ -1,5 +1,5 @@
-export const Hodoocontent: string[];
-export namespace Hodootheme {
+export const HodooContent: string[];
+export namespace HodooTheme {
     namespace extend {
         namespace colors {
             let gray: {
@@ -126,10 +126,10 @@ export namespace Hodootheme {
         }
     }
 }
-export namespace Hodoovariants {
+export namespace HodooVariants {
     export namespace extend_1 {
         let screens: {};
     }
     export { extend_1 as extend };
 }
-export const HodoodarkMode: string[];
+export const HodooDarkMode: string[];
