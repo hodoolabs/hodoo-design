@@ -46,20 +46,22 @@ const Tooltip = ({ color = 'dark', title, description, isShowArrow = true, child
         const tooltip = document.getElementById('tooltip');
         const table = document.getElementById('table');
         handleSetPosition(ref);
-        const handlehideTooltip = () => {
+        const handleHideTooltip = () => {
             handleSetPosition(ref);
             setIsHovered(false);
         };
-        tooltip === null || tooltip === void 0 ? void 0 : tooltip.addEventListener('scroll', handlehideTooltip);
-        table === null || table === void 0 ? void 0 : table.addEventListener('scroll', handlehideTooltip);
-        global.window.addEventListener('resize', handlehideTooltip);
+        tooltip === null || tooltip === void 0 ? void 0 : tooltip.addEventListener('scroll', handleHideTooltip);
+        table === null || table === void 0 ? void 0 : table.addEventListener('scroll', handleHideTooltip);
+        global.window.addEventListener('scroll', handleHideTooltip);
+        global.window.addEventListener('resize', handleHideTooltip);
         return () => {
-            tooltip === null || tooltip === void 0 ? void 0 : tooltip.removeEventListener('scroll', handlehideTooltip);
-            table === null || table === void 0 ? void 0 : table.removeEventListener('scroll', handlehideTooltip);
-            global.window.addEventListener('resize', handlehideTooltip);
+            tooltip === null || tooltip === void 0 ? void 0 : tooltip.removeEventListener('scroll', handleHideTooltip);
+            table === null || table === void 0 ? void 0 : table.removeEventListener('scroll', handleHideTooltip);
+            global.window.addEventListener('scroll', handleHideTooltip);
+            global.window.addEventListener('resize', handleHideTooltip);
         };
     }, [ref]);
-    return (_jsxs("div", { className: `relative inline-block ${className}`, ref: ref, onMouseEnter: () => setIsHovered(true), onMouseLeave: () => setIsHovered(false), children: [children, isHovered &&
+    return (_jsxs("div", { className: `relative inline-block ${className}`, ref: ref, onMouseEnter: () => setIsHovered(true), onMouseLeave: () => setIsHovered(false), children: [_jsx("div", { className: 'cursor-pointer', children: children }), isHovered &&
                 element &&
                 ReactDOM.createPortal(_jsx("div", { className: cn(TooltipStyle({ position })), style: { top, left }, children: _jsxs("div", { className: `${cn(WrapStyle({ color }))}`, children: [_jsx("div", { children: title }), _jsx("div", { className: cn(DescriptionStyle({ color })), children: description }), isShowArrow && (_jsx("div", { className: cn(ArrowStyle({ position })), children: color === 'white' ? _jsx(VectorWhiteSVG, {}) : _jsx(VectorDarkSvg, {}) }))] }) }), element)] }));
 };
