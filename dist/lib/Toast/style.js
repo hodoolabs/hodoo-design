@@ -14,4 +14,12 @@ const ToastStyle = cva([
         },
     },
 });
-export { ToastStyle };
+const ButtonWrapStyle = cva(['flex justify-center gap-2 mt-3 '], {
+    variants: {
+        grow: {
+            true: ['mx-0 w-full'],
+            false: ['w-[200px] mx-auto'],
+        },
+    },
+});
+export { ToastStyle, ButtonWrapStyle };

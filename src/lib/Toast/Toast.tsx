@@ -2,12 +2,12 @@
 
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { useEffect } from 'react';
-import { ToastStateType } from '../../types/toast';
 import { cn } from '../../utils/style';
 import ToastQuestionSvg from './images/ToastQuestionSvg';
 import ToastSuccessSvg from './images/ToastSuccessSvg';
 import ToastWarningSvg from './images/ToastWarningSvg';
-import { ToastStyle } from './style';
+import { ButtonWrapStyle, ToastStyle } from './style';
+import { ToastStateType } from '../../types/toast';
 
 interface ToastProps {
 	toastState: ToastStateType;
@@ -29,15 +29,17 @@ const Toast = ({ toastState, closeToast }: ToastProps) => {
 	return (
 		<div className={cn(ToastStyle({ isOpen, position }))}>
 			<div className='flex gap-3'>
-				<div className='w-8 h-8 rounded-lg'>
-					{leftIcon === 'question' ? (
-						<ToastQuestionSvg />
-					) : leftIcon === 'success' ? (
-						<ToastSuccessSvg />
-					) : (
-						leftIcon === 'warning' && <ToastWarningSvg />
-					)}
-				</div>
+				{leftIcon && (
+					<div className='w-8 h-8 rounded-lg'>
+						{leftIcon === 'question' ? (
+							<ToastQuestionSvg />
+						) : leftIcon === 'success' ? (
+							<ToastSuccessSvg />
+						) : (
+							leftIcon === 'warning' && <ToastWarningSvg />
+						)}
+					</div>
+				)}
 				<div className='flex flex-col grow'>
 					<div className='flex items-center text-[15px] leading-normal text-start font-medium text-white mt-1'>
 						{title}
@@ -54,7 +56,7 @@ const Toast = ({ toastState, closeToast }: ToastProps) => {
 				)}
 			</div>
 			{(leftButton?.text || rightButton?.text) && (
-				<div className='flex justify-center gap-2 mt-3 w-[200px] ml-auto mr-auto'>
+				<div className={cn(ButtonWrapStyle({ grow: !leftIcon && !closeButton }))}>
 					{leftButton?.text && (
 						<button
 							onClick={leftButton?.onClick}
