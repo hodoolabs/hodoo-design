@@ -82,6 +82,34 @@
 	.tablet-mobile {
 		@apply hidden tablet:block;
 	}
+
+	.h1 {
+		@apply text-6xl font-extrabold leading-[82.50px] duration-300 tablet:text-5xl tablet:leading-[66px] mobile:text-4xl mobile:leading-[49.50px];
+	}
+
+	.h2 {
+		@apply text-5xl font-bold leading-[66px] duration-300 tablet:text-4xl tablet:leading-[49.50px] mobile:text-3xl mobile:leading-[41.25px];
+	}
+
+	.h3 {
+		@apply text-4xl font-bold leading-[49.50px] duration-300 tablet:text-3xl tablet:leading-[41.25px] mobile:text-2xl mobile:leading-[33px];
+	}
+
+	.title1 {
+		@apply text-2xl font-bold leading-[33px] duration-300 mobile:text-xl mobile:leading-7;
+	}
+
+	.title2 {
+		@apply text-xl font-bold leading-7 duration-300 mobile:text-lg mobile:leading-normal;
+	}
+
+	.body1 {
+		@apply text-2xl font-medium leading-[39px] duration-300 mobile:text-xl mobile:leading-[32.5px];
+	}
+
+	.body2 {
+		@apply text-xl font-medium leading-[32.5px] duration-300 mobile:text-lg mobile:leading-[29.25px];
+	}
 }
 
 @layer utilities {
