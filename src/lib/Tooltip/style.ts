@@ -1,6 +1,6 @@
 import { cva } from 'class-variance-authority';
 
-const TooltipStyle = cva(['absolute w-max'], {
+const TooltipStyle = cva(['fixed w-max'], {
 	variants: {
 		position: {
 			top: ['-translate-x-1/2 -translate-y-full'],

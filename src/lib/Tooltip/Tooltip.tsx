@@ -2,11 +2,11 @@
 
 import { RefObject, useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
+import { TooltipType } from '../../types/tooltip';
 import { cn } from '../../utils/style';
 import VectorDarkSvg from './images/VectorDarkSvg';
 import VectorWhiteSVG from './images/VectorWhiteSvg';
 import { ArrowStyle, DescriptionStyle, TooltipStyle, WrapStyle } from './style';
-import { TooltipType } from '../../types/tooltip';
 
 const Tooltip = ({
 	color = 'dark',
@@ -66,19 +66,21 @@ const Tooltip = ({
 
 		handleSetPosition(ref);
 
-		const handlehideTooltip = () => {
+		const handleHideTooltip = () => {
 			handleSetPosition(ref);
 			setIsHovered(false);
 		};
 
-		tooltip?.addEventListener('scroll', handlehideTooltip);
-		table?.addEventListener('scroll', handlehideTooltip);
-		global.window.addEventListener('resize', handlehideTooltip);
+		tooltip?.addEventListener('scroll', handleHideTooltip);
+		table?.addEventListener('scroll', handleHideTooltip);
+		global.window.addEventListener('scroll', handleHideTooltip);
+		global.window.addEventListener('resize', handleHideTooltip);
 
 		return () => {
-			tooltip?.removeEventListener('scroll', handlehideTooltip);
-			table?.removeEventListener('scroll', handlehideTooltip);
-			global.window.addEventListener('resize', handlehideTooltip);
+			tooltip?.removeEventListener('scroll', handleHideTooltip);
+			table?.removeEventListener('scroll', handleHideTooltip);
+			global.window.addEventListener('scroll', handleHideTooltip);
+			global.window.addEventListener('resize', handleHideTooltip);
 		};
 	}, [ref]);
 
@@ -89,7 +91,7 @@ const Tooltip = ({
 			onMouseEnter={() => setIsHovered(true)}
 			onMouseLeave={() => setIsHovered(false)}
 		>
-			{children}
+			<div className='cursor-pointer'>{children}</div>
 			{isHovered &&
 				element &&
 				ReactDOM.createPortal(
