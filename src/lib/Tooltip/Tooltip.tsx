@@ -1,12 +1,13 @@
 'use client';
 
+import { throttle } from 'lodash';
 import { RefObject, useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
-import { TooltipType } from '../../types/tooltip';
 import { cn } from '../../utils/style';
 import VectorDarkSvg from './images/VectorDarkSvg';
 import VectorWhiteSVG from './images/VectorWhiteSvg';
 import { ArrowStyle, DescriptionStyle, TooltipStyle, WrapStyle } from './style';
+import { TooltipType } from '../../types/tooltip';
 
 const Tooltip = ({
 	color = 'dark',
@@ -64,23 +65,26 @@ const Tooltip = ({
 		const tooltip = document.getElementById('tooltip');
 		const table = document.getElementById('table');
 
-		handleSetPosition(ref);
-
-		const handleHideTooltip = () => {
+		const handleSetTooltip = throttle(() => {
 			handleSetPosition(ref);
+		}, 500);
+
+		const handleHideTooltip = throttle(() => {
 			setIsHovered(false);
-		};
+		}, 500);
 
 		tooltip?.addEventListener('scroll', handleHideTooltip);
 		table?.addEventListener('scroll', handleHideTooltip);
 		global.window.addEventListener('scroll', handleHideTooltip);
-		global.window.addEventListener('resize', handleHideTooltip);
+		global.window.addEventListener('click', handleHideTooltip);
+		global.window.addEventListener('mouseover', handleSetTooltip);
 
 		return () => {
 			tooltip?.removeEventListener('scroll', handleHideTooltip);
 			table?.removeEventListener('scroll', handleHideTooltip);
-			global.window.addEventListener('scroll', handleHideTooltip);
-			global.window.addEventListener('resize', handleHideTooltip);
+			global.window.removeEventListener('scroll', handleHideTooltip);
+			global.window.removeEventListener('click', handleHideTooltip);
+			global.window.removeEventListener('mouseover', handleSetTooltip);
 		};
 	}, [ref]);
 

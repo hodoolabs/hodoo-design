@@ -1,5 +1,6 @@
 'use client';
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { throttle } from 'lodash';
 import { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { cn } from '../../utils/style';
@@ -45,20 +46,23 @@ const Tooltip = ({ color = 'dark', title, description, isShowArrow = true, child
     useEffect(() => {
         const tooltip = document.getElementById('tooltip');
         const table = document.getElementById('table');
-        handleSetPosition(ref);
-        const handleHideTooltip = () => {
+        const handleSetTooltip = throttle(() => {
             handleSetPosition(ref);
+        }, 500);
+        const handleHideTooltip = throttle(() => {
             setIsHovered(false);
-        };
+        }, 500);
         tooltip === null || tooltip === void 0 ? void 0 : tooltip.addEventListener('scroll', handleHideTooltip);
         table === null || table === void 0 ? void 0 : table.addEventListener('scroll', handleHideTooltip);
         global.window.addEventListener('scroll', handleHideTooltip);
-        global.window.addEventListener('resize', handleHideTooltip);
+        global.window.addEventListener('click', handleHideTooltip);
+        global.window.addEventListener('mouseover', handleSetTooltip);
         return () => {
             tooltip === null || tooltip === void 0 ? void 0 : tooltip.removeEventListener('scroll', handleHideTooltip);
             table === null || table === void 0 ? void 0 : table.removeEventListener('scroll', handleHideTooltip);
-            global.window.addEventListener('scroll', handleHideTooltip);
-            global.window.addEventListener('resize', handleHideTooltip);
+            global.window.removeEventListener('scroll', handleHideTooltip);
+            global.window.removeEventListener('click', handleHideTooltip);
+            global.window.removeEventListener('mouseover', handleSetTooltip);
         };
     }, [ref]);
     return (_jsxs("div", { className: `relative inline-block ${className}`, ref: ref, onMouseEnter: () => setIsHovered(true), onMouseLeave: () => setIsHovered(false), children: [_jsx("div", { className: 'cursor-pointer', children: children }), isHovered &&
