@@ -101,7 +101,7 @@ const Tooltip = ({
 				ReactDOM.createPortal(
 					<div className={cn(TooltipStyle({ position }))} style={{ top, left }}>
 						<div className={`${cn(WrapStyle({ color }))}`}>
-							<div className='whitespace-pre-lin'>{title}</div>
+							<div className='text-center whitespace-pre-line'>{title}</div>
 							<div className={cn(DescriptionStyle({ color }))}>{description}</div>
 							{isShowArrow && (
 								<div className={cn(ArrowStyle({ position }))}>
