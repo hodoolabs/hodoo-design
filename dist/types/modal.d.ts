@@ -10,7 +10,8 @@ type ModalStateType = {
     title: string;
     subTitle?: ReactNode;
     content: ReactNode;
-    size?: 'lg' | 'sm' | 'mobile';
+    size?: ModalSizeType;
     isOpen?: boolean;
 };
-export type { ModalStateType, ModalType };
+type ModalSizeType = 'lg' | 'sm' | 'mobile';
+export type { ModalStateType, ModalType, ModalSizeType };

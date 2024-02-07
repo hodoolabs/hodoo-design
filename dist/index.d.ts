@@ -27,7 +27,7 @@ export type { AccordionMenuType, AccordionType } from './types/accordion';
 export type { BreadCrumbsType } from './types/breadCrumbs';
 export type { ButtonGroupType } from './types/buttonGroup';
 export type { DropdownType } from './types/dropdown';
-export type { ModalStateType, ModalType } from './types/modal';
+export type { ModalStateType, ModalType, ModalSizeType } from './types/modal';
 export type { SelectType } from './types/select';
 export type { ColumnDataType, ColumnType, TableCheckBoxType } from './types/table';
 export type { ToastStateType, ToastType } from './types/toast';
