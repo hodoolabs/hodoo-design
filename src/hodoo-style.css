@@ -14,9 +14,11 @@
 
 	*::-webkit-scrollbar {
 		width: 11px;
+		height: 11px;
 	}
 
 	*::-webkit-scrollbar-thumb {
+		width: 75%;
 		height: 75%;
 		background: #e3e8ef;
 		background-clip: padding-box;
