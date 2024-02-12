@@ -15,8 +15,8 @@ const Tbody = ({ columns, checkBox, sortDatas }: TbodyProps) => {
 	const id = checkBox?.id;
 	const selected = checkBox?.selected;
 
-	const onSelect = (seleted: any[]) => {
-		checkBox?.onSelect(seleted);
+	const onSelect = (selected: any[]) => {
+		checkBox?.onSelect(selected);
 	};
 
 	return (

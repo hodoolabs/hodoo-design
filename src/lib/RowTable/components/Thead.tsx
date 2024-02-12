@@ -18,8 +18,8 @@ const Thead = ({ columns, checkBox, sortDatas, onSort }: TheadProps) => {
 	const selected = checkBox?.selected;
 	const isAllCheck = selected?.length === sortDatas.length;
 
-	const onSelect = (seleted: ReactNode[]) => {
-		checkBox?.onSelect(seleted);
+	const onSelect = (selected: ReactNode[]) => {
+		checkBox?.onSelect(selected);
 	};
 
 	return (

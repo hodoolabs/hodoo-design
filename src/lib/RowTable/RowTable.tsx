@@ -1,9 +1,9 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { ColumnType, TableCheckBoxType } from '../../types/table';
 import Tbody from './components/Tbody';
 import Thead from './components/Thead';
+import { ColumnType, TableCheckBoxType } from '../../types/table';
 
 interface RowTableProps {
 	columns: ColumnType<any>;
@@ -46,7 +46,11 @@ const RowTable = ({ columns, dataSource, checkBox, className }: RowTableProps) =
 
 	const handleSetShadow = () => {
 		if (!wrapRef.current || !tableRef.current) return;
-		setShadow(wrapRef.current.offsetWidth < tableRef.current.offsetWidth);
+
+		const isEndScroll = wrapRef.current.offsetWidth + wrapRef.current.scrollLeft === wrapRef.current.scrollWidth;
+		const isScroll = wrapRef.current.offsetWidth < tableRef.current.offsetWidth;
+
+		setShadow(isScroll && !isEndScroll);
 	};
 
 	useEffect(() => {
@@ -59,26 +63,27 @@ const RowTable = ({ columns, dataSource, checkBox, className }: RowTableProps) =
 		handleSetShadow();
 
 		global.window.addEventListener('resize', handleSetShadow);
+		wrapRef.current.addEventListener('scroll', handleSetShadow);
 
 		return () => {
 			global.window.removeEventListener('resize', handleSetShadow);
+			wrapRef.current?.removeEventListener('scroll', handleSetShadow);
 		};
 	}, [wrapRef, tableRef]);
 
 	return (
-		<div className={className}>
+		<div className={`relative ${className}`}>
 			<div id='table' className='relative flex overflow-x-auto' ref={wrapRef}>
 				<table className='w-full' ref={tableRef}>
 					<Thead columns={columns} checkBox={checkBox} sortDatas={sortDatas} onSort={handleClickSort} />
 					<Tbody columns={columns} checkBox={checkBox} sortDatas={sortDatas} />
 				</table>
-				{shadow && (
-					<div
-						className='sticky top-0 right-0'
-						style={{ boxShadow: '0 0 60px 30px #fff,0 0 100px 60px rgba(255, 255, 255, 0.5)' }}
-					/>
-				)}
 			</div>
+			<div
+				className={`absolute top-0 right-0 w-[100px] h-full bg-gradient-to-l from-white pointer-events-none duration-300 ${
+					!shadow ? 'opacity-0' : 'opacity-100'
+				}`}
+			/>
 		</div>
 	);
 };
