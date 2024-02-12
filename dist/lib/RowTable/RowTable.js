@@ -34,7 +34,9 @@ const RowTable = ({ columns, dataSource, checkBox, className }) => {
     const handleSetShadow = () => {
         if (!wrapRef.current || !tableRef.current)
             return;
-        setShadow(wrapRef.current.offsetWidth < tableRef.current.offsetWidth);
+        const isEndScroll = wrapRef.current.offsetWidth + wrapRef.current.scrollLeft === wrapRef.current.scrollWidth;
+        const isScroll = wrapRef.current.offsetWidth < tableRef.current.offsetWidth;
+        setShadow(isScroll && !isEndScroll);
     };
     useEffect(() => {
         setSortDatas(dataSource);
@@ -44,10 +46,13 @@ const RowTable = ({ columns, dataSource, checkBox, className }) => {
             return;
         handleSetShadow();
         global.window.addEventListener('resize', handleSetShadow);
+        wrapRef.current.addEventListener('scroll', handleSetShadow);
         return () => {
+            var _a;
             global.window.removeEventListener('resize', handleSetShadow);
+            (_a = wrapRef.current) === null || _a === void 0 ? void 0 : _a.removeEventListener('scroll', handleSetShadow);
         };
     }, [wrapRef, tableRef]);
-    return (_jsx("div", { className: className, children: _jsxs("div", { id: 'table', className: 'relative flex overflow-x-auto', ref: wrapRef, children: [_jsxs("table", { className: 'w-full', ref: tableRef, children: [_jsx(Thead, { columns: columns, checkBox: checkBox, sortDatas: sortDatas, onSort: handleClickSort }), _jsx(Tbody, { columns: columns, checkBox: checkBox, sortDatas: sortDatas })] }), shadow && (_jsx("div", { className: 'sticky top-0 right-0', style: { boxShadow: '0 0 60px 30px #fff,0 0 100px 60px rgba(255, 255, 255, 0.5)' } }))] }) }));
+    return (_jsxs("div", { className: `relative ${className}`, children: [_jsx("div", { id: 'table', className: 'relative flex overflow-x-auto', ref: wrapRef, children: _jsxs("table", { className: 'w-full', ref: tableRef, children: [_jsx(Thead, { columns: columns, checkBox: checkBox, sortDatas: sortDatas, onSort: handleClickSort }), _jsx(Tbody, { columns: columns, checkBox: checkBox, sortDatas: sortDatas })] }) }), _jsx("div", { className: `absolute top-0 right-0 w-[100px] h-full bg-gradient-to-l from-white pointer-events-none duration-300 ${!shadow ? 'opacity-0' : 'opacity-100'}` })] }));
 };
 export default RowTable;

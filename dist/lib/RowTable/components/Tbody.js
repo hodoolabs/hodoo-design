@@ -6,8 +6,8 @@ import { TableBodyStyle } from '../style';
 const Tbody = ({ columns, checkBox, sortDatas }) => {
     const id = checkBox === null || checkBox === void 0 ? void 0 : checkBox.id;
     const selected = checkBox === null || checkBox === void 0 ? void 0 : checkBox.selected;
-    const onSelect = (seleted) => {
-        checkBox === null || checkBox === void 0 ? void 0 : checkBox.onSelect(seleted);
+    const onSelect = (selected) => {
+        checkBox === null || checkBox === void 0 ? void 0 : checkBox.onSelect(selected);
     };
     return (_jsx("tbody", { children: sortDatas === null || sortDatas === void 0 ? void 0 : sortDatas.map((record, index) => (_jsxs("tr", { className: 'flex items-center font-medium border-b border-solid border-b-gray-200 hover:bg-gray-50', children: [checkBox && (_jsx("td", { className: 'py-3 px-4 leading-[0px]', children: _jsx(CheckBox, { checked: selected.map((item) => item[id]).includes(record[id]), className: 'm-1', onChange: () => {
                             const select = selected.map((item) => item[id]).includes(record[id])
