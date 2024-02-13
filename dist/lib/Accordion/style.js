@@ -6,21 +6,11 @@ const MenuStyle = cva(['flex items-center gap-3 p-3 mb-1 cursor-pointer rounded-
         },
     },
 });
-const ArrowStyle = cva(['w-5 h-5 stroke-gray-500 transform ml-auto'], {
+const ArrowStyle = cva(['w-5 h-5 stroke-gray-500 transform ml-auto duration-300'], {
     variants: {
         isExpanded: {
             true: ['rotate-0'],
             false: ['-rotate-90'],
-        },
-    },
-});
-const SubMenusStyle = cva(['flex flex-col gap-1 overflow-hidden'], {
-    variants: {
-        height: {
-            [2]: ['h-[100px]'],
-        },
-        isExpanded: {
-            false: ['h-[0px]'],
         },
     },
 });
@@ -31,4 +21,4 @@ const SubMenuStyle = cva(['ml-10 px-4 py-3 rounded-xl cursor-pointer text-gray-7
         },
     },
 });
-export { MenuStyle, ArrowStyle, SubMenusStyle, SubMenuStyle };
+export { MenuStyle, ArrowStyle, SubMenuStyle };
