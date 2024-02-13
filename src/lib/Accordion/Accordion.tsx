@@ -2,9 +2,9 @@
 
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
-import { AccordionMenuType, AccordionType } from '../../types/accordion';
 import { cn } from '../../utils/style';
-import { ArrowStyle, MenuStyle, SubMenuStyle, SubMenusStyle } from './style';
+import { ArrowStyle, MenuStyle, SubMenuStyle } from './style';
+import { AccordionMenuType, AccordionType } from '../../types/accordion';
 
 interface AccordionProps {
 	list: AccordionType[];
@@ -14,28 +14,22 @@ interface AccordionProps {
 }
 
 const Accordion = ({ list, path, className, onPush }: AccordionProps) => {
-	const [expandedMenuIndex, setExpanededMenuIndex] = useState(0);
-
-	const handleMenuClick = (index: number, expandedMenuIndex: number, path: string, subMenu?: AccordionMenuType[]) => {
-		if (path) onPush(path);
-		if (!!subMenu) setExpanededMenuIndex(index !== expandedMenuIndex ? index : -1);
-		else setExpanededMenuIndex(index);
-	};
+	const [expandedMenuIndex, setExpandedMenuIndex] = useState(
+		list.findIndex((item) => !!item.subMenus?.filter((subMenu) => path.includes(subMenu.path)).length)
+	);
 
 	const getIsCurrentPath = (path: string, currentPath: string) => {
 		return !!path && currentPath.includes(path);
 	};
 
-	const getIsExpandedMenu = (
-		index: number,
-		expandedMenuIndex: number,
-		currentpath: string,
-		subMenus: {
-			path: string;
-			label: string;
-		}[]
-	) => {
-		return index === expandedMenuIndex || !!subMenus.filter((subMenu) => subMenu.path === currentpath).length;
+	const getIsExpandedMenu = (index: number, expandedMenuIndex: number) => {
+		return index === expandedMenuIndex;
+	};
+
+	const handleMenuClick = (index: number, expandedMenuIndex: number, path: string, subMenu?: AccordionMenuType[]) => {
+		if (path) onPush(path);
+		if (!!subMenu) setExpandedMenuIndex(index !== expandedMenuIndex ? index : -1);
+		else setExpandedMenuIndex(index);
 	};
 
 	return (
@@ -54,21 +48,12 @@ const Accordion = ({ list, path, className, onPush }: AccordionProps) => {
 						<span>{item.menu.label}</span>
 						{!!item.subMenus && (
 							<ChevronDownIcon
-								className={cn(
-									ArrowStyle({ isExpanded: getIsExpandedMenu(item.index, expandedMenuIndex, path, item.subMenus) })
-								)}
+								className={cn(ArrowStyle({ isExpanded: getIsExpandedMenu(item.index, expandedMenuIndex) }))}
 							/>
 						)}
 					</div>
-					{!!item.subMenus && (
-						<div
-							className={cn(
-								SubMenusStyle({
-									isExpanded: getIsExpandedMenu(item.index, expandedMenuIndex, path, item.subMenus),
-									height: item.subMenus.length,
-								})
-							)}
-						>
+					{!!item.subMenus && getIsExpandedMenu(item.index, expandedMenuIndex) && (
+						<div className='flex flex-col gap-1 overflow-hidden'>
 							{item.subMenus.map((subItem, index) => (
 								<div
 									key={index}
