@@ -105,12 +105,24 @@
 		@apply text-xl font-bold leading-7 duration-300 mobile:text-lg mobile:leading-normal;
 	}
 
+	.title3 {
+		@apply text-base font-bold leading-relaxed;
+	}
+
 	.body1 {
 		@apply text-2xl font-medium leading-[39px] duration-300 mobile:text-xl mobile:leading-[32.5px];
 	}
 
 	.body2 {
 		@apply text-xl font-medium leading-[32.5px] duration-300 mobile:text-lg mobile:leading-[29.25px];
+	}
+
+	.body3 {
+		@apply text-base font-medium leading-relaxed;
+	}
+
+	.caption1 {
+		@apply text-sm font-medium leading-sung;
 	}
 }
 
