@@ -2,9 +2,9 @@
 
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
+import { AccordionMenuType, AccordionType } from '../../types/accordion';
 import { cn } from '../../utils/style';
 import { ArrowStyle, MenuStyle, SubMenuStyle } from './style';
-import { AccordionMenuType, AccordionType } from '../../types/accordion';
 
 interface AccordionProps {
 	list: AccordionType[];
