@@ -6,7 +6,7 @@ const LabelStyle = cva(['font-medium text-gray-700 mb-2'], {
             md: ['text-xs'],
             sm: ['text-xs'],
         },
-        error: {
+        isError: {
             true: ['text-red-700'],
         },
         disabled: {
@@ -16,7 +16,7 @@ const LabelStyle = cva(['font-medium text-gray-700 mb-2'], {
 });
 const MaxLengthStyle = cva(['float-right text-gray-500'], {
     variants: {
-        error: {
+        isError: {
             true: ['text-red-700'],
         },
         disabled: {

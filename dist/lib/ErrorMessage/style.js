@@ -6,7 +6,7 @@ const ErrorMessageStyle = cva(['font-medium overflow-hidden text-red-600 duratio
             md: ['text-xs h-6'],
             sm: ['text-xs h-6'],
         },
-        error: {
+        isError: {
             true: ['pt-2'],
             false: ['h-0 pt-0'],
         },

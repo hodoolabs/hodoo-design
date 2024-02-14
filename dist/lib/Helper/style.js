@@ -6,7 +6,7 @@ const HelperStyle = cva(['text-gray-500 font-medium pt-2'], {
             md: ['text-xs'],
             sm: ['text-xs'],
         },
-        error: {
+        isError: {
             true: ['text-red-600'],
         },
         disabled: {
