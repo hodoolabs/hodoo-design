@@ -13,7 +13,9 @@ interface HelperProps {
 }
 
 const Helper = ({ size = 'lg', error, helper, disabled = false }: HelperProps) => {
-	return <>{helper && <div className={cn(HelperStyle({ size, error: !!error, disabled }))}>{helper}</div>}</>;
+	const isError = !!error;
+
+	return <>{helper && <div className={cn(HelperStyle({ size, isError, disabled }))}>{helper}</div>}</>;
 };
 
 export default Helper;

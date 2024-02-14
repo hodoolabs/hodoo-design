@@ -15,13 +15,15 @@ interface LabelProps {
 }
 
 const Label = ({ size = 'lg', value = '', error, label, maxLength, disabled = false, required }: LabelProps) => {
+	const isError = !!error;
+
 	return (
 		<>
 			{label && (
-				<label className={cn(LabelStyle({ size, error: !!error, disabled }))}>
+				<label className={cn(LabelStyle({ size, isError, disabled }))}>
 					{required && <span className={cn(RequiredStyle({ disabled }))}>*</span>} {label}
 					{maxLength && (
-						<span className={cn(MaxLengthStyle({ error: !!error }))}>
+						<span className={cn(MaxLengthStyle({ isError }))}>
 							{value?.length || 0}/{maxLength}
 						</span>
 					)}

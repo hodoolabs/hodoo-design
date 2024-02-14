@@ -63,7 +63,7 @@ const ButtonGroup = ({
 					{buttons.map((item) => (
 						<Button
 							key={item.value}
-							color={active !== item.value ? 'white_line' : 'blue'}
+							color={active === item.value ? 'blue' : 'white_line'}
 							size='md'
 							label={item.label}
 							disabled={active !== item.value && disabled}
@@ -72,8 +72,8 @@ const ButtonGroup = ({
 					))}
 				</div>
 			) : null}
-			<Helper size='lg' error={error} helper={helper} disabled={disabled} />
-			<ErrorMessage size='lg' error={error} />
+			<Helper error={error} helper={helper} disabled={disabled} />
+			<ErrorMessage error={error} />
 		</div>
 	);
 };

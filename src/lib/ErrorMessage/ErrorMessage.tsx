@@ -9,7 +9,9 @@ interface ErrorMessageProps {
 }
 
 const ErrorMessage = ({ size = 'lg', error }: ErrorMessageProps) => {
-	return <div className={cn(ErrorMessageStyle({ size, error: !!error }))}>{error}</div>;
+	const isError = !!error;
+
+	return <div className={cn(ErrorMessageStyle({ size, isError }))}>{error}</div>;
 };
 
 export default ErrorMessage;
