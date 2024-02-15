@@ -16,6 +16,7 @@ interface FileInputProps {
 	placeholder?: string;
 	helper?: ReactNode;
 	required?: boolean;
+	multiple?: boolean;
 	disabled?: boolean;
 	className?: string;
 	onChange: (files: FileList) => void;
@@ -30,6 +31,7 @@ const FileInput = ({
 	placeholder,
 	helper,
 	required,
+	multiple = false,
 	disabled = false,
 	className,
 	onChange,
@@ -51,6 +53,7 @@ const FileInput = ({
 				</label>
 				<input
 					type='file'
+					multiple={multiple}
 					onChange={(event) => event.target.files && onChange(event.target.files)}
 					className='absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer z-1'
 				/>
