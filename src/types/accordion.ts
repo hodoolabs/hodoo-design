@@ -1,7 +1,7 @@
 type AccordionType = {
 	index: number;
 	icon: string;
-	activeIcon: string;
+	activeIcon?: string;
 	menu: AccordionMenuType;
 	subMenus?: AccordionMenuType[];
 };
