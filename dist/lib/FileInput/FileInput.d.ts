@@ -8,9 +8,10 @@ interface FileInputProps {
     placeholder?: string;
     helper?: ReactNode;
     required?: boolean;
+    multiple?: boolean;
     disabled?: boolean;
     className?: string;
     onChange: (files: FileList) => void;
 }
-declare const FileInput: ({ size, value, buttonName, label, error, placeholder, helper, required, disabled, className, onChange, }: FileInputProps) => import("react/jsx-runtime").JSX.Element;
+declare const FileInput: ({ size, value, buttonName, label, error, placeholder, helper, required, multiple, disabled, className, onChange, }: FileInputProps) => import("react/jsx-runtime").JSX.Element;
 export default FileInput;
