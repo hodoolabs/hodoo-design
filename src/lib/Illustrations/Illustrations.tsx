@@ -10,7 +10,7 @@ interface IllustrationsProps {
 
 const Illustrations = ({ type = 'noResults', description, className }: IllustrationsProps) => {
 	return (
-		<div className={`flex items-center justify-center w-full ${className}`}>
+		<div className={`flex items-center justify-center w-full h-full ${className}`}>
 			<div className='flex flex-col items-center gap-4'>
 				{type === 'list' && <ListSvg />}
 				{type === 'noResults' && <NoResultsSvg />}
