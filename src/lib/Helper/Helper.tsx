@@ -9,7 +9,6 @@ interface HelperProps {
 	error?: string;
 	helper?: ReactNode;
 	disabled?: boolean;
-	required?: boolean;
 }
 
 const Helper = ({ size = 'lg', error, helper, disabled = false }: HelperProps) => {

@@ -2,7 +2,7 @@
 
 import { ReactNode } from 'react';
 import { cn } from '../../utils/style';
-import { HelperStyle, LabelStyle, ToogleBoxStyle } from './style';
+import { HelperStyle, LabelStyle, ToggleBoxStyle } from './style';
 
 interface ToggleProps {
 	size?: 'sm' | 'md' | 'lg';
@@ -25,7 +25,7 @@ const Toggle = ({ size = 'sm', activated, label, helper, disabled = false, class
 					disabled={disabled}
 					onChange={() => onChange(!activated)}
 				/>
-				<div className={cn(ToogleBoxStyle({ size }))} />
+				<div className={cn(ToggleBoxStyle({ size }))} />
 				{label && (
 					<div>
 						<div className={cn(LabelStyle({ size, disabled }))}>{label}</div>
