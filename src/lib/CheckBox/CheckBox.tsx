@@ -7,6 +7,7 @@ import { CheckBoxStyle, HelperStyle, LabelStyle } from './style';
 
 interface CheckBoxProps {
 	checked: boolean;
+	color?: string;
 	label?: string;
 	helper?: string;
 	disabled?: boolean;
@@ -14,11 +15,11 @@ interface CheckBoxProps {
 	onChange: (value: boolean) => void;
 }
 
-const CheckBox = ({ checked, label, helper, disabled = false, className, onChange }: CheckBoxProps) => {
+const CheckBox = ({ checked, color, label, helper, disabled = false, className, onChange }: CheckBoxProps) => {
 	return (
 		<div className={`inline-flex gap-3 ${className}`}>
 			<button className={cn(CheckBoxStyle({ checked }))} disabled={disabled} onClick={() => onChange(!checked)}>
-				{checked && (disabled ? <CheckedDisabledSvg /> : <CheckedSvg />)}
+				{checked && (disabled ? <CheckedDisabledSvg /> : <CheckedSvg color={color} />)}
 			</button>
 			{label && (
 				<div className='flex flex-col gap-1'>
