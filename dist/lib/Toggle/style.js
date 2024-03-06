@@ -1,5 +1,5 @@
 import { cva } from 'class-variance-authority';
-const ToogleBoxStyle = cva([
+const ToggleBoxStyle = cva([
     'rounded-full bg-gray-200 cursor-pointer after:absolute after:rounded-full after:bg-white after:transition-all peer-checked:bg-gray-900 peer-focus-visible:outline-none peer-focus-visible:ring-2 peer-focus-visible:ring-gray-950 peer-focus-visible:ring-offset-2 peer-disabled:bg-gray-400 peer-disabled:cursor-default',
 ], {
     variants: {
@@ -31,4 +31,4 @@ const HelperStyle = cva(['text-sm font-medium text-gray-500 cursor-pointer'], {
         },
     },
 });
-export { ToogleBoxStyle, LabelStyle, HelperStyle };
+export { ToggleBoxStyle, LabelStyle, HelperStyle };

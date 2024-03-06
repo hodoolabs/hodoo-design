@@ -87,6 +87,15 @@ export namespace HodooTheme {
                 100: string;
                 50: string;
             };
+            let t_green: {
+                600: string;
+                500: string;
+                400: string;
+                300: string;
+                200: string;
+                100: string;
+                50: string;
+            };
             let indigo: {
                 900: string;
                 800: string;

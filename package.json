@@ -1,91 +1,91 @@
 {
-	"name": "hodoo-design",
-	"version": "1.6.32",
-	"title": "Hodoo Design",
-	"description": "hodoolabs design system",
-	"contributors": [
-		"Taejin Kim <tj202304@gmail.com> (https://github.com/taejin-k)",
-		"Sohui Choi <chosohi@naver.com> (https://github.com/chosohi)",
-		"Seungmo Kim <tmdah900@naver.com> (https://github.com/endmoseung)"
-	],
-	"main": "dist/index.js",
-	"types": "dist/index.d.ts",
-	"browser": "./browser/specific/main.js",
-	"private": false,
-	"scripts": {
-		"start": "react-scripts start",
-		"build": "webpack --mode production",
-		"test": "react-scripts test",
-		"eject": "react-scripts eject",
-		"prepare": "rm -rf dist && mkdir dist && tsc"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/hodoolabs/Design-System.git"
-	},
-	"keywords": [
-		"hodoo",
-		"hodoolabs",
-		"hodoo-design",
-		"desigin-system",
-		"react",
-		"next",
-		"typescript",
-		"tailwind"
-	],
-	"files": [
-		"dist/*",
-		"src/hodoo-style.css"
-	],
-	"eslintConfig": {
-		"extends": [
-			"react-app",
-			"react-app/jest"
-		]
-	},
-	"author": "hodoolabs",
-	"license": "ISC",
-	"bugs": {
-		"url": "https://github.com/hodoolabs/Design-System/issues"
-	},
-	"homepage": "https://github.com/hodoolabs/Design-System#readme",
-	"dependencies": {
-		"circular-json": "^0.5.9",
-		"dayjs": "^1.11.9",
-		"flatted": "^3.2.9",
-		"lodash": "^4.17.21",
-		"react": "^18.2.0",
-		"react-tailwindcss-datepicker": "^1.6.6"
-	},
-	"devDependencies": {
-		"@babel/cli": "^7.22.10",
-		"@babel/core": "^7.22.11",
-		"@babel/plugin-proposal-class-properties": "^7.18.6",
-		"@babel/plugin-proposal-object-rest-spread": "^7.20.7",
-		"@babel/preset-env": "^7.22.10",
-		"@babel/preset-react": "^7.22.5",
-		"@babel/preset-typescript": "^7.22.11",
-		"@heroicons/react": "^2.0.18",
-		"@types/lodash": "^4.14.201",
-		"@types/node": "^16.18.39",
-		"@types/react": "^18.2.16",
-		"@types/react-dom": "^18.2.7",
-		"babel-loader": "^9.1.3",
-		"class-variance-authority": "^0.7.0",
-		"clean-webpack-plugin": "^4.0.0",
-		"clsx": "^2.0.0",
-		"copy-webpack-plugin": "^11.0.0",
-		"css-loader": "^6.8.1",
-		"file-loader": "^6.2.0",
-		"html-webpack-plugin": "^5.5.3",
-		"style-loader": "^3.3.3",
-		"tailwind-merge": "^1.14.0",
-		"tailwindcss": "^3.3.3",
-		"ts-loader": "^9.4.4",
-		"typescript": "^5.2.2",
-		"url-loader": "^4.1.1",
-		"webpack": "^5.88.2",
-		"webpack-cli": "^5.1.4",
-		"webpack-dev-server": "^4.15.1"
-	}
+  "name": "hodoo-design",
+  "version": "1.6.33",
+  "title": "Hodoo Design",
+  "description": "hodoolabs design system",
+  "contributors": [
+    "Taejin Kim <tj202304@gmail.com> (https://github.com/taejin-k)",
+    "Sohui Choi <chosohi@naver.com> (https://github.com/chosohi)",
+    "Seungmo Kim <tmdah900@naver.com> (https://github.com/endmoseung)"
+  ],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "browser": "./browser/specific/main.js",
+  "private": false,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "webpack --mode production",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "prepare": "rm -rf dist && mkdir dist && tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hodoolabs/Design-System.git"
+  },
+  "keywords": [
+    "hodoo",
+    "hodoolabs",
+    "hodoo-design",
+    "desigin-system",
+    "react",
+    "next",
+    "typescript",
+    "tailwind"
+  ],
+  "files": [
+    "dist/*",
+    "src/hodoo-style.css"
+  ],
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "author": "hodoolabs",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hodoolabs/Design-System/issues"
+  },
+  "homepage": "https://github.com/hodoolabs/Design-System#readme",
+  "dependencies": {
+    "circular-json": "^0.5.9",
+    "dayjs": "^1.11.9",
+    "flatted": "^3.2.9",
+    "lodash": "^4.17.21",
+    "react": "^18.2.0",
+    "react-tailwindcss-datepicker": "^1.6.6"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.22.10",
+    "@babel/core": "^7.22.11",
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@babel/plugin-proposal-object-rest-spread": "^7.20.7",
+    "@babel/preset-env": "^7.22.10",
+    "@babel/preset-react": "^7.22.5",
+    "@babel/preset-typescript": "^7.22.11",
+    "@heroicons/react": "^2.0.18",
+    "@types/lodash": "^4.14.201",
+    "@types/node": "^16.18.39",
+    "@types/react": "^18.2.16",
+    "@types/react-dom": "^18.2.7",
+    "babel-loader": "^9.1.3",
+    "class-variance-authority": "^0.7.0",
+    "clean-webpack-plugin": "^4.0.0",
+    "clsx": "^2.0.0",
+    "copy-webpack-plugin": "^11.0.0",
+    "css-loader": "^6.8.1",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.5.3",
+    "style-loader": "^3.3.3",
+    "tailwind-merge": "^1.14.0",
+    "tailwindcss": "^3.3.3",
+    "ts-loader": "^9.4.4",
+    "typescript": "^5.2.2",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1"
+  }
 }
