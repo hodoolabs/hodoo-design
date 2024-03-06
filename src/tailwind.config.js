@@ -92,6 +92,19 @@ const HodooTheme = {
 				100: '#D5F5F6',
 				50: '#EDFAFA',
 			},
+			/**
+			 * @see https://www.figma.com/file/QlHmG2SY3YhYCw7lRsQuiR/%ED%98%B8%EB%91%90%EB%9E%A9%EC%8A%A4-%EB%94%94%EC%9E%90%EC%9D%B8-%EC%8B%9C%EC%8A%A4%ED%85%9C?type=design&node-id=3877%3A4142&mode=dev
+			 * 디자인시스템에선 talktreeGreen이라 돼있음 사용성을 위해 글자 크기 줄임
+			 */
+			t_green: {
+				600: '#007F3A',
+				500: '#00D361',
+				400: '#66E5A0',
+				300: '#99EDC0',
+				200: '#BFF4D7',
+				100: '#D9F8E7',
+				50: '#F2FDF7',
+			},
 			indigo: {
 				900: '#362F78',
 				800: '#42389D',
