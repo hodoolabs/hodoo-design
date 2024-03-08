@@ -2,7 +2,7 @@ type BreadCrumbsType = {
 	[key: string]: {
 		label: string;
 		bread_crumbs?: {
-			path: string;
+			path?: string;
 			label: string;
 		}[];
 	};
