@@ -17,8 +17,8 @@ const BreadCrumbs = ({ data, path, className, onPush }: BreadCrumbsProps) => {
 		<>
 			{!!breadCrumbs?.length && (
 				<div className={`flex gap-2 text-sm font-medium text-gray-500 ${className}`}>
-					{breadCrumbs?.map((item) => (
-						<div key={item.path} className='flex items-center gap-2'>
+					{breadCrumbs?.map((item, index) => (
+						<div key={index} className='flex items-center gap-2'>
 							{item.path ? (
 								<span
 									onClick={() => item.path && onPush(item.path)}
