@@ -7,7 +7,7 @@ import { cn } from '../../utils/style';
 import VectorDarkSvg from './images/VectorDarkSvg';
 import VectorWhiteSVG from './images/VectorWhiteSvg';
 import { ArrowStyle, DescriptionStyle, TooltipStyle, WrapStyle } from './style';
-const Tooltip = ({ color = 'dark', title, description, isShowArrow = true, children, position = 'top', className, }) => {
+const Tooltip = ({ color = 'dark', title, description, isShowArrow = true, children, position = 'top', className, zIndex, }) => {
     const ref = useRef(null);
     const [isHovered, setIsHovered] = useState(false);
     const [element, setElement] = useState();
@@ -67,6 +67,6 @@ const Tooltip = ({ color = 'dark', title, description, isShowArrow = true, child
     }, [ref]);
     return (_jsxs("div", { className: `relative inline-block ${className}`, ref: ref, onMouseEnter: () => setIsHovered(true), onMouseLeave: () => setIsHovered(false), children: [_jsx("div", { className: 'cursor-pointer', children: children }), isHovered &&
                 element &&
-                ReactDOM.createPortal(_jsx("div", { className: cn(TooltipStyle({ position })), style: { top, left }, children: _jsxs("div", { className: `${cn(WrapStyle({ color }))}`, children: [_jsx("div", { className: 'text-center whitespace-pre-line', children: title }), _jsx("div", { className: cn(DescriptionStyle({ color })), children: description }), isShowArrow && (_jsx("div", { className: cn(ArrowStyle({ position })), children: color === 'white' ? _jsx(VectorWhiteSVG, {}) : _jsx(VectorDarkSvg, {}) }))] }) }), element)] }));
+                ReactDOM.createPortal(_jsx("div", { className: cn(TooltipStyle({ position })), style: { top, left, zIndex }, children: _jsxs("div", { className: `${cn(WrapStyle({ color }))}`, children: [_jsx("div", { className: 'text-center whitespace-pre-line', children: title }), _jsx("div", { className: cn(DescriptionStyle({ color })), children: description }), isShowArrow && (_jsx("div", { className: cn(ArrowStyle({ position })), children: color === 'white' ? _jsx(VectorWhiteSVG, {}) : _jsx(VectorDarkSvg, {}) }))] }) }), element)] }));
 };
 export default Tooltip;

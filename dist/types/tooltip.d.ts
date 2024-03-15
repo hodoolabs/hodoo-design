@@ -7,5 +7,6 @@ type TooltipType = {
     children?: ReactNode;
     position?: 'top' | 'right' | 'left' | 'bottom';
     className?: string;
+    zIndex?: number;
 };
 export type { TooltipType };
