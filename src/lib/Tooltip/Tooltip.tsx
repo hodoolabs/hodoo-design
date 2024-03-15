@@ -17,6 +17,7 @@ const Tooltip = ({
 	children,
 	position = 'top',
 	className,
+	zIndex,
 }: TooltipType) => {
 	const ref = useRef<HTMLDivElement>(null);
 	const [isHovered, setIsHovered] = useState(false);
@@ -99,7 +100,7 @@ const Tooltip = ({
 			{isHovered &&
 				element &&
 				ReactDOM.createPortal(
-					<div className={cn(TooltipStyle({ position }))} style={{ top, left }}>
+					<div className={cn(TooltipStyle({ position }))} style={{ top, left, zIndex }}>
 						<div className={`${cn(WrapStyle({ color }))}`}>
 							<div className='text-center whitespace-pre-line'>{title}</div>
 							<div className={cn(DescriptionStyle({ color }))}>{description}</div>
