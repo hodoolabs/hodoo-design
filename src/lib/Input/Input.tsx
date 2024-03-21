@@ -42,6 +42,12 @@ const Input = ({
 	onError,
 	onEnter,
 }: InputProps) => {
+	useEffect(() => {
+		if (!onError) return;
+
+		onError('');
+	}, [value]);
+
 	const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
 		const value = event.target.value;
 
@@ -50,12 +56,6 @@ const Input = ({
 
 		onChange(value);
 	};
-
-	useEffect(() => {
-		if (!onError) return;
-
-		onError('');
-	}, [value]);
 
 	return (
 		<div className={`flex flex-col ${className}`}>
