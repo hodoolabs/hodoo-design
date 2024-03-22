@@ -11,6 +11,7 @@ interface FileInputProps {
 	size?: 'lg' | 'sm';
 	value: string;
 	buttonName: string;
+	accept?: string;
 	label?: ReactNode;
 	error?: string;
 	placeholder?: string;
@@ -26,6 +27,7 @@ const FileInput = ({
 	size = 'lg',
 	value,
 	buttonName,
+	accept,
 	label,
 	error,
 	placeholder,
@@ -52,6 +54,7 @@ const FileInput = ({
 					<span className='block overflow-hidden whitespace-nowrap'>{value || placeholder}</span>
 				</label>
 				<input
+					accept={accept}
 					type='file'
 					multiple={multiple}
 					onChange={(event) => event.target.files && onChange(event.target.files)}
