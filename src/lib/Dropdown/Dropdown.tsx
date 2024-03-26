@@ -12,7 +12,7 @@ interface DropdownProps {
 	position?: 'left' | 'right';
 	className?: string;
 	children: ReactNode;
-	onSelect: (value: string) => void;
+	onSelect: (value: string, label?: string) => void;
 	onOpen: (value: boolean) => void;
 }
 
@@ -83,7 +83,7 @@ const Dropdown = ({
 							<p
 								key={item.value}
 								className='px-4 py-3 rounded-lg cursor-pointer hover:bg-gray-100 hover:text-gray-700'
-								onClick={() => onSelect(item.value)}
+								onClick={() => onSelect(item.value, item.label)}
 							>
 								{item.label}
 							</p>
