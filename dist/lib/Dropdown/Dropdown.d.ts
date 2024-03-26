@@ -8,7 +8,7 @@ interface DropdownProps {
     position?: 'left' | 'right';
     className?: string;
     children: ReactNode;
-    onSelect: (value: string) => void;
+    onSelect: (value: string, label?: string) => void;
     onOpen: (value: boolean) => void;
 }
 declare const Dropdown: ({ isOpen, list, width, height, position, className, children, onSelect, onOpen, }: DropdownProps) => import("react/jsx-runtime").JSX.Element;

@@ -38,6 +38,6 @@ const Dropdown = ({ isOpen, list, width, height, position = 'left', className, c
     }, [ref]);
     return (_jsxs("div", { ref: ref, className: `inline-block ${className}`, children: [children, isOpen &&
                 element &&
-                ReactDOM.createPortal(_jsx("div", { className: `absolute flex flex-col p-1 overflow-auto bg-white border border-gray-200 rounded-xl ${className}`, style: { top, left, width, height }, onMouseLeave: () => onOpen(false), children: list.map((item) => (_jsx("p", { className: 'px-4 py-3 rounded-lg cursor-pointer hover:bg-gray-100 hover:text-gray-700', onClick: () => onSelect(item.value), children: item.label }, item.value))) }), element)] }));
+                ReactDOM.createPortal(_jsx("div", { className: `absolute flex flex-col p-1 overflow-auto bg-white border border-gray-200 rounded-xl ${className}`, style: { top, left, width, height }, onMouseLeave: () => onOpen(false), children: list.map((item) => (_jsx("p", { className: 'px-4 py-3 rounded-lg cursor-pointer hover:bg-gray-100 hover:text-gray-700', onClick: () => onSelect(item.value, item.label), children: item.label }, item.value))) }), element)] }));
 };
 export default Dropdown;
