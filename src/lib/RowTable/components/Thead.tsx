@@ -51,6 +51,7 @@ const Thead = ({ columns, checkBox, sortDatas, onSort }: TheadProps) => {
 								<QuestionMarkCircleIcon className='w-5 text-gray-400 cursor-pointer' />
 							</Tooltip>
 						)}
+						{column.renderHeader && column.renderHeader()}
 					</th>
 				))}
 			</tr>
