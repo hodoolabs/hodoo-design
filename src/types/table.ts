@@ -9,6 +9,7 @@ type ColumnType<RecordType> = {
 	tooltip?: TooltipType;
 	sorter?: boolean;
 	render?: (values: RecordType) => ReactNode;
+	renderHeader?: () => ReactNode;
 	onClick?: (values: RecordType) => void;
 }[];
 
