@@ -14,7 +14,9 @@ const Illustrations = ({ type = 'noResults', description, className }: Illustrat
 			<div className='flex flex-col items-center gap-4'>
 				{type === 'list' && <ListSvg />}
 				{type === 'noResults' && <NoResultsSvg />}
-				<div className='text-base font-medium text-center text-gray-500 whitespace-pre-line'>{description}</div>
+				<div className='text-base font-medium leading-relaxed text-center text-gray-500 whitespace-pre-line'>
+					{description}
+				</div>
 			</div>
 		</div>
 	);
