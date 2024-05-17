@@ -11,8 +11,8 @@ import { ArrowStyle, BlankStyle, ItemStyle, ListStyle, SelectedStyle } from './s
 
 interface SelectProps {
 	size?: 'sm' | 'md' | 'lg';
-	items: SelectType[];
-	selected: string;
+	items?: SelectType[];
+	selected?: string;
 	error?: string;
 	center?: boolean;
 	label?: string;
@@ -28,8 +28,8 @@ interface SelectProps {
 
 const Select = ({
 	size = 'lg',
-	items,
-	selected,
+	items = [],
+	selected = '',
 	error,
 	center = false,
 	label,

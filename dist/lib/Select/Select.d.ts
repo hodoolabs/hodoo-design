@@ -2,8 +2,8 @@ import { ReactNode } from 'react';
 import { SelectType } from '../../types/select';
 interface SelectProps {
     size?: 'sm' | 'md' | 'lg';
-    items: SelectType[];
-    selected: string;
+    items?: SelectType[];
+    selected?: string;
     error?: string;
     center?: boolean;
     label?: string;
