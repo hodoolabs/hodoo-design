@@ -7,7 +7,7 @@ import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import Helper from '../Helper/Helper';
 import Label from '../Label/Label';
 import { ArrowStyle, BlankStyle, ItemStyle, ListStyle, SelectedStyle } from './style';
-const Select = ({ size = 'lg', items, selected, error, center = false, label, placeholder, helper, disabled = false, required, className, onClick, onChange, onError, }) => {
+const Select = ({ size = 'lg', items = [], selected = '', error, center = false, label, placeholder, helper, disabled = false, required, className, onClick, onChange, onError, }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [direction, setDirection] = useState('down');
     const getLabel = (items, selected) => {
