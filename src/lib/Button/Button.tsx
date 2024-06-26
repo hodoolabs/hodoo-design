@@ -12,7 +12,7 @@ interface ButtonProps {
 	label?: string;
 	disabled?: boolean;
 	className?: string;
-	onClick?: () => void;
+	onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const Button = ({
@@ -32,7 +32,7 @@ const Button = ({
 			type='button'
 			className={`${cn(ButtonStyle({ color, size, iconOnly }))} ${className}`}
 			disabled={disabled}
-			onClick={onClick}
+			onClick={(e) => onClick && onClick(e)}
 		>
 			{leftIcon && <div className={cn(ImageStyle({ size, iconOnly }))}>{leftIcon}</div>}
 			{label && <span>{label}</span>}

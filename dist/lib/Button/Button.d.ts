@@ -7,7 +7,7 @@ interface ButtonProps {
     label?: string;
     disabled?: boolean;
     className?: string;
-    onClick?: () => void;
+    onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 declare const Button: ({ color, size, leftIcon, rightIcon, label, disabled, className, onClick, }: ButtonProps) => import("react/jsx-runtime").JSX.Element;
 export default Button;
