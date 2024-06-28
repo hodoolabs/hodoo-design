@@ -7,7 +7,7 @@ import { ModalProps } from './Modal';
 import { SubTitleStyle, TitleStyle } from './style';
 
 const Header = ({ modalState, modalHistory, goBackModal, closeModal }: ModalProps) => {
-	const { title, subTitle, size, isXButton } = modalState;
+	const { title, subTitle, size, isXButton = true } = modalState;
 	return (
 		<div className='flex flex-col bg-white rounded-t-3xl'>
 			<div className={cn(TitleStyle({ size }))}>
