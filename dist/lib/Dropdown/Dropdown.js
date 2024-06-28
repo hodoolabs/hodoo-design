@@ -31,9 +31,9 @@ const Dropdown = ({ isOpen, list, width, height, position = 'left', className, c
             handleSetPosition(ref);
             onOpen(false);
         };
-        global.window.addEventListener('resize', handleResizeWindow);
+        document.body.addEventListener('resize', handleResizeWindow);
         return () => {
-            global.window.removeEventListener('resize', handleResizeWindow);
+            document.body.removeEventListener('resize', handleResizeWindow);
         };
     }, [ref]);
     return (_jsxs("div", { ref: ref, className: `inline-block ${className}`, children: [children, isOpen &&
