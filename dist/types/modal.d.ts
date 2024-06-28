@@ -10,6 +10,7 @@ type ModalStateType = {
     title: string;
     subTitle?: ReactNode;
     content: ReactNode;
+    isXButton?: boolean;
     size?: ModalSizeType;
     isOpen?: boolean;
 };

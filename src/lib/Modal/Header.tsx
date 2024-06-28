@@ -7,7 +7,7 @@ import { ModalProps } from './Modal';
 import { SubTitleStyle, TitleStyle } from './style';
 
 const Header = ({ modalState, modalHistory, goBackModal, closeModal }: ModalProps) => {
-	const { title, subTitle, size } = modalState;
+	const { title, subTitle, size, isXButton = true } = modalState;
 	return (
 		<div className='flex flex-col bg-white rounded-t-3xl'>
 			<div className={cn(TitleStyle({ size }))}>
@@ -24,12 +24,14 @@ const Header = ({ modalState, modalHistory, goBackModal, closeModal }: ModalProp
 				<div className='flex items-center justify-center text-xl font-semibold text-center text-gray-900 grow'>
 					{title}
 				</div>
-				<Button
-					color='white'
-					size='base'
-					leftIcon={<XMarkIcon className='text-gray-500 group-hover:text-gray-700' />}
-					onClick={closeModal}
-				/>
+				{isXButton && (
+					<Button
+						color='white'
+						size='base'
+						leftIcon={<XMarkIcon className='text-gray-500 group-hover:text-gray-700' />}
+						onClick={closeModal}
+					/>
+				)}
 			</div>
 			{subTitle && (
 				<div className={cn(SubTitleStyle({ size }))}>
