@@ -6,12 +6,13 @@ import { ErrorMessageStyle } from './style';
 interface ErrorMessageProps {
 	size?: any;
 	error?: string;
+	errorRow?: 1 | 2;
 }
 
-const ErrorMessage = ({ size = 'lg', error }: ErrorMessageProps) => {
+const ErrorMessage = ({ size = 'lg', error, errorRow = 1 }: ErrorMessageProps) => {
 	const isError = !!error;
 
-	return <div className={cn(ErrorMessageStyle({ size, isError }))}>{error}</div>;
+	return <div className={cn(ErrorMessageStyle({ size, isError, errorRow }))}>{error}</div>;
 };
 
 export default ErrorMessage;
