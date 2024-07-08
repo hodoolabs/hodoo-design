@@ -18,7 +18,7 @@ type ToastStateType = {
     };
     closeButton?: boolean;
     position?: 'left' | 'center' | 'right';
-    leftIcon?: 'question' | 'success' | 'warning';
+    leftIcon?: 'question' | 'success' | 'warning' | ReactNode;
     isOpen?: boolean;
 };
 export type { ToastStateType, ToastType };
