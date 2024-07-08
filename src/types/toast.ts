@@ -23,7 +23,7 @@ type ToastStateType = {
 	rightButton?: { text: string; onClick: () => void };
 	closeButton?: boolean;
 	position?: 'left' | 'center' | 'right';
-	leftIcon?: 'question' | 'success' | 'warning';
+	leftIcon?: 'question' | 'success' | 'warning' | ReactNode;
 	isOpen?: boolean;
 };
 

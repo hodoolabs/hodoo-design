@@ -35,8 +35,10 @@ const Toast = ({ toastState, closeToast }: ToastProps) => {
 							<ToastQuestionSvg />
 						) : leftIcon === 'success' ? (
 							<ToastSuccessSvg />
+						) : leftIcon === 'warning' ? (
+							<ToastWarningSvg />
 						) : (
-							leftIcon === 'warning' && <ToastWarningSvg />
+							leftIcon
 						)}
 					</div>
 				)}
