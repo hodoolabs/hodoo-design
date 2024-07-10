@@ -109,6 +109,18 @@
 		@apply text-base font-bold leading-relaxed;
 	}
 
+	.subtitle1 {
+		@apply text-2xl font-semibold leading-snug duration-300 mobile:text-xl mobile:leading-relaxed;
+	}
+
+	.subtitle2 {
+		@apply text-xl font-semibold leading-snug duration-300 mobile:text-lg mobile:leading-relaxed;
+	}
+
+	.subtitle3 {
+		@apply text-base font-semibold leading-snug duration-300 mobile:text-base mobile:leading-relaxed;
+	}
+
 	.body1 {
 		@apply text-2xl font-medium leading-[39px] duration-300 mobile:text-xl mobile:leading-[32.5px];
 	}
