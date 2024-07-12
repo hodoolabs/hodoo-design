@@ -1,7 +1,7 @@
 'use client';
 
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
-import { useState } from 'react';
+import { CSSProperties, useState } from 'react';
 import { AccordionMenuType, AccordionType } from '../../types/accordion';
 import { cn } from '../../utils/style';
 import { ArrowStyle, MenuStyle, SubMenuStyle } from './style';
@@ -10,13 +10,31 @@ interface AccordionProps {
 	list: AccordionType[];
 	path: string;
 	className?: string;
+	menuItem?: {
+		bgColor?: string;
+		textColor?: string;
+		hoverColor?: string;
+	};
 	onPush: (path: string) => void;
 }
 
-const Accordion = ({ list, path, className, onPush }: AccordionProps) => {
+const Accordion = ({ list, path, className, menuItem, onPush }: AccordionProps) => {
 	const [expandedMenuIndex, setExpandedMenuIndex] = useState(
 		list.findIndex((item) => !!item.subMenus?.filter((subMenu) => path.includes(subMenu.path)).length)
 	);
+
+	const getMenuItemStyle = (isCurrentPath: boolean) => {
+		let menuItemStyle: CSSProperties = {};
+		if (isCurrentPath) {
+			if (menuItem?.bgColor) menuItemStyle.backgroundColor = menuItem.bgColor;
+			if (menuItem?.textColor) menuItemStyle.color = menuItem.textColor;
+		}
+		return menuItemStyle;
+	};
+
+	const getMenuItemClass = () => {
+		return cn('hover-effect', menuItem?.hoverColor && `hover:!bg-[${menuItem.hoverColor}]`);
+	};
 
 	const getIsCurrentPath = (path: string, currentPath: string) => {
 		return !!path && currentPath.includes(path);
@@ -37,7 +55,8 @@ const Accordion = ({ list, path, className, onPush }: AccordionProps) => {
 			{list.map((item) => (
 				<div key={item.index}>
 					<div
-						className={cn(MenuStyle({ isCurrentPath: getIsCurrentPath(item.menu.path, path) }))}
+						style={getMenuItemStyle(getIsCurrentPath(item.menu.path, path))}
+						className={cn(MenuStyle({ isCurrentPath: getIsCurrentPath(item.menu.path, path) }), getMenuItemClass())}
 						onClick={() => handleMenuClick(item.index, expandedMenuIndex, item.menu.path, item.subMenus)}
 					>
 						<img
