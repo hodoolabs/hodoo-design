@@ -7,12 +7,13 @@ interface ErrorMessageProps {
 	size?: any;
 	error?: string;
 	errorRow?: 1 | 2;
+	className?: string;
 }
 
-const ErrorMessage = ({ size = 'lg', error, errorRow = 1 }: ErrorMessageProps) => {
+const ErrorMessage = ({ size = 'lg', error, errorRow = 1, className }: ErrorMessageProps) => {
 	const isError = !!error;
 
-	return <div className={cn(ErrorMessageStyle({ size, isError, errorRow }))}>{error}</div>;
+	return <div className={cn(ErrorMessageStyle({ size, isError, errorRow }), className)}>{error}</div>;
 };
 
 export default ErrorMessage;
