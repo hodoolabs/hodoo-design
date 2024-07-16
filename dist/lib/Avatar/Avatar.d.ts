@@ -1,5 +1,5 @@
 interface AvatarProps {
-    size?: 'sm' | 'regular' | 'md' | 'lg' | 'xl';
+    size?: 'xs' | 'sm' | 'regular' | 'md' | 'lg' | 'xl';
     img: string;
     className?: string;
 }
