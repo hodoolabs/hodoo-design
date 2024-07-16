@@ -21,7 +21,7 @@ const Header = ({ modalState, modalHistory, goBackModal, closeModal }: ModalProp
 						/>
 					)}
 				</div>
-				<div className='flex items-center justify-center text-xl font-semibold text-center text-gray-900 grow'>
+				<div className='flex items-center justify-center text-xl font-semibold text-center text-gray-900 whitespace-pre-wrap grow'>
 					{title}
 				</div>
 				{isXButton && (
