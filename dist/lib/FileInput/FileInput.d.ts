@@ -3,6 +3,7 @@ interface FileInputProps {
     size?: 'lg' | 'sm';
     value: string;
     buttonName: string;
+    inputValue?: string;
     accept?: string;
     label?: ReactNode;
     error?: string;

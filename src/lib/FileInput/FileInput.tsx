@@ -11,6 +11,7 @@ interface FileInputProps {
 	size?: 'lg' | 'sm';
 	value: string;
 	buttonName: string;
+	inputValue?: string;
 	accept?: string;
 	label?: ReactNode;
 	error?: string;
@@ -57,6 +58,7 @@ const FileInput = ({
 					accept={accept}
 					type='file'
 					multiple={multiple}
+					onClick={(event) => ((event.target as HTMLInputElement).value = '')}
 					onChange={(event) => event.target.files && onChange(event.target.files)}
 					className='absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer z-1'
 				/>
