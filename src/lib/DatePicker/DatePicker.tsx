@@ -1,6 +1,6 @@
 'use client';
 
-import { CalendarDaysIcon } from '@heroicons/react/24/outline';
+CalendarIcon;
 import { throttle } from 'lodash';
 import { ReactNode, useEffect, useState } from 'react';
 import Datepicker, { DateValueType, DatepickerType } from 'react-tailwindcss-datepicker';
@@ -9,6 +9,7 @@ import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import Helper from '../Helper/Helper';
 import Label from '../Label/Label';
 import { InputStyle, SkeletonStyle, ToggleStyle } from './style';
+import { CalendarIcon } from '@heroicons/react/24/outline';
 
 interface DatePickerProps extends DatepickerType {
 	size?: 'lg' | 'sm';
@@ -71,7 +72,7 @@ const DatePicker = ({
 					readOnly={true}
 					displayFormat={props.displayFormat}
 					startFrom={props.value?.startDate ? new Date(props.value?.startDate) : new Date()}
-					toggleIcon={() => <CalendarDaysIcon className='w-5 h-5' />}
+					toggleIcon={() => <CalendarIcon className='w-5 h-5' />}
 					toggleClassName={cn(ToggleStyle({ size, error: !!error, disabled }))}
 					inputClassName={cn(InputStyle({ size, error: !!error, disabled }))}
 					placeholder={props.placeholder || ' '}
