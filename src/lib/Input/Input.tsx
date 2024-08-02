@@ -19,6 +19,7 @@ interface InputProps {
 	disabled?: boolean;
 	required?: boolean;
 	className?: string;
+	autoComplete?: 'on' | 'off';
 	onBlur?: (value: string) => void;
 	onChange?: (value: string) => void;
 	onError?: (error: string) => void;
@@ -28,6 +29,7 @@ interface InputProps {
 const Input = ({
 	type = 'text',
 	size = 'lg',
+	autoComplete = 'off',
 	label,
 	value,
 	error,
@@ -74,6 +76,7 @@ const Input = ({
 				maxLength={maxLength}
 				placeholder={placeholder}
 				disabled={disabled}
+				autoComplete={autoComplete}
 				className={cn(InputStyle({ size, error: !!error }))}
 				onBlur={(event) => onBlur && onBlur(event.target.value)}
 				onChange={handleChange}
