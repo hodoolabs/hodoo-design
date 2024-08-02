@@ -57,6 +57,7 @@ const FileInput = ({
 					accept={accept}
 					type='file'
 					multiple={multiple}
+					onClick={(event) => ((event.target as HTMLInputElement).value = '')}
 					onChange={(event) => event.target.files && onChange(event.target.files)}
 					className='absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer z-1'
 				/>

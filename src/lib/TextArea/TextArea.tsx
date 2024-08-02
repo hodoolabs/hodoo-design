@@ -19,6 +19,7 @@ interface TextAreaProps {
 	height?: number;
 	required?: boolean;
 	className?: string;
+	inputClassName?: string;
 	onChange?: (value: string) => void;
 	onError?: (error: string) => void;
 }
@@ -35,6 +36,7 @@ const TextArea = ({
 	height,
 	required,
 	className,
+	inputClassName,
 	onChange,
 	onError,
 }: TextAreaProps) => {
@@ -69,7 +71,7 @@ const TextArea = ({
 				maxLength={maxLength}
 				placeholder={placeholder}
 				disabled={disabled}
-				className={cn(TextareaStyle({ size, error: !!error }))}
+				className={cn(TextareaStyle({ size, error: !!error }), inputClassName)}
 				onChange={handleChange}
 				style={{ height }}
 			/>
