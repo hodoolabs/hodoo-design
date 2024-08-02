@@ -19,7 +19,10 @@ interface InputProps {
 	disabled?: boolean;
 	required?: boolean;
 	className?: string;
-	autoComplete?: 'on' | 'off';
+	/**
+	 * @see autoComplete 자세한 사용법은 https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete
+	 */
+	autoComplete?: JSX.IntrinsicElements['input']['autoComplete'];
 	onBlur?: (value: string) => void;
 	onChange?: (value: string) => void;
 	onError?: (error: string) => void;
