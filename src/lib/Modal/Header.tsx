@@ -11,16 +11,17 @@ const Header = ({ modalState, modalHistory, goBackModal, closeModal }: ModalProp
 	return (
 		<div className='flex flex-col bg-white rounded-t-3xl'>
 			<div className={cn(TitleStyle({ size }))}>
-				<div className='w-8 h-8'>
-					{modalHistory && modalHistory.length > 1 && goBackModal && (
+				{modalHistory && modalHistory.length > 1 && goBackModal && (
+					<div className='w-8 h-8'>
 						<Button
 							color='white'
 							size='base'
 							leftIcon={<ArrowSmallLeftIcon className='text-gray-500 group-hover:text-gray-700' />}
 							onClick={goBackModal}
 						/>
-					)}
-				</div>
+					</div>
+				)}
+
 				<div className='flex items-center justify-center text-xl font-semibold text-center text-gray-900 whitespace-pre-wrap grow'>
 					{title}
 				</div>
