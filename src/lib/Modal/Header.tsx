@@ -12,7 +12,7 @@ const Header = ({ modalState, modalHistory, goBackModal, closeModal }: ModalProp
 		<div className='flex flex-col bg-white rounded-t-3xl'>
 			<div className={cn(TitleStyle({ size }))}>
 				{modalHistory && modalHistory.length > 1 && goBackModal && (
-					<div className='w-8 h-8'>
+					<div className='size-8'>
 						<Button
 							color='white'
 							size='base'
@@ -21,8 +21,9 @@ const Header = ({ modalState, modalHistory, goBackModal, closeModal }: ModalProp
 						/>
 					</div>
 				)}
+				{isXButton && <div className='size-8' />}
 
-				<div className='flex items-center justify-center text-xl font-semibold text-center text-gray-900 whitespace-pre-wrap grow'>
+				<div className='flex items-center justify-center text-xl font-semibold text-center whitespace-pre-wrap text-gray-9000 grow'>
 					{title}
 				</div>
 				{isXButton && (
