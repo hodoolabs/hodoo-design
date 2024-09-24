@@ -1,6 +1,6 @@
 'use client';
 
-import { ChangeEvent, HTMLInputTypeAttribute, ReactNode, useEffect } from 'react';
+import { ChangeEvent, HTMLInputTypeAttribute, ReactNode, RefObject, useEffect } from 'react';
 import { cn } from '../../utils/style';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import Helper from '../Helper/Helper';
@@ -23,6 +23,7 @@ interface InputProps {
 	 * @see autoComplete 자세한 사용법은 https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete
 	 */
 	autoComplete?: JSX.IntrinsicElements['input']['autoComplete'];
+	ref?: RefObject<HTMLInputElement>;
 	onBlur?: (value: string) => void;
 	onChange?: (value: string) => void;
 	onError?: (error: string) => void;
@@ -41,6 +42,7 @@ const Input = ({
 	helper,
 	disabled,
 	required,
+	ref,
 	className,
 	onBlur,
 	onChange,
@@ -84,6 +86,7 @@ const Input = ({
 				onBlur={(event) => onBlur && onBlur(event.target.value)}
 				onChange={handleChange}
 				onKeyDown={(event) => event.key === 'Enter' && onEnter && onEnter()}
+				ref={ref}
 			/>
 			<Helper size={size} error={error} helper={helper} disabled={disabled} />
 			<ErrorMessage size={size} error={error} />
