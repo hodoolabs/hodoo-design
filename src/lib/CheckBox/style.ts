@@ -9,6 +9,9 @@ const CheckBoxStyle = cva(
 			checked: {
 				false: ['border border-gray-300'],
 			},
+			error: {
+				true: ['bg-red-100 border-red-300'],
+			},
 		},
 	}
 );
@@ -18,6 +21,9 @@ const LabelStyle = cva(['text-base font-medium leading-5  text-gray-900 cursor-p
 		disabled: {
 			true: ['text-gray-400 cursor-default'],
 		},
+		error: {
+			true: ['text-red-900'],
+		},
 	},
 });
 
@@ -25,6 +31,9 @@ const HelperStyle = cva(['text-sm font-medium text-gray-500'], {
 	variants: {
 		disabled: {
 			true: ['text-gray-400'],
+		},
+		error: {
+			true: ['text-red-600'],
 		},
 	},
 });
