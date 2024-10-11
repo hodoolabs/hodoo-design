@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { cn } from '../../utils/style';
 import CheckedDisabledSvg from './images/CheckedDisabledSvg';
 import CheckedSvg from './images/CheckedSvg';
@@ -10,12 +11,30 @@ interface CheckBoxProps {
 	color?: string;
 	label?: string;
 	helper?: string;
+	error?: boolean;
 	disabled?: boolean;
 	className?: string;
 	onChange: (value: boolean) => void;
 }
 
-const CheckBox = ({ checked, color, label, helper, disabled = false, className, onChange }: CheckBoxProps) => {
+const CheckBox = ({
+	checked,
+	color,
+	label,
+	helper,
+	error = false,
+	disabled = false,
+	className,
+	onChange,
+}: CheckBoxProps) => {
+	const [isError, setIsError] = useState(error);
+
+	useEffect(() => {
+		if (isError && checked) {
+			setIsError(false);
+		}
+	}, [isError]);
+
 	return (
 		<div className={`inline-flex gap-3 ${className}`}>
 			<button className={cn(CheckBoxStyle({ checked }))} disabled={disabled} onClick={() => onChange(!checked)}>
@@ -23,10 +42,13 @@ const CheckBox = ({ checked, color, label, helper, disabled = false, className, 
 			</button>
 			{label && (
 				<div className='flex flex-col gap-1'>
-					<label className={cn(LabelStyle({ disabled }))} onClick={() => !disabled && onChange(!checked)}>
+					<label
+						className={cn(LabelStyle({ disabled, error: isError }))}
+						onClick={() => !disabled && onChange(!checked)}
+					>
 						{label}
 					</label>
-					{helper && <p className={cn(HelperStyle({ disabled }))}>{helper}</p>}
+					{helper && <p className={cn(HelperStyle({ disabled, error: isError }))}>{helper}</p>}
 				</div>
 			)}
 		</div>
