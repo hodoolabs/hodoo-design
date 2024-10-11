@@ -27,14 +27,6 @@ const CheckBox = ({
 	className,
 	onChange,
 }: CheckBoxProps) => {
-	const [isError, setIsError] = useState(error);
-
-	useEffect(() => {
-		if (isError && checked) {
-			setIsError(false);
-		}
-	}, [isError]);
-
 	return (
 		<div className={`inline-flex gap-3 ${className}`}>
 			<button className={cn(CheckBoxStyle({ checked }))} disabled={disabled} onClick={() => onChange(!checked)}>
@@ -42,13 +34,10 @@ const CheckBox = ({
 			</button>
 			{label && (
 				<div className='flex flex-col gap-1'>
-					<label
-						className={cn(LabelStyle({ disabled, error: isError }))}
-						onClick={() => !disabled && onChange(!checked)}
-					>
+					<label className={cn(LabelStyle({ disabled, error }))} onClick={() => !disabled && onChange(!checked)}>
 						{label}
 					</label>
-					{helper && <p className={cn(HelperStyle({ disabled, error: isError }))}>{helper}</p>}
+					{helper && <p className={cn(HelperStyle({ disabled, error }))}>{helper}</p>}
 				</div>
 			)}
 		</div>

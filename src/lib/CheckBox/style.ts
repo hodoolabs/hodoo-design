@@ -9,6 +9,9 @@ const CheckBoxStyle = cva(
 			checked: {
 				false: ['border border-gray-300'],
 			},
+			error: {
+				true: ['bg-red-100 border-red-300'],
+			},
 		},
 	}
 );
