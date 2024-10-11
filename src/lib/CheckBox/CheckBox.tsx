@@ -29,7 +29,7 @@ const CheckBox = ({
 }: CheckBoxProps) => {
 	return (
 		<div className={`inline-flex gap-3 ${className}`}>
-			<button className={cn(CheckBoxStyle({ checked }))} disabled={disabled} onClick={() => onChange(!checked)}>
+			<button className={cn(CheckBoxStyle({ checked, error }))} disabled={disabled} onClick={() => onChange(!checked)}>
 				{checked && (disabled ? <CheckedDisabledSvg /> : <CheckedSvg color={color} />)}
 			</button>
 			{label && (

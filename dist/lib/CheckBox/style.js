@@ -7,7 +7,7 @@ const CheckBoxStyle = cva([
             false: ['border border-gray-300'],
         },
         error: {
-            true: ['bg-red-100 border-red-300'],
+            true: ['!bg-red-100 border !border-red-300'],
         },
     },
 });
