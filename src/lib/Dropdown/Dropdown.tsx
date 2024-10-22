@@ -44,12 +44,15 @@ const Dropdown = ({
 	};
 
 	useEffect(() => {
+		if (typeof window === 'undefined') return;
 		const div = document.createElement('div');
 		document.body.appendChild(div);
 		setElement(div);
 
 		return () => {
-			document.body.removeChild(div);
+			if (document.body.contains(div)) {
+				document.body.removeChild(div);
+			}
 		};
 	}, []);
 
@@ -61,12 +64,14 @@ const Dropdown = ({
 			onOpen(false);
 		};
 
-		global.window.addEventListener('resize', handleResizeWindow);
+		if (typeof window !== 'undefined') {
+			window.addEventListener('resize', handleResizeWindow);
 
-		return () => {
-			global.window.removeEventListener('resize', handleResizeWindow);
-		};
-	}, [ref]);
+			return () => {
+				window.removeEventListener('resize', handleResizeWindow);
+			};
+		}
+	}, [ref, onOpen]);
 
 	return (
 		<div ref={ref} className={`inline-block ${className}`}>
