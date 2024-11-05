@@ -6,7 +6,7 @@ import { cn } from '../../utils/style';
 import { BadgeStyle, ButtonStyle, LeftImageStyle, RightImageStyle } from './style';
 
 interface BadgeProps {
-	color?: 'blue' | 'gray' | 'gray_low' | 'red';
+	color?: 'blue' | 'gray' | 'gray_low' | 'white' | 'red';
 	size?: 'lg' | 'md' | 'sm';
 	leftIcon?: ReactNode;
 	label?: string;
