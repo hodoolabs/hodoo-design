@@ -6,7 +6,8 @@
   "contributors": [
     "Taejin Kim <tj202304@gmail.com> (https://github.com/taejin-k)",
     "Sohui Choi <chosohi@naver.com> (https://github.com/chosohi)",
-    "Seungmo Kim <tmdah900@naver.com> (https://github.com/endmoseung)"
+    "Seungmo Kim <tmdah900@naver.com> (https://github.com/endmoseung)",
+    "Minji Yun <minpaper.dev@gmail.com> (https://github.com/minpaper-dev)"
   ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
