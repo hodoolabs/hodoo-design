@@ -3,6 +3,7 @@ import { cva } from 'class-variance-authority';
 const BadgeStyle = cva(['inline-flex items-center justify-center rounded-full'], {
 	variants: {
 		color: {
+			white: ['text-gray-800 bg-white'],
 			blue: ['text-blue-800 bg-blue-100'],
 			gray: ['text-gray-800 bg-gray-100'],
 			gray_low: ['text-gray-500 bg-gray-100'],
@@ -40,6 +41,7 @@ const ButtonStyle = cva(['p-0.5 rounded focus-visible:ring-gray-950 focus-visibl
 	variants: {
 		color: {
 			blue: ['text-blue-500 hover:bg-blue-200'],
+			white: ['text-gray-500 hover:bg-gray-200'],
 			gray: ['text-gray-500 hover:bg-gray-200'],
 			gray_low: ['text-gray-500 hover:bg-gray-200'],
 			red: ['text-red-500 hover:bg-red-200'],
