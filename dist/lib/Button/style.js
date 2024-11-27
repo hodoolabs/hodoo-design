@@ -4,12 +4,22 @@ const ButtonStyle = cva([
 ], {
     variants: {
         color: {
-            black: ['text-white bg-gray-950 hover:bg-gray-800'],
-            blue: ['text-blue-600 bg-blue-100 hover:text-blue-800 hover:bg-blue-200'],
-            white: ['text-gray-800 bg-white hover:text-gray-900 hover:bg-gray-100'],
-            gray: ['text-gray-600 bg-gray-100 hover:text-gray-700 hover:bg-gray-200'],
-            red: ['text-red-600 bg-red-100 hover:text-red-800 hover:bg-red-200'],
-            white_line: ['text-gray-800 bg-white hover:text-gray-900 hover:bg-gray-100 ring-1 ring-gray-300/70'],
+            black: ['text-white bg-gray-950 [@media(hover:hover)]:hover:bg-gray-800'],
+            blue: [
+                'text-blue-600 bg-blue-100 [@media(hover:hover)]:hover:text-blue-800 [@media(hover:hover)]:hover:bg-blue-200',
+            ],
+            white: [
+                'text-gray-800 bg-white [@media(hover:hover)]:hover:text-gray-900 [@media(hover:hover)]:hover:bg-gray-100',
+            ],
+            gray: [
+                'text-gray-600 bg-gray-100 [@media(hover:hover)]:hover:text-gray-700 [@media(hover:hover)]:hover:bg-gray-200',
+            ],
+            red: [
+                'text-red-600 bg-red-100 [@media(hover:hover)]:hover:text-red-800 [@media(hover:hover)]:hover:bg-red-200',
+            ],
+            white_line: [
+                'text-gray-800 bg-white [@media(hover:hover)]:hover:text-gray-900 [@media(hover:hover)]:hover:bg-gray-100 ring-1 ring-gray-300/70',
+            ],
         },
         size: {
             lg: ['text-base py-3.5 px-5 rounded-xl'],
