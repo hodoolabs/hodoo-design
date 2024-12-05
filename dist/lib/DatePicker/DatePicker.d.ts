@@ -1,5 +1,9 @@
 import { ReactNode } from 'react';
 import { DatepickerType } from 'react-tailwindcss-datepicker';
+import DefaultI18nAdapter from './defaultAdapter';
+import NextIntlAdapter from './next-intl-Adapter';
+import { I18nAdapter } from './types';
+export declare const configureDatePickerI18n: (adapter: I18nAdapter) => void;
 interface DatePickerProps extends DatepickerType {
     size?: 'lg' | 'sm';
     label?: ReactNode;
@@ -12,3 +16,4 @@ interface DatePickerProps extends DatepickerType {
 }
 declare const DatePicker: ({ size, label, error, helper, required, disabled, className, onError, onChange, ...props }: DatePickerProps) => import("react/jsx-runtime").JSX.Element;
 export default DatePicker;
+export { DefaultI18nAdapter, NextIntlAdapter };

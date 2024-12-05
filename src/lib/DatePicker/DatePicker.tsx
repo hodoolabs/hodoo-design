@@ -10,6 +10,15 @@ import Helper from '../Helper/Helper';
 import Label from '../Label/Label';
 import { InputStyle, SkeletonStyle, ToggleStyle } from './style';
 import { CalendarIcon } from '@heroicons/react/24/outline';
+import DefaultI18nAdapter from './defaultAdapter';
+import NextIntlAdapter from './next-intl-Adapter';
+import { I18nAdapter } from './types';
+
+let i18nAdapter: I18nAdapter = new DefaultI18nAdapter();
+
+export const configureDatePickerI18n = (adapter: I18nAdapter) => {
+	i18nAdapter = adapter;
+};
 
 interface DatePickerProps extends DatepickerType {
 	size?: 'lg' | 'sm';
@@ -34,6 +43,8 @@ const DatePicker = ({
 	onChange,
 	...props
 }: DatePickerProps) => {
+	const locale = i18nAdapter.useLocale();
+
 	const [isDestory, setIsDestroy] = useState(false);
 
 	const handleChangeDate = (date: DateValueType, event: HTMLInputElement, placeholder?: string) => {
@@ -68,7 +79,7 @@ const DatePicker = ({
 			<Label size={size} error={error} label={label} disabled={disabled} required={required} />
 			{!isDestory ? (
 				<Datepicker
-					i18n='ko'
+					i18n={locale}
 					readOnly={true}
 					displayFormat={props.displayFormat}
 					startFrom={props.value?.startDate ? new Date(props.value?.startDate) : new Date()}
@@ -90,3 +101,5 @@ const DatePicker = ({
 };
 
 export default DatePicker;
+
+export { DefaultI18nAdapter, NextIntlAdapter };
