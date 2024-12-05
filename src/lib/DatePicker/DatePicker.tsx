@@ -14,12 +14,6 @@ import DefaultI18nAdapter from './defaultAdapter';
 import NextIntlAdapter from './next-intl-Adapter';
 import { I18nAdapter } from './types';
 
-let i18nAdapter: I18nAdapter = new DefaultI18nAdapter();
-
-export const configureDatePickerI18n = (adapter: I18nAdapter) => {
-	i18nAdapter = adapter;
-};
-
 interface DatePickerProps extends DatepickerType {
 	size?: 'lg' | 'sm';
 	label?: ReactNode;
@@ -102,4 +96,18 @@ const DatePicker = ({
 
 export default DatePicker;
 
-export { DefaultI18nAdapter, NextIntlAdapter };
+let i18nAdapter: I18nAdapter = new DefaultI18nAdapter();
+
+const configureDatePickerI18n = (adapter: I18nAdapter) => {
+	i18nAdapter = adapter;
+};
+
+/**
+ * @description 만약 next-intl을 사용하는 경우 앱 최초로 init 하는곳에서 nextintladapter로 configureDatePickerI18n를 실행
+ * @example
+ * // 앱 최상단 init 하는곳
+ * import NextIntlAdapter from './next-intl-Adapter';
+ * configureDatePickerI18n(new NextIntlAdapter());
+ */
+
+export { DefaultI18nAdapter, NextIntlAdapter, configureDatePickerI18n };
