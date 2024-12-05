@@ -1,3 +1,5 @@
+const plugin = require('tailwindcss/plugin');
+
 const HodooContent = [
 	'./src/**/*.{js,ts,jsx,tsx,mdx}',
 	'./node_modules/react-tailwindcss-datepicker/dist/index.esm.js',
@@ -156,4 +158,218 @@ const HodooVariants = {
 
 const HodooDarkMode = ['false'];
 
-module.exports = { HodooContent, HodooTheme, HodooVariants, HodooDarkMode };
+const typographyStyles = {
+	// Responsive visibility classes
+	'.pc': {
+		display: 'block',
+		'@screen tablet': {
+			display: 'none',
+		},
+	},
+	'.tablet': {
+		display: 'none',
+		'@screen tablet': {
+			display: 'block',
+		},
+		'@screen mobile': {
+			display: 'none',
+		},
+	},
+	'.mobile': {
+		display: 'none',
+		'@screen mobile': {
+			display: 'block',
+		},
+	},
+	'.pc-tablet': {
+		display: 'block',
+		'@screen mobile': {
+			display: 'none',
+		},
+	},
+	'.pc-mobile': {
+		display: 'block',
+		'@screen tablet': {
+			display: 'none',
+		},
+		'@screen mobile': {
+			display: 'block',
+		},
+	},
+	'.tablet-mobile': {
+		display: 'none',
+		'@screen tablet': {
+			display: 'block',
+		},
+	},
+
+	// Heading styles
+	'.h1': {
+		fontSize: '64px',
+		fontWeight: '800',
+		lineHeight: '82.5px',
+		transitionDuration: '300ms',
+		'@screen tablet': {
+			fontSize: '48px',
+			lineHeight: '66px',
+		},
+		'@screen mobile': {
+			fontSize: '32px',
+			lineHeight: '49.5px',
+		},
+	},
+	'.h2': {
+		fontSize: '48px',
+		fontWeight: '700',
+		lineHeight: '66px',
+		transitionDuration: '300ms',
+		'@screen tablet': {
+			fontSize: '32px',
+			lineHeight: '49.5px',
+		},
+		'@screen mobile': {
+			fontSize: '24px',
+			lineHeight: '41.25px',
+		},
+	},
+	'.h3': {
+		fontSize: '32px',
+		fontWeight: '700',
+		lineHeight: '49.5px',
+		transitionDuration: '300ms',
+		'@screen tablet': {
+			fontSize: '24px',
+			lineHeight: '41.25px',
+		},
+		'@screen mobile': {
+			fontSize: '20px',
+			lineHeight: '33px',
+		},
+	},
+
+	// Title styles
+	'.title1': {
+		fontSize: '20px',
+		fontWeight: '700',
+		lineHeight: '33px',
+		transitionDuration: '300ms',
+		'@screen mobile': {
+			fontSize: '18px',
+			lineHeight: '28px',
+		},
+	},
+	'.title2': {
+		fontSize: '18px',
+		fontWeight: '700',
+		lineHeight: '28px',
+		transitionDuration: '300ms',
+		'@screen mobile': {
+			fontSize: '16px',
+			lineHeight: 'normal',
+		},
+	},
+	'.title3': {
+		fontSize: '16px',
+		fontWeight: '700',
+		lineHeight: '1.5',
+	},
+
+	// Subtitle styles
+	'.subtitle1': {
+		fontSize: '20px',
+		fontWeight: '600',
+		lineHeight: '1.375',
+		transitionDuration: '300ms',
+		'@screen mobile': {
+			fontSize: '18px',
+			lineHeight: '1.5',
+		},
+	},
+	'.subtitle2': {
+		fontSize: '18px',
+		fontWeight: '600',
+		lineHeight: '1.375',
+		transitionDuration: '300ms',
+		'@screen mobile': {
+			fontSize: '16px',
+			lineHeight: '1.5',
+		},
+	},
+	'.subtitle3': {
+		fontSize: '16px',
+		fontWeight: '600',
+		lineHeight: '1.375',
+		transitionDuration: '300ms',
+		'@screen mobile': {
+			lineHeight: '1.5',
+		},
+	},
+
+	// Body styles
+	'.body1': {
+		fontSize: '20px',
+		fontWeight: '500',
+		lineHeight: '39px',
+		transitionDuration: '300ms',
+		'@screen mobile': {
+			fontSize: '18px',
+			lineHeight: '32.5px',
+		},
+	},
+	'.body2': {
+		fontSize: '18px',
+		fontWeight: '500',
+		lineHeight: '32.5px',
+		transitionDuration: '300ms',
+		'@screen mobile': {
+			fontSize: '16px',
+			lineHeight: '29.25px',
+		},
+	},
+	'.body3': {
+		fontSize: '16px',
+		fontWeight: '500',
+		lineHeight: '1.5',
+	},
+
+	// Caption style
+	'.caption1': {
+		fontSize: '14px',
+		fontWeight: '500',
+		lineHeight: '1.375',
+	},
+
+	// Semibold styles
+	'.semibold-6xl': { fontSize: '60px', lineHeight: '60px', fontWeight: '600' },
+	'.semibold-5xl': { fontSize: '48px', lineHeight: '48px', fontWeight: '600' },
+	'.semibold-4xl': { fontSize: '36px', lineHeight: '40px', fontWeight: '600' },
+	'.semibold-3xl': { fontSize: '30px', lineHeight: '36px', fontWeight: '600' },
+	'.semibold-2xl': { fontSize: '24px', lineHeight: '32px', fontWeight: '600' },
+	'.semibold-xl': { fontSize: '20px', lineHeight: '28px', fontWeight: '600' },
+	'.semibold-lg': { fontSize: '18px', lineHeight: '28px', fontWeight: '600' },
+	'.semibold-base': { fontSize: '16px', lineHeight: '24px', fontWeight: '600' },
+	'.semibold-sm': { fontSize: '14px', lineHeight: '20px', fontWeight: '600' },
+	'.semibold-xs': { fontSize: '12px', lineHeight: '16px', fontWeight: '600' },
+	'.semibold-xxs': { fontSize: '10px', lineHeight: '12px', fontWeight: '600' },
+
+	// Medium styles
+	'.medium-6xl': { fontSize: '60px', lineHeight: '60px', fontWeight: '500' },
+	'.medium-5xl': { fontSize: '48px', lineHeight: '48px', fontWeight: '500' },
+	'.medium-4xl': { fontSize: '36px', lineHeight: '40px', fontWeight: '500' },
+	'.medium-3xl': { fontSize: '30px', lineHeight: '36px', fontWeight: '500' },
+	'.medium-2xl': { fontSize: '24px', lineHeight: '32px', fontWeight: '500' },
+	'.medium-xl': { fontSize: '20px', lineHeight: '28px', fontWeight: '500' },
+	'.medium-lg': { fontSize: '18px', lineHeight: '28px', fontWeight: '500' },
+	'.medium-base': { fontSize: '16px', lineHeight: '24px', fontWeight: '500' },
+	'.medium-sm': { fontSize: '14px', lineHeight: '20px', fontWeight: '500' },
+	'.medium-xs': { fontSize: '12px', lineHeight: '16px', fontWeight: '500' },
+	'.medium-xxs': { fontSize: '10px', lineHeight: '12px', fontWeight: '500' },
+};
+
+const HodooPlugins = [
+	plugin(({ addUtilities }) => {
+		addUtilities(typographyStyles);
+	}),
+];
+
+module.exports = { HodooContent, HodooTheme, HodooVariants, HodooDarkMode, HodooPlugins };

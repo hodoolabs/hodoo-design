@@ -145,3 +145,7 @@ export namespace HodooVariants {
     export { extend_1 as extend };
 }
 export const HodooDarkMode: string[];
+export const HodooPlugins: {
+    handler: import("tailwindcss/types/config").PluginCreator;
+    config?: Partial<import("tailwindcss/types/config").Config>;
+}[];
