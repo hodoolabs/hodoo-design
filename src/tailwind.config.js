@@ -205,7 +205,7 @@ const typographyStyles = {
 
 	// Heading styles
 	'.h1': {
-		fontSize: '64px',
+		fontSize: '60px',
 		fontWeight: '800',
 		lineHeight: '82.5px',
 		transitionDuration: '300ms',
@@ -214,7 +214,7 @@ const typographyStyles = {
 			lineHeight: '66px',
 		},
 		'@screen mobile': {
-			fontSize: '32px',
+			fontSize: '36px',
 			lineHeight: '49.5px',
 		},
 	},
@@ -224,119 +224,126 @@ const typographyStyles = {
 		lineHeight: '66px',
 		transitionDuration: '300ms',
 		'@screen tablet': {
-			fontSize: '32px',
+			fontSize: '36px',
 			lineHeight: '49.5px',
 		},
 		'@screen mobile': {
-			fontSize: '24px',
+			fontSize: '30px',
 			lineHeight: '41.25px',
 		},
 	},
 	'.h3': {
-		fontSize: '32px',
+		fontSize: '36px',
 		fontWeight: '700',
 		lineHeight: '49.5px',
 		transitionDuration: '300ms',
 		'@screen tablet': {
-			fontSize: '24px',
+			fontSize: '30px',
 			lineHeight: '41.25px',
 		},
 		'@screen mobile': {
-			fontSize: '20px',
+			fontSize: '24px',
 			lineHeight: '33px',
 		},
 	},
 
 	// Title styles
 	'.title1': {
-		fontSize: '20px',
+		fontSize: '24px',
 		fontWeight: '700',
-		lineHeight: '33px',
+		lineHeight: '31px',
 		transitionDuration: '300ms',
 		'@screen mobile': {
-			fontSize: '18px',
-			lineHeight: '28px',
+			fontSize: '20px',
+			lineHeight: '27.5px',
 		},
 	},
 	'.title2': {
-		fontSize: '18px',
+		fontSize: '20px',
 		fontWeight: '700',
-		lineHeight: '28px',
+		lineHeight: '27.5px',
 		transitionDuration: '300ms',
 		'@screen mobile': {
-			fontSize: '16px',
-			lineHeight: 'normal',
+			fontSize: '18px',
+			lineHeight: '24.75px',
 		},
 	},
 	'.title3': {
 		fontSize: '16px',
 		fontWeight: '700',
-		lineHeight: '1.5',
+		lineHeight: '22px',
 	},
 
 	// Subtitle styles
 	'.subtitle1': {
-		fontSize: '20px',
+		fontSize: '24px',
 		fontWeight: '600',
-		lineHeight: '1.375',
+		lineHeight: '31px',
 		transitionDuration: '300ms',
 		'@screen mobile': {
-			fontSize: '18px',
-			lineHeight: '1.5',
+			fontSize: '20px',
+			lineHeight: '27.5px',
 		},
 	},
 	'.subtitle2': {
-		fontSize: '18px',
+		fontSize: '20px',
 		fontWeight: '600',
-		lineHeight: '1.375',
+		lineHeight: '27.5px',
 		transitionDuration: '300ms',
 		'@screen mobile': {
-			fontSize: '16px',
-			lineHeight: '1.5',
+			fontSize: '18px',
+			lineHeight: '24.75px',
 		},
 	},
 	'.subtitle3': {
 		fontSize: '16px',
 		fontWeight: '600',
-		lineHeight: '1.375',
+		lineHeight: '22px',
 		transitionDuration: '300ms',
-		'@screen mobile': {
-			lineHeight: '1.5',
-		},
 	},
 
 	// Body styles
 	'.body1': {
-		fontSize: '20px',
+		fontSize: '24px',
 		fontWeight: '500',
 		lineHeight: '39px',
 		transitionDuration: '300ms',
 		'@screen mobile': {
-			fontSize: '18px',
+			fontSize: '20px',
 			lineHeight: '32.5px',
 		},
 	},
 	'.body2': {
-		fontSize: '18px',
+		fontSize: '20px',
 		fontWeight: '500',
 		lineHeight: '32.5px',
 		transitionDuration: '300ms',
 		'@screen mobile': {
-			fontSize: '16px',
+			fontSize: '18px',
 			lineHeight: '29.25px',
 		},
 	},
 	'.body3': {
 		fontSize: '16px',
 		fontWeight: '500',
-		lineHeight: '1.5',
+		lineHeight: '26px',
 	},
 
 	// Caption style
 	'.caption1': {
 		fontSize: '14px',
 		fontWeight: '500',
-		lineHeight: '1.375',
+		lineHeight: '22.75px',
+	},
+	'.caption2': {
+		fontSize: '12px',
+		fontWeight: '500',
+		lineHeight: '19.5px',
+	},
+	'.caption1': {
+		fontSize: '10px',
+		fontWeight: '500',
+		lineHeight: '16.25px',
 	},
 
 	// Semibold styles
