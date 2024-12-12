@@ -10,6 +10,9 @@ import Helper from '../Helper/Helper';
 import Label from '../Label/Label';
 import { InputStyle, SkeletonStyle, ToggleStyle } from './style';
 import { CalendarIcon } from '@heroicons/react/24/outline';
+import DefaultI18nAdapter from './defaultAdapter';
+import NextIntlAdapter from './next-intl-Adapter';
+import { I18nAdapter } from './types';
 
 interface DatePickerProps extends DatepickerType {
 	size?: 'lg' | 'sm';
@@ -34,6 +37,8 @@ const DatePicker = ({
 	onChange,
 	...props
 }: DatePickerProps) => {
+	const locale = i18nAdapter.useLocale();
+
 	const [isDestory, setIsDestroy] = useState(false);
 
 	const handleChangeDate = (date: DateValueType, event: HTMLInputElement, placeholder?: string) => {
@@ -68,7 +73,7 @@ const DatePicker = ({
 			<Label size={size} error={error} label={label} disabled={disabled} required={required} />
 			{!isDestory ? (
 				<Datepicker
-					i18n='ko'
+					i18n={locale}
 					readOnly={true}
 					displayFormat={props.displayFormat}
 					startFrom={props.value?.startDate ? new Date(props.value?.startDate) : new Date()}
@@ -90,3 +95,19 @@ const DatePicker = ({
 };
 
 export default DatePicker;
+
+let i18nAdapter: I18nAdapter = new DefaultI18nAdapter();
+
+const configureDatePickerI18n = (adapter: I18nAdapter) => {
+	i18nAdapter = adapter;
+};
+
+/**
+ * @description 만약 next-intl을 사용하는 경우 앱 최초로 init 하는곳에서 nextintladapter로 configureDatePickerI18n를 실행
+ * @example
+ * // 앱 최상단 init 하는곳
+ * import NextIntlAdapter from './next-intl-Adapter';
+ * configureDatePickerI18n(new NextIntlAdapter());
+ */
+
+export { DefaultI18nAdapter, NextIntlAdapter, configureDatePickerI18n };
