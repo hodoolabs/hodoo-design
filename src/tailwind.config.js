@@ -340,7 +340,7 @@ const typographyStyles = {
 		fontWeight: '500',
 		lineHeight: '19.5px',
 	},
-	'.caption1': {
+	'.caption3': {
 		fontSize: '10px',
 		fontWeight: '500',
 		lineHeight: '16.25px',
