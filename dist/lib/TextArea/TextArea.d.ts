@@ -1,4 +1,3 @@
-/// <reference types="react" />
 interface TextAreaProps {
     size: 'lg' | 'sm';
     label?: string | JSX.Element;

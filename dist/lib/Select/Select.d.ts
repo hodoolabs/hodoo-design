@@ -1,4 +1,3 @@
-/// <reference types="react" />
 interface SelectItem {
     value: string;
     label: string;

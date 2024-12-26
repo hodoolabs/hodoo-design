@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { ColumnType } from '../../types/table';
 interface RowTableProps {
     size: 'lg' | 'sm';

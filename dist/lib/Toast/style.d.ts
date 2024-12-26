@@ -1,4 +1,4 @@
 declare const ToastStyle: (props?: ({
-    position?: "center" | "left" | "right" | null | undefined;
+    position?: "center" | "right" | "left" | null | undefined;
 } & import("class-variance-authority/dist/types").ClassProp) | undefined) => string;
 export { ToastStyle };

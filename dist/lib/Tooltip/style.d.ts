@@ -1,6 +1,6 @@
 declare const TooltipBoxStyle: (props?: ({
-    position?: "left" | "right" | "top" | "bottom" | null | undefined;
-    isShowArrow?: "left" | "right" | "top" | "bottom" | null | undefined;
+    position?: "top" | "right" | "left" | "bottom" | null | undefined;
+    isShowArrow?: "top" | "right" | "left" | "bottom" | null | undefined;
 } & import("class-variance-authority/dist/types").ClassProp) | undefined) => string;
 declare const TooltipStyle: (props?: ({
     color?: "white" | "dark" | null | undefined;
@@ -9,6 +9,6 @@ declare const DescriptionStyle: (props?: ({
     color?: "white" | "dark" | null | undefined;
 } & import("class-variance-authority/dist/types").ClassProp) | undefined) => string;
 declare const ArrowStyle: (props?: ({
-    position?: "left" | "right" | "top" | "bottom" | null | undefined;
+    position?: "top" | "right" | "left" | "bottom" | null | undefined;
 } & import("class-variance-authority/dist/types").ClassProp) | undefined) => string;
 export { TooltipBoxStyle, TooltipStyle, DescriptionStyle, ArrowStyle };

@@ -1,4 +1,3 @@
-/// <reference types="react" />
 type ToastStateType = {
     toastingTime?: number;
     title: string;

@@ -1,4 +1,3 @@
-/// <reference types="react" />
 interface IndicatorProps {
     type?: 'default' | 'legendWithText' | 'count';
     /**

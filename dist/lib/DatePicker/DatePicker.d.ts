@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { DateValueType, DatepickerType } from 'react-tailwindcss-datepicker';
 interface DatePickerProps extends DatepickerType {
     size: 'lg' | 'sm';

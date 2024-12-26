@@ -1,4 +1,3 @@
-/// <reference types="react" />
 interface FileInputProps {
     size: 'lg' | 'sm';
     label?: string | JSX.Element;

@@ -1,4 +1,3 @@
-/// <reference types="react" />
 interface RadioProps {
     id: string | number;
     selected: string | number;

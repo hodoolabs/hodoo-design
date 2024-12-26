@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { ButtonGroupType } from '../../types/buttonGroup';
 interface ButtonGroupProps {
     buttons: ButtonGroupType[];

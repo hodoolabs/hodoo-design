@@ -11,9 +11,7 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 import { jsx as _jsx } from "react/jsx-runtime";
 import './button.css';
-/**
- * Primary UI component for user interaction
- */
+/** Primary UI component for user interaction */
 export const Button = (_a) => {
     var { primary = false, size = 'medium', backgroundColor, label } = _a, props = __rest(_a, ["primary", "size", "backgroundColor", "label"]);
     const mode = primary ? 'storybook-button--primary' : 'storybook-button--secondary';

@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { ColumnDataType, ColumnType } from '../../../types/table';
 interface TheadProps {
     size: 'lg' | 'sm';

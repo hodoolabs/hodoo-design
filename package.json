@@ -25,6 +25,9 @@
     "type": "git",
     "url": "https://github.com/hodoolabs/Design-System.git"
   },
+  "overrides": {
+    "esbuild": "0.24.2"
+  },
   "keywords": [
     "hodoo",
     "hodoolabs",
@@ -42,6 +45,7 @@
     "extends": [
       "react-app",
       "react-app/jest",
+      "plugin:storybook/recommended",
       "plugin:storybook/recommended"
     ]
   },
@@ -52,6 +56,8 @@
   },
   "homepage": "https://github.com/hodoolabs/Design-System#readme",
   "dependencies": {
+    "@storybook/react": "^8.4.7",
+    "@storybook/testing-library": "^0.2.1",
     "circular-json": "^0.5.9",
     "dayjs": "^1.11.9",
     "flatted": "^3.2.9",
@@ -68,15 +74,15 @@
     "@babel/preset-env": "^7.23.2",
     "@babel/preset-react": "^7.22.15",
     "@babel/preset-typescript": "^7.23.2",
+    "@chromatic-com/storybook": "^3.2.3",
     "@heroicons/react": "^2.0.18",
-    "@storybook/addon-essentials": "^7.4.6",
-    "@storybook/addon-interactions": "^7.4.6",
-    "@storybook/addon-links": "^7.4.6",
-    "@storybook/addon-onboarding": "^1.0.8",
-    "@storybook/blocks": "^7.4.6",
-    "@storybook/react": "^7.4.6",
-    "@storybook/react-webpack5": "^7.4.6",
-    "@storybook/testing-library": "^0.2.2",
+    "@storybook/addon-essentials": "^8.4.7",
+    "@storybook/addon-interactions": "^8.4.7",
+    "@storybook/addon-onboarding": "^8.4.7",
+    "@storybook/addon-webpack5-compiler-swc": "^1.0.5",
+    "@storybook/blocks": "^8.4.7",
+    "@storybook/react-webpack5": "^8.4.7",
+    "@storybook/test": "^8.4.7",
     "@types/lodash": "^4.14.199",
     "@types/node": "^16.18.39",
     "@types/react": "^18.2.16",
@@ -87,11 +93,11 @@
     "clsx": "^2.0.0",
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.8.1",
-    "eslint-plugin-storybook": "^0.6.15",
+    "eslint-plugin-storybook": "^0.11.1",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.3",
     "react-dom": "^18.2.0",
-    "storybook": "^7.4.6",
+    "storybook": "^8.4.7",
     "style-loader": "^3.3.3",
     "tailwind-merge": "^1.14.0",
     "tailwindcss": "^3.3.3",

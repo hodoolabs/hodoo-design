@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { MenuListType } from '../../types/accordion';
 interface AccordionProps {
     list: MenuListType[];

@@ -1,4 +1,3 @@
-/// <reference types="react" />
 interface AvatarProps {
     size: 'sm' | 'regular' | 'md' | 'lg' | 'xl';
     img: string;

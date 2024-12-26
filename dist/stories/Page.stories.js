@@ -7,25 +7,27 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { within, userEvent } from '@storybook/testing-library';
+import { expect, userEvent, within } from '@storybook/test';
 import { Page } from './Page';
 const meta = {
     title: 'Example/Page',
     component: Page,
     parameters: {
-        // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
+        // More on how to position stories at: https://storybook.js.org/docs/configure/story-layout
         layout: 'fullscreen',
     },
 };
 export default meta;
 export const LoggedOut = {};
-// More on interaction testing: https://storybook.js.org/docs/react/writing-tests/interaction-testing
+// More on interaction testing: https://storybook.js.org/docs/writing-tests/interaction-testing
 export const LoggedIn = {
-    play: ({ canvasElement }) => __awaiter(void 0, void 0, void 0, function* () {
+    play: (_a) => __awaiter(void 0, [_a], void 0, function* ({ canvasElement }) {
         const canvas = within(canvasElement);
-        const loginButton = yield canvas.getByRole('button', {
-            name: /Log in/i,
-        });
+        const loginButton = canvas.getByRole('button', { name: /Log in/i });
+        yield expect(loginButton).toBeInTheDocument();
         yield userEvent.click(loginButton);
+        yield expect(loginButton).not.toBeInTheDocument();
+        const logoutButton = canvas.getByRole('button', { name: /Log out/i });
+        yield expect(logoutButton).toBeInTheDocument();
     }),
 };

@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { BreadCrumbsType } from '../../types/breadCrumbs';
 interface BreadCrumbsProps {
     data: BreadCrumbsType;

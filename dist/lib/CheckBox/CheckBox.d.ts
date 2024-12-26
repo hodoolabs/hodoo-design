@@ -1,4 +1,3 @@
-/// <reference types="react" />
 interface CheckBoxProps {
     checked: boolean;
     label?: string;
