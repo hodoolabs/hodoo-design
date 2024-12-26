@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+
 import { ButtonGroupType } from '../../types/buttonGroup';
 interface ButtonGroupProps {
     type?: 'primary' | 'secondary';

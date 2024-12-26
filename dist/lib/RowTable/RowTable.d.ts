@@ -1,4 +1,5 @@
 import { ColumnType, TableCheckBoxType } from '../../types/table';
+
 interface RowTableProps {
     columns: ColumnType<any>;
     dataSource: any[];

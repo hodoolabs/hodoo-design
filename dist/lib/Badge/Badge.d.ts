@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+
 interface BadgeProps {
     color?: 'blue' | 'gray' | 'gray_low' | 'white' | 'red';
     size?: 'lg' | 'md' | 'sm';

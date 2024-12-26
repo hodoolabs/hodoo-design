@@ -18,11 +18,16 @@
     "build": "webpack --mode production",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prepare": "rm -rf dist && mkdir dist && tsc"
+    "prepare": "rm -rf dist && mkdir dist && tsc",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/hodoolabs/Design-System.git"
+  },
+  "overrides": {
+    "esbuild": "0.24.2"
   },
   "keywords": [
     "hodoo",
@@ -41,7 +46,9 @@
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
+      "react-app/jest",
+      "plugin:storybook/recommended",
+      "plugin:storybook/recommended"
     ]
   },
   "author": "hodoolabs",
@@ -51,6 +58,8 @@
   },
   "homepage": "https://github.com/hodoolabs/Design-System#readme",
   "dependencies": {
+    "@storybook/react": "^8.4.7",
+    "@storybook/testing-library": "^0.2.1",
     "circular-json": "^0.5.9",
     "dayjs": "^1.11.9",
     "flatted": "^3.2.9",
@@ -64,10 +73,18 @@
     "@babel/core": "^7.22.11",
     "@babel/plugin-proposal-class-properties": "^7.18.6",
     "@babel/plugin-proposal-object-rest-spread": "^7.20.7",
-    "@babel/preset-env": "^7.22.10",
-    "@babel/preset-react": "^7.22.5",
-    "@babel/preset-typescript": "^7.22.11",
+    "@babel/preset-env": "^7.23.2",
+    "@babel/preset-react": "^7.22.15",
+    "@babel/preset-typescript": "^7.23.2",
+    "@chromatic-com/storybook": "^3.2.3",
     "@heroicons/react": "^2.0.18",
+    "@storybook/addon-essentials": "^8.4.7",
+    "@storybook/addon-interactions": "^8.4.7",
+    "@storybook/addon-onboarding": "^8.4.7",
+    "@storybook/addon-webpack5-compiler-swc": "^1.0.5",
+    "@storybook/blocks": "^8.4.7",
+    "@storybook/react-webpack5": "^8.4.7",
+    "@storybook/test": "^8.4.7",
     "@types/lodash": "^4.14.201",
     "@types/node": "^16.18.39",
     "@types/react": "^18.2.16",
@@ -78,8 +95,11 @@
     "clsx": "^2.0.0",
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.8.1",
+    "eslint-plugin-storybook": "^0.11.1",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.3",
+    "react-dom": "^18.2.0",
+    "storybook": "^8.4.7",
     "style-loader": "^3.3.3",
     "tailwind-merge": "^1.14.0",
     "tailwindcss": "^3.3.3",
