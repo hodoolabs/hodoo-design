@@ -1,3 +1,3 @@
 import { TooltipType } from '../../types/tooltip';
-declare const _default: import("react").MemoExoticComponent<({ color, title, description, isShowArrow, children, position, className, }: TooltipType) => import("react/jsx-runtime").JSX.Element>;
-export default _default;
+declare const Tooltip: ({ color, title, description, isShowArrow, children, position, className, zIndex, }: TooltipType) => import("react/jsx-runtime").JSX.Element;
+export default Tooltip;

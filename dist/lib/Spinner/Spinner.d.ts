@@ -1,6 +1,6 @@
 interface SpinnerProps {
     isLoading: boolean;
-    size?: 'small' | 'medium' | 'large';
+    size?: 'sm' | 'md' | 'lg';
 }
 declare const Spinner: ({ isLoading, size }: SpinnerProps) => import("react/jsx-runtime").JSX.Element;
 export default Spinner;

@@ -1,42 +1,33 @@
 'use client';
 
 import { XMarkIcon } from '@heroicons/react/24/outline';
-import { memo } from 'react';
+import { ReactNode } from 'react';
 import { cn } from '../../utils/style';
-import { BadgeStyle, ButtonStyle, LabelStyle, LeftImageStyle, RightImageStyle } from './style';
+import { BadgeStyle, ButtonStyle, LeftImageStyle, RightImageStyle } from './style';
 
 interface BadgeProps {
-	color: 'blue' | 'gray' | 'gray_low' | 'red';
-	size: 'lg' | 'md' | 'sm';
-	leftIcon?: string | JSX.Element;
+	color?: 'blue' | 'gray' | 'gray_low' | 'white' | 'red';
+	size?: 'lg' | 'md' | 'sm';
+	leftIcon?: ReactNode;
 	label?: string;
 	className?: string;
 	onClick?: () => void;
 }
 
-const Badge = ({ color, size, leftIcon, label, className, onClick }: BadgeProps) => {
+const Badge = ({ color = 'blue', size = 'sm', leftIcon, label, className, onClick }: BadgeProps) => {
+	const iconOnly = !label ? size : null;
+
 	return (
-		<div className={`${cn(BadgeStyle({ color, size, iconOnly: !label ? size : null }))} ${className}`}>
-			{leftIcon && (
-				<div className={cn(LeftImageStyle({ color, size, iconOnly: !label ? size : null }))}>{leftIcon}</div>
-			)}
-			{label && <span className={cn(LabelStyle({ color }))}>{label}</span>}
+		<div className={`${cn(BadgeStyle({ color, size, iconOnly }))} ${className}`}>
+			{leftIcon && <div className={cn(LeftImageStyle({ size, iconOnly }))}>{leftIcon}</div>}
+			{label && <span>{label}</span>}
 			{onClick && (
 				<button type='button' className={cn(ButtonStyle({ color }))} onClick={onClick}>
-					<XMarkIcon className={cn(RightImageStyle({ color, size }))} />
+					<XMarkIcon className={cn(RightImageStyle({ size }))} />
 				</button>
 			)}
 		</div>
 	);
 };
 
-export default memo(
-	Badge,
-	(prev: BadgeProps, next: BadgeProps) =>
-		prev.color === next.color &&
-		prev.size === next.size &&
-		prev.leftIcon === next.leftIcon &&
-		prev.label === next.label &&
-		prev.className === next.className &&
-		prev.onClick === next.onClick
-);
+export default Badge;

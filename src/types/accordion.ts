@@ -1,9 +1,11 @@
-type MenuListType = {
+type AccordionType = {
 	index: number;
 	icon: string;
-	activeIcon: string;
-	menu: { path: string; label: string };
-	subMenus: { path: string; label: string }[];
+	activeIcon?: string;
+	menu: AccordionMenuType;
+	subMenus?: AccordionMenuType[];
 };
 
-export type { MenuListType };
+type AccordionMenuType = { path: string; label: string };
+
+export type { AccordionMenuType, AccordionType };

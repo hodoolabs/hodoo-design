@@ -1,12 +1,13 @@
 {
   "name": "hodoo-design",
-  "version": "1.4.03",
+  "version": "1.6.104",
   "title": "Hodoo Design",
   "description": "hodoolabs design system",
   "contributors": [
     "Taejin Kim <tj202304@gmail.com> (https://github.com/taejin-k)",
     "Sohui Choi <chosohi@naver.com> (https://github.com/chosohi)",
-    "Seungmo Kim <tmdah900@naver.com> (https://github.com/endmoseung)"
+    "Seungmo Kim <tmdah900@naver.com> (https://github.com/endmoseung)",
+    "Minji Yun <minpaper.dev@gmail.com> (https://github.com/minpaper-dev)"
   ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -39,7 +40,8 @@
     "tailwind"
   ],
   "files": [
-    "dist/*"
+    "dist/*",
+    "src/hodoo-style.css"
   ],
   "eslintConfig": {
     "extends": [
@@ -61,10 +63,10 @@
     "circular-json": "^0.5.9",
     "dayjs": "^1.11.9",
     "flatted": "^3.2.9",
+    "hodoo-design": "^1.6.88",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
-    "react-tailwindcss-datepicker": "^1.6.6",
-    "styled-components": "^6.0.8"
+    "react-tailwindcss-datepicker": "^1.6.6"
   },
   "devDependencies": {
     "@babel/cli": "^7.22.10",
@@ -83,7 +85,7 @@
     "@storybook/blocks": "^8.4.7",
     "@storybook/react-webpack5": "^8.4.7",
     "@storybook/test": "^8.4.7",
-    "@types/lodash": "^4.14.199",
+    "@types/lodash": "^4.14.201",
     "@types/node": "^16.18.39",
     "@types/react": "^18.2.16",
     "@types/react-dom": "^18.2.7",

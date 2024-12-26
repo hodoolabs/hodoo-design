@@ -1,34 +1,44 @@
 'use client';
 
-import { memo } from 'react';
+import { ReactNode } from 'react';
 import { cn } from '../../utils/style';
-import { ButtonStyle, ErrorStyle, HelperStyle, InputLabelStyle, LabelStyle } from './style';
-import { styled } from 'styled-components';
+import Label from '../Label/Label';
+import { ButtonStyle, InputLabelStyle } from './style';
+import Helper from '../Helper/Helper';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
 interface FileInputProps {
-	size: 'lg' | 'sm';
-	label?: string | JSX.Element;
+	size?: 'lg' | 'sm';
 	value: string;
-	error?: string;
 	buttonName: string;
+	accept?: string;
+	label?: ReactNode;
+	error?: string;
 	placeholder?: string;
-	helper?: string | JSX.Element;
+	helper?: ReactNode;
 	required?: boolean;
+	multiple?: boolean;
+	disabled?: boolean;
+	className?: string;
 	onChange: (files: FileList) => void;
 }
 
 const FileInput = ({
-	size,
-	label,
+	size = 'lg',
 	value,
-	error,
 	buttonName,
+	accept,
+	label,
+	error,
 	placeholder,
 	helper,
 	required,
+	multiple = false,
+	disabled = false,
+	className,
 	onChange,
 }: FileInputProps) => {
-	const getLabelStatus = (value: string, error: string) => {
+	const getLabelType = (value: string, error?: string) => {
 		if (value && !error) return 'value';
 		if (value && error) return 'valueError';
 		if (!value && !error) return 'placeholder';
@@ -36,47 +46,26 @@ const FileInput = ({
 	};
 
 	return (
-		<FileInputStyled className='flex flex-col'>
-			{label && (
-				<label className={cn(LabelStyle({ size, error: !!error }))}>
-					{required && <span className='text-red-600'>*</span>} {label}
-				</label>
-			)}
+		<div className={`flex flex-col ${className}`}>
+			<Label size={size} error={error} label={label} disabled={disabled} required={required} />
 			<div className='relative flex w-full group'>
 				<button className={cn(ButtonStyle({ size }))}>{buttonName}</button>
-				{
-					<label className={cn(InputLabelStyle({ size, error: getLabelStatus(value, error!) }))}>
-						<span className='block overflow-hidden whitespace-nowrap'>{value || placeholder}</span>
-					</label>
-				}
+				<label className={cn(InputLabelStyle({ size, type: getLabelType(value, error) }))}>
+					<span className='block overflow-hidden whitespace-nowrap'>{value || placeholder}</span>
+				</label>
 				<input
+					accept={accept}
 					type='file'
+					multiple={multiple}
+					onClick={(event) => ((event.target as HTMLInputElement).value = '')}
 					onChange={(event) => event.target.files && onChange(event.target.files)}
 					className='absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer z-1'
 				/>
 			</div>
-			{helper && <div className={cn(HelperStyle({ size }))}>{helper}</div>}
-			<div className={cn(ErrorStyle({ size, error: !!error }))}>{error}</div>
-		</FileInputStyled>
+			<Helper size={size} error={error} helper={helper} disabled={disabled} />
+			<ErrorMessage size={size} error={error} />
+		</div>
 	);
 };
 
-export default memo(
-	FileInput,
-	(prev: FileInputProps, next: FileInputProps) =>
-		prev.size === next.size &&
-		prev.label === next.label &&
-		prev.value === next.value &&
-		prev.error === next.error &&
-		prev.buttonName === next.buttonName &&
-		prev.placeholder === next.placeholder &&
-		prev.helper === next.helper &&
-		prev.required === next.required &&
-		prev.onChange === next.onChange
-);
-
-const FileInputStyled = styled.div`
-	.transition-300 {
-		transition: 0.3s;
-	}
-`;
+export default FileInput;

@@ -1,20 +1,10 @@
 import { cva } from 'class-variance-authority';
 
-const TableHeaderStyle = cva(['font-semibold', 'flex', 'mx-4', 'my-2', 'items-center', 'justify-start', 'min-w-fit'], {
+const TableBodyStyle = cva(['flex px-4 py-3 items-center text-gray-900 text-sm'], {
 	variants: {
-		size: {
-			lg: ['text-base'],
-			sm: ['text-sm'],
+		click: {
+			true: ['cursor-pointer'],
 		},
 	},
 });
-
-const TableBodyStyle = cva(['flex', 'mx-4', 'my-3', 'items-center', 'justify-start', 'min-w-fit', 'text-gray-900'], {
-	variants: {
-		size: {
-			lg: ['text-base'],
-			sm: ['text-sm'],
-		},
-	},
-});
-export { TableHeaderStyle, TableBodyStyle };
+export { TableBodyStyle };

@@ -11,61 +11,58 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
-import { CalendarDaysIcon } from '@heroicons/react/24/outline';
+CalendarIcon;
 import { throttle } from 'lodash';
-import { memo, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Datepicker from 'react-tailwindcss-datepicker';
-import { styled } from 'styled-components';
 import { cn } from '../../utils/style';
-import { ErrorStyle, InputStyle, LabelStyle, SkeletonStyle, ToggleStyle } from './style';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import Helper from '../Helper/Helper';
+import Label from '../Label/Label';
+import { InputStyle, SkeletonStyle, ToggleStyle } from './style';
+import { CalendarIcon } from '@heroicons/react/24/outline';
+import DefaultI18nAdapter from './defaultAdapter';
+import NextIntlAdapter from './next-intl-Adapter';
 const DatePicker = (_a) => {
-    var { size, label, value, error, format = 'YYYY-MM-DD', helper, required, className, onChange, onError } = _a, props = __rest(_a, ["size", "label", "value", "error", "format", "helper", "required", "className", "onChange", "onError"]);
-    const [isLoading, setIsLoading] = useState(false);
-    const handleChangeDate = (placeholder, date, event) => {
-        if (!placeholder && (date === null || date === void 0 ? void 0 : date.startDate) === null && (date === null || date === void 0 ? void 0 : date.endDate) === null) {
-            event === null || event === void 0 ? void 0 : event.oncancel;
-        }
-        else
+    var _b, _c;
+    var { size = 'lg', label, error, helper, required, disabled = false, className, onError, onChange } = _a, props = __rest(_a, ["size", "label", "error", "helper", "required", "disabled", "className", "onError", "onChange"]);
+    const locale = i18nAdapter.useLocale();
+    const [isDestory, setIsDestroy] = useState(false);
+    const handleChangeDate = (date, event, placeholder) => {
+        if (!placeholder && !(date === null || date === void 0 ? void 0 : date.startDate) && !(date === null || date === void 0 ? void 0 : date.endDate))
+            event.oncancel;
+        else {
             onChange(date);
-        setIsLoading(true);
+            onError && onError('');
+        }
+        setIsDestroy(true);
     };
     useEffect(() => {
-        const handleResize = throttle(() => {
-            setIsLoading(true);
-        }, 300);
-        window.addEventListener('resize', handleResize);
+        const handleResizeBrowser = throttle(() => {
+            setIsDestroy(true);
+        }, 1000);
+        window.addEventListener('resize', handleResizeBrowser);
         return () => {
-            window.removeEventListener('resize', handleResize);
+            window.removeEventListener('resize', handleResizeBrowser);
         };
     }, []);
     useEffect(() => {
-        if (!onError)
+        if (!isDestory)
             return;
-        onError('');
-    }, [value === null || value === void 0 ? void 0 : value.startDate, value === null || value === void 0 ? void 0 : value.endDate]);
-    useEffect(() => {
-        if (!isLoading)
-            return;
-        setIsLoading(false);
-    }, [isLoading]);
-    return (_jsxs(DatePickerStyled, { className: `flex flex-col ${className}`, children: [label && (_jsxs("label", { className: cn(LabelStyle({ error: !!error })), children: [required && _jsx("span", { className: 'text-red-600', children: "*" }), " ", label] })), !isLoading ? (_jsx(Datepicker, Object.assign({ i18n: 'ko', value: value, displayFormat: format, readOnly: true, startFrom: (value === null || value === void 0 ? void 0 : value.startDate) ? new Date(value === null || value === void 0 ? void 0 : value.startDate) : new Date(), toggleIcon: () => _jsx(CalendarDaysIcon, { className: 'w-5 h-5' }), toggleClassName: cn(ToggleStyle({ size, error: !!error })), inputClassName: cn(InputStyle({ size, error: !!error })), placeholder: props.placeholder ? props.placeholder : ' ', onChange: (date, event) => handleChangeDate(props.placeholder, date, event) }, props))) : (_jsx("div", { className: cn(SkeletonStyle({ size })) })), helper && _jsx("div", { className: 'pt-2 text-sm font-medium text-gray-500', children: helper }), _jsx("div", { className: cn(ErrorStyle({ error: !!error })), children: error })] }));
+        setIsDestroy(false);
+    }, [isDestory]);
+    return (_jsxs("div", { className: `flex flex-col ${className}`, children: [_jsx(Label, { size: size, error: error, label: label, disabled: disabled, required: required }), !isDestory ? (_jsx(Datepicker, Object.assign({ i18n: locale, readOnly: true, displayFormat: props.displayFormat, startFrom: ((_b = props.value) === null || _b === void 0 ? void 0 : _b.startDate) ? new Date((_c = props.value) === null || _c === void 0 ? void 0 : _c.startDate) : new Date(), toggleIcon: () => _jsx(CalendarIcon, { className: 'w-5 h-5' }), toggleClassName: cn(ToggleStyle({ size, error: !!error, disabled })), inputClassName: cn(InputStyle({ size, error: !!error, disabled })), placeholder: props.placeholder || ' ', disabled: disabled, onChange: (date, event) => event && handleChangeDate(date, event, props.placeholder) }, props))) : (_jsx("div", { className: cn(SkeletonStyle({ size })) })), _jsx(Helper, { size: size, error: error, helper: helper, disabled: disabled }), _jsx(ErrorMessage, { size: size, error: error })] }));
 };
-export default memo(DatePicker, (prev, next) => {
-    var _a, _b, _c, _d;
-    return prev.size === next.size &&
-        prev.label === next.label &&
-        ((_a = prev.value) === null || _a === void 0 ? void 0 : _a.startDate) === ((_b = next.value) === null || _b === void 0 ? void 0 : _b.startDate) &&
-        ((_c = prev.value) === null || _c === void 0 ? void 0 : _c.endDate) === ((_d = next.value) === null || _d === void 0 ? void 0 : _d.endDate) &&
-        prev.error === next.error &&
-        prev.format === next.format &&
-        prev.helper === next.helper &&
-        prev.required === next.required &&
-        prev.className === next.className &&
-        prev.onChange === next.onChange &&
-        prev.onError === next.onError;
-});
-const DatePickerStyled = styled.div `
-	.transition-300 {
-		transition: 0.3s;
-	}
-`;
+export default DatePicker;
+let i18nAdapter = new DefaultI18nAdapter();
+const configureDatePickerI18n = (adapter) => {
+    i18nAdapter = adapter;
+};
+/**
+ * @description 만약 next-intl을 사용하는 경우 앱 최초로 init 하는곳에서 nextintladapter로 configureDatePickerI18n를 실행
+ * @example
+ * // 앱 최상단 init 하는곳
+ * import NextIntlAdapter from './next-intl-Adapter';
+ * configureDatePickerI18n(new NextIntlAdapter());
+ */
+export { DefaultI18nAdapter, NextIntlAdapter, configureDatePickerI18n };

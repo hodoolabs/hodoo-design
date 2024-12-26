@@ -1,16 +1,21 @@
-interface SelectItem {
-    value: string;
-    label: string;
-}
+import { ReactNode } from 'react';
+import { SelectType } from '../../types/select';
+
 interface SelectProps {
-    size: 'sm' | 'md' | 'lg';
-    items: SelectItem[];
-    selected: string;
+    size?: 'sm' | 'md' | 'lg';
+    items?: SelectType[];
+    selected?: string;
+    error?: string;
     center?: boolean;
     label?: string;
     placeholder?: string;
+    helper?: ReactNode;
+    disabled?: boolean;
+    required?: boolean;
     className?: string;
-    onChange: (value: string) => void;
+    onClick?: () => void;
+    onChange?: (value: string) => void;
+    onError?: (error: string) => void;
 }
-declare const _default: import("react").MemoExoticComponent<({ size, items, selected, center, label, placeholder, className, onChange }: SelectProps) => import("react/jsx-runtime").JSX.Element>;
-export default _default;
+declare const Select: ({ size, items, selected, error, center, label, placeholder, helper, disabled, required, className, onClick, onChange, onError, }: SelectProps) => import("react/jsx-runtime").JSX.Element;
+export default Select;

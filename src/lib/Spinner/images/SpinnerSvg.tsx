@@ -1,12 +1,12 @@
 interface SpinnerProps {
-	size?: 'small' | 'medium' | 'large';
+	size?: 'sm' | 'md' | 'lg';
 }
 
-const SpinnerSvg = ({ size = 'medium' }: SpinnerProps) => {
+const SpinnerSvg = ({ size }: SpinnerProps) => {
 	return (
 		<svg
-			width={size === 'large' ? '40' : size === 'medium' ? '32' : '24'}
-			height={size === 'large' ? '40' : size === 'medium' ? '32' : '24'}
+			width={size === 'lg' ? '40' : size === 'md' ? '32' : '24'}
+			height={size === 'lg' ? '40' : size === 'md' ? '32' : '24'}
 			viewBox='0 0 40 40'
 			fill='none'
 			xmlns='http://www.w3.org/2000/svg'

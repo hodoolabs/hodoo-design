@@ -1,27 +1,31 @@
 'use client';
 
-import { memo, useEffect } from 'react';
-import { styled } from 'styled-components';
+import { ChangeEvent, ReactNode, useEffect } from 'react';
 import { cn } from '../../utils/style';
-import { ErrorStyle, HelperStyle, LabelStyle, MaxLengthStyle, TextareaStyle } from './style';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import Helper from '../Helper/Helper';
+import Label from '../Label/Label';
+import { TextareaStyle } from './style';
 
 interface TextAreaProps {
-	size: 'lg' | 'sm';
-	label?: string | JSX.Element;
+	size?: 'lg' | 'sm';
 	value: string;
 	error?: string;
+	label?: ReactNode;
 	maxLength?: number;
 	placeholder?: string;
-	helper?: string | JSX.Element;
+	helper?: ReactNode;
 	disabled?: boolean;
 	height?: number;
 	required?: boolean;
+	className?: string;
+	inputClassName?: string;
 	onChange?: (value: string) => void;
 	onError?: (error: string) => void;
 }
 
 const TextArea = ({
-	size,
+	size = 'lg',
 	label,
 	value,
 	error,
@@ -31,6 +35,8 @@ const TextArea = ({
 	disabled,
 	height,
 	required,
+	className,
+	inputClassName,
 	onChange,
 	onError,
 }: TextAreaProps) => {
@@ -40,60 +46,39 @@ const TextArea = ({
 		onError('');
 	}, [value]);
 
+	const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+		const value = event.target.value;
+
+		if (!onChange) return;
+		if (maxLength && value.length > maxLength) return;
+
+		onChange(value);
+	};
+
 	return (
-		<TextAreaStyled className='flex flex-col'>
-			{label && (
-				<label className={cn(LabelStyle({ size, error: !!error }))}>
-					{required && <span className='text-red-600'>*</span>} {label}
-					{maxLength && (
-						<span className={cn(MaxLengthStyle({ error: !!error }))}>
-							{value?.length}/{maxLength}
-						</span>
-					)}
-				</label>
-			)}
+		<div className={`flex flex-col ${className}`}>
+			<Label
+				size={size}
+				value={value}
+				error={error}
+				label={label}
+				maxLength={maxLength}
+				disabled={disabled}
+				required={required}
+			/>
 			<textarea
-				className={cn(TextareaStyle({ size, error: !!error }))}
 				value={value}
 				maxLength={maxLength}
 				placeholder={placeholder}
 				disabled={disabled}
-				onChange={(event) => onChange && onChange(event.target.value)}
-				style={{ height: height }}
+				className={cn(TextareaStyle({ size, error: !!error }), inputClassName)}
+				onChange={handleChange}
+				style={{ height }}
 			/>
-			{helper && <div className={cn(HelperStyle({ size }))}>{helper}</div>}
-			<div className={cn(ErrorStyle({ size, error: !!error }))}>{error}</div>
-		</TextAreaStyled>
+			<Helper size={size} error={error} helper={helper} disabled={disabled} />
+			<ErrorMessage size={size} error={error} />
+		</div>
 	);
 };
 
-export default memo(
-	TextArea,
-	(prev: TextAreaProps, next: TextAreaProps) =>
-		prev.size === next.size &&
-		prev.label === next.label &&
-		prev.value === next.value &&
-		prev.error === next.error &&
-		prev.maxLength === next.maxLength &&
-		prev.placeholder === next.placeholder &&
-		prev.helper === next.helper &&
-		prev.disabled === next.disabled &&
-		prev.height === next.height &&
-		prev.required === next.required &&
-		prev.onChange === next.onChange &&
-		prev.onError === next.onError
-);
-
-const TextAreaStyled = styled.div`
-	.scroll-none::-webkit-scrollbar {
-		display: none;
-	}
-
-	.scroll-none::-webkit-scrollbar-thumb {
-		display: none;
-	}
-
-	.transition-300 {
-		transition: 0.3s;
-	}
-`;
+export default TextArea;

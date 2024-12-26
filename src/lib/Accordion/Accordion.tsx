@@ -1,82 +1,82 @@
 'use client';
 
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
-import { memo, useState } from 'react';
-import { MenuListType } from '../../types/accordion';
+import { CSSProperties, useState } from 'react';
+import { AccordionMenuType, AccordionType } from '../../types/accordion';
 import { cn } from '../../utils/style';
-import { ArrowStyle, LabelStyle, MenuStyle, SubMenuStyle, SubMenusStyle } from './style';
-import { styled } from 'styled-components';
+import { ArrowStyle, MenuStyle, SubMenuStyle } from './style';
 
 interface AccordionProps {
-	list: MenuListType[];
-	pathname: string;
+	list: AccordionType[];
+	path: string;
 	className?: string;
-	onPush: (pathname: string) => void;
+	menuItem?: {
+		bgColor?: string;
+		textColor?: string;
+		hoverColor?: string;
+	};
+	onPush: (path: string) => void;
 }
 
-const Accordion = ({ list, pathname, className, onPush }: AccordionProps) => {
-	const [expandedMenuIndex, setExpanededMenuIndex] = useState(0);
+const Accordion = ({ list, path, className, menuItem, onPush }: AccordionProps) => {
+	const [expandedMenuIndex, setExpandedMenuIndex] = useState(
+		list.findIndex((item) => !!item.subMenus?.filter((subMenu) => path.includes(subMenu.path)).length)
+	);
 
-	const handleMenuClick = (index: number, expandedMenuIndex: number, path: string) => {
-		if (path) onPush(path);
-		setExpanededMenuIndex(index !== expandedMenuIndex ? index : 0);
+	const getMenuItemStyle = (isCurrentPath: boolean) => {
+		let menuItemStyle: CSSProperties = {};
+		if (isCurrentPath) {
+			if (menuItem?.bgColor) menuItemStyle.backgroundColor = menuItem.bgColor;
+			if (menuItem?.textColor) menuItemStyle.color = menuItem.textColor;
+		}
+		return menuItemStyle;
 	};
 
-	const handleCheckCurrentPath = (path: string, currentPath: string) => {
+	const getMenuItemClass = () => {
+		return cn('hover-effect', menuItem?.hoverColor && `hover:!bg-[${menuItem.hoverColor}]`);
+	};
+
+	const getIsCurrentPath = (path: string, currentPath: string) => {
 		return !!path && currentPath.includes(path);
 	};
 
-	const handleCheckExpandedMenu = (
-		index: number,
-		expandedMenuIndex: number,
-		subMenus: {
-			path: string;
-			label: string;
-		}[],
-		currentpath: string
-	) => {
-		return index === expandedMenuIndex || !!subMenus.filter((subMenu) => subMenu.path === currentpath).length;
+	const getIsExpandedMenu = (index: number, expandedMenuIndex: number) => {
+		return index === expandedMenuIndex;
+	};
+
+	const handleMenuClick = (index: number, expandedMenuIndex: number, path: string, subMenu?: AccordionMenuType[]) => {
+		if (path) onPush(path);
+		if (!!subMenu) setExpandedMenuIndex(index !== expandedMenuIndex ? index : -1);
+		else setExpandedMenuIndex(index);
 	};
 
 	return (
-		<AccordionStyled className={`text-base font-semibold ${className}`}>
+		<div className={`text-base font-semibold flex flex-col gap-3 ${className}`}>
 			{list.map((item) => (
-				<div key={item.index} className='mb-3'>
+				<div key={item.index}>
 					<div
-						className={cn(MenuStyle({ isCurrentPath: handleCheckCurrentPath(item.menu.path, pathname) }))}
-						onClick={() => handleMenuClick(item.index, expandedMenuIndex, item.menu.path)}
+						style={getMenuItemStyle(getIsCurrentPath(item.menu.path, path))}
+						className={cn(MenuStyle({ isCurrentPath: getIsCurrentPath(item.menu.path, path) }), getMenuItemClass())}
+						onClick={() => handleMenuClick(item.index, expandedMenuIndex, item.menu.path, item.subMenus)}
 					>
 						<img
-							src={handleCheckCurrentPath(item.menu.path, pathname) ? `${item.activeIcon}` : `${item.icon}`}
+							src={item[getIsCurrentPath(item.menu.path, path) ? 'activeIcon' : 'icon']}
 							alt={item.icon}
 							className='w-6 h-6'
 						/>
-						<span className={cn(LabelStyle({ isCurrentPath: handleCheckCurrentPath(item.menu.path, pathname) }))}>
-							{item.menu.label}
-						</span>
-						{!!item.subMenus.length && (
+						<span>{item.menu.label}</span>
+						{!!item.subMenus && (
 							<ChevronDownIcon
-								className={cn(
-									ArrowStyle({
-										isExpanded: handleCheckExpandedMenu(item.index, expandedMenuIndex, item.subMenus, pathname),
-									})
-								)}
+								className={cn(ArrowStyle({ isExpanded: getIsExpandedMenu(item.index, expandedMenuIndex) }))}
 							/>
 						)}
 					</div>
-					{!!item.subMenus.length && (
-						<div
-							className={cn(
-								SubMenusStyle({
-									isExpanded: handleCheckExpandedMenu(item.index, expandedMenuIndex, item.subMenus, pathname),
-									height: item.subMenus.length,
-								})
-							)}
-						>
+					{!!item.subMenus && getIsExpandedMenu(item.index, expandedMenuIndex) && (
+						<div className='flex flex-col gap-1 overflow-hidden'>
 							{item.subMenus.map((subItem, index) => (
 								<div
 									key={index}
-									className={cn(SubMenuStyle({ isCurrentPath: handleCheckCurrentPath(subItem.path, pathname) }))}
+									className={cn(SubMenuStyle({ isCurrentPath: getIsCurrentPath(subItem.path, path) }))}
 									onClick={() => onPush(subItem.path)}
 								>
 									{subItem.label}
@@ -86,21 +86,8 @@ const Accordion = ({ list, pathname, className, onPush }: AccordionProps) => {
 					)}
 				</div>
 			))}
-		</AccordionStyled>
+		</div>
 	);
 };
 
-export default memo(
-	Accordion,
-	(prev: AccordionProps, next: AccordionProps) =>
-		prev.list === next.list &&
-		prev.pathname === next.pathname &&
-		prev.className === next.className &&
-		prev.onPush === next.onPush
-);
-
-const AccordionStyled = styled.div`
-	.transition-300 {
-		transition: 0.3s;
-	}
-`;
+export default Accordion;

@@ -1,92 +1,107 @@
 'use client';
 
 import { ChevronDownIcon } from '@heroicons/react/24/solid';
-import { MouseEvent, memo, useState } from 'react';
-import { styled } from 'styled-components';
+import { MouseEvent, ReactNode, useEffect, useState } from 'react';
+import { SelectType } from '../../types/select';
 import { cn } from '../../utils/style';
-import { ArrowStyle, BlankStyle, ButtonStyle, LabelStyle, ListStyle, SelectedStyle } from './style';
-
-interface SelectItem {
-	value: string;
-	label: string;
-}
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import Helper from '../Helper/Helper';
+import Label from '../Label/Label';
+import { ArrowStyle, BlankStyle, ItemStyle, ListStyle, SelectedStyle } from './style';
 
 interface SelectProps {
-	size: 'sm' | 'md' | 'lg';
-	items: SelectItem[];
-	selected: string;
+	size?: 'sm' | 'md' | 'lg';
+	items?: SelectType[];
+	selected?: string;
+	error?: string;
 	center?: boolean;
 	label?: string;
 	placeholder?: string;
+	helper?: ReactNode;
+	disabled?: boolean;
+	required?: boolean;
 	className?: string;
-	onChange: (value: string) => void;
+	onClick?: () => void;
+	onChange?: (value: string) => void;
+	onError?: (error: string) => void;
 }
 
-const Select = ({ size, items, selected, center = false, label, placeholder, className, onChange }: SelectProps) => {
+const Select = ({
+	size = 'lg',
+	items = [],
+	selected = '',
+	error,
+	center = false,
+	label,
+	placeholder,
+	helper,
+	disabled = false,
+	required,
+	className,
+	onClick,
+	onChange,
+	onError,
+}: SelectProps) => {
 	const [isOpen, setIsOpen] = useState(false);
-	const [isOpenDown, setIsOpenDown] = useState(true);
+	const [direction, setDirection] = useState<'down' | 'up'>('down');
 
-	const getLabel = (items: SelectItem[], selected: string) => {
+	const getLabel = (items: SelectType[], selected: string) => {
 		return items.filter((item) => item.value === selected)[0]?.label;
 	};
 
-	const handleSelectOpen = (event: MouseEvent<HTMLButtonElement>) => {
+	const handleClickSelect = (event: MouseEvent<HTMLButtonElement>) => {
 		const distanceFromBottom = document.body.clientHeight - event.clientY;
 
 		setIsOpen((state) => !state);
-		setIsOpenDown(distanceFromBottom > 340);
+		setDirection(distanceFromBottom > 340 ? 'down' : 'up');
 	};
 
+	useEffect(() => {
+		if (!onError) return;
+
+		onError('');
+	}, [selected]);
+
 	return (
-		<SelectStyled className={className}>
-			<div className='relative flex flex-col gap-2' onMouseLeave={() => setIsOpen(false)}>
-				{label && <p className={cn(LabelStyle({ size }))}>{label}</p>}
-				<div className={BlankStyle({ isOpenDown })} />
-				<button type='button' onClick={handleSelectOpen} className={cn(SelectedStyle({ size }))}>
+		<div className={`flex flex-col ${className}`} onMouseLeave={() => setIsOpen(false)}>
+			<Label size={size} error={error} label={label} disabled={disabled} required={required} />
+			<div className='relative w-full'>
+				<button
+					type='button'
+					onClick={(event) => {
+						onClick ? onClick() : handleClickSelect(event);
+						onError && onError('');
+					}}
+					disabled={disabled}
+					className={cn(SelectedStyle({ size, placeholder: !selected, error: !!error }))}
+				>
 					{selected ? getLabel(items, selected) : placeholder}
 					<ChevronDownIcon className={cn(ArrowStyle({ size }))} />
 				</button>
-				{isOpen && (
-					<div className={ListStyle({ isOpenDown })}>
-						<ul className='flex flex-col p-1 text-base text-gray-700'>
-							{items.map((item) => (
+				<div className={BlankStyle({ direction })} />
+				{isOpen && !!items.length && (
+					<div className={ListStyle({ direction })}>
+						<ul className='flex flex-col p-1 m-0'>
+							{items.map((item, index) => (
 								<li
-									key={item.value}
+									key={index}
+									className={cn(ItemStyle({ center }))}
 									onClick={() => {
-										onChange(item.value);
+										onChange && onChange(item.value);
 										setIsOpen(false);
 									}}
 								>
-									<button className={cn(ButtonStyle({ center }))}>{item.label}</button>
+									{item.label}
 								</li>
 							))}
 						</ul>
 					</div>
 				)}
 			</div>
-		</SelectStyled>
+			<Helper size={size} error={error} helper={helper} disabled={disabled} />
+			<ErrorMessage size={size} error={error} />
+		</div>
 	);
 };
 
-export default memo(
-	Select,
-	(prev: SelectProps, next: SelectProps) =>
-		prev.size === next.size &&
-		prev.selected === next.selected &&
-		prev.items === next.items &&
-		prev.center === next.center &&
-		prev.label === next.label &&
-		prev.placeholder === next.placeholder &&
-		prev.className === next.className &&
-		prev.onChange === next.onChange
-);
-
-const SelectStyled = styled.div`
-	.scroll-none::-webkit-scrollbar {
-		display: none;
-	}
-
-	.scroll-none::-webkit-scrollbar-thumb {
-		display: none;
-	}
-`;
+export default Select;

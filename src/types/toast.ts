@@ -1,13 +1,30 @@
+import { ReactNode } from 'react';
+
+type ToastType = {
+	toastState: ToastStateType;
+	openToast: ({
+		toastingTime,
+		title,
+		description,
+		leftButton,
+		rightButton,
+		closeButton,
+		position,
+		leftIcon,
+	}: ToastStateType) => void;
+	closeToast: () => void;
+};
+
 type ToastStateType = {
 	toastingTime?: number;
 	title: string;
-	description?: string | JSX.Element;
+	description?: ReactNode;
 	leftButton?: { text: string; onClick: () => void };
 	rightButton?: { text: string; onClick: () => void };
-	isClose?: boolean;
-	position: 'left' | 'center' | 'right';
-	leftIcon: 'question' | 'success' | 'warning';
+	closeButton?: boolean;
+	position?: 'left' | 'center' | 'right';
+	leftIcon?: 'question' | 'success' | 'warning' | ReactNode;
 	isOpen?: boolean;
 };
 
-export type { ToastStateType };
+export type { ToastStateType, ToastType };

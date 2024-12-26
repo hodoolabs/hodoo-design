@@ -5,9 +5,12 @@ type ColumnType<RecordType> = {
 	title: ReactNode;
 	dataIndex: keyof RecordType;
 	width?: number;
+	minWidth?: number;
 	tooltip?: TooltipType;
-	sorter?: (a: RecordType, b: RecordType) => number;
+	sorter?: boolean;
 	render?: (values: RecordType) => ReactNode;
+	renderHeader?: () => ReactNode;
+	onClick?: (values: RecordType) => void;
 }[];
 
 type ColumnDataType = {
@@ -15,4 +18,10 @@ type ColumnDataType = {
 	[key: string]: ReactNode;
 };
 
-export type { ColumnType, ColumnDataType };
+type TableCheckBoxType = {
+	id: string;
+	selected: any[];
+	onSelect: (selected: any[]) => void;
+};
+
+export type { ColumnDataType, ColumnType, TableCheckBoxType };

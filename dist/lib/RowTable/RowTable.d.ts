@@ -1,9 +1,10 @@
-import { ColumnType } from '../../types/table';
+import { ColumnType, TableCheckBoxType } from '../../types/table';
+
 interface RowTableProps {
-    size: 'lg' | 'sm';
     columns: ColumnType<any>;
     dataSource: any[];
-    minWidth?: number;
+    checkBox?: TableCheckBoxType;
+    className?: string;
 }
-declare const _default: import("react").MemoExoticComponent<({ size, columns, dataSource, minWidth }: RowTableProps) => import("react/jsx-runtime").JSX.Element>;
-export default _default;
+declare const RowTable: ({ columns, dataSource, checkBox, className }: RowTableProps) => import("react/jsx-runtime").JSX.Element;
+export default RowTable;

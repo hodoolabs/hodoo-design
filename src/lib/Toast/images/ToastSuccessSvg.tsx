@@ -9,8 +9,8 @@ const ToastSuccessSvg = () => {
 				d='M9.75 16.625L14.75 21.625L22.25 10.375'
 				stroke='#1C64F2'
 				strokeWidth='1.5'
-				stroke-linecap='round'
-				stroke-linejoin='round'
+				strokeLinecap='round'
+				strokeLinejoin='round'
 			/>
 		</svg>
 	);

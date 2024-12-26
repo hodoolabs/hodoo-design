@@ -1,9 +1,18 @@
+import { ReactNode } from 'react';
+
 import { ButtonGroupType } from '../../types/buttonGroup';
 interface ButtonGroupProps {
+    type?: 'primary' | 'secondary';
+    active: string;
+    error?: string;
     buttons: ButtonGroupType[];
-    active?: string;
+    label?: ReactNode;
+    helper?: ReactNode;
+    disabled?: boolean;
+    required?: boolean;
     className?: string;
-    onActive: (id: string) => void;
+    onActive: (active: string) => void;
+    onError?: (error: string) => void;
 }
-declare const _default: import("react").MemoExoticComponent<({ buttons, active, className, onActive }: ButtonGroupProps) => import("react/jsx-runtime").JSX.Element>;
-export default _default;
+declare const ButtonGroup: ({ type, active, error, buttons, label, helper, disabled, required, className, onActive, onError, }: ButtonGroupProps) => import("react/jsx-runtime").JSX.Element;
+export default ButtonGroup;

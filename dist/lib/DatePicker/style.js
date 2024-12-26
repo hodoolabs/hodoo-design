@@ -1,13 +1,5 @@
 import { cva } from 'class-variance-authority';
-const LabelStyle = cva(['font-medium', 'text-sm', 'mb-2'], {
-    variants: {
-        error: {
-            true: ['text-red-700'],
-            false: ['text-gray-700'],
-        },
-    },
-});
-const ToggleStyle = cva(['absolute', 'h-full', 'left-0', 'pl-4', 'pr-3', 'rounded-l-xl', 'focus:outline-none'], {
+const ToggleStyle = cva(['absolute h-full left-0 pl-4 pr-3 text-gray-500 rounded-l-xl focus:outline-none'], {
     variants: {
         size: {
             lg: ['py-3.5'],
@@ -15,36 +7,32 @@ const ToggleStyle = cva(['absolute', 'h-full', 'left-0', 'pl-4', 'pr-3', 'rounde
         },
         error: {
             true: ['text-red-700'],
-            false: ['text-gray-500'],
+        },
+        disabled: {
+            true: ['text-gray-400'],
         },
     },
 });
-const InputStyle = cva(['cursor-pointer', 'w-full', 'px-4', 'bg-gray-50', 'border', 'rounded-xl', 'hover:bg-gray-100'], {
+const InputStyle = cva(['cursor-pointer w-full px-4 bg-gray-50 text-gray-900 border-gray-300/70 border rounded-xl hover:bg-gray-100'], {
     variants: {
         size: {
-            lg: ['py-3.5', 'text-base', 'pl-12'],
-            sm: ['py-2.5', 'text-sm', 'pl-11'],
+            lg: ['py-3.5 text-base pl-12'],
+            sm: ['py-2.5 text-sm pl-11'],
         },
         error: {
-            true: ['text-red-700', 'border-red-200', 'bg-red-50', 'placeholder-red-400'],
-            false: ['bg-gray-50', 'text-gray-900', 'border-gray-300/70'],
+            true: ['text-red-700 border-red-200 bg-red-50 placeholder-red-400 hover:bg-red-50'],
+        },
+        disabled: {
+            true: ['ring-gray-200 bg-gray-100 text-gray-400 cursor-default'],
         },
     },
 });
-const SkeletonStyle = cva(['cursor-pointer', 'w-full', 'px-4', 'bg-gray-50', 'border', 'rounded-xl'], {
+const SkeletonStyle = cva(['w-full bg-gray-50 border rounded-xl'], {
     variants: {
         size: {
-            lg: ['h-[54px]', 'text-base', 'pl-12'],
-            sm: ['h-[42px]', 'text-sm', 'pl-11'],
+            lg: ['h-[54px]'],
+            sm: ['h-[42px]'],
         },
     },
 });
-const ErrorStyle = cva(['font-medium', 'overflow-hidden', 'text-red-600', 'transition-300', 'text-sm', 'h-7'], {
-    variants: {
-        error: {
-            true: ['pt-2'],
-            false: ['h-0', 'pt-0'],
-        },
-    },
-});
-export { LabelStyle, ToggleStyle, InputStyle, SkeletonStyle, ErrorStyle };
+export { ToggleStyle, InputStyle, SkeletonStyle };

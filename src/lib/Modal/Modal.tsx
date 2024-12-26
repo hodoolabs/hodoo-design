@@ -1,41 +1,25 @@
 'use client';
 
-import { useEffect } from 'react';
-import useScrollBlock from '../../hooks/useScrollBlock';
 import { ModalStateType } from '../../types/modal';
 import { cn } from '../../utils/style';
 import Header from './Header';
-import { ModalContainerStyle, ModalContentStyle, ModalStyle } from './style';
+import { ContentStyle, ModalStyle, WrapStyle } from './style';
 
 export interface ModalProps {
 	modalState: ModalStateType;
 	modalHistory?: ModalStateType[];
 	goBackModal?: () => void;
-	isMobile?: boolean;
 	closeModal: () => void;
-	animationBottomToTop?: boolean;
 }
 
-const Modal = ({
-	modalState,
-	modalHistory,
-	goBackModal,
-	closeModal,
-	isMobile = false,
-	animationBottomToTop,
-}: ModalProps) => {
-	const { blockScroll, allowScroll } = useScrollBlock();
-
-	useEffect(() => {
-		if (modalState.isOpen) blockScroll();
-		else allowScroll();
-	}, [modalState.isOpen]);
+const Modal = ({ modalState, modalHistory, goBackModal, closeModal }: ModalProps) => {
+	const { content, size, isOpen } = modalState;
 
 	return (
-		<div className={ModalContainerStyle({ isMobile, isModalVisible: modalState.isOpen })}>
-			<div className={cn(ModalStyle({ size: modalState.size, animationBottomToTop }))}>
+		<div className={ModalStyle({ isOpen })}>
+			<div className={cn(WrapStyle({ size }))}>
 				<Header modalState={modalState} modalHistory={modalHistory} goBackModal={goBackModal} closeModal={closeModal} />
-				<div className={cn(ModalContentStyle({ isMobile }))}>{modalState.content}</div>
+				<div className={cn(ContentStyle({ size }))}>{content}</div>
 			</div>
 			<div className='absolute top-0 left-0 z-40 w-full h-full bg-black/70' onClick={closeModal} />
 		</div>

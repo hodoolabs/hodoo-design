@@ -1,61 +1,44 @@
 'use client';
 
-import { memo } from 'react';
+import { ReactNode } from 'react';
 import { cn } from '../../utils/style';
-import { ButtonStyle, ImageStyle, LabelStyle } from './style';
+import { ButtonStyle, ImageStyle } from './style';
 
 interface ButtonProps {
-	color: 'black' | 'blue' | 'white' | 'gray' | 'red' | 'white_line';
-	size: 'lg' | 'md' | 'base' | 'sm';
-	leftIcon?: JSX.Element;
-	rightIcon?: JSX.Element;
+	color?: 'black' | 'blue' | 'white' | 'gray' | 'red' | 'white_line';
+	size?: 'lg' | 'md' | 'base' | 'sm';
+	leftIcon?: ReactNode;
+	rightIcon?: ReactNode;
 	label?: string;
 	disabled?: boolean;
-	isFull?: boolean;
 	className?: string;
-	onClick?: () => void;
+	onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const Button = ({
-	color,
-	size,
+	color = 'black',
+	size = 'lg',
 	leftIcon,
 	rightIcon,
 	label,
-	disabled = false,
-	isFull = false,
+	disabled,
 	className,
 	onClick,
 }: ButtonProps) => {
+	const iconOnly = !label ? size : null;
+
 	return (
 		<button
 			type='button'
-			className={`${cn(ButtonStyle({ color, size, iconOnly: !label ? size : null, isFull }))} ${className}`}
+			className={`${cn(ButtonStyle({ color, size, iconOnly }))} ${className}`}
 			disabled={disabled}
-			onClick={onClick}
+			onClick={(e) => onClick && onClick(e)}
 		>
-			{leftIcon && (
-				<div className={cn(ImageStyle({ size, color, iconOnly: !label ? size : null, disabled }))}>{leftIcon}</div>
-			)}
-			{label && <span className={cn(LabelStyle({ color, size, disabled }))}>{label}</span>}
-			{rightIcon && (
-				<div className={cn(ImageStyle({ size, color, iconOnly: !label ? size : null, disabled }))}>{rightIcon}</div>
-			)}
+			{leftIcon && <div className={cn(ImageStyle({ size, iconOnly }))}>{leftIcon}</div>}
+			{label && <span>{label}</span>}
+			{rightIcon && <div className={cn(ImageStyle({ size, iconOnly }))}>{rightIcon}</div>}
 		</button>
 	);
 };
 
-export default memo(
-	Button,
-	(prev: ButtonProps, next: ButtonProps) =>
-		prev.color === next.color &&
-		prev.size === next.size &&
-		prev.leftIcon === next.leftIcon &&
-		prev.rightIcon === next.rightIcon &&
-		prev.label === next.label &&
-		prev.className === next.className &&
-		prev.disabled === next.disabled &&
-		prev.isFull === next.isFull &&
-		prev.className === next.className &&
-		prev.onClick === next.onClick
-);
+export default Button;

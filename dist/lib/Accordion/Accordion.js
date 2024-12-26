@@ -1,36 +1,38 @@
 'use client';
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
-import { memo, useState } from 'react';
+import { useState } from 'react';
 import { cn } from '../../utils/style';
-import { ArrowStyle, LabelStyle, MenuStyle, SubMenuStyle, SubMenusStyle } from './style';
-import { styled } from 'styled-components';
-const Accordion = ({ list, pathname, className, onPush }) => {
-    const [expandedMenuIndex, setExpanededMenuIndex] = useState(0);
-    const handleMenuClick = (index, expandedMenuIndex, path) => {
-        if (path)
-            onPush(path);
-        setExpanededMenuIndex(index !== expandedMenuIndex ? index : 0);
+import { ArrowStyle, MenuStyle, SubMenuStyle } from './style';
+const Accordion = ({ list, path, className, menuItem, onPush }) => {
+    const [expandedMenuIndex, setExpandedMenuIndex] = useState(list.findIndex((item) => { var _a; return !!((_a = item.subMenus) === null || _a === void 0 ? void 0 : _a.filter((subMenu) => path.includes(subMenu.path)).length); }));
+    const getMenuItemStyle = (isCurrentPath) => {
+        let menuItemStyle = {};
+        if (isCurrentPath) {
+            if (menuItem === null || menuItem === void 0 ? void 0 : menuItem.bgColor)
+                menuItemStyle.backgroundColor = menuItem.bgColor;
+            if (menuItem === null || menuItem === void 0 ? void 0 : menuItem.textColor)
+                menuItemStyle.color = menuItem.textColor;
+        }
+        return menuItemStyle;
     };
-    const handleCheckCurrentPath = (path, currentPath) => {
+    const getMenuItemClass = () => {
+        return cn('hover-effect', (menuItem === null || menuItem === void 0 ? void 0 : menuItem.hoverColor) && `hover:!bg-[${menuItem.hoverColor}]`);
+    };
+    const getIsCurrentPath = (path, currentPath) => {
         return !!path && currentPath.includes(path);
     };
-    const handleCheckExpandedMenu = (index, expandedMenuIndex, subMenus, currentpath) => {
-        return index === expandedMenuIndex || !!subMenus.filter((subMenu) => subMenu.path === currentpath).length;
+    const getIsExpandedMenu = (index, expandedMenuIndex) => {
+        return index === expandedMenuIndex;
     };
-    return (_jsx(AccordionStyled, { className: `text-base font-semibold ${className}`, children: list.map((item) => (_jsxs("div", { className: 'mb-3', children: [_jsxs("div", { className: cn(MenuStyle({ isCurrentPath: handleCheckCurrentPath(item.menu.path, pathname) })), onClick: () => handleMenuClick(item.index, expandedMenuIndex, item.menu.path), children: [_jsx("img", { src: handleCheckCurrentPath(item.menu.path, pathname) ? `${item.activeIcon}` : `${item.icon}`, alt: item.icon, className: 'w-6 h-6' }), _jsx("span", { className: cn(LabelStyle({ isCurrentPath: handleCheckCurrentPath(item.menu.path, pathname) })), children: item.menu.label }), !!item.subMenus.length && (_jsx(ChevronDownIcon, { className: cn(ArrowStyle({
-                                isExpanded: handleCheckExpandedMenu(item.index, expandedMenuIndex, item.subMenus, pathname),
-                            })) }))] }), !!item.subMenus.length && (_jsx("div", { className: cn(SubMenusStyle({
-                        isExpanded: handleCheckExpandedMenu(item.index, expandedMenuIndex, item.subMenus, pathname),
-                        height: item.subMenus.length,
-                    })), children: item.subMenus.map((subItem, index) => (_jsx("div", { className: cn(SubMenuStyle({ isCurrentPath: handleCheckCurrentPath(subItem.path, pathname) })), onClick: () => onPush(subItem.path), children: subItem.label }, index))) }))] }, item.index))) }));
+    const handleMenuClick = (index, expandedMenuIndex, path, subMenu) => {
+        if (path)
+            onPush(path);
+        if (!!subMenu)
+            setExpandedMenuIndex(index !== expandedMenuIndex ? index : -1);
+        else
+            setExpandedMenuIndex(index);
+    };
+    return (_jsx("div", { className: `text-base font-semibold flex flex-col gap-3 ${className}`, children: list.map((item) => (_jsxs("div", { children: [_jsxs("div", { style: getMenuItemStyle(getIsCurrentPath(item.menu.path, path)), className: cn(MenuStyle({ isCurrentPath: getIsCurrentPath(item.menu.path, path) }), getMenuItemClass()), onClick: () => handleMenuClick(item.index, expandedMenuIndex, item.menu.path, item.subMenus), children: [_jsx("img", { src: item[getIsCurrentPath(item.menu.path, path) ? 'activeIcon' : 'icon'], alt: item.icon, className: 'w-6 h-6' }), _jsx("span", { children: item.menu.label }), !!item.subMenus && (_jsx(ChevronDownIcon, { className: cn(ArrowStyle({ isExpanded: getIsExpandedMenu(item.index, expandedMenuIndex) })) }))] }), !!item.subMenus && getIsExpandedMenu(item.index, expandedMenuIndex) && (_jsx("div", { className: 'flex flex-col gap-1 overflow-hidden', children: item.subMenus.map((subItem, index) => (_jsx("div", { className: cn(SubMenuStyle({ isCurrentPath: getIsCurrentPath(subItem.path, path) })), onClick: () => onPush(subItem.path), children: subItem.label }, index))) }))] }, item.index))) }));
 };
-export default memo(Accordion, (prev, next) => prev.list === next.list &&
-    prev.pathname === next.pathname &&
-    prev.className === next.className &&
-    prev.onPush === next.onPush);
-const AccordionStyled = styled.div `
-	.transition-300 {
-		transition: 0.3s;
-	}
-`;
+export default Accordion;

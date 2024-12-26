@@ -1,10 +1,10 @@
-import { ColumnDataType, ColumnType } from '../../../types/table';
+import { ColumnType, TableCheckBoxType } from '../../../types/table';
+
 interface TheadProps {
-    size: 'lg' | 'sm';
     columns: ColumnType<any>;
-    dataSource: any[];
+    checkBox?: TableCheckBoxType;
     sortDatas: any[];
-    onSort: (dataSource: ColumnDataType[], sortDatas: ColumnDataType[], sorter: (a: ColumnDataType, b: ColumnDataType) => number) => void;
+    onSort: (dataIndex: any) => void;
 }
-declare const _default: import("react").MemoExoticComponent<({ size, columns, dataSource, sortDatas, onSort }: TheadProps) => import("react/jsx-runtime").JSX.Element>;
-export default _default;
+declare const Thead: ({ columns, checkBox, sortDatas, onSort }: TheadProps) => import("react/jsx-runtime").JSX.Element;
+export default Thead;

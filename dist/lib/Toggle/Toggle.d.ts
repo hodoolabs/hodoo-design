@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 interface ToggleProps {
-    size: 'sm' | 'md' | 'lg';
+    size?: 'sm' | 'md' | 'lg';
     activated: boolean;
     label?: ReactNode;
     helper?: string;
@@ -8,5 +8,5 @@ interface ToggleProps {
     className?: string;
     onChange: (value: boolean) => void;
 }
-declare const _default: import("react").MemoExoticComponent<({ size, activated, label, helper, disabled, className, onChange }: ToggleProps) => import("react/jsx-runtime").JSX.Element>;
-export default _default;
+declare const Toggle: ({ size, activated, label, helper, disabled, className, onChange }: ToggleProps) => import("react/jsx-runtime").JSX.Element;
+export default Toggle;

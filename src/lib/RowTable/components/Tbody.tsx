@@ -1,17 +1,24 @@
-import { Key, memo } from 'react';
+'use client';
+
+import { ColumnType, TableCheckBoxType } from '../../../types/table';
 import { cn } from '../../../utils/style';
+import CheckBox from '../../CheckBox/CheckBox';
 import { TableBodyStyle } from '../style';
-import { ColumnType } from '../../../types/table';
 
 interface TbodyProps {
-	size: 'lg' | 'sm';
 	columns: ColumnType<any>;
-	checkedList?: Key[];
+	checkBox?: TableCheckBoxType;
 	sortDatas: any[];
-	onChecked?: (keys: Key[]) => void;
 }
 
-const Tbody = ({ size, columns, sortDatas }: TbodyProps) => {
+const Tbody = ({ columns, checkBox, sortDatas }: TbodyProps) => {
+	const id = checkBox?.id;
+	const selected = checkBox?.selected;
+
+	const onSelect = (selected: any[]) => {
+		checkBox?.onSelect(selected);
+	};
+
 	return (
 		<tbody>
 			{sortDatas?.map((record, index) => (
@@ -19,8 +26,28 @@ const Tbody = ({ size, columns, sortDatas }: TbodyProps) => {
 					key={index}
 					className='flex items-center font-medium border-b border-solid border-b-gray-200 hover:bg-gray-50'
 				>
+					{checkBox && (
+						<td className='py-3 px-4 leading-[0px]'>
+							<CheckBox
+								checked={selected!.map((item) => item[id!]).includes(record[id!])}
+								className='m-1'
+								onChange={() => {
+									const select = selected!.map((item) => item[id!]).includes(record[id!])
+										? selected!.filter((item) => item[id!] !== record[id!])
+										: [...selected!, record];
+
+									onSelect(select);
+								}}
+							/>
+						</td>
+					)}
 					{columns.map((column, index) => (
-						<td key={index} className={cn(TableBodyStyle({ size }))} style={{ width: `${column.width}%` }}>
+						<td
+							key={index}
+							className={cn(TableBodyStyle({ click: !!column.onClick }))}
+							style={{ width: `${column.width}%`, minWidth: column.minWidth }}
+							onClick={() => column.onClick && column.onClick(record)}
+						>
 							{column.render ? column.render(record) : record[column.dataIndex]}
 						</td>
 					))}
@@ -30,12 +57,4 @@ const Tbody = ({ size, columns, sortDatas }: TbodyProps) => {
 	);
 };
 
-export default memo(
-	Tbody,
-	(prev: TbodyProps, next: TbodyProps) =>
-		prev.size === next.size &&
-		prev.columns === next.columns &&
-		prev.checkedList === next.checkedList &&
-		prev.sortDatas === next.sortDatas &&
-		prev.onChecked === next.onChecked
-);
+export default Tbody;

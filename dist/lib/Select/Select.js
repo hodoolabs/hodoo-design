@@ -1,41 +1,35 @@
 'use client';
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { ChevronDownIcon } from '@heroicons/react/24/solid';
-import { memo, useState } from 'react';
-import { styled } from 'styled-components';
+import { useEffect, useState } from 'react';
 import { cn } from '../../utils/style';
-import { ArrowStyle, BlankStyle, ButtonStyle, LabelStyle, ListStyle, SelectedStyle } from './style';
-const Select = ({ size, items, selected, center = false, label, placeholder, className, onChange }) => {
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import Helper from '../Helper/Helper';
+import Label from '../Label/Label';
+import { ArrowStyle, BlankStyle, ItemStyle, ListStyle, SelectedStyle } from './style';
+const Select = ({ size = 'lg', items = [], selected = '', error, center = false, label, placeholder, helper, disabled = false, required, className, onClick, onChange, onError, }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [isOpenDown, setIsOpenDown] = useState(true);
+    const [direction, setDirection] = useState('down');
     const getLabel = (items, selected) => {
         var _a;
         return (_a = items.filter((item) => item.value === selected)[0]) === null || _a === void 0 ? void 0 : _a.label;
     };
-    const handleSelectOpen = (event) => {
+    const handleClickSelect = (event) => {
         const distanceFromBottom = document.body.clientHeight - event.clientY;
         setIsOpen((state) => !state);
-        setIsOpenDown(distanceFromBottom > 340);
+        setDirection(distanceFromBottom > 340 ? 'down' : 'up');
     };
-    return (_jsx(SelectStyled, { className: className, children: _jsxs("div", { className: 'relative flex flex-col gap-2', onMouseLeave: () => setIsOpen(false), children: [label && _jsx("p", { className: cn(LabelStyle({ size })), children: label }), _jsx("div", { className: BlankStyle({ isOpenDown }) }), _jsxs("button", { type: 'button', onClick: handleSelectOpen, className: cn(SelectedStyle({ size })), children: [selected ? getLabel(items, selected) : placeholder, _jsx(ChevronDownIcon, { className: cn(ArrowStyle({ size })) })] }), isOpen && (_jsx("div", { className: ListStyle({ isOpenDown }), children: _jsx("ul", { className: 'flex flex-col p-1 text-base text-gray-700', children: items.map((item) => (_jsx("li", { onClick: () => {
-                                onChange(item.value);
-                                setIsOpen(false);
-                            }, children: _jsx("button", { className: cn(ButtonStyle({ center })), children: item.label }) }, item.value))) }) }))] }) }));
+    useEffect(() => {
+        if (!onError)
+            return;
+        onError('');
+    }, [selected]);
+    return (_jsxs("div", { className: `flex flex-col ${className}`, onMouseLeave: () => setIsOpen(false), children: [_jsx(Label, { size: size, error: error, label: label, disabled: disabled, required: required }), _jsxs("div", { className: 'relative w-full', children: [_jsxs("button", { type: 'button', onClick: (event) => {
+                            onClick ? onClick() : handleClickSelect(event);
+                            onError && onError('');
+                        }, disabled: disabled, className: cn(SelectedStyle({ size, placeholder: !selected, error: !!error })), children: [selected ? getLabel(items, selected) : placeholder, _jsx(ChevronDownIcon, { className: cn(ArrowStyle({ size })) })] }), _jsx("div", { className: BlankStyle({ direction }) }), isOpen && !!items.length && (_jsx("div", { className: ListStyle({ direction }), children: _jsx("ul", { className: 'flex flex-col p-1 m-0', children: items.map((item, index) => (_jsx("li", { className: cn(ItemStyle({ center })), onClick: () => {
+                                    onChange && onChange(item.value);
+                                    setIsOpen(false);
+                                }, children: item.label }, index))) }) }))] }), _jsx(Helper, { size: size, error: error, helper: helper, disabled: disabled }), _jsx(ErrorMessage, { size: size, error: error })] }));
 };
-export default memo(Select, (prev, next) => prev.size === next.size &&
-    prev.selected === next.selected &&
-    prev.items === next.items &&
-    prev.center === next.center &&
-    prev.label === next.label &&
-    prev.placeholder === next.placeholder &&
-    prev.className === next.className &&
-    prev.onChange === next.onChange);
-const SelectStyled = styled.div `
-	.scroll-none::-webkit-scrollbar {
-		display: none;
-	}
-
-	.scroll-none::-webkit-scrollbar-thumb {
-		display: none;
-	}
-`;
+export default Select;
