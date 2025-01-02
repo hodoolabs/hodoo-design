@@ -1,7 +1,8 @@
 interface AvatarProps {
-    size?: 'xs' | 'sm' | 'regular' | 'md' | 'lg' | 'xl';
     img: string;
+    type?: 'circular' | 'rectangular';
+    size?: 'xs' | 'sm' | 'regular' | 'md' | 'lg' | 'xl';
     className?: string;
 }
-declare const Avatar: ({ size, img, className }: AvatarProps) => import("react/jsx-runtime").JSX.Element;
+declare const Avatar: ({ img, type, size, className }: AvatarProps) => import("react/jsx-runtime").JSX.Element;
 export default Avatar;
