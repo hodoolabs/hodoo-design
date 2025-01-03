@@ -25,6 +25,7 @@ export { default as TextArea } from './lib/TextArea/TextArea';
 export { default as Toast } from './lib/Toast/Toast';
 export { default as Toggle } from './lib/Toggle/Toggle';
 export { default as Tooltip } from './lib/Tooltip/Tooltip';
+export { default as List } from './lib/List/index';
 
 export type { AccordionMenuType, AccordionType } from './types/accordion';
 export type { BreadCrumbsType } from './types/breadCrumbs';
@@ -36,6 +37,6 @@ export type { ColumnDataType, ColumnType, TableCheckBoxType } from './types/tabl
 export type { ToastStateType, ToastType } from './types/toast';
 export type { TooltipType } from './types/tooltip';
 
-export { HodooContent, HodooTheme, HodooVariants, HodooDarkMode } from './tailwind.config.js';
+export { HodooContent, HodooTheme, HodooVariants, HodooDarkMode, HodooPlugins } from './tailwind.config.js';
 
 export default 'hodooStyle.css';
