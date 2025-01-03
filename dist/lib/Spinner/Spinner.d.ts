@@ -1,6 +1,7 @@
+import { SpinnerSizeType } from '../../types/spinner';
 interface SpinnerProps {
     isLoading: boolean;
-    size?: 'sm' | 'md' | 'lg';
+    size?: SpinnerSizeType;
 }
 declare const Spinner: ({ isLoading, size }: SpinnerProps) => import("react/jsx-runtime").JSX.Element;
 export default Spinner;

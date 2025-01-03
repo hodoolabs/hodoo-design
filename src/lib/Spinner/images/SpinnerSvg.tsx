@@ -1,12 +1,21 @@
+import { SpinnerSizeType } from '../../../types/spinner';
+
 interface SpinnerProps {
-	size?: 'sm' | 'md' | 'lg';
+	size?: SpinnerSizeType;
 }
 
-const SpinnerSvg = ({ size }: SpinnerProps) => {
+const SpinnerSvg = ({ size = 'md' }: SpinnerProps) => {
+	const getSize = (size: SpinnerSizeType) => {
+		if (size === 'lg') return '40';
+		if (size === 'md') return '32';
+		if (size === 'sm') return '24';
+		return '16';
+	};
+
 	return (
 		<svg
-			width={size === 'lg' ? '40' : size === 'md' ? '32' : '24'}
-			height={size === 'lg' ? '40' : size === 'md' ? '32' : '24'}
+			width={getSize(size)}
+			height={getSize(size)}
 			viewBox='0 0 40 40'
 			fill='none'
 			xmlns='http://www.w3.org/2000/svg'

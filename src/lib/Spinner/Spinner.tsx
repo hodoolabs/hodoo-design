@@ -1,10 +1,11 @@
 'use client';
 
+import { SpinnerSizeType } from '../../types/spinner';
 import SpinnerSvg from './images/SpinnerSvg';
 
 interface SpinnerProps {
 	isLoading: boolean;
-	size?: 'sm' | 'md' | 'lg';
+	size?: SpinnerSizeType;
 }
 
 const Spinner = ({ isLoading, size = 'md' }: SpinnerProps) => {
