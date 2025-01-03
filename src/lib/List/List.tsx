@@ -16,7 +16,7 @@ export interface ListProps {
 	onClick?: () => void;
 }
 
-const List = forwardRef<HTMLDivElement, ListProps>(({ children, className, onClick, isHover, isActive }, ref) => {
+const List = forwardRef<HTMLDivElement, ListProps>(({ children, className, isHover, isActive, onClick }, ref) => {
 	return (
 		<div ref={ref} onClick={() => onClick?.()} className={cn(ListStyle({ isHover, isActive }), className)}>
 			{children}

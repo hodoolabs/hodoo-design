@@ -10,7 +10,7 @@ const ListStyle = cva(
 				true: ['cursor-pointer hover:bg-gray-50'],
 			},
 			isActive: {
-				true: ['bg-blue-50 hover:bg-blue-50'],
+				true: ['bg-blue-50/50 hover:bg-blue-50/50 border-b-blue-200'],
 			},
 		},
 	}
