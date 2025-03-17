@@ -49,14 +49,17 @@ const FileInput = ({
 		<div className={`flex flex-col ${className}`}>
 			<Label size={size} error={error} label={label} disabled={disabled} required={required} />
 			<div className='relative flex w-full group'>
-				<button className={cn(ButtonStyle({ size, disabled }))}>{buttonName}</button>
-				<label className={cn(InputLabelStyle({ size, type: getLabelType(value, error) }))}>
+				<button disabled className={cn(ButtonStyle({ size, disabled }))}>
+					{buttonName}
+				</button>
+				<label className={cn(InputLabelStyle({ size, type: getLabelType(value, error), disabled }))}>
 					<span className='block overflow-hidden whitespace-nowrap'>{value || placeholder}</span>
 				</label>
 				<input
 					accept={accept}
 					type='file'
 					multiple={multiple}
+					disabled={disabled}
 					onClick={(event) => ((event.target as HTMLInputElement).value = '')}
 					onChange={(event) => event.target.files && onChange(event.target.files)}
 					className='absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer z-1'
