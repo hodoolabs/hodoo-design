@@ -18,6 +18,9 @@ const ButtonStyle = cva([
             lg: ['px-5 py-3.5 text-base'],
             sm: ['px-4 py-2.5 text-sm'],
         },
+        disabled: {
+            true: ['text-gray-400 bg-gray-200'],
+        },
     },
 });
 const InputLabelStyle = cva([

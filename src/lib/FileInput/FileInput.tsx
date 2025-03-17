@@ -49,7 +49,7 @@ const FileInput = ({
 		<div className={`flex flex-col ${className}`}>
 			<Label size={size} error={error} label={label} disabled={disabled} required={required} />
 			<div className='relative flex w-full group'>
-				<button className={cn(ButtonStyle({ size }))}>{buttonName}</button>
+				<button className={cn(ButtonStyle({ size, disabled }))}>{buttonName}</button>
 				<label className={cn(InputLabelStyle({ size, type: getLabelType(value, error) }))}>
 					<span className='block overflow-hidden whitespace-nowrap'>{value || placeholder}</span>
 				</label>
