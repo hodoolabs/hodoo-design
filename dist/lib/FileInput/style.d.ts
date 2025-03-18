@@ -4,10 +4,12 @@ declare const LabelStyle: (props?: ({
 } & import("class-variance-authority/dist/types").ClassProp) | undefined) => string;
 declare const ButtonStyle: (props?: ({
     size?: "lg" | "sm" | null | undefined;
+    disabled?: boolean | null | undefined;
 } & import("class-variance-authority/dist/types").ClassProp) | undefined) => string;
 declare const InputLabelStyle: (props?: ({
     size?: "lg" | "sm" | null | undefined;
     type?: "value" | "placeholder" | "valueError" | "placeholderError" | null | undefined;
+    disabled?: boolean | null | undefined;
 } & import("class-variance-authority/dist/types").ClassProp) | undefined) => string;
 declare const HelperStyle: (props?: ({
     size?: "lg" | "sm" | null | undefined;
