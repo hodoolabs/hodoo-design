@@ -30,7 +30,7 @@ const Button = ({
 	return (
 		<button
 			type='button'
-			className={`${cn(ButtonStyle({ color, size, iconOnly }))} ${className}`}
+			className={`${cn(ButtonStyle({ color, size, iconOnly, disabled }))} ${className}`}
 			disabled={disabled}
 			onClick={(e) => onClick && onClick(e)}
 		>
