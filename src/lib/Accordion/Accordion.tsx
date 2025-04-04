@@ -54,11 +54,12 @@ const Accordion = ({ list, path, className, menuItem, onPush }: AccordionProps) 
 		<div className={`text-base font-semibold flex flex-col gap-3 ${className}`}>
 			{list.map((item) => {
 				const isExpanded = getIsExpandedMenu(item.index, expandedMenuIndex);
+				const isCurrentPath = getIsCurrentPath(item.menu.path, path);
 				return (
 					<div key={item.index}>
 						<div
-							style={getMenuItemStyle(getIsCurrentPath(item.menu.path, path))}
-							className={cn(MenuStyle({ isCurrentPath: getIsCurrentPath(item.menu.path, path) }), getMenuItemClass())}
+							style={getMenuItemStyle(isCurrentPath)}
+							className={cn(MenuStyle({ isCurrentPath }), getMenuItemClass())}
 							onClick={() => handleMenuClick(item.index, expandedMenuIndex, item.menu.path, item.subMenus)}
 						>
 							<img
@@ -73,12 +74,13 @@ const Accordion = ({ list, path, className, menuItem, onPush }: AccordionProps) 
 							<div
 								className='flex flex-col gap-1 overflow-hidden transition-all duration-300 ease-in-out'
 								style={{
-									height: isExpanded ? `${item.subMenus?.length * 48}px` : '0px',
+									height: isExpanded ? `${item.subMenus?.length * 48 + (item.subMenus?.length - 1) * 4}px` : '0px',
 									opacity: isExpanded ? 1 : 0,
 								}}
 							>
 								{item.subMenus?.map((subItem, index) => (
 									<div
+										style={getMenuItemStyle(getIsCurrentPath(subItem.path, path))}
 										key={index}
 										className={cn(SubMenuStyle({ isCurrentPath: getIsCurrentPath(subItem.path, path) }))}
 										onClick={() => onPush(subItem.path)}
