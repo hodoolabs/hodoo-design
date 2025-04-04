@@ -33,6 +33,13 @@ const Accordion = ({ list, path, className, menuItem, onPush }) => {
         else
             setExpandedMenuIndex(index);
     };
-    return (_jsx("div", { className: `text-base font-semibold flex flex-col gap-3 ${className}`, children: list.map((item) => (_jsxs("div", { children: [_jsxs("div", { style: getMenuItemStyle(getIsCurrentPath(item.menu.path, path)), className: cn(MenuStyle({ isCurrentPath: getIsCurrentPath(item.menu.path, path) }), getMenuItemClass()), onClick: () => handleMenuClick(item.index, expandedMenuIndex, item.menu.path, item.subMenus), children: [_jsx("img", { src: item[getIsCurrentPath(item.menu.path, path) ? 'activeIcon' : 'icon'], alt: item.icon, className: 'w-6 h-6' }), _jsx("span", { children: item.menu.label }), !!item.subMenus && (_jsx(ChevronDownIcon, { className: cn(ArrowStyle({ isExpanded: getIsExpandedMenu(item.index, expandedMenuIndex) })) }))] }), !!item.subMenus && getIsExpandedMenu(item.index, expandedMenuIndex) && (_jsx("div", { className: 'flex flex-col gap-1 overflow-hidden', children: item.subMenus.map((subItem, index) => (_jsx("div", { className: cn(SubMenuStyle({ isCurrentPath: getIsCurrentPath(subItem.path, path) })), onClick: () => onPush(subItem.path), children: subItem.label }, index))) }))] }, item.index))) }));
+    return (_jsx("div", { className: `text-base font-semibold flex flex-col gap-3 ${className}`, children: list.map((item) => {
+            var _a, _b;
+            const isExpanded = getIsExpandedMenu(item.index, expandedMenuIndex);
+            return (_jsxs("div", { children: [_jsxs("div", { style: getMenuItemStyle(getIsCurrentPath(item.menu.path, path)), className: cn(MenuStyle({ isCurrentPath: getIsCurrentPath(item.menu.path, path) }), getMenuItemClass()), onClick: () => handleMenuClick(item.index, expandedMenuIndex, item.menu.path, item.subMenus), children: [_jsx("img", { src: item[getIsCurrentPath(item.menu.path, path) ? 'activeIcon' : 'icon'], alt: item.icon, className: 'w-6 h-6' }), _jsx("span", { children: item.menu.label }), !!item.subMenus && _jsx(ChevronDownIcon, { className: cn(ArrowStyle({ isExpanded })) })] }), !!item.subMenus && (_jsx("div", { className: 'flex flex-col gap-1 overflow-hidden transition-all duration-300 ease-in-out', style: {
+                            height: isExpanded ? `${((_a = item.subMenus) === null || _a === void 0 ? void 0 : _a.length) * 48}px` : '0px',
+                            opacity: isExpanded ? 1 : 0,
+                        }, children: (_b = item.subMenus) === null || _b === void 0 ? void 0 : _b.map((subItem, index) => (_jsx("div", { className: cn(SubMenuStyle({ isCurrentPath: getIsCurrentPath(subItem.path, path) })), onClick: () => onPush(subItem.path), children: subItem.label }, index))) }))] }, item.index));
+        }) }));
 };
 export default Accordion;

@@ -52,40 +52,45 @@ const Accordion = ({ list, path, className, menuItem, onPush }: AccordionProps) 
 
 	return (
 		<div className={`text-base font-semibold flex flex-col gap-3 ${className}`}>
-			{list.map((item) => (
-				<div key={item.index}>
-					<div
-						style={getMenuItemStyle(getIsCurrentPath(item.menu.path, path))}
-						className={cn(MenuStyle({ isCurrentPath: getIsCurrentPath(item.menu.path, path) }), getMenuItemClass())}
-						onClick={() => handleMenuClick(item.index, expandedMenuIndex, item.menu.path, item.subMenus)}
-					>
-						<img
-							src={item[getIsCurrentPath(item.menu.path, path) ? 'activeIcon' : 'icon']}
-							alt={item.icon}
-							className='w-6 h-6'
-						/>
-						<span>{item.menu.label}</span>
-						{!!item.subMenus && (
-							<ChevronDownIcon
-								className={cn(ArrowStyle({ isExpanded: getIsExpandedMenu(item.index, expandedMenuIndex) }))}
+			{list.map((item) => {
+				const isExpanded = getIsExpandedMenu(item.index, expandedMenuIndex);
+				return (
+					<div key={item.index}>
+						<div
+							style={getMenuItemStyle(getIsCurrentPath(item.menu.path, path))}
+							className={cn(MenuStyle({ isCurrentPath: getIsCurrentPath(item.menu.path, path) }), getMenuItemClass())}
+							onClick={() => handleMenuClick(item.index, expandedMenuIndex, item.menu.path, item.subMenus)}
+						>
+							<img
+								src={item[getIsCurrentPath(item.menu.path, path) ? 'activeIcon' : 'icon']}
+								alt={item.icon}
+								className='w-6 h-6'
 							/>
+							<span>{item.menu.label}</span>
+							{!!item.subMenus && <ChevronDownIcon className={cn(ArrowStyle({ isExpanded }))} />}
+						</div>
+						{!!item.subMenus && (
+							<div
+								className='flex flex-col gap-1 overflow-hidden transition-all duration-300 ease-in-out'
+								style={{
+									height: isExpanded ? `${item.subMenus?.length * 48}px` : '0px',
+									opacity: isExpanded ? 1 : 0,
+								}}
+							>
+								{item.subMenus?.map((subItem, index) => (
+									<div
+										key={index}
+										className={cn(SubMenuStyle({ isCurrentPath: getIsCurrentPath(subItem.path, path) }))}
+										onClick={() => onPush(subItem.path)}
+									>
+										{subItem.label}
+									</div>
+								))}
+							</div>
 						)}
 					</div>
-					{!!item.subMenus && getIsExpandedMenu(item.index, expandedMenuIndex) && (
-						<div className='flex flex-col gap-1 overflow-hidden'>
-							{item.subMenus.map((subItem, index) => (
-								<div
-									key={index}
-									className={cn(SubMenuStyle({ isCurrentPath: getIsCurrentPath(subItem.path, path) }))}
-									onClick={() => onPush(subItem.path)}
-								>
-									{subItem.label}
-								</div>
-							))}
-						</div>
-					)}
-				</div>
-			))}
+				);
+			})}
 		</div>
 	);
 };
