@@ -72,7 +72,12 @@ const Accordion = ({ list, path, className, menuItem, onPush }: AccordionProps) 
 						)}
 					</div>
 					{!!item.subMenus && getIsExpandedMenu(item.index, expandedMenuIndex) && (
-						<div className='flex flex-col gap-1 overflow-hidden'>
+						<div
+							className={cn(
+								'flex flex-col gap-1 overflow-hidden transition-all duration-300',
+								getIsExpandedMenu(item.index, expandedMenuIndex) ? 'max-h-[1000px]' : 'max-h-0'
+							)}
+						>
 							{item.subMenus.map((subItem, index) => (
 								<div
 									key={index}
