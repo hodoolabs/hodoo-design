@@ -49,6 +49,11 @@ const Select = ({
 		return items.filter((item) => item.value === selected)[0]?.label;
 	};
 
+	const getDisplayText = () => {
+		if (disabled) return placeholder;
+		return selected ? getLabel(items, selected) : placeholder;
+	};
+
 	const handleClickSelect = (event: MouseEvent<HTMLButtonElement>) => {
 		const distanceFromBottom = document.body.clientHeight - event.clientY;
 
@@ -75,7 +80,7 @@ const Select = ({
 					disabled={disabled}
 					className={cn(SelectedStyle({ size, placeholder: !selected, error: !!error }))}
 				>
-					{selected ? getLabel(items, selected) : placeholder}
+					{getDisplayText()}
 					<ChevronDownIcon className={cn(ArrowStyle({ size }))} />
 				</button>
 				<div className={BlankStyle({ direction })} />
