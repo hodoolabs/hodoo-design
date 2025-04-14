@@ -1,0 +1,56 @@
+복잡한 조건에 의미 있는 이름을 붙여 한눈에 이해할 수 있게 작성해주세요.
+참고: https://github.com/toss/frontend-fundamentals/blob/main/code/examples/condition-name.md
+
+매직 넘버는 상수로 추출하고 의미 있는 이름을 붙여주세요.
+참고: https://github.com/toss/frontend-fundamentals/blob/main/code/examples/magic-number-readability.md
+
+삼항 연산자는 중첩하지 말고 간단하게 사용하거나 if문으로 전환해주세요.
+참고: https://github.com/toss/frontend-fundamentals/blob/main/code/examples/ternary-operator.md
+
+시점 이동이 최소화되도록 코드를 위에서 아래로 읽히게 작성해주세요.
+참고: https://github.com/toss/frontend-fundamentals/blob/main/code/examples/user-policy.md
+
+동시에 실행되지 않는 코드는 별도 컴포넌트로 분리해주세요.
+참고: https://github.com/toss/frontend-fundamentals/blob/main/code/examples/submit-button.md
+
+구현 상세를 적절히 추상화하여 한 번에 고려해야 할 맥락을 줄여주세요.
+참고: https://github.com/toss/frontend-fundamentals/blob/main/code/examples/login-start-page.md
+
+함수와 컴포넌트는 이름, 파라미터, 리턴 값에서 예상할 수 없는 숨은 로직을 포함하지 마세요.
+참고: https://github.com/toss/frontend-fundamentals/blob/main/code/examples/hidden-logic.md
+
+같은 종류의 API 호출 함수나 검증 함수는 일관된 반환 타입을 사용해주세요.
+참고: https://github.com/toss/frontend-fundamentals/blob/main/code/examples/use-user.md
+
+라이브러리와 동일한 이름의 함수를 만들지 말고, 기능 차이를 이름에 명확히 드러내주세요.
+참고: https://github.com/toss/frontend-fundamentals/blob/main/code/examples/http.md
+
+함께 수정되는 파일들은 같은 디렉토리에 배치해주세요. 종류별로 분류하지 말고 도메인 중심으로 구성해주세요.
+참고: https://github.com/toss/frontend-fundamentals/blob/main/code/examples/code-directory.md
+
+Form 컴포넌트는 필드 단위 응집도 또는 폼 전체 단위 응집도 중 적절한 방식을 선택해주세요.
+참고: https://github.com/toss/frontend-fundamentals/blob/main/code/examples/form-fields.md
+
+매직 넘버를 적절히 추상화하여 관련된 코드가 함께 수정될 수 있도록 해주세요.
+참고: https://github.com/toss/frontend-fundamentals/blob/main/code/examples/magic-number-cohesion.md
+
+Props Drilling을 피하고 Component Composition 패턴이나 Context API를 적절히 활용해주세요.
+참고: https://github.com/toss/frontend-fundamentals/blob/main/code/examples/item-edit-modal.md
+
+한 페이지의 모든 상태를 한 Hook에서 관리하지 말고, 책임별로 분리된 Hook으로 나누어주세요.
+참고: https://github.com/toss/frontend-fundamentals/blob/main/code/examples/use-page-state-coupling.md
+
+공통 Hook을 과도하게 추출하기 보다 중복이 필요한 경우 적절히 허용해주세요.
+참고: https://github.com/toss/frontend-fundamentals/blob/main/code/examples/use-bottom-sheet.md
+
+토스 프론트엔드 펀더멘털 스타일에 맞춰 다음 기능을 구현해주세요:
+
+[기능 설명]
+
+특히 다음 원칙을 준수해주세요:
+
+1. 복잡한 조건에 의미 있는 이름을 붙여 가독성을 높여주세요
+2. Props Drilling을 피하고 적절한 컴포넌트 구성을 사용해주세요
+3. 매직 넘버는 의미 있는 상수로 추출해주세요
+4. 함수와 컴포넌트의 책임을 명확히 분리해주세요
+5. 시점 이동을 최소화하도록 코드를 구성해주세요
