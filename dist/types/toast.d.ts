@@ -4,6 +4,7 @@ type ToastType = {
     openToast: ({ toastingTime, title, description, leftButton, rightButton, closeButton, position, leftIcon, }: ToastStateType) => void;
     closeToast: () => void;
 };
+
 type ToastStateType = {
     toastingTime?: number;
     title: string;

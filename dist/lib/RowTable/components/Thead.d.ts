@@ -1,4 +1,5 @@
 import { ColumnType, TableCheckBoxType } from '../../../types/table';
+
 interface TheadProps {
     columns: ColumnType<any>;
     checkBox?: TableCheckBoxType;

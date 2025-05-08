@@ -3,6 +3,7 @@ import { DatepickerType } from 'react-tailwindcss-datepicker';
 import DefaultI18nAdapter from './defaultAdapter';
 import NextIntlAdapter from './next-intl-Adapter';
 import { I18nAdapter } from './types';
+
 interface DatePickerProps extends DatepickerType {
     size?: 'lg' | 'sm';
     label?: ReactNode;
