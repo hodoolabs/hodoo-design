@@ -1,6 +1,6 @@
 'use client';
 
-CalendarIcon;
+import { CalendarIcon } from '@heroicons/react/24/outline';
 import { throttle } from 'lodash';
 import { ReactNode, useEffect, useState } from 'react';
 import Datepicker, { DateValueType, DatepickerType } from 'react-tailwindcss-datepicker';
@@ -9,10 +9,15 @@ import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import Helper from '../Helper/Helper';
 import Label from '../Label/Label';
 import { InputStyle, SkeletonStyle, ToggleStyle } from './style';
-import { CalendarIcon } from '@heroicons/react/24/outline';
 import DefaultI18nAdapter from './defaultAdapter';
 import NextIntlAdapter from './next-intl-Adapter';
 import { I18nAdapter } from './types';
+import { initNextIntl } from './init';
+
+// 자동으로 초기화 시도
+if (typeof window !== 'undefined') {
+	initNextIntl();
+}
 
 interface DatePickerProps extends DatepickerType {
 	size?: 'lg' | 'sm';
@@ -39,7 +44,7 @@ const DatePicker = ({
 }: DatePickerProps) => {
 	const locale = i18nAdapter.useLocale();
 
-	const [isDestory, setIsDestroy] = useState(false);
+	const [isDestroy, setIsDestroy] = useState(false);
 
 	const handleChangeDate = (date: DateValueType, event: HTMLInputElement, placeholder?: string) => {
 		if (!placeholder && !date?.startDate && !date?.endDate) event.oncancel;
@@ -63,15 +68,15 @@ const DatePicker = ({
 	}, []);
 
 	useEffect(() => {
-		if (!isDestory) return;
+		if (!isDestroy) return;
 
 		setIsDestroy(false);
-	}, [isDestory]);
+	}, [isDestroy]);
 
 	return (
 		<div className={`flex flex-col ${className}`}>
 			<Label size={size} error={error} label={label} disabled={disabled} required={required} />
-			{!isDestory ? (
+			{!isDestroy ? (
 				<Datepicker
 					i18n={locale}
 					readOnly={true}
@@ -103,11 +108,13 @@ const configureDatePickerI18n = (adapter: I18nAdapter) => {
 };
 
 /**
- * @description 만약 next-intl을 사용하는 경우 앱 최초로 init 하는곳에서 nextintladapter로 configureDatePickerI18n를 실행
+ * @description 만약 next-intl을 사용하는 경우 앱 최초로 init 하는곳에서 아래와 같이 설정
  * @example
  * // 앱 최상단 init 하는곳
- * import NextIntlAdapter from './next-intl-Adapter';
+ * import { configureDatePickerI18n, NextIntlAdapter } from 'hodoo-design';
  * configureDatePickerI18n(new NextIntlAdapter());
+ *
+ * // 또는 자동 초기화를 사용하면 별도 설정 없이도 next-intl이 있으면 자동으로 사용합니다.
  */
 
 export { DefaultI18nAdapter, NextIntlAdapter, configureDatePickerI18n };

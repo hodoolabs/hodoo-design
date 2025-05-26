@@ -379,4 +379,4 @@ const HodooPlugins = [
 	}),
 ];
 
-module.exports = { HodooContent, HodooTheme, HodooVariants, HodooDarkMode, HodooPlugins };
+export { HodooContent, HodooTheme, HodooVariants, HodooDarkMode, HodooPlugins };
