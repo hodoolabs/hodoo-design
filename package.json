@@ -1,6 +1,6 @@
 {
   "name": "hodoo-design",
-  "version": "1.6.128",
+  "version": "1.6.130",
   "title": "Hodoo Design",
   "description": "hodoolabs design system",
   "contributors": [
@@ -48,7 +48,8 @@
   ],
   "files": [
     "dist",
-    "src/hodoo-style.css"
+    "src/hodoo-style.css",
+    "tailwind.config.js"
   ],
   "author": "hodoolabs",
   "license": "ISC",
