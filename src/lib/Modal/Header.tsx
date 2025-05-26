@@ -1,6 +1,7 @@
 'use client';
 
-import { ArrowSmallLeftIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import ArrowSmallLeftIcon from '@heroicons/react/24/outline/ArrowSmallLeftIcon';
+import XMarkIcon from '@heroicons/react/24/outline/XMarkIcon';
 import { cn } from '../../utils/style';
 import Button from '../Button/Button';
 import { ModalProps } from './Modal';

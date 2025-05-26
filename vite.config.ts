@@ -21,25 +21,65 @@ export default defineConfig({
       entry: resolve(__dirname, "src/index.tsx"),
       name: "HodooDesign",
       formats: ["es", "cjs"],
-      fileName: (format) => `index.${format === "es" ? "esm" : format}.js`,
+      fileName: (format) => `${format === "es" ? "esm" : format}/index.js`,
+    },
+    commonjsOptions: {
+      transformMixedEsModules: true,
+      include: [/node_modules/],
     },
     rollupOptions: {
-      external: ["react", "react-dom", "react/jsx-runtime", "next-intl"],
-      output: {
-        globals: {
-          react: "React",
-          "react-dom": "ReactDOM",
-          "react/jsx-runtime": "jsxRuntime",
-          "next-intl": "nextIntl",
+      external: [
+        "react",
+        "react-dom",
+        "react/jsx-runtime",
+        "next-intl",
+        "@heroicons/react",
+        "@heroicons/react/24/outline",
+        "tailwind-merge",
+        "clsx",
+        "class-variance-authority",
+        "dayjs",
+        "lodash",
+        "react-tailwindcss-datepicker",
+      ],
+      output: [
+        {
+          format: "es",
+          dir: "dist/esm",
+          preserveModules: true,
+          preserveModulesRoot: "src",
+          globals: {
+            react: "React",
+            "react-dom": "ReactDOM",
+            "react/jsx-runtime": "jsxRuntime",
+            "next-intl": "nextIntl",
+          },
+          assetFileNames: (assetInfo) => {
+            if (assetInfo.name === "style.css") return "hodoo-design.css";
+            return assetInfo.name;
+          },
         },
-        assetFileNames: (assetInfo) => {
-          if (assetInfo.name === "style.css") return "hodoo-design.css";
-          return assetInfo.name;
+        {
+          format: "cjs",
+          dir: "dist/cjs",
+          preserveModules: true,
+          preserveModulesRoot: "src",
+          exports: "named",
+          globals: {
+            react: "React",
+            "react-dom": "ReactDOM",
+            "react/jsx-runtime": "jsxRuntime",
+            "next-intl": "nextIntl",
+          },
+          assetFileNames: (assetInfo) => {
+            if (assetInfo.name === "style.css") return "hodoo-design.css";
+            return assetInfo.name;
+          },
         },
-      },
+      ],
     },
     sourcemap: true,
-    minify: "terser",
+    minify: false,
     cssMinify: true,
     target: "es2018",
     outDir: "dist",
