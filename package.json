@@ -1,6 +1,6 @@
 {
   "name": "hodoo-design",
-  "version": "1.6.130",
+  "version": "1.6.155",
   "title": "Hodoo Design",
   "description": "hodoolabs design system",
   "contributors": [
@@ -9,21 +9,46 @@
     "Seungmo Kim <tmdah900@naver.com> (https://github.com/endmoseung)",
     "Minji Yun <minpaper.dev@gmail.com> (https://github.com/minpaper-dev)"
   ],
-  "main": "dist/cjs/index.js",
+  "type": "module",
+  "types": "dist/esm/index.d.ts",
+  "main": "dist/cjs/index.cjs",
   "module": "dist/esm/index.js",
-  "types": "dist/types/index.d.ts",
+  "style": "dist/hodoo-design.css",
   "exports": {
     ".": {
-      "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.js",
-      "types": "./dist/types/index.d.ts"
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.cts",
+        "default": "./dist/cjs/index.cjs"
+      }
     },
+    "./tailwind.config": {
+      "import": {
+        "types": "./dist/esm/tailwind.config.d.ts",
+        "default": "./dist/esm/tailwind.config.js"
+      },
+      "require": {
+        "types": "./dist/cjs/tailwind.config.d.cts",
+        "default": "./dist/cjs/tailwind.config.cjs"
+      }
+    },
+    "./style.css": "./dist/hodoo-design.css",
+    "./hodoo-style.css": "./dist/hodoo-style.css",
     "./style": "./dist/hodoo-design.css",
-    "./src/hodoo-style.css": "./src/hodoo-style.css",
-    "./tailwind.config.js": "./tailwind.config.js"
+    "./hodoo-style": "./dist/hodoo-style.css",
+    "./dist/hodoo-style.css": "./dist/hodoo-style.css",
+    "./dist/hodoo-design.css": "./dist/hodoo-design.css",
+    "./package.json": "./package.json"
   },
+  "files": [
+    "dist",
+    "tailwind.config.js"
+  ],
+  "sideEffects": false,
   "private": false,
-  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -45,11 +70,6 @@
     "typescript",
     "tailwind"
   ],
-  "files": [
-    "dist",
-    "src/hodoo-style.css",
-    "tailwind.config.js"
-  ],
   "author": "hodoolabs",
   "license": "ISC",
   "bugs": {
@@ -68,6 +88,7 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
+    "@tanstack/vite-config": "^0.2.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "dayjs": "^1.11.9",
@@ -88,7 +109,7 @@
     "@types/node": "^16.18.39",
     "@types/react": "^18.2.16",
     "@types/react-dom": "^18.2.7",
-    "@vitejs/plugin-react": "^4.2.1",
+    "@vitejs/plugin-react": "^4.5.0",
     "autoprefixer": "^10.4.16",
     "postcss": "^8.4.32",
     "react": "^18.2.0",
@@ -98,8 +119,8 @@
     "terser": "^5.26.0",
     "typescript": "^5.2.2",
     "vite": "^5.0.8",
-    "vite-plugin-dts": "^3.7.0",
-    "vite-plugin-lib-inject-css": "^1.3.0",
+    "vite-plugin-dts": "^4.5.4",
+    "vite-plugin-lib-inject-css": "^2.2.2",
     "vitest": "^1.1.0"
   }
 }
