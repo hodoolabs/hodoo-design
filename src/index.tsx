@@ -37,5 +37,7 @@ export type { ToastStateType, ToastType } from './types/toast';
 export type { TooltipType } from './types/tooltip';
 
 export { HodooContent, HodooTheme, HodooVariants, HodooDarkMode } from './tailwind.config';
+export { configureDatePickerI18n } from './lib/DatePicker/DatePicker';
+export { default as NextIntlAdapter } from './lib/DatePicker/next-intl-Adapter';
 
 export default 'hodoo-design.css';
