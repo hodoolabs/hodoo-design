@@ -1,90 +1,85 @@
-import { defineConfig } from "vite";
+import { tanstackViteConfig } from "@tanstack/vite-config";
 import react from "@vitejs/plugin-react";
-import dts from "vite-plugin-dts";
-import { resolve } from "path";
+import fs from "fs";
+import { defineConfig, mergeConfig } from "vite";
 import { libInjectCss } from "vite-plugin-lib-inject-css";
 
-// https://vitejs.dev/config/
-export default defineConfig({
+// 기본 설정
+const config = defineConfig({
   plugins: [
     react(),
-    dts({
-      include: ["src/**/*.{ts,tsx}"],
-      exclude: ["src/**/*.stories.{ts,tsx}", "src/**/*.test.{ts,tsx}"],
-      rollupTypes: true,
-      outDir: "dist/types",
-    }),
     libInjectCss(),
+    {
+      name: "copy-css",
+      closeBundle: async () => {
+        try {
+          // 디렉토리 존재 여부 확인 및 생성
+          if (!fs.existsSync("dist")) {
+            fs.mkdirSync("dist", { recursive: true });
+          }
+
+          // hodoo-style.css 파일 복사
+          if (fs.existsSync("src/hodoo-style.css")) {
+            fs.copyFileSync("src/hodoo-style.css", "dist/hodoo-style.css");
+            console.log("hodoo-style.css 복사 완료");
+          } else {
+            console.warn("경고: src/hodoo-style.css 파일을 찾을 수 없습니다");
+          }
+
+          // tailwind.config.js 파일 복사
+          if (fs.existsSync("tailwind.config.js")) {
+            if (!fs.existsSync("dist/esm")) {
+              fs.mkdirSync("dist/esm", { recursive: true });
+            }
+
+            if (!fs.existsSync("dist/cjs")) {
+              fs.mkdirSync("dist/cjs", { recursive: true });
+            }
+
+            fs.copyFileSync(
+              "tailwind.config.js",
+              "dist/esm/tailwind.config.js"
+            );
+            fs.copyFileSync(
+              "tailwind.config.js",
+              "dist/cjs/tailwind.config.cjs"
+            );
+            console.log("tailwind.config.js 복사 완료");
+          } else {
+            console.warn("경고: tailwind.config.js 파일을 찾을 수 없습니다");
+          }
+        } catch (error) {
+          console.error("파일 복사 중 오류 발생:", error);
+        }
+      },
+    },
   ],
   build: {
-    lib: {
-      entry: resolve(__dirname, "src/index.tsx"),
-      name: "HodooDesign",
-      formats: ["es", "cjs"],
-      fileName: (format) => `${format === "es" ? "esm" : format}/index.js`,
-    },
-    commonjsOptions: {
-      transformMixedEsModules: true,
-      include: [/node_modules/],
-    },
-    rollupOptions: {
-      external: [
-        "react",
-        "react-dom",
-        "react/jsx-runtime",
-        "next-intl",
-        "@heroicons/react",
-        "@heroicons/react/24/outline",
-        "tailwind-merge",
-        "clsx",
-        "class-variance-authority",
-        "dayjs",
-        "lodash",
-        "react-tailwindcss-datepicker",
-      ],
-      output: [
-        {
-          format: "es",
-          dir: "dist/esm",
-          preserveModules: true,
-          preserveModulesRoot: "src",
-          globals: {
-            react: "React",
-            "react-dom": "ReactDOM",
-            "react/jsx-runtime": "jsxRuntime",
-            "next-intl": "nextIntl",
-          },
-          assetFileNames: (assetInfo) => {
-            if (assetInfo.name === "style.css") return "hodoo-design.css";
-            return assetInfo.name;
-          },
-        },
-        {
-          format: "cjs",
-          dir: "dist/cjs",
-          preserveModules: true,
-          preserveModulesRoot: "src",
-          exports: "named",
-          globals: {
-            react: "React",
-            "react-dom": "ReactDOM",
-            "react/jsx-runtime": "jsxRuntime",
-            "next-intl": "nextIntl",
-          },
-          assetFileNames: (assetInfo) => {
-            if (assetInfo.name === "style.css") return "hodoo-design.css";
-            return assetInfo.name;
-          },
-        },
-      ],
-    },
     sourcemap: true,
     minify: false,
-    cssMinify: true,
-    target: "es2018",
-    outDir: "dist",
-  },
-  optimizeDeps: {
-    include: ["react", "react-dom"],
   },
 });
+
+// TanStack 설정과 병합
+export default mergeConfig(
+  config,
+  tanstackViteConfig({
+    entry: "./src/index.tsx",
+    srcDir: "./src",
+    externalDeps: [
+      "react",
+      "react-dom",
+      "react/jsx-runtime",
+      "next-intl",
+      "@heroicons/react",
+      "@heroicons/react/24/outline",
+      "@heroicons/react/24/solid",
+      "tailwind-merge",
+      "clsx",
+      "class-variance-authority",
+      "dayjs",
+      "lodash",
+      "react-tailwindcss-datepicker",
+    ],
+  })
+);

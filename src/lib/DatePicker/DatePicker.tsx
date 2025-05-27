@@ -3,16 +3,15 @@
 import { CalendarIcon } from '@heroicons/react/24/outline';
 import { throttle } from 'lodash';
 import { ReactNode, useEffect, useState } from 'react';
-import Datepicker, { DateValueType, DatepickerType } from 'react-tailwindcss-datepicker';
+import Datepicker, { DatepickerType, DateValueType } from 'react-tailwindcss-datepicker';
 import { cn } from '../../utils/style';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import Helper from '../Helper/Helper';
 import Label from '../Label/Label';
-import { InputStyle, SkeletonStyle, ToggleStyle } from './style';
 import DefaultI18nAdapter from './defaultAdapter';
-import NextIntlAdapter from './next-intl-Adapter';
-import { I18nAdapter } from './types';
 import { initNextIntl } from './init';
+import { InputStyle, SkeletonStyle, ToggleStyle } from './style';
+import { I18nAdapter } from './types';
 
 // 자동으로 초기화 시도
 if (typeof window !== 'undefined') {
@@ -49,7 +48,7 @@ const DatePicker = ({
 	const handleChangeDate = (date: DateValueType, event: HTMLInputElement, placeholder?: string) => {
 		if (!placeholder && !date?.startDate && !date?.endDate) event.oncancel;
 		else {
-			onChange(date);
+			onChange && onChange(date);
 			onError && onError('');
 		}
 
@@ -87,7 +86,7 @@ const DatePicker = ({
 					inputClassName={cn(InputStyle({ size, error: !!error, disabled }))}
 					placeholder={props.placeholder || ' '}
 					disabled={disabled}
-					onChange={(date, event) => event && handleChangeDate(date, event, props.placeholder)}
+					onChange={(date: DateValueType, event: any) => event && handleChangeDate(date, event, props.placeholder)}
 					{...props}
 				/>
 			) : (
@@ -103,7 +102,7 @@ export default DatePicker;
 
 let i18nAdapter: I18nAdapter = new DefaultI18nAdapter();
 
-const configureDatePickerI18n = (adapter: I18nAdapter) => {
+export const configureDatePickerI18n = (adapter: I18nAdapter) => {
 	i18nAdapter = adapter;
 };
 
@@ -112,9 +111,6 @@ const configureDatePickerI18n = (adapter: I18nAdapter) => {
  * @example
  * // 앱 최상단 init 하는곳
  * import { configureDatePickerI18n, NextIntlAdapter } from 'hodoo-design';
- * configureDatePickerI18n(new NextIntlAdapter());
  *
- * // 또는 자동 초기화를 사용하면 별도 설정 없이도 next-intl이 있으면 자동으로 사용합니다.
+ * configureDatePickerI18n(new NextIntlAdapter());
  */
-
-export { DefaultI18nAdapter, NextIntlAdapter, configureDatePickerI18n };

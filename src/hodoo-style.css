@@ -77,7 +77,7 @@
 	.default-fade-in {
 		animation-name: fadeIn;
 		animation-duration: 0.3s;
-		animation-timing: linear;
+		animation-timing-function: linear;
 		animation-delay: 0s;
 		animation-fill-mode: forwards;
 	}
@@ -85,7 +85,7 @@
 	.spin-fade-in {
 		animation-name: fadeIn;
 		animation-duration: 0.3s;
-		animation-timing: linear;
+		animation-timing-function: linear;
 		animation-delay: 0.5s;
 		animation-fill-mode: forwards;
 	}
