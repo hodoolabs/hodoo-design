@@ -76,20 +76,6 @@ $ npm install react-tailwindcss-datepicker
 $ npm install dayjs
 ```
 
-## Next.js에서 사용하기
-
-Next.js 프로젝트에서 사용할 경우 `next.config.js` 파일에 다음 설정을 추가하세요:
-
-```js
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  transpilePackages: ["hodoo-design"],
-  // 기타 설정...
-};
-
-module.exports = nextConfig;
-```
-
 ## 라이센스
 
 ISC
