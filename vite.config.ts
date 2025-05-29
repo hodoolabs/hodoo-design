@@ -7,7 +7,10 @@ import { libInjectCss } from "vite-plugin-lib-inject-css";
 // 기본 설정
 const config = defineConfig({
   plugins: [
-    react(),
+    react({
+      // React 내부 모듈 최적화
+      jsxRuntime: "automatic",
+    }),
     libInjectCss(),
     {
       name: "copy-css",
@@ -58,8 +61,16 @@ const config = defineConfig({
     sourcemap: true,
     minify: false,
   },
+  resolve: {
+    dedupe: ["react", "react-dom"],
+    conditions: ["import", "module", "browser", "default"],
+  },
   ssr: {
     noExternal: ["react-tailwindcss-datepicker"],
+  },
+
+  optimizeDeps: {
+    include: ["react-tailwindcss-datepicker"],
   },
 });
 
@@ -82,7 +93,6 @@ export default mergeConfig(
       "class-variance-authority",
       "dayjs",
       "lodash",
-      "react-tailwindcss-datepicker",
     ],
   })
 );
