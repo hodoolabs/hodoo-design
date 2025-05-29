@@ -57,13 +57,13 @@ const config = defineConfig({
   build: {
     sourcemap: true,
     minify: false,
-    rollupOptions: {
-      // Next.js App Router와 호환성을 위해 react-tailwindcss-datepicker를 번들에 포함
-      external: ["react", "react-dom", "react/jsx-runtime", "next-intl"],
-    },
+  },
+  ssr: {
+    noExternal: ["react-tailwindcss-datepicker"],
   },
 });
 
+// TanStack 설정과 병합
 export default mergeConfig(
   config,
   tanstackViteConfig({
@@ -82,8 +82,7 @@ export default mergeConfig(
       "class-variance-authority",
       "dayjs",
       "lodash",
-      // Next.js 호환성을 위해 외부 의존성에서 제외하고 직접 번들링
-      // "react-tailwindcss-datepicker",
+      "react-tailwindcss-datepicker",
     ],
   })
 );

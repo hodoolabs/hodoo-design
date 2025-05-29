@@ -2,8 +2,8 @@
 
 import { CalendarIcon } from '@heroicons/react/24/outline';
 import { throttle } from 'lodash';
-import { ReactNode, useEffect, useState } from 'react';
-import Datepicker, { DatepickerType, DateValueType } from 'react-tailwindcss-datepicker';
+import { ReactNode, Suspense, useEffect, useState } from 'react';
+import type { DatepickerType, DateValueType } from 'react-tailwindcss-datepicker';
 import { cn } from '../../utils/style';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import Helper from '../Helper/Helper';
@@ -12,9 +12,12 @@ import DefaultI18nAdapter from './defaultAdapter';
 import { initNextIntl } from './init';
 import { InputStyle, SkeletonStyle, ToggleStyle } from './style';
 import { I18nAdapter } from './types';
+import Datepicker from 'react-tailwindcss-datepicker';
 
-// 자동으로 초기화 시도
-if (typeof window !== 'undefined') {
+// SSR에서 실행 방지
+const isClient = typeof window !== 'undefined';
+
+if (isClient) {
 	initNextIntl();
 }
 
@@ -29,7 +32,7 @@ interface DatePickerProps extends DatepickerType {
 	onError?: (error: string) => void;
 }
 
-const DatePicker = ({
+const DatePickerComponent = ({
 	size = 'lg',
 	label,
 	error,
@@ -42,8 +45,14 @@ const DatePicker = ({
 	...props
 }: DatePickerProps) => {
 	const locale = i18nAdapter.useLocale();
-
+	const [isMounted, setIsMounted] = useState(false);
 	const [isDestroy, setIsDestroy] = useState(false);
+
+	// 클라이언트 사이드에서만 렌더링
+	useEffect(() => {
+		setIsMounted(true);
+		return () => setIsMounted(false);
+	}, []);
 
 	const handleChangeDate = (date: DateValueType, event: HTMLInputElement, placeholder?: string) => {
 		if (!placeholder && !date?.startDate && !date?.endDate) event.oncancel;
@@ -56,6 +65,8 @@ const DatePicker = ({
 	};
 
 	useEffect(() => {
+		if (!isClient) return;
+
 		const handleResizeBrowser = throttle(() => {
 			setIsDestroy(true);
 		}, 1000);
@@ -72,23 +83,29 @@ const DatePicker = ({
 		setIsDestroy(false);
 	}, [isDestroy]);
 
+	if (!isMounted) {
+		return <div className='h-10 bg-gray-200 rounded animate-pulse' />;
+	}
+
 	return (
 		<div className={`flex flex-col ${className}`}>
 			<Label size={size} error={error} label={label} disabled={disabled} required={required} />
-			{!isDestroy ? (
-				<Datepicker
-					i18n={locale}
-					readOnly={true}
-					displayFormat={props.displayFormat}
-					startFrom={props.value?.startDate ? new Date(props.value?.startDate) : new Date()}
-					toggleIcon={() => <CalendarIcon className='w-5 h-5' />}
-					toggleClassName={cn(ToggleStyle({ size, error: !!error, disabled }))}
-					inputClassName={cn(InputStyle({ size, error: !!error, disabled }))}
-					placeholder={props.placeholder || ' '}
-					disabled={disabled}
-					onChange={(date: DateValueType, event: any) => event && handleChangeDate(date, event, props.placeholder)}
-					{...props}
-				/>
+			{isMounted && !isDestroy && isClient ? (
+				<Suspense fallback={<div className={cn(SkeletonStyle({ size }))} />}>
+					<Datepicker
+						i18n={locale}
+						readOnly={true}
+						displayFormat={props.displayFormat}
+						startFrom={props.value?.startDate ? new Date(props.value?.startDate) : new Date()}
+						toggleIcon={() => <CalendarIcon className='w-5 h-5' />}
+						toggleClassName={cn(ToggleStyle({ size, error: !!error, disabled }))}
+						inputClassName={cn(InputStyle({ size, error: !!error, disabled }))}
+						placeholder={props.placeholder || ' '}
+						disabled={disabled}
+						onChange={(date: DateValueType, event: any) => event && handleChangeDate(date, event, props.placeholder)}
+						{...props}
+					/>
+				</Suspense>
 			) : (
 				<div className={cn(SkeletonStyle({ size }))} />
 			)}
@@ -97,8 +114,6 @@ const DatePicker = ({
 		</div>
 	);
 };
-
-export default DatePicker;
 
 let i18nAdapter: I18nAdapter = new DefaultI18nAdapter();
 
@@ -114,3 +129,7 @@ export const configureDatePickerI18n = (adapter: I18nAdapter) => {
  *
  * configureDatePickerI18n(new NextIntlAdapter());
  */
+
+// 클라이언트 컴포넌트로 명시적 지정
+DatePickerComponent.displayName = 'DatePicker';
+export default DatePickerComponent;

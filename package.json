@@ -1,6 +1,6 @@
 {
   "name": "hodoo-design",
-  "version": "1.6.157",
+  "version": "1.6.165",
   "title": "Hodoo Design",
   "description": "hodoolabs design system",
   "contributors": [
@@ -10,30 +10,23 @@
     "Minji Yun <minpaper.dev@gmail.com> (https://github.com/minpaper-dev)"
   ],
   "type": "module",
-  "types": "dist/esm/index.d.ts",
-  "main": "dist/cjs/index.cjs",
-  "module": "dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "main": "./dist/cjs/index.cjs",
+  "module": "./dist/esm/index.js",
   "style": "dist/hodoo-design.css",
   "exports": {
     ".": {
-      "import": {
-        "types": "./dist/esm/index.d.ts",
-        "default": "./dist/esm/index.js"
-      },
-      "require": {
-        "types": "./dist/cjs/index.d.cts",
-        "default": "./dist/cjs/index.cjs"
-      }
+      "types": "./dist/esm/index.d.ts",
+      "node": "./dist/cjs/index.cjs",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.cjs",
+      "default": "./dist/esm/index.js"
     },
     "./tailwind.config": {
-      "import": {
-        "types": "./dist/esm/tailwind.config.d.ts",
-        "default": "./dist/esm/tailwind.config.js"
-      },
-      "require": {
-        "types": "./dist/cjs/tailwind.config.d.cts",
-        "default": "./dist/cjs/tailwind.config.cjs"
-      }
+      "types": "./dist/esm/tailwind.config.d.ts",
+      "import": "./dist/esm/tailwind.config.js",
+      "require": "./dist/cjs/tailwind.config.cjs",
+      "default": "./dist/esm/tailwind.config.js"
     },
     "./style.css": "./dist/hodoo-design.css",
     "./hodoo-style.css": "./dist/hodoo-style.css",
@@ -47,14 +40,16 @@
     "dist",
     "tailwind.config.js"
   ],
-  "sideEffects": false,
+  "sideEffects": [
+    "**/*.css"
+  ],
   "private": false,
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "rm -rf dist && vite build",
     "test": "vitest run",
     "preview": "vite preview",
-    "prepare": "rm -rf dist && npm run build"
+    "prepare": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -79,7 +74,8 @@
   "peerDependencies": {
     "next-intl": ">=2.0.0",
     "react": ">=16.8.0",
-    "react-dom": ">=16.8.0"
+    "react-dom": ">=16.8.0",
+    "react-tailwindcss-datepicker": ">=1.6.6"
   },
   "peerDependenciesMeta": {
     "next-intl": {
