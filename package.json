@@ -1,6 +1,6 @@
 {
   "name": "hodoo-design",
-  "version": "1.6.167",
+  "version": "1.6.169",
   "title": "Hodoo Design",
   "description": "hodoolabs design system",
   "contributors": [
@@ -73,8 +73,8 @@
   "homepage": "https://github.com/hodoolabs/Design-System#readme",
   "peerDependencies": {
     "next-intl": ">=2.0.0",
-    "react": ">=16.8.0",
-    "react-dom": ">=16.8.0",
+    "react": ">=18.2.0",
+    "react-dom": ">=18.2.0",
     "react-tailwindcss-datepicker": ">=1.6.6"
   },
   "peerDependenciesMeta": {

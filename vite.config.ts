@@ -58,19 +58,12 @@ const config = defineConfig({
     },
   ],
   build: {
-    sourcemap: true,
-    minify: false,
+    sourcemap: process.env.NODE_ENV === "development",
+    minify: true,
   },
   resolve: {
     dedupe: ["react", "react-dom"],
     conditions: ["import", "module", "browser", "default"],
-  },
-  ssr: {
-    noExternal: ["react-tailwindcss-datepicker"],
-  },
-
-  optimizeDeps: {
-    include: ["react-tailwindcss-datepicker"],
   },
 });
 
@@ -93,6 +86,7 @@ export default mergeConfig(
       "class-variance-authority",
       "dayjs",
       "lodash",
+      "react-tailwindcss-datepicker",
     ],
   })
 );
