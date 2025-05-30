@@ -1,6 +1,6 @@
 {
   "name": "hodoo-design",
-  "version": "1.6.169",
+  "version": "1.6.170",
   "title": "Hodoo Design",
   "description": "hodoolabs design system",
   "contributors": [
@@ -9,7 +9,6 @@
     "Seungmo Kim <tmdah900@naver.com> (https://github.com/endmoseung)",
     "Minji Yun <minpaper.dev@gmail.com> (https://github.com/minpaper-dev)"
   ],
-  "type": "module",
   "types": "./dist/esm/index.d.ts",
   "main": "./dist/cjs/index.cjs",
   "module": "./dist/esm/index.js",
