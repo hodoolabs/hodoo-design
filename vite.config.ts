@@ -1,17 +1,22 @@
-import { tanstackViteConfig } from "@tanstack/vite-config";
 import react from "@vitejs/plugin-react";
 import fs from "fs";
-import { defineConfig, mergeConfig } from "vite";
+import path from "path";
+import { defineConfig } from "vite";
+import dts from "vite-plugin-dts";
 import { libInjectCss } from "vite-plugin-lib-inject-css";
 
 // 기본 설정
-const config = defineConfig({
+export default defineConfig({
   plugins: [
     react({
       // React 내부 모듈 최적화
       jsxRuntime: "automatic",
     }),
     libInjectCss(),
+    dts({
+      include: ["src/**/*.ts", "src/**/*.tsx"],
+      outDir: ["dist/esm", "dist/cjs"],
+    }),
     {
       name: "copy-css",
       closeBundle: async () => {
@@ -60,33 +65,49 @@ const config = defineConfig({
   build: {
     sourcemap: process.env.NODE_ENV === "development",
     minify: true,
+    outDir: "dist",
+    lib: {
+      entry: path.resolve(__dirname, "src/index.tsx"),
+      name: "hodoo-design",
+      formats: ["es", "cjs"],
+      fileName: (format) =>
+        format === "es" ? "esm/index.js" : "cjs/index.cjs",
+    },
+    rollupOptions: {
+      // 외부 의존성 설정
+      external: [
+        "react",
+        "react-dom",
+        "react/jsx-runtime",
+        "next-intl",
+        "@heroicons/react",
+        "@heroicons/react/24/outline",
+        "@heroicons/react/24/solid",
+        "tailwind-merge",
+        "clsx",
+        "class-variance-authority",
+        "dayjs",
+        "lodash",
+        "react-tailwindcss-datepicker",
+      ],
+      output: {
+        // 전역 변수 매핑
+        globals: {
+          react: "React",
+          "react-dom": "ReactDOM",
+        },
+        // 번들 출력 설정
+        preserveModules: false, // 단일 번들 파일로 출력하기 위해 false로 설정
+        exports: "named",
+        // format별 설정
+        format: "es", // 이 옵션은 각 format 출력에 대해 자동으로 재정의됩니다
+        esModule: true, // ESM 호환성 지원
+        interop: "auto",
+      },
+    },
   },
   resolve: {
     dedupe: ["react", "react-dom"],
     conditions: ["import", "module", "browser", "default"],
   },
 });
-
-// TanStack 설정과 병합
-export default mergeConfig(
-  config,
-  tanstackViteConfig({
-    entry: "./src/index.tsx",
-    srcDir: "./src",
-    externalDeps: [
-      "react",
-      "react-dom",
-      "react/jsx-runtime",
-      "next-intl",
-      "@heroicons/react",
-      "@heroicons/react/24/outline",
-      "@heroicons/react/24/solid",
-      "tailwind-merge",
-      "clsx",
-      "class-variance-authority",
-      "dayjs",
-      "lodash",
-      "react-tailwindcss-datepicker",
-    ],
-  })
-);

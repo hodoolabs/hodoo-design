@@ -1,12 +1,12 @@
-const plugin = require('tailwindcss/plugin');
+import plugin from 'tailwindcss/plugin';
 
-const HodooContent = [
+export const HodooContent = [
 	'./src/**/*.{js,ts,jsx,tsx,mdx}',
 	'./node_modules/react-tailwindcss-datepicker/dist/index.esm.js',
 	'./node_modules/hodoo-design/**/*.{js,jsx,ts,tsx}',
 ];
 
-const HodooTheme = {
+export const HodooTheme = {
 	extend: {
 		colors: {
 			gray: {
@@ -150,13 +150,13 @@ const HodooTheme = {
 	},
 };
 
-const HodooVariants = {
+export const HodooVariants = {
 	extend: {
 		screens: {},
 	},
 };
 
-const HodooDarkMode = ['false'];
+export const HodooDarkMode = ['false'];
 
 const typographyStyles = {
 	// Responsive visibility classes
@@ -373,10 +373,7 @@ const typographyStyles = {
 	'.medium-xxs': { fontSize: '10px', lineHeight: '12px', fontWeight: '500' },
 };
 
-const HodooPlugins = [
-	plugin(({ addUtilities }) => {
-		addUtilities(typographyStyles);
-	}),
-];
-
-export { HodooContent, HodooTheme, HodooVariants, HodooDarkMode, HodooPlugins };
+// 플러그인 생성
+export default plugin(({ addUtilities }) => {
+	addUtilities(typographyStyles);
+});
