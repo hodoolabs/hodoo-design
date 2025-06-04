@@ -1,4 +1,4 @@
-import plugin from 'tailwindcss/plugin';
+const plugin = require('tailwindcss/plugin');
 
 export const HodooContent = [
 	'./src/**/*.{js,ts,jsx,tsx,mdx}',

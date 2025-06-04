@@ -62,6 +62,12 @@ export default defineConfig({
       },
     },
   ],
+  optimizeDeps: {
+    esbuildOptions: {
+      format: "esm",
+    },
+    include: ["react-tailwindcss-datepicker"],
+  },
   build: {
     sourcemap: process.env.NODE_ENV === "development",
     minify: true,

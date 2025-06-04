@@ -4,7 +4,6 @@ import { ModalStateType } from '../../types/modal';
 import { cn } from '../../utils/style';
 import Header from './Header';
 import { ContentStyle, ModalStyle, WrapStyle } from './style';
-
 export interface ModalProps {
 	modalState: ModalStateType;
 	modalHistory?: ModalStateType[];
