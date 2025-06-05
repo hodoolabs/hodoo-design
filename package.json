@@ -1,6 +1,6 @@
 {
   "name": "hodoo-design",
-  "version": "1.6.176",
+  "version": "1.6.177",
   "title": "Hodoo Design",
   "description": "hodoolabs design system",
   "contributors": [
@@ -20,6 +20,12 @@
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.cjs",
       "default": "./dist/esm/index.js"
+    },
+    "./client": {
+      "types": "./dist/esm/client.d.ts",
+      "import": "./dist/esm/client.js",
+      "require": "./dist/cjs/client.cjs",
+      "default": "./dist/esm/client.js"
     },
     "./tailwind.config": {
       "types": "./dist/esm/tailwind.config.d.ts",
@@ -70,11 +76,13 @@
     "url": "https://github.com/hodoolabs/Design-System/issues"
   },
   "homepage": "https://github.com/hodoolabs/Design-System#readme",
+  "engines": {
+    "react-tailwindcss-datepicker": "1.6.6"
+  },
   "peerDependencies": {
     "next-intl": ">=2.0.0",
     "react": ">=18.2.0",
-    "react-dom": ">=18.2.0",
-    "react-tailwindcss-datepicker": ">=1.6.6"
+    "react-dom": ">=18.2.0"
   },
   "peerDependenciesMeta": {
     "next-intl": {
@@ -88,7 +96,7 @@
     "clsx": "^2.0.0",
     "dayjs": "^1.11.9",
     "lodash": "^4.17.21",
-    "react-tailwindcss-datepicker": ">=1.6.6",
+    "react-tailwindcss-datepicker": "1.6.6",
     "tailwind-merge": "^1.14.0"
   },
   "devDependencies": {
