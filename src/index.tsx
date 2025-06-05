@@ -1,5 +1,3 @@
-'use client';
-
 export { default as Accordion } from './lib/Accordion/Accordion';
 export { default as Avatar } from './lib/Avatar/Avatar';
 export { default as Badge } from './lib/Badge/Badge';
@@ -7,11 +5,6 @@ export { default as BreadCrumbs } from './lib/BreadCrumbs/BreadCrumbs';
 export { default as Button } from './lib/Button/Button';
 export { default as ButtonGroup } from './lib/ButtonGroup/ButtonGroup';
 export { default as CheckBox } from './lib/CheckBox/CheckBox';
-
-// DatePicker 내보내기
-export { default as DatePicker } from './lib/DatePicker/DatePicker';
-export { configureDatePickerI18n } from './lib/DatePicker/DatePicker';
-export { default as NextIntlAdapter } from './lib/DatePicker/next-intl-Adapter';
 
 export { default as Dropdown } from './lib/Dropdown/Dropdown';
 export { default as ErrorMessage } from './lib/ErrorMessage/ErrorMessage';

@@ -61,6 +61,50 @@ export default defineConfig({
         }
       },
     },
+    // client.ts 빌드를 위한 플러그인
+    {
+      name: "build-client",
+      closeBundle: async () => {
+        try {
+          // client.ts를 위한 추가 빌드 수행
+          const { build } = require("vite");
+          await build({
+            configFile: false,
+            build: {
+              lib: {
+                entry: path.resolve(__dirname, "src/client.ts"),
+                name: "hodoo-design-client",
+                formats: ["es", "cjs"],
+                fileName: (format) =>
+                  format === "es" ? "esm/client.js" : "cjs/client.cjs",
+              },
+              outDir: "dist",
+              emptyOutDir: false,
+              rollupOptions: {
+                external: [
+                  "react",
+                  "react-dom",
+                  "react/jsx-runtime",
+                  "next-intl",
+                  "@heroicons/react",
+                  "@heroicons/react/24/outline",
+                  "@heroicons/react/24/solid",
+                  "tailwind-merge",
+                  "clsx",
+                  "class-variance-authority",
+                  "dayjs",
+                  "lodash",
+                  "react-tailwindcss-datepicker",
+                ],
+              },
+            },
+          });
+          console.log("client.ts 빌드 완료");
+        } catch (error) {
+          console.error("client.ts 빌드 중 오류 발생:", error);
+        }
+      },
+    },
   ],
   optimizeDeps: {
     esbuildOptions: {
@@ -72,6 +116,7 @@ export default defineConfig({
     sourcemap: process.env.NODE_ENV === "development",
     minify: true,
     outDir: "dist",
+    emptyOutDir: true,
     lib: {
       entry: path.resolve(__dirname, "src/index.tsx"),
       name: "hodoo-design",
