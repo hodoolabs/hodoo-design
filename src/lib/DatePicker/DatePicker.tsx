@@ -9,18 +9,10 @@ import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import Helper from '../Helper/Helper';
 import Label from '../Label/Label';
 import DefaultI18nAdapter from './defaultAdapter';
-import { initNextIntl } from './init';
 import { InputStyle, SkeletonStyle, ToggleStyle } from './style';
 import { I18nAdapter } from './types';
 import Datepicker from 'react-tailwindcss-datepicker';
-
-// SSR에서 실행 방지
-const isClient = typeof window !== 'undefined';
-
-if (isClient) {
-	initNextIntl();
-}
-
+import NextIntlAdapter from './next-intl-Adapter';
 interface DatePickerProps extends DatepickerType {
 	size?: 'lg' | 'sm';
 	label?: ReactNode;
@@ -31,6 +23,8 @@ interface DatePickerProps extends DatepickerType {
 	className?: string;
 	onError?: (error: string) => void;
 }
+
+const isClient = typeof window !== 'undefined';
 
 const DatePickerComponent = ({
 	size = 'lg',
@@ -117,19 +111,19 @@ const DatePickerComponent = ({
 
 let i18nAdapter: I18nAdapter = new DefaultI18nAdapter();
 
-export const configureDatePickerI18n = (adapter: I18nAdapter) => {
+const configureDatePickerI18n = (adapter: I18nAdapter) => {
 	i18nAdapter = adapter;
 };
 
 /**
- * @description 만약 next-intl을 사용하는 경우 앱 최초로 init 하는곳에서 아래와 같이 설정
+ * @description 만약 next-intl을 사용하는 경우 앱 최초로 init 하는곳에서 nextintladapter로 configureDatePickerI18n를 실행
  * @example
  * // 앱 최상단 init 하는곳
- * import { configureDatePickerI18n, NextIntlAdapter } from 'hodoo-design';
- *
+ * import NextIntlAdapter from './next-intl-Adapter';
  * configureDatePickerI18n(new NextIntlAdapter());
  */
 
-// 클라이언트 컴포넌트로 명시적 지정
+export { DefaultI18nAdapter, NextIntlAdapter, configureDatePickerI18n };
+
 DatePickerComponent.displayName = 'DatePicker';
 export default DatePickerComponent;
