@@ -1,4 +1,6 @@
-# Hodoo-Design-System
+# Hodoo Design System
+
+Hodoolabs design system
 
 ## 🤚 Introduction
 
@@ -26,9 +28,8 @@ It is a design system library for Hodoolabs products.
 
 ## 📦 Install
 
-```
+```bash
 npm install hodoo-design
-yarn add hodoo-design
 ```
 
 <br>
@@ -37,6 +38,7 @@ yarn add hodoo-design
 
 ```tsx
 import { Button } from "hodoo-design";
+import "hodoo-design/style";
 
 const App = () => (
   <Button
@@ -70,6 +72,12 @@ $ npm install tailwindcss
 $ npm install class-variance-authority
 $ npm install @heroicons/react
 $ npm install tailwind-merge
-$ npm install react-tailwindcss-datepicker
-& npm install dayjs
+$ npm install react-tailwindcss-datepicker@1.6.6 --save-exact
+$ npm install dayjs
 ```
+
+## 라이센스
+
+ISC
+
+> **중요**: react-tailwindcss-datepicker는 반드시 1.6.6 버전을 사용해야 합니다. 다른 버전(특히 2.0.0 이상)에서는 React 19와 호환성 문제가 발생할 수 있습니다.

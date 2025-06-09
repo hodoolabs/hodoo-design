@@ -1,18 +1,25 @@
 'use client';
 
-CalendarIcon;
+import { CalendarIcon } from '@heroicons/react/24/outline';
 import { throttle } from 'lodash';
-import { ReactNode, useEffect, useState } from 'react';
-import Datepicker, { DateValueType, DatepickerType } from 'react-tailwindcss-datepicker';
+import { ReactNode, Suspense, useEffect, useState } from 'react';
+import type { DatepickerType, DateValueType } from 'react-tailwindcss-datepicker';
 import { cn } from '../../utils/style';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import Helper from '../Helper/Helper';
 import Label from '../Label/Label';
-import { InputStyle, SkeletonStyle, ToggleStyle } from './style';
-import { CalendarIcon } from '@heroicons/react/24/outline';
 import DefaultI18nAdapter from './defaultAdapter';
-import NextIntlAdapter from './next-intl-Adapter';
+import { initNextIntl } from './init';
+import { InputStyle, SkeletonStyle, ToggleStyle } from './style';
 import { I18nAdapter } from './types';
+import Datepicker from 'react-tailwindcss-datepicker';
+
+// SSR에서 실행 방지
+const isClient = typeof window !== 'undefined';
+
+if (isClient) {
+	initNextIntl();
+}
 
 interface DatePickerProps extends DatepickerType {
 	size?: 'lg' | 'sm';
@@ -25,7 +32,7 @@ interface DatePickerProps extends DatepickerType {
 	onError?: (error: string) => void;
 }
 
-const DatePicker = ({
+const DatePickerComponent = ({
 	size = 'lg',
 	label,
 	error,
@@ -38,13 +45,19 @@ const DatePicker = ({
 	...props
 }: DatePickerProps) => {
 	const locale = i18nAdapter.useLocale();
+	const [isMounted, setIsMounted] = useState(false);
+	const [isDestroy, setIsDestroy] = useState(false);
 
-	const [isDestory, setIsDestroy] = useState(false);
+	// 클라이언트 사이드에서만 렌더링
+	useEffect(() => {
+		setIsMounted(true);
+		return () => setIsMounted(false);
+	}, []);
 
 	const handleChangeDate = (date: DateValueType, event: HTMLInputElement, placeholder?: string) => {
 		if (!placeholder && !date?.startDate && !date?.endDate) event.oncancel;
 		else {
-			onChange(date);
+			onChange && onChange(date);
 			onError && onError('');
 		}
 
@@ -52,6 +65,8 @@ const DatePicker = ({
 	};
 
 	useEffect(() => {
+		if (!isClient) return;
+
 		const handleResizeBrowser = throttle(() => {
 			setIsDestroy(true);
 		}, 1000);
@@ -63,28 +78,34 @@ const DatePicker = ({
 	}, []);
 
 	useEffect(() => {
-		if (!isDestory) return;
+		if (!isDestroy) return;
 
 		setIsDestroy(false);
-	}, [isDestory]);
+	}, [isDestroy]);
+
+	if (!isMounted) {
+		return <div className='h-10 bg-gray-200 rounded animate-pulse' />;
+	}
 
 	return (
 		<div className={`flex flex-col ${className}`}>
 			<Label size={size} error={error} label={label} disabled={disabled} required={required} />
-			{!isDestory ? (
-				<Datepicker
-					i18n={locale}
-					readOnly={true}
-					displayFormat={props.displayFormat}
-					startFrom={props.value?.startDate ? new Date(props.value?.startDate) : new Date()}
-					toggleIcon={() => <CalendarIcon className='w-5 h-5' />}
-					toggleClassName={cn(ToggleStyle({ size, error: !!error, disabled }))}
-					inputClassName={cn(InputStyle({ size, error: !!error, disabled }))}
-					placeholder={props.placeholder || ' '}
-					disabled={disabled}
-					onChange={(date, event) => event && handleChangeDate(date, event, props.placeholder)}
-					{...props}
-				/>
+			{isMounted && !isDestroy && isClient ? (
+				<Suspense fallback={<div className={cn(SkeletonStyle({ size }))} />}>
+					<Datepicker
+						i18n={locale}
+						readOnly={true}
+						displayFormat={props.displayFormat}
+						startFrom={props.value?.startDate ? new Date(props.value?.startDate) : new Date()}
+						toggleIcon={() => <CalendarIcon className='w-5 h-5' />}
+						toggleClassName={cn(ToggleStyle({ size, error: !!error, disabled }))}
+						inputClassName={cn(InputStyle({ size, error: !!error, disabled }))}
+						placeholder={props.placeholder || ' '}
+						disabled={disabled}
+						onChange={(date: DateValueType, event: any) => event && handleChangeDate(date, event, props.placeholder)}
+						{...props}
+					/>
+				</Suspense>
 			) : (
 				<div className={cn(SkeletonStyle({ size }))} />
 			)}
@@ -94,20 +115,21 @@ const DatePicker = ({
 	);
 };
 
-export default DatePicker;
-
 let i18nAdapter: I18nAdapter = new DefaultI18nAdapter();
 
-const configureDatePickerI18n = (adapter: I18nAdapter) => {
+export const configureDatePickerI18n = (adapter: I18nAdapter) => {
 	i18nAdapter = adapter;
 };
 
 /**
- * @description 만약 next-intl을 사용하는 경우 앱 최초로 init 하는곳에서 nextintladapter로 configureDatePickerI18n를 실행
+ * @description 만약 next-intl을 사용하는 경우 앱 최초로 init 하는곳에서 아래와 같이 설정
  * @example
  * // 앱 최상단 init 하는곳
- * import NextIntlAdapter from './next-intl-Adapter';
+ * import { configureDatePickerI18n, NextIntlAdapter } from 'hodoo-design';
+ *
  * configureDatePickerI18n(new NextIntlAdapter());
  */
 
-export { DefaultI18nAdapter, NextIntlAdapter, configureDatePickerI18n };
+// 클라이언트 컴포넌트로 명시적 지정
+DatePickerComponent.displayName = 'DatePicker';
+export default DatePickerComponent;
