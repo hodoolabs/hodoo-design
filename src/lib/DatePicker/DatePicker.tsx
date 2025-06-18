@@ -1,7 +1,7 @@
 'use client';
 
 import { CalendarIcon } from '@heroicons/react/24/outline';
-import { throttle } from 'lodash';
+import throttle from 'lodash/throttle';
 import { ReactNode, Suspense, useEffect, useState } from 'react';
 import type { DatepickerType, DateValueType } from 'react-tailwindcss-datepicker';
 import { cn } from '../../utils/style';

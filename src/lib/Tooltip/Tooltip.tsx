@@ -1,6 +1,6 @@
 'use client';
 
-import { throttle } from 'lodash';
+import throttle from 'lodash/throttle';
 import { RefObject, useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { cn } from '../../utils/style';
