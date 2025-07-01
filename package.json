@@ -51,6 +51,7 @@
   "private": false,
   "scripts": {
     "dev": "vite",
+    "dev:playground": "vite dev --config vite.playground.config.ts",
     "build": "rm -rf dist && vite build",
     "test": "vitest run",
     "preview": "vite preview",
