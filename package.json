@@ -1,6 +1,6 @@
 {
   "name": "hodoo-design",
-  "version": "1.6.182",
+  "version": "1.6.183",
   "title": "Hodoo Design",
   "description": "hodoolabs design system",
   "contributors": [
@@ -51,6 +51,7 @@
   "private": false,
   "scripts": {
     "dev": "vite",
+    "dev:playground": "vite dev --config vite.playground.config.ts",
     "build": "rm -rf dist && vite build",
     "test": "vitest run",
     "preview": "vite preview",
