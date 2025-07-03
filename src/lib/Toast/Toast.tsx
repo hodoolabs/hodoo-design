@@ -1,13 +1,16 @@
 'use client';
 
 import { XMarkIcon } from '@heroicons/react/24/outline';
-import { useEffect } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { cn } from '../../utils/style';
 import ToastQuestionSvg from './images/ToastQuestionSvg';
 import ToastSuccessSvg from './images/ToastSuccessSvg';
 import ToastWarningSvg from './images/ToastWarningSvg';
 import { ButtonWrapStyle, ToastStyle } from './style';
 import { ToastStateType } from '../../types/toast';
+
+const ANIMATION_DURATION = 300;
+const ANIMATION_DELAY = 50;
 
 interface ToastProps {
 	toastState: ToastStateType;
@@ -18,16 +21,53 @@ const Toast = ({ toastState, closeToast }: ToastProps) => {
 	const { toastingTime, title, description, leftButton, rightButton, position, leftIcon, closeButton, isOpen } =
 		toastState;
 
-	useEffect(() => {
-		if (!toastingTime) return;
+	// 애니메이션 상태 관리
+	const [isAnimating, setIsAnimating] = useState(false);
+	const [shouldRender, setShouldRender] = useState(false);
+	const [isClosing, setIsClosing] = useState(false);
 
-		const timer = setTimeout(() => closeToast(), toastingTime);
+	const handleCloseWithAnimation = useCallback(() => {
+		if (isClosing) return;
+
+		setIsClosing(true);
+		setIsAnimating(false);
+
+		setTimeout(() => {
+			closeToast();
+			setIsClosing(false);
+		}, ANIMATION_DURATION);
+	}, [closeToast, isClosing]);
+
+	// Toast가 열릴 때 애니메이션 처리
+	useEffect(() => {
+		if (isOpen && !isClosing) {
+			setShouldRender(true);
+			setTimeout(() => {
+				setIsAnimating(true);
+			}, ANIMATION_DELAY);
+		} else if (!isOpen) {
+			setShouldRender(false);
+			setIsAnimating(false);
+			setIsClosing(false);
+		}
+	}, [isOpen, isClosing]);
+
+	// 자동 닫기 타이머
+	useEffect(() => {
+		if (!toastingTime || !isOpen || isClosing) return;
+
+		const timer = setTimeout(() => {
+			handleCloseWithAnimation();
+		}, toastingTime);
 
 		return () => clearTimeout(timer);
-	}, [toastingTime, title]);
+	}, [toastingTime, title, isOpen, isClosing, handleCloseWithAnimation]);
+
+	// 렌더링하지 않을 때는 null 반환
+	if (!shouldRender) return null;
 
 	return (
-		<div className={cn(ToastStyle({ isOpen, position }))}>
+		<div className={cn(ToastStyle({ isOpen: isAnimating, position }))}>
 			<div className='flex gap-3'>
 				{leftIcon && (
 					<div className='w-8 h-8 rounded-lg'>
@@ -50,8 +90,8 @@ const Toast = ({ toastState, closeToast }: ToastProps) => {
 				</div>
 				{closeButton && (
 					<button
-						className='flex items-center justify-center flex-none w-8 h-8 rounded-lg cursor-pointer hover:bg-gray-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-300'
-						onClick={closeToast}
+						className='flex flex-none justify-center items-center w-8 h-8 rounded-lg cursor-pointer hover:bg-gray-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-300'
+						onClick={handleCloseWithAnimation}
 					>
 						<XMarkIcon className='w-6 h-6 text-gray-400' />
 					</button>
