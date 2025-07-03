@@ -19,6 +19,7 @@ const ComponentShowcase = () => {
     title: "",
     description: "",
     leftIcon: undefined as any,
+    closeButton: false,
     toastingTime: 3000,
   });
 
@@ -28,7 +29,30 @@ const ComponentShowcase = () => {
       title: "성공!",
       description: "디자인 시스템이 정상적으로 작동합니다.",
       leftIcon: "success",
+      closeButton: true,
       toastingTime: 3000,
+    });
+  };
+
+  const handleToastWarning = () => {
+    setToastState({
+      isOpen: true,
+      title: "경고!",
+      description: "주의가 필요한 상황입니다.",
+      leftIcon: "warning",
+      closeButton: true,
+      toastingTime: 5000,
+    });
+  };
+
+  const handleToastQuestion = () => {
+    setToastState({
+      isOpen: true,
+      title: "확인 필요",
+      description: "이 작업을 계속 진행하시겠습니까?",
+      leftIcon: "question",
+      closeButton: true,
+      toastingTime: 0, // 수동으로만 닫기
     });
   };
 
@@ -183,6 +207,16 @@ const ComponentShowcase = () => {
                 color="blue"
                 label="토스트 메시지 표시"
                 onClick={handleToastDemo}
+              />
+              <Button
+                color="red"
+                label="경고 토스트 표시"
+                onClick={handleToastWarning}
+              />
+              <Button
+                color="white_line"
+                label="확인 토스트 표시"
+                onClick={handleToastQuestion}
               />
               <p className="text-sm text-gray-600">
                 버튼을 클릭하면 토스트 메시지가 표시됩니다
